@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>python进行简单的数据分析 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="python">
+    
+    <meta name="description" content="转载自http://bluewhale.cc/2016-07-29/%E4%BD%BF%E7%94%A8python%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html?utm_source=tuicool&amp;amp;utm_medium=referral  关于如何使用pytho">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python进行简单的数据分析">
+<meta property="og:url" content="http://yoursite.com/2018/12/07/python进行简单的数据分析/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="转载自http://bluewhale.cc/2016-07-29/%E4%BD%BF%E7%94%A8python%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html?utm_source=tuicool&amp;amp;utm_medium=referral  关于如何使用pytho">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/12/07/python进行简单的数据分析/90a8.jpg">
+<meta property="og:updated_time" content="2018-12-07T12:10:47.122Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python进行简单的数据分析">
+<meta name="twitter:description" content="转载自http://bluewhale.cc/2016-07-29/%E4%BD%BF%E7%94%A8python%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html?utm_source=tuicool&amp;amp;utm_medium=referral  关于如何使用pytho">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/07/python进行简单的数据分析/90a8.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-python进行简单的数据分析" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        python进行简单的数据分析
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/12/07/python进行简单的数据分析/" class="article-date">
+            <time datetime="2018-12-07T11:01:09.000Z" itemprop="datePublished">2018-12-07</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/python/">python</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>转载自<a href="http://bluewhale.cc/2016-07-29/%E4%BD%BF%E7%94%A8python%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="noopener">http://bluewhale.cc/2016-07-29/%E4%BD%BF%E7%94%A8python%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html?utm_source=tuicool&amp;utm_medium=referral</a></p>
+<p> 关于如何使用python进行数据分析的文章很多，相关的书籍也有很多。本文是基于Excel思维使用python进行数据分析，换句话说就是本文不是传统意义上的专业python文章。文章的内容共分为8个部分，从最基础的数据导入和读取到分析结果的图表化输出。这其中包含了很多与Excel非常相似的函数和分析功能，如SUM ，COUNTIF，TRANSPOSE函数，以及数据筛选，分类汇总和数据透视表等功能等等，这些在python中都能找到对应的代码。因此，只要你会使用基本的Excel函数就能看懂文中的python代码，并可以使用Python进行简单的数据分析。文章中的数据源来自Lending Club 2017-2011年的公开数据。<br> <img src="/2018/12/07/python进行简单的数据分析/90a8.jpg" alt=""></p>
+<h3 id="1-开始前的准备工作"><a href="#1-开始前的准备工作" class="headerlink" title="1.开始前的准备工作"></a>1.开始前的准备工作</h3><p>使用Python进行数据分析之前，需要预先导入相对应的功能库。数据分析最常用的库包括用于数值计算的numpy，基于numpy构建的用于科学计算的Pandas库，用于数据可视化的matplotlib和提供各种操作系统功能接口的OS库。我们将这几个库导入到python中， import后是导入库的名称 as后是库的简称。例如pandas库<br>的简称是pd，在后面的代码中看到pd就表示这个操作使用了pandas库。具体代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import os as os</span><br><span class="line">import pandas as pd</span><br><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br></pre></td></tr></table></figure></p>
+<p>导入功能库后，就可以开始读取数据了。这里需要注意的是如果数据文件没有保存在Jupyter Notebook的工作目录中，在导入的过程中需要说明数据所在的路径。如果你觉得输入路径太麻烦的话，可以使用OS库查看或更高操作系统中的工作目录。将数据文件直接拷到Jupyter Notebook的工作目录中，通过下面的代码可<br>以查看Jupyter Notebook的工作目录位置。</p>
+<blockquote>
+<p>os.getcwd()</p>
+</blockquote>
+<p>或者将数据所在位置的路径设置为工作目录。具体方法如下：</p>
+<blockquote>
+<p>os.chdir(‘C:\Users\cliffwang\Desktop\python’)</p>
+</blockquote>
+<p>我们将Lending Club的数据保存在Jupyter Notebook工作目录开始读取数据。Python可以读取多种数据格式，如csv，xls和txt等等。Lending Club的数据源是csv格式的。我们通过下面的代码完成读取数据和创建数据表的工作。</p>
+<blockquote>
+<p>lc=pd.DataFrame(pd.read_csv(‘LoanStats3a.csv’,header=1)</p>
+</blockquote>
+<p><img src="/2018/12/07/python进行简单的数据分析/4x95.jpg" alt=""><br>在上面读取数据的代码中，使用了pandas库(pd)中的功能，首先读取LoanStats3a.csv文件，并设置标题行header=1。然后将读取的csv文件转成DataFrame并将这个数据表取名lc。</p>
+<h3 id="2-数据内容预览"><a href="#2-数据内容预览" class="headerlink" title="2.数据内容预览"></a>2.数据内容预览</h3><p>数据读取工作完成后，可以开始对数据进行简单的预览。预览内容主要包括了解数据表的大小，字段的名称，数据格式等等。为接下来的数据分析工作做准备。</p>
+<p>首先查看我们刚刚读取数据表的大小。</p>
+<blockquote>
+<p>lc.shape</p>
+</blockquote>
+<p>可以看到Lending Club的数据表有多少行，多少个字段。<br>想要进一步查看数据表中更具体的内容可以通过后面的代码来实现。<br>Columns是查看表中各个字段名称的代码，以方便后续的分析工作。若字段数量较多，python只列出了一部分字段的名称。</p>
+<blockquote>
+<p>lc.columns</p>
+</blockquote>
+<p>若查看数据表中具体的数据内容因这个数据表行数较多我们不查看所有数据，只查看开始和结束的几行。显示数据表前5行的数据内容。head后面的()括号中可以输入要查看的具体行数，为空时默认只显示前5行的数据。在前5行的数据表中可以发现，很多字段中都是NaN值，这可能导致后面的字段不可用。不过到底包含多少NaN值，我们在后面的数据清洗部门会进行详细的统计。</p>
+<blockquote>
+<p>lc.head()</p>
+</blockquote>
+<p>tail显示数据表尾部的数据，和head一样tail后面的()中可以输入要查看的具体行数，这里我们输入3表示查看数据表后3行的数据。为空时默认显示最后5行的数据。下面的结果中可以看出id字段最后两行包含了一些其他的信息，而其他字段中并不包含这些信息是NaN值。</p>
+<blockquote>
+<p>lc.tail(3)</p>
+</blockquote>
+<p>最后查看数据表中各个字段的类型，确定数据表中包含哪些类型的数据，是否需要进行格式转换等等。这里发现日期字段的格式为object，需要转换为日期格式。</p>
+<blockquote>
+<p>lc.dtypes</p>
+</blockquote>
+<p>在数据内容概览部分我们大致了解了数据表中的信息，同时也发现表中包含很多NaN值，以及日期格式转换的问题。这些问题将在后面的数据清洗部分进行解决。</p>
+<h3 id="3，数据清洗"><a href="#3，数据清洗" class="headerlink" title="3，数据清洗"></a>3，数据清洗</h3><p>在数据概览部分中发现的问题需要通过数据清洗进行解决。这部分主要解决前面发现的NaN值和日期格式转换问题。通过查看数据表中的空值情况可以发现，前面的字段中NaN值较少，NaN值主要集中在后面的一些字段中。</p>
+<blockquote>
+<p>lc.isnull()</p>
+</blockquote>
+<p>在python中解决NaN值有两个方法，可以统一填充为0，也可以将包含NaN值的行删除。我们先保留这些字段，在后面的使用过程中再进行填充。</p>
+<p>对于日期字段我们使用to_datetime来进行日期格式的转换。下面的命令中将数据表中的issue_d字段更改为日期格式并重新赋给issue_d字段。从查看的结果中可以看出通过格式转换issue_d字段的格式已经从object变成了datetime64。</p>
+<blockquote>
+<p>lc[‘issue_d’]=pd.to_datetime(lc[‘issue_d’])</p>
+</blockquote>
+<h3 id="4，关键指标概览"><a href="#4，关键指标概览" class="headerlink" title="4，关键指标概览"></a>4，关键指标概览</h3><p>清洗后的数据表可以开始进行分析工作，首先是对一些关键汇总指标的统计，对于Lending Club这些关键指标包括总贷款次数，总贷款金额，总利息收入等等。</p>
+<p>对数据表中member_id字段进行计数，获得总的贷款次数。这与Excel中的count函数基本一致。</p>
+<blockquote>
+<p>lc[‘member_id’].count()</p>
+</blockquote>
+<p>对数据表中member_id字段进行唯一值计数，获得总贷款人数。这里贷款次数与人数基本一致。猜测这个值应为贷款次数。</p>
+<blockquote>
+<p>len(lc[‘member_id’].unique())</p>
+</blockquote>
+<p>对数据表中loan_amnt字段进行求和，获得总贷款金额。这与Excel中的sum函数基本一致。</p>
+<blockquote>
+<p>lc[‘loan_amnt’].sum()</p>
+</blockquote>
+<p>将贷款金额分布绘制成箱线图可以看出，贷款均值为10000元。大部分贷款的金额都集中在5000到15000之间。</p>
+<p>plt.boxplot(lc[‘loan_amnt’])<br>plt.show()</p>
+<p><img src="/2018/12/07/python进行简单的数据分析/贷款金额分布箱线图.png" alt=""></p>
+<p>换成直方图再看下，5000美金一个区间，与之前的结果类似，15000以下的贷款居多，其中最多的是5000到10000的区间。大额的贷款也有但笔数较少，最高的一笔35000美金。这些绘图功能我们使用了matplotlib库(plt)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bins = [0, 5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000]</span><br><span class="line">plt.hist(lc[&apos;loan_amnt&apos;],bins,normed=1, histtype=&apos;bar&apos;, rwidth=1)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/12/07/python进行简单的数据分析/贷款金额分布直方图.png" alt=""></p>
+<p>从2017到2011年贷款笔数增长趋势看，虽然中间贷款笔数整体呈快速增长趋势，并且增长速度非常快，从开始每月几十笔到近2500笔。这应该与美国人的理财观念有关系。在后面的贷款用途分析中也可以发现，他们的贷款目的和用途非常广泛，有些甚至有点奇怪。贷款目的可能是为了一次旅行，结婚，甚至还有一个贷<br>款目的写的是为了自由。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lc.sort(columns=&apos;issue_d&apos;,ascending=False)</span><br><span class="line">issue_date=lc.groupby(&apos;issue_d&apos;).count()</span><br><span class="line">plt.plot(issue_date[&apos;member_id&apos;],linewidth=3)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/12/07/python进行简单的数据分析/贷款笔数增长趋势-1024x723.png" alt=""><br>最后再对表中各个字段做个描述统计，看下数据的集中度与离散情况，这里主要关注最大值，最小值和标准差等。由于字段较多，我们在描述统计的命令后面加了一个.T，对数据进行转置，这相当于Excel中的TRANSPOSE函数。</p>
+<blockquote>
+<p>lc.describe().T</p>
+</blockquote>
+<h3 id="5，用户属性分析"><a href="#5，用户属性分析" class="headerlink" title="5，用户属性分析"></a>5，用户属性分析</h3><h3 id="6，产品数据分析"><a href="#6，产品数据分析" class="headerlink" title="6，产品数据分析"></a>6，产品数据分析</h3><h3 id="7，运营数据分析"><a href="#7，运营数据分析" class="headerlink" title="7，运营数据分析"></a>7，运营数据分析</h3><h3 id="8，风控数据分析"><a href="#8，风控数据分析" class="headerlink" title="8，风控数据分析"></a>8，风控数据分析</h3><p>更多信息请跳往“<a href="http://bluewhale.cc/2016-07-29/%E4%BD%BF%E7%94%A8python%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="noopener">蓝鲸网站分析博客</a>”。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/12/07/python进行简单的数据分析/" data-id="cjq840mo3001spkfvk2clve90" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/12/07/python之Pandas文本数据读取和写入/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            python之Pandas文本数据读取和写入
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/12/07/Maven仓库/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Maven仓库</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/Vuejs模板语法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/Vuejs模板语法/26235.png)" alt="Vuejs模板语法" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/Vuejs模板语法/" class="title">Vuejs模板语法</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T08:31:20.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/初识js库/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/初识js库/30da.png)" alt="初识js库" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/初识js库/" class="title">初识js库</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T03:24:08.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/26/JavaScript-Window/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/26/JavaScript-Window/2a77.jpg)" alt="JavaScript_Window" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/26/JavaScript-Window/" class="title">JavaScript_Window</a></p>
+                            <p class="item-date"><time datetime="2018-12-26T04:01:41.000Z" itemprop="datePublished">2018-12-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/24/javascript对象系列/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/24/javascript对象系列/40cfaf.jpg)" alt="javascript对象系列" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/24/javascript对象系列/" class="title">javascript对象系列</a></p>
+                            <p class="item-date"><time datetime="2018-12-24T07:34:02.000Z" itemprop="datePublished">2018-12-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/22/JavaScript-HTML-DOM/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/22/JavaScript-HTML-DOM/qw.gif)" alt="JavaScript-HTML-DOM" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/22/JavaScript-HTML-DOM/" class="title">JavaScript-HTML-DOM</a></p>
+                            <p class="item-date"><time datetime="2018-12-22T08:53:36.000Z" itemprop="datePublished">2018-12-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 15.71px;">JavaScript</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript库/" style="font-size: 10px;">javascript库</a> <a href="/tags/maven/" style="font-size: 18.57px;">maven</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 14.29px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 17.14px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/12/07/python进行简单的数据分析/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

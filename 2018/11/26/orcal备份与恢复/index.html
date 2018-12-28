@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>orcal备份与恢复 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="技术">
+    
+    <meta name="description" content="Oracle备份与恢复   表、索引、视图等（数据层）表select  from user_tables视图select  from user_views索引select  from user_indexes;索引与表的关系 select  from user_ind_columns; 用户（逻辑层） select * from dba_users;通俗的讲就是访问oracle数据库的账号。在or">
+<meta name="keywords" content="技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="orcal备份与恢复">
+<meta property="og:url" content="http://yoursite.com/2018/11/26/orcal备份与恢复/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="Oracle备份与恢复   表、索引、视图等（数据层）表select  from user_tables视图select  from user_views索引select  from user_indexes;索引与表的关系 select  from user_ind_columns; 用户（逻辑层） select * from dba_users;通俗的讲就是访问oracle数据库的账号。在or">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/orcal备份与恢复/1.jpg">
+<meta property="og:updated_time" content="2018-11-29T11:30:29.503Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="orcal备份与恢复">
+<meta name="twitter:description" content="Oracle备份与恢复   表、索引、视图等（数据层）表select  from user_tables视图select  from user_views索引select  from user_indexes;索引与表的关系 select  from user_ind_columns; 用户（逻辑层） select * from dba_users;通俗的讲就是访问oracle数据库的账号。在or">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/26/orcal备份与恢复/1.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-orcal备份与恢复" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        orcal备份与恢复
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/11/26/orcal备份与恢复/" class="article-date">
+            <time datetime="2018-11-26T06:20:47.000Z" itemprop="datePublished">2018-11-26</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/技术/">技术</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="Oracle备份与恢复"><a href="#Oracle备份与恢复" class="headerlink" title="Oracle备份与恢复"></a>Oracle备份与恢复</h1><p> <img src="/2018/11/26/orcal备份与恢复/1.jpg" alt=""></p>
+<ol>
+<li><strong>表、索引、视图等（数据层）</strong><br>表select <em> from user_tables<br>视图select </em> from user_views<br>索引select <em> from user_indexes;<br>索引与表的关系 select </em> from user_ind_columns;</li>
+<li><strong>用户（逻辑层）</strong> select * from dba_<a href="https://www.baidu.com/s?wd=user&amp;tn=SE_PcZhidaonwhc_ngpagmjz&amp;rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">user</a>s;<br>通俗的讲就是访问oracle数据库的账号。<br>在oracle中，可以对用户的各种安全参数进行控制，以维护数据库的安全性，这些概念包括模式(schema)、权限、角色、存储设置、空间限额、存取资源限制、数据库审计等。每个用户都有一个口令，使用正确的username/password才能登录到数据库进行数据存取。</li>
+<li><strong>表空间（逻辑层）</strong> select * from v$tablespace;<br>ORACLE数据库被划分成称作为表空间的逻辑区域——形成ORACLE数据库的<a href="https://baike.baidu.com/item/%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84" target="_blank" rel="noopener">逻辑结构</a>。一个ORACLE数据库能够有一个或多个表空间,而一个表空间则对应着一个或多个物理的<a href="https://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6" target="_blank" rel="noopener">数据库文件</a>。表空间是ORACLE<a href="https://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D" target="_blank" rel="noopener">数据库恢复</a>的最小单位,容纳着许多数据库实体,如表、视图、索引、聚簇、回退段和临时段等。</li>
+</ol>
+<p>每个ORACLE数据库均有<a href="https://baike.baidu.com/item/SYSTEM/15078601" target="_blank" rel="noopener">SYSTEM</a>表空间,这是数据库创建时自动创建的。SYSTEM表空间必须总要保持联机,因为其包含着数据库运行所要求的基本信息(关于整个数据库的<a href="https://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8" target="_blank" rel="noopener">数据字典</a>、联机求助机制、所有回退段、临时段和自举段、所有的用户数据库实体、其它ORACLE软件产品要求的表)。</p>
+<ol>
+<li><strong>数据文件（物理层）</strong> select * from DBA_DATA_FILES;<br>每一个ORACLE数据库有一个或多个物理的数据文件(data file)。逻辑数据库结构(如表、索引)的数据物理地存储在数据库的数据文件中。</li>
+<li><strong>关系解释</strong><br><strong>物理层&gt;&gt;逻辑层&lt;&lt;数据层</strong><br>数据一定有唯一的逻辑归属（表一定属于某个确定的用户和某个确定的表空间）<br>用户和表空间同为逻辑层的概念，没有绝对的物理文件体现也没有绝对的从属关系（用户不属于某个表空间、表空间也不属于某个用户）<br>物理文件一定有唯一的逻辑归属（数据文件一定属于某个确定的表空间，反之不成立；数据文件与用户没有直接关联）<br>在创建表、索引等数据时需要指定用户和表空间，当没有指定用户时默认为当前登录的用户，当没有指定表空间时默认为用户的默认表空间（习惯上将用户与表空间的名称相同便于管理，存在用户和表空间不同的情况，分表空间存放同一用户的不同数据一般是为了解决物理存储空间不够问题和提高查询速度）。<br>查询表、视图、索引等时需要指定用户不需要指定表空间，表空间在创建的时候已经指定过了，当没有指定用户时默认为当前登录的用户（用户查询其它用户的表需要相应的权限，对于通过角色获取的权限可以查询其它用户的数据，但在调用其它用户的内部过程中不会继承该用户的角色权限，只能继承对应用户直接拥有的权限）。<br>存在以下情况:<br> 一个表空间拥有多个数据文件；<br> 一个用户拥有多个表或其它数据；<br> 一个用户的数据存放在多个表空间；<br> 一个表空间存放多个用户数据；<br>不存在以下情况：<br> 两个表空间共用同一个数据文件；<br> 两个用户同时拥有一份数据；<br><img src="/2018/11/26/orcal备份与恢复/2.png" alt=""></li>
+</ol>
+<h1 id="备份与还原"><a href="#备份与还原" class="headerlink" title="备份与还原"></a>备份与还原</h1><p><strong>一、ORACLE DIRECTORY目录</strong><br>Create DIRECTORY让我们可以在Oracle数据库中灵活的对文件进行读写操作，极大的提高了Oracle的易用性和可扩展性。<br>创建 CREATE [OR REPLACE] DIRECTORY directory AS ‘pathname’;<br>授权 GRANT READ[,WRITE] ON DIRECTORY directory TO username;<br>查询 select * from DBA_ DIRECTORIES;<br><strong>简单的理解为将系统的某个文件夹作为数据库用户可以操作的位置，并给每个可操作的目录一个别名，DIRECTORY目录是存放在sys下的，可以给不同用户赋予对目录不同的操作权限。</strong><br>用途：备份还原的文件存放、LOB文件、控制文件等文件的导出导入时存放。<br>注意：这里创建的目录实际的位置是所连接的Oracle实例的服务端所在的服务器上的路径，服务端是Linux的可以在Windows客户端进行目录的创建和修改，但是要按照服务端操作系统的格式来填写相应的值。</p>
+<p><strong>二、备份</strong><br>习惯上说备份某个库是导出数据库某个用户下的全部数据的意思。<br>备份常用的有三种方式exp程序、expdp程序和PLsql提供的导出表工具。<br>exp程序和expdp程序就是数据泵程序，是oracle官方提供的专门用于oracle数据库不加密导出的工具。其中exp程序是早期版本可以附加参数较少，一般使用新的expdp工具，两种工具的导出结果不能通用需要注意。（只总结expdp的相关参数，exp的较为简单不赘述）</p>
+<ol>
+<li><strong>Expdp程序备份数据库的方法：</strong><br><strong>注：</strong> 备份数据库时需要给登录的用户赋予WRITE需要使用的DIRECTORY目录的权限，目的是为了用该目录存放备份出来的转存文件和过程产生的日志文件。<br>Expdp程序可以使用以下命<strong>令进行(Windows的CMD命令提示符窗口)</strong>调用:<br><strong>示例: expdp 用户名/密码</strong><br>expdp BDCK/salis@orcl              有oracle客户端连接的时用连接别名<br>expdp <a href="mailto:BDCK/salis@192.168.1.1" target="_blank" rel="noopener">BDCK/salis@192.168.1.1</a>/orcl   无oracle连接时用IP/服务名称<br>您可以控制导出的运行方式。具体方法是: 在 ‘expdp’ 命令后输入各种参数。要指定各参数, 请使用关键字:<br><strong>格式:  expdp KEYWORD=value 或 KEYWORD=(value1,value2,…,valueN)</strong><br>参数列表：<br>表格底纹颜色表示常用度，越深表示越常用。参数顺序并不重要将表示连接的放在第一个即可。</li>
+</ol>
+<p>| <strong>关键字</strong> | <strong>说明 (默认)</strong> |</p>
+<p>| ATTACH | 连接到现有作业, 例如 ATTACH [=作业名]。<br>| COMPRESSION | 减小有效的转储文件内容的大小关键字值为: (METADATA_ONLY) 和 NONE。<br>| CONTENT | 指定要卸载的数据, 其中有效关键字为: (ALL), DATA_ONLY 和 METADATA_ONLY。<br>| DIRECTORY | 供转储文件和日志文件使用的目录对象。<br>| DUMPFILE | 目标转储文件 (expdat.dmp) 的列表, 例如 DUMPFILE=scott1.dmp, scott2.dmp, dmpdir:scott3.d<br>| ENCRYPTION_PASSWORD | 用于创建加密列数据的口令关键字。<br>| ESTIMATE | 计算作业估计值, 其中有效关键字为: (BLOCKS) 和 STATISTICS。<br>| ESTIMATE_ONLY | 在不执行导出的情况下计算作业估计值。<br>| EXCLUDE | 排除特定的对象类型, 例如 EXCLUDE=TABLE:EMP。<br>| FILESIZE | 以字节为单位指定每个转储文件的大小。<br>| FLASHBACK_SCN | 用于将会话快照设置回以前状态的 SCN。<br>| FLASHBACK_TIME | 用于获取最接近指定时间的 SCN 的时间。<br>| FULL | 导出整个数据库 (N)。<br>| HELP | 显示帮助消息 (N)。<br>| INCLUDE | 包括特定的对象类型, 例如 INCLUDE=TABLE_DATA。<br>| JOB_NAME | 要创建的导出作业的名称。<br>| LOGFILE | 日志文件名 (export.log)。<br>| NETWORK_LINK | 链接到源系统的远程数据库的名称。<br>| NOLOGFILE | 不写入日志文件 (N)。<br>| PARALLEL | 更改当前作业的活动 worker 的数目。<br>| PARFILE | 指定参数文件。<br>| QUERY | 用于导出表的子集的谓词子句。<br>| SAMPLE | 要导出的数据的百分比;<br>| SCHEMAS | 要导出的方案的列表 (登录方案)。<br>| STATUS | 在默认值 (0) 将显示可用时的新状态的情况下, 要监视的频率 (以秒计) 作业状态。<br>| TABLES | 标识要导出的表的列表 - 只有一个方案。<br>| TABLESPACES | 标识要导出的表空间的列表。<br>| TRANSPORT_FULL_CHECK | 验证所有表的存储段 (N)。<br>| TRANSPORT_TABLESPACES | 要从中卸载元数据的表空间的列表。<br>| VERSION | 要导出的对象的版本, 其中有效关键字为: (COMPATIBLE), LATEST 或任何有效的数据库版本。 </p>
+<p>按照顺序对常用的列出示例：<br><strong>（35%灰度）</strong><br><strong>DIRECTORY</strong> 当前任务使用的DIRECTORY目录，前文中有查询方法。</p>
+<ul>
+<li>directory=Database</li>
+<li><p>directory=(Database1,Database2,…,DatabaseN)<br><strong>DUMPFILE</strong> 导出文件的名称或名称列表集合。一个任务导出多个文件时需要设定每个文件的最大值（FILESIZE参数），这里单个文件的大小不受32GB最大值限制受操作系统限制。</p>
+</li>
+<li><p>dumpfile=BDCK.dmp  单个目录单个导出文件</p>
+</li>
+<li>dumpfile=(BDCK1.dmp,BDCK2.dmp,…,BDCKN.dmp)  单个目录多个导出文件</li>
+<li>dumpfile=BDCK_%U.dmp  多个导出文件自动递增序号命名</li>
+<li>dumpfile= Database1:BDCK.dmp  多个目录单个导出文件</li>
+<li>dumpfile=( Database1:BDCK1.dmp, Database2:BDCK2.dmp,…, DatabaseN:BDCKN.dmp)  多个目录多个导出文件</li>
+</ul>
+<p><strong>LOGFILE</strong> 日志文件的名称或名称列表集合。样式与导出文件对应。</p>
+<ul>
+<li>logfile=EXPBDCK.log  单个文件的格式，多个文件与DUMPFILE相同<br><strong>SCHEMAS</strong> 导出的方案，值一般为&quot;用户名&quot;表示导出用户objects里的所有数据。</li>
+<li>schemas=BDCK<br><strong>VERSION</strong> 导出数据的标本，由于expdp是10G以后增加的程序，指定版本不要超过这个限制，否则没有导入程序实质也没有意义。</li>
+<li>version=11.2.0.1.0<br><strong>（15%灰度）</strong><br><strong>ATTACH</strong> 连接正在进行的任务，没有指定任务名时会默认一个任务名，在登录用户的默认表空间下创建一个同名的表并在任务完成时删除该表，该表在当前任务中不会被导出到备份文件中。连接任务后会进入一个交互状态，交互状态的操作在后文介绍。attach参数不与其它参数共同使用。</li>
+<li>expdp BDCK/salis@orcl attach=SYS_EXPORT_FULL_01<br><strong>HELP</strong> 获取EXPDP参数帮助值。help参数不与其它参数共同使用。help参数</li>
+<li>expdp -help<br><strong>JOB_NAME</strong> 指定任务别名，在登录用户的默认表空间下创建一个同名的表并在任务完成时删除该表，该表在当前任务中不会被导出到备份文件中。同一用户多个任务同时进行时名称不能相同，因为同一用户不可以拥有两个同名的表。</li>
+<li>job_name=USER_EXPORT_FULL_01<br><strong>NOLOGFILE</strong> 这是为无日志模式，在导出文件较为复杂，同时导出仅是为了备份数据库时建议使用无日志模式简化导出成果。nologfile参数与logfile参数不能同时存在。</li>
+<li>nologfile=true<br><strong>PARALLEL</strong> 当前任务允许的worker数量，简单的理解为允许同时导出的表，类似于下载时的同时下载数量设置。默认值为1不允许多任务同时进行。</li>
+<li><p>parallel=2<br><strong>PARFILE</strong> 指定参数文件，将参数写在文本文件中通过指定参数调用，简化命令行中的语句。另一种用途是进行多个任务是保障部分参数统一。参数文件没有指定的名称和后缀，仅是没有指定开头的数据文件一般使用TXT格式便于编辑。除了连接参数、directory参数、parfile参数、help参数和attach参数其它常用参数都可以放在参数文件中。</p>
+</li>
+<li><p>parfile=PARFILENAME.TXT  仅单个目录时简化形式</p>
+</li>
+<li><p>parfile=DatabaseN:PARFILENAME.TXT  单个或多个目录时带目录的完整形式<br><strong>QUERY</strong> 导出表的谓词语句，语句为简单的where子句，使用索引、join和子查询时可能存在问题，尽量不要使用复杂的筛选。使用query时要与tables参数配合使用。</p>
+</li>
+<li><p>parallel=&quot;where column_name=1&quot;  单个表的简化形式</p>
+</li>
+<li>parallel=(table1:&quot;where column_name=1&quot;, table2:&quot;where column_name=1&quot;,…, tableN:&quot;where column_name=1&quot;)  多个表时完整形式<br><strong>TABLES</strong> 表示需要导出的表的集合。tables参数与schemas参数不能同时存在。</li>
+<li>tables=table_name  单个表的简化形式</li>
+<li>tables=(table_name1,table_name2,…,table_nameN)  多个表的完整形式<br>文中没有涉及使用一个expdp同时进行多个任务，即在schemas参数后有多个值，建议不要使用这种方式在管理上和参数填写上较为复杂。<br><strong>补充总结交互模式下的命令：</strong></li>
+</ul>
+<p>入交互模式单方法时监控正在进行的任务，每个用户的任务是不会重名的，与查询表类似使用对应用户登录时可以省略任务名称前的用户名。</p>
+<p>Select * from DBA_DATAPUMP_JOBS;–查询数据库当前实例的任务包含导出与导入。</p>
+<p>| <strong>命令</strong> | <strong>说明</strong> |<br>| ADD_FILE | 向转储文件集中添加转储文件。<br>| CONTINUE_CLIENT | 返回到记录模式。如果处于空闲状态, 将重新启动作业。<br>| EXIT_CLIENT | 退出客户机会话并使作业处于运行状态。<br>| FILESIZE | 后续 ADD_FILE 命令的默认文件大小 (字节)。<br>| HELP | 总结交互命令。<br>| KILL_JOB | 分离和删除作业。<br>| PARALLEL | 更改当前作业的活动 worker 的数目。PARALLEL=<worker 的数目="">。<br>| START_JOB | 启动/恢复当前作业。<br>| STATUS | 在默认值 (0) 将显示可用时的新状态的情况下, 要监视的频率 (以秒计) 作业状态。STATUS[=interval]<br>| STOP_JOB | 顺序关闭执行的作业并退出客户机。STOP_JOB=IMMEDIATE 将立即关闭数据泵作业。 </worker></p>
+<p>需要注意的是expdp程序一但启动就会向服务端发送一个或多个任务请求，任务一旦开始除非任务完成或者通过交互模式进行终止任务不会结束；关闭命令提示符窗口不会结束当前正在进行的任务，但是会放弃通过复制多行粘贴到命令提示符窗口的为执行的命令，通过批处理文件添加的任务也会因为命令提示符窗口的关闭而放弃后续没有执行的命令（复制进入命令提示符的最后一行如果没有复制换行符是不会执行最后一行的，批处理由于没有pause的情况下不会停留在命令提示符界面因此不存在这个问题）；存在由于数据库服务端的意外错误导致的expdp任务终止，该类没有正常结束的任务会在对应用户下残留一个与任务同名的表，该表在服务重启以后不手动删除是不会被删除的，与普通表一样可以被其它expdp任务导出。</p>
+<ol>
+<li><strong>PLsql 提供的导出表工具使用方法：</strong><br>打开PLsql登录,位置在 <strong>&quot;工具&quot;&gt;&quot;导出表…&quot;</strong> ，在该工具中选择需要导出的表，选择希望导出后的存储格式对应的选项卡，设置相应的参数，输出文件的路径要选择其它参数可以使用默认的。<br>注意：这里的导出是远程导出、只能导出当前登录用户的表、不能完全备份用户的全部数据。<br>远程导出会把数据从服务端的数据文件抽取到服务端交互空间，再通过网络传输到客户端交互空间，最后再转存到指定的客户端的输出文件中，过程中不使用DIRECTORY目录，但因为通过网络服务传输速度会慢很多尤其在数据量较大时。</li>
+<li><p>三、 <strong>还原</strong></p>
+</li>
+<li><p><strong>正常状态下的迁移、复制、还原</strong><br>还原过程与导出过程相同，这里不在赘述相同部分。<br>备份与导出的意思是将oracle用户的数据部分或者全部从数据库服务中拷贝到一个与数据库服务没有关系的文件中，同时该文件是非加密的开放的数据一般将文件后缀定义为dmp或dump并没有绝对限制，一般分为通过网络的远程导出（PLsql提供的工具、异地备份方案和OGG）和通过服务的任务型备份（expdp、exp），两种方式都要求服务端运行正常。<br>迁移、复制和还原的意思是将数据从一个oracle服务中导入到另一个oracle服务中，要求后者拥有的空间不小于前者需要转存的部分。后者和前者可以是同一个oracle服务。<br>一般情况下为了简化转存的过程要求两个服务涉及到需要转存部分的逻辑层结构相同，当然也可以不同，对于不同的情况需要有部分需要注意的地方在后文中会强调。</p>
+</li>
+<li>1）PLsql提供的导入表工具<br>具体用法与导出表类似，这里对表所属于的用户要求并不严格。</li>
+<li>2）IMPDP导入工具<br>与EXPDP导出程序一样是在命令提示符窗口执行命令即可，基本上EXPDP的参数在IMPDP中都适用，但IMPDP还包含很多额外的参数总结如下：</li>
+</ol>
+<p>| <strong>关键字</strong> | <strong>说明 (默认)</strong><br>| REMAP_DATAFILE | 在所有 DDL 语句中重新定义数据文件引用。<br>| REMAP_SCHEMA | 将一个方案中的对象加载到另一个方案。<br>| REMAP_TABLESPACE | 将表空间对象重新映射到另一个表空间。<br>| REUSE_DATAFILES | 如果表空间已存在, 则将其初始化 (N)。<br>| SKIP_UNUSABLE_INDEXES | 跳过设置为无用索引状态的索引。<br>| SQLFILE | 将所有的 SQL DDL 写入指定的文件。<br>| STREAMS_CONFIGURATION | 启用流元数据的加载<br>| TABLE_EXISTS_ACTION | 导入对象已存在时执行的操作。有效关键字: (SKIP), APPEND, REPLACE 和 TRUNCATE。<br>| TRANSFORM | 要应用于适用对象的元数据转换。有效的转换关键字: SEGMENT_ATTRIBUTES, STORAGE OID 和 PCTSPACE。<br>| TRANSPORT_DATAFILES | 按可传输模式导入的数据文件的列表。 </p>
+<p><strong>REMAP_SCHEMA</strong> 可以定义用户的切换，其格式为：</p>
+<ul>
+<li>remap_schema=old_schema_name:new_schema_name<br><strong>REMAP_TABLESPACE</strong> 可以定义切换对象的不同表空间，其格式为：</li>
+<li>remap_tablespace=old_tablespace_name:new_tablespace_name<br>参数中还包含了屏蔽索引和键值，DLL错误的应对机制等功能（当需要创建的表已经存在的时候等），使用时与其它参数模式相同。这些特有的参数都可以放在参数文件中调用。</li>
+</ul>
+<p>IMPDP交互模式下的命令与EXPDP的相同不重复总结。</p>
+<ol>
+<li><strong>异常状态下的恢复工作</strong></li>
+</ol>
+<ul>
+<li><strong>ORACLE冷备份及恢复</strong><br><strong>备份</strong><br>直接拷贝oracle目录下的admin、oradata(datafile， controlfile，redo)、flash_recovery_area三个文件夹，db_1目录下database(PWDfile、pfile)、dbs(spfile)、NETWORK/ADMIN(listener.ora、tnsnames.ora)，到其他存储实现备份。<br><strong>恢复</strong><br><strong>方法一：最简单的方法（需建库）</strong><br><strong>对于清楚原库安装过程的方法一较为简单</strong><br>(1).创建一个和原来一样的数据库。(安装路径和数据库名必须和原来一致)<br>(2).停止数据库 shutdown immediate；<br>(3). 复制安装目录下的admin、oradata、flash_recovery_area覆盖，复制database(PWDfile、pfile) 覆盖<br>(4).启动数据库 startup;<br><strong>方法二：（不需建库，稍麻烦点）</strong><br>(1).操作系统重装，如果做冷备恢复，要保证相同操作系统，相同的数据库版本。<br>(2).正常安装oracle软件，只需要安装软件，不用建实例。<br>(3).数据覆盖，包括数据文件、参数文件、控制文件、日志文件、pwd文件，放在与原系统相同的目录。如果目录有所改变，则需要另外建立控制文件，修改pfile。<br>（对于需要通过冷备份恢复的数据库一般原数据库服务端出现不可修复错误时才这样，启动文件一般不容易找，可以通过对文件的查找自己修改PFILE文件，后文中有介绍PFILE内容）<br>(4).建立服务：使用oradim 命令 cmd下 oradim -new -sid gbicc ，表示建立一个服务，sid为gbicc。如果是在linux下，不需要此步。<br>(5).建立监听： net configuration assintant 来建立(建议将源系统的network下的文件拷过来，根据实际情况修改)。<br>(6).打开数据库： cmd<br>set oracle_sid=gbicc;<br>sqlplus /nolog;<br>Conn / as sysdba;<br>startup;<br>至此，冷备份恢复成功。原理简单实际操作中较为复杂。</li>
+<li><p><a href="https://www.cnblogs.com/kerrycode/p/3254154.html" target="_blank" rel="noopener">SPFILE与PFILE</a> <strong>概念</strong><br>ORACLE中的参数文件是一个包含一系列参数以及参数对应值的操作系统文件，可以分为两种类型。它们是在数据库实例启动时候加载的，决定了数据库的物理结构、内存、数据库的限制及系统大量的默认值、数据库的各种物理属性、指定数据库控制文件名和路径等信息，是进行数据库设计和性能调优的重要文件。<br>初始化参数文件（Initialization Parameters Files），Oracle 9i之前，ORACLE一直采用PFILE方式存储初始化参数，该文件为文本文件。<br>服务器参数文件（Server Parameter Files），从Oracle 9i开始，Oracle引入了SPFILE文件，该文件为二进制格式，不能通过手工修改。<br>PFILE是文本文件的，而SPFILE是二进制格式的。PFILE文件可以用文本编辑器打开手工配置、而SPFILE不行，只能通过SQL命令在线修改。从操作系统上可以看到这两者的区别，初始化参数文件为ASCII文本文件，SPFILE为数据文件。<br><strong>重建PFILE或SPFILE</strong><br>create spfile[=’xxxxx’] from pfile[=’xxxx’];<br>create pfile[=’xxxxx’] from spfile[=’xxxx’];<br><strong>查询SPFILE的位置</strong><br>SELECT NAME, VALUE, DISPLAY_VALUE FROM V$PARAMETER WHERE NAME =’spfile’;<br>如果VALUE值为非空，则是SPFILE启动，否则是PFILE。<br><strong>PFILE文件参数的含义</strong><br>对于PFILE参数可以通过导出不同实例进行对比。<br>orcl.__db_cache_size=301989888</p>
+<p>– 数据缓存区大小<br>orcl.__java_pool_size=4194304</p>
+<p>– java池大小<br>orcl.__large_pool_size=4194304</p>
+<p>– 大池大小<br>orcl.__shared_pool_size=134217728</p>
+<p>– 共享池大小<br>orcl.__streams_pool_size=0</p>
+<p>– 流池大小<br>*.audit_file_dest=’H:\oracle\product\10.2.0\admin\orcl\adump’</p>
+<p>– 审计日志目录<br>*.background_dump_dest=’H:\oracle\product\10.2.0\admin\orcl\bdump’</p>
+<p>– 后台进程追踪文件目录，包括警告文件。<br>*.compatible=’10.2.0.3.0’</p>
+<p>– 版本号<br>*.control_files=’H:\oracle\product\10.2.0\oradata\orcl\control01.ctl’,’H:\oracle\product\10.2.0\oradata\orcl\control02.ctl’,’H:\oracle\product\10.2.0\oradata\orcl\control03.ctl’</p>
+<p>– 控制文件<br><em>.core_dump_dest=’H:\oracle\product\10.2.0\admin\orcl\cdump’<br>– windows上无效的参数，似乎用于存放数据库服务器运行错误时的信息。
+</em>.db_block_size=8192</p>
+<p>– 数据块大小，最小IO单位。<br>*.db_domain=’’</p>
+<p>– 数据库域名<br><em>.db_file_multiblock_read_count=16<br>–  the maximum number of blocks read in one I/O operation during a sequential scan.
+</em>.db_name=’orcl’</p>
+<p>– 数据库名<br>*.db_recovery_file_dest=’H:\oracle\product\10.2.0\flash_recovery_area’</p>
+<p>– 数据恢复区<br>*.db_recovery_file_dest_size=2147483648</p>
+<p>– 数据恢复区大小<br>*.dispatchers=’(PROTOCOL=TCP) (SERVICE=orclXDB)’</p>
+<p>– 共享服务器模式下的分派器<br>*.job_queue_processes=10</p>
+<p>– 作业队列最大等待进程数<br>*.log_archive_format=’ARC%S_%R.%T’</p>
+<p>– 归档文件命名规则<br>*.nls_language=’SIMPLIFIED CHINESE’</p>
+<p>– 语言<br>*.nls_territory=’CHINA’</p>
+<p>– 国家<br>*.open_cursors=300</p>
+<p>– 最大打开游标数<br><em>.pga_aggregate_target=149946368<br>– specifies the target aggregate PGA memory available to all server processes attached to the instance
+</em>.processes=50</p>
+<p>– 连接进程最大值<br>*.remote_login_passwordfile=’EXCLUSIVE’</p>
+<p>– whether Oracle checks for a password file.<br>EXCLUSIVE:The password file can be used by only one database.<br><em>.sessions=60<br>– 会话数最大值
+</em>.sga_target=449839104<br>– 用于自动内存管理，不能大于sga_max_size。<br>*.undo_management=’AUTO’</p>
+<p>– 回滚管理方式<br>*.undo_tablespace=’UNDOTBS1’</p>
+<p>– 回滚表空间<br>*.user_dump_dest=’H:\oracle\product\10.2.0\admin\orcl\udump’</p>
+<p>– 用户进程追踪文件存放目录<br><strong>双机热备机器安装过程</strong></p>
+</li>
+</ul>
+<ol>
+<li>分别按照主机A和备机B的oracle软件到各自的独立硬盘中；</li>
+<li>将公共资源（共享硬盘、IP地址）分配给A；</li>
+<li>在A上使用Database Configuration Assistant创建实例</li>
+<li><p>创建过程中步骤6：数据库文件所在位置，选择所有数据文件使用公共位置。在共享硬盘中创建数据文件存放位置。</p>
+<p><img src="/2018/11/26/orcal备份与恢复/3.png" alt=""></p>
+</li>
+<li><p>创建过程中步骤7：恢复配置，快速恢复区指定到共享硬盘中指定的快速恢复位置。</p>
+<p><img src="/2018/11/26/orcal备份与恢复/4.png" alt=""></p>
+</li>
+<li><p>完成A上的实例创建，测试连接没有问题后关闭A的实例服务和监听程序。（出现监听问题单独重启配置监听即可）</p>
+</li>
+<li>将公共资源（共享硬盘、IP地址）分配给B；</li>
+<li>删除创建A上实例在公共硬盘生成的数据文件和快速恢复文件（建议重命名父文件夹即可）。</li>
+<li>在B上按照A一样的过程创建一个一样的实例并测试连接。</li>
+<li>关闭B服务和监听，分配公共资源回到A，启动实例服务和监听测试。正常即完成，不正常通过克隆SPFILE文件复制B的参数到A。</li>
+</ol>
+<p><strong>克隆SPFILE文件（使用sys用户以sysdba登录）：</strong></p>
+<ol>
+<li>双机中调整到服务可运行的机器上，使用下面语句创建中间PFILE文件。<br>服务使用SPFILE运行的：<br>CREATE PFILE=’C:\INIT.ORA’ FROM SPFILE;<br>服务使用PFILE运行的：<br>CREATE PFILE=’C:\INIT.ORA’ FROM PFILE;</li>
+<li>拷贝中间PFILE INIT.ORA到另一台机器上</li>
+<li>双机中调整到服务不能正常运行的机器上，进入CMD中使用中间PFILE重启实例。<br>connect / as sysdba<br>shutdown immediate<br>startup pfile=’C:\INIT.ORA’</li>
+<li><p>测试连接通畅，使用下面语句通过PFILE文件重建实例启动文件。<br>服务使用SPFILE运行的：<br>CREATE SPFILE FROM PFILE=’C:\INIT.ORA’;<br>服务使用PFILE运行的：<br>CREATE PFILE FROM PFILE=’C:\INIT.ORA’;</p>
+</li>
+<li><p>四、 <strong>批处理的使用</strong><br>批处理(Batch)，也称为批处理<a href="https://baike.baidu.com/item/%E8%84%9A%E6%9C%AC" target="_blank" rel="noopener">脚本</a>。<a href="https://baike.baidu.com/item/%E9%A1%BE%E5%90%8D%E6%80%9D%E4%B9%89/1481950" target="_blank" rel="noopener">顾名思义</a>，批处理就是对某对象进行批量的处理，通常被认为是一种简化的<a href="https://baike.baidu.com/item/%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80/1379708" target="_blank" rel="noopener">脚本语言</a>，它应用于<a href="https://baike.baidu.com/item/DOS" target="_blank" rel="noopener">DOS</a>和<a href="https://baike.baidu.com/item/Windows" target="_blank" rel="noopener">Windows</a>系统中。<a href="https://baike.baidu.com/item/%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6/5363369" target="_blank" rel="noopener">批处理文件</a>的扩展名为<a href="https://baike.baidu.com/item/bat/365230" target="_blank" rel="noopener">bat</a> 。<br>通过批处理文件添加的任务也会因为命令提示符窗口的关闭而放弃后续没有执行的命令（复制进入命令提示符的最后一行如果没有复制换行符是不会执行最后一行的，批处理由于没有pause的情况下不会停留在命令提示符界面因此不存在这个问题）。<br><strong>数据库自动备份的批处理</strong><br>数据库备份.bat<br>set bfrq=%date:~0,4%%date:~5,2%%date:~8,2%<br>expdp BDCK/salis@orcl schemas=BDCK directory=dmp_dir1 dumpfile=BDCK%bfrq%.DMP logfile=BDCK%bfrq%.log version=11.2.0.1.0<br>此处仅列出了一个用户的导出语句，可以在同一个批处理添加所有需要导出的用户。</p>
+</li>
+</ol>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/11/26/orcal备份与恢复/" data-id="cjq840mnt001qpkfv4b1gq5sr" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/11/27/Orcal优化/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Orcal优化
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/11/24/orcal的plsql常用关键字/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">orcal的plsql常用关键字</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/Vuejs模板语法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/Vuejs模板语法/26235.png)" alt="Vuejs模板语法" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/Vuejs模板语法/" class="title">Vuejs模板语法</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T08:31:20.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/初识js库/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/初识js库/30da.png)" alt="初识js库" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/初识js库/" class="title">初识js库</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T03:24:08.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/26/JavaScript-Window/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/26/JavaScript-Window/2a77.jpg)" alt="JavaScript_Window" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/26/JavaScript-Window/" class="title">JavaScript_Window</a></p>
+                            <p class="item-date"><time datetime="2018-12-26T04:01:41.000Z" itemprop="datePublished">2018-12-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/24/javascript对象系列/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/24/javascript对象系列/40cfaf.jpg)" alt="javascript对象系列" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/24/javascript对象系列/" class="title">javascript对象系列</a></p>
+                            <p class="item-date"><time datetime="2018-12-24T07:34:02.000Z" itemprop="datePublished">2018-12-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/22/JavaScript-HTML-DOM/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/22/JavaScript-HTML-DOM/qw.gif)" alt="JavaScript-HTML-DOM" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/22/JavaScript-HTML-DOM/" class="title">JavaScript-HTML-DOM</a></p>
+                            <p class="item-date"><time datetime="2018-12-22T08:53:36.000Z" itemprop="datePublished">2018-12-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 15.71px;">JavaScript</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript库/" style="font-size: 10px;">javascript库</a> <a href="/tags/maven/" style="font-size: 18.57px;">maven</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 14.29px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 17.14px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/11/26/orcal备份与恢复/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

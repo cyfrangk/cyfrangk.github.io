@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>orcal的plsql常用关键字 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="orcal">
+    
+    <meta name="description" content="orcal的plsql操作： ##1.整体的框架之查询操作select 列名，带别名的列名，列值表达式或子查询查询结果列名称（多个时用逗号隔开）必要子句from锻炼、表名或子查询查询对象名称（多个时用逗号隔开、多个时带别名）dual用于一个没有查询对象的色了传统语句非必要子句with别名 as 子查询构造查询用的历史表（写在select前）inner join 表名或子查询内连接（左右表或子查询都">
+<meta name="keywords" content="orcal">
+<meta property="og:type" content="article">
+<meta property="og:title" content="orcal的plsql常用关键字">
+<meta property="og:url" content="http://yoursite.com/2018/11/24/orcal的plsql常用关键字/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="orcal的plsql操作： ##1.整体的框架之查询操作select 列名，带别名的列名，列值表达式或子查询查询结果列名称（多个时用逗号隔开）必要子句from锻炼、表名或子查询查询对象名称（多个时用逗号隔开、多个时带别名）dual用于一个没有查询对象的色了传统语句非必要子句with别名 as 子查询构造查询用的历史表（写在select前）inner join 表名或子查询内连接（左右表或子查询都">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/11/24/orcal的plsql常用关键字/t014deeb6e160264fa6.jpg">
+<meta property="og:updated_time" content="2018-11-29T11:33:23.531Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="orcal的plsql常用关键字">
+<meta name="twitter:description" content="orcal的plsql操作： ##1.整体的框架之查询操作select 列名，带别名的列名，列值表达式或子查询查询结果列名称（多个时用逗号隔开）必要子句from锻炼、表名或子查询查询对象名称（多个时用逗号隔开、多个时带别名）dual用于一个没有查询对象的色了传统语句非必要子句with别名 as 子查询构造查询用的历史表（写在select前）inner join 表名或子查询内连接（左右表或子查询都">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/24/orcal的plsql常用关键字/t014deeb6e160264fa6.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-orcal的plsql常用关键字" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        orcal的plsql常用关键字
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/11/24/orcal的plsql常用关键字/" class="article-date">
+            <time datetime="2018-11-24T10:50:46.000Z" itemprop="datePublished">2018-11-24</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/orcal/">orcal</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><strong>orcal的plsql操作：</strong><br><img src="/2018/11/24/orcal的plsql常用关键字/t014deeb6e160264fa6.jpg" alt=""></p>
+<p>##1.整体的框架之查询操作<br>select 列名，带别名的列名，列值表达式或子查询<br>查询结果列名称（多个时用逗号隔开）<br><em>必要子句</em><br>from锻炼、表名或子查询<br>查询对象名称（多个时用逗号隔开、多个时带别名）<br>dual用于一个没有查询对象的色了传统语句<br><em>非必要子句</em><br>with别名 as 子查询<br>构造查询用的历史表（写在select前）<br>inner join 表名或子查询<br>内连接（左右表或子查询都存在时返回结果）<br>left join 表名或子查询<br>左连接（左表和子查询存在时就返回结果）<br>right join 表名或子查询<br>右连接（右表或子查询存在时就返回结果）<br>where 一个布尔运算表达式<br>筛选掉建的的布尔运算（单行数据）列值限制<br>group by 列名或带别名的列名<br>合并列分组聚合（多个时用逗号隔开）<br>having 一个布尔运算表达式<br>筛选条件的布尔运算（聚合函数）行值限制<br>order by/order by desc 一个可以作为结果列的列值表达式<br>正序排序/倒序排序（对字符串和数字类型的排序机制是不同的）desc在尾部<br>union/union all 与当前select返回的=结果列数量类型一致的select语句<br>排除重复拼接/完全拼接（结果列必须完全相同）</p>
+<p><strong>2.一些概念总体解释：</strong><br>DML(data manipulation language)：<br>它们是SELECT、UPDATE、INSERT、DELETE，就象它的名字一样，这4条命令是用来对数据库里的数据进行操作的语言<br>DDL(data definition language)<br>DDL比DML要多，主要的命令有CREATE、ALTER、DROP等，DDL主要是用在定义或改变表(TABLE)的结构，数据类型，表之间的链接和约束等初始化工作上，他们大多在建立表时使用<br>DCL(Data Control Language)：<br>是数据库控制功能。是用来设置或更改数据库用户或角色权限的语句，包括(grant,deny,revoke等)语句。在默认状态下，只有sysadmin,dbcreator,db_owner或db_securityadmin等人员才有权力执行DCL<br><strong>3.一些操作</strong><br>1.daul做为空表的操作<br>eg: 将sql操作当计算机用：<br>select 100<em>20 from dual;<br>查询当前日期：<br>select to_char(sysdate,’yyyy-mm-dd,hh24:mi:ss’) from dual;<br>2.连接字符串<br>eg:select 列1 | |列2 from 表1;<br>select concat(列1,列2) from 表1;<br>3.视图中不能使用order by，但可用group by取代来达到排序目的<br> create view a as select b1,b2 from b group by b1,b2;<br>4.删除重复行<br>SELECT语句中使用ALL或DISTINCT选项来显示表中符合条件的所有行或删除其中重复的数据行，默认为ALL。使用DISTINCT选项时，对于所有重复的数据行在SELECT返回的结果集合中只保留一行。<br>select distinct(列1) from 表1；<br>5.限制返回的行数（sqlserver）<br>使用TOP n [PERCENT]选项限制返回的数据行数，TOP n说明返回n行，而TOP n PERCENT时，说明n是表示一百分数，指定返回的行数等于总行数的百分之几。<br>例如：<br>代码:SELECT TOP 2 </em> FROM <code>testtable</code><br>代码:SELECT TOP 20 PERCENT <em> FROM <code>testtable</code><br><strong>对于orcal是使用rownum,且只有=1或者小于任意值：</strong><br>SELECT  </em> FROM <code>testtable</code> where 列1=“” and rownum&lt;10</p>
+<p>6.对于decode作为复合函数可以用于组合连接字段，<br>eg：decode（列，判断值，返回值1，返回值2）<br>当判断值不存在时返回返回值2，该复合函数还可以继续加判断值和返回值。</p>
+<p>7.对于构建程序流程处理<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">procedure</span> cy_del_dikuai(U_BDCDYH <span class="keyword">IN</span> VARCHAR2) <span class="keyword">is</span></span><br><span class="line">U_MYVAR varchar2(<span class="number">50</span>);</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">select</span> x.bdcdyid <span class="keyword">into</span> U_MYVAR <span class="keyword">from</span> bdcs_shyqzd_xz x <span class="keyword">WHERE</span> x.BDCDYH=U_BDCDYH <span class="keyword">and</span> <span class="keyword">rownum</span>=<span class="number">1</span>;</span><br><span class="line">  if U_MYVAR is not null then</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">delete</span> <span class="keyword">from</span> bdcs_shyqzd_xz x <span class="keyword">where</span> x.bdcdyid=U_MYVAR;</span><br><span class="line">  <span class="keyword">commit</span>;</span><br><span class="line">  <span class="keyword">delete</span> <span class="keyword">from</span> bdck_shyqzd_xz b <span class="keyword">where</span> b.bdcdyid=U_MYVAR;</span><br><span class="line">  <span class="keyword">commit</span>;</span><br><span class="line">  <span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line"><span class="keyword">end</span> cy_del_dikuai;</span><br></pre></td></tr></table></figure></p>
+<p>结果引用 call cy_del_dikuai(变量)便可以直接进行。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/11/24/orcal的plsql常用关键字/" data-id="cjq840mnj001opkfvpispkh1p" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/11/26/orcal备份与恢复/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            orcal备份与恢复
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/11/18/拖垮你人生的或许就是“理性”/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">拖垮你人生的或许就是““理性”</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/Vuejs模板语法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/Vuejs模板语法/26235.png)" alt="Vuejs模板语法" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/Vuejs模板语法/" class="title">Vuejs模板语法</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T08:31:20.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/初识js库/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/初识js库/30da.png)" alt="初识js库" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/初识js库/" class="title">初识js库</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T03:24:08.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/26/JavaScript-Window/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/26/JavaScript-Window/2a77.jpg)" alt="JavaScript_Window" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/26/JavaScript-Window/" class="title">JavaScript_Window</a></p>
+                            <p class="item-date"><time datetime="2018-12-26T04:01:41.000Z" itemprop="datePublished">2018-12-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/24/javascript对象系列/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/24/javascript对象系列/40cfaf.jpg)" alt="javascript对象系列" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/24/javascript对象系列/" class="title">javascript对象系列</a></p>
+                            <p class="item-date"><time datetime="2018-12-24T07:34:02.000Z" itemprop="datePublished">2018-12-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/22/JavaScript-HTML-DOM/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/22/JavaScript-HTML-DOM/qw.gif)" alt="JavaScript-HTML-DOM" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/22/JavaScript-HTML-DOM/" class="title">JavaScript-HTML-DOM</a></p>
+                            <p class="item-date"><time datetime="2018-12-22T08:53:36.000Z" itemprop="datePublished">2018-12-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 15.71px;">JavaScript</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript库/" style="font-size: 10px;">javascript库</a> <a href="/tags/maven/" style="font-size: 18.57px;">maven</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 14.29px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 17.14px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/11/24/orcal的plsql常用关键字/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

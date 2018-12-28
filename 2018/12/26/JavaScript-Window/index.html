@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>JavaScript_Window | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JavaScript">
+    
+    <meta name="description" content="浏览器对象模型 (BOM) 使 JavaScript 有能力与浏览器&amp;quot;对话&amp;quot;。 浏览器对象模型 (BOM)浏览器对象模型（Browser Object Model (BOM)）尚无正式标准。由于现代浏览器已经（几乎）实现了 JavaScript 交互性方面的相同方法和属性，因此常被认为是 BOM 的方法和属性。Window 对象所有浏览器都支持 window 对象。它表示浏览器">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript_Window">
+<meta property="og:url" content="http://yoursite.com/2018/12/26/JavaScript-Window/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="浏览器对象模型 (BOM) 使 JavaScript 有能力与浏览器&amp;quot;对话&amp;quot;。 浏览器对象模型 (BOM)浏览器对象模型（Browser Object Model (BOM)）尚无正式标准。由于现代浏览器已经（几乎）实现了 JavaScript 交互性方面的相同方法和属性，因此常被认为是 BOM 的方法和属性。Window 对象所有浏览器都支持 window 对象。它表示浏览器">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/12/26/JavaScript-Window/2a77.jpg">
+<meta property="og:updated_time" content="2018-12-26T06:55:34.371Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript_Window">
+<meta name="twitter:description" content="浏览器对象模型 (BOM) 使 JavaScript 有能力与浏览器&amp;quot;对话&amp;quot;。 浏览器对象模型 (BOM)浏览器对象模型（Browser Object Model (BOM)）尚无正式标准。由于现代浏览器已经（几乎）实现了 JavaScript 交互性方面的相同方法和属性，因此常被认为是 BOM 的方法和属性。Window 对象所有浏览器都支持 window 对象。它表示浏览器">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/26/JavaScript-Window/2a77.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-JavaScript-Window" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        JavaScript_Window
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/12/26/JavaScript-Window/" class="article-date">
+            <time datetime="2018-12-26T04:01:41.000Z" itemprop="datePublished">2018-12-26</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><code>浏览器对象模型 (BOM) 使 JavaScript 有能力与浏览器&quot;对话&quot;。</code><br><img src="/2018/12/26/JavaScript-Window/2a77.jpg" alt=""></p>
+<h2 id="浏览器对象模型-BOM"><a href="#浏览器对象模型-BOM" class="headerlink" title="浏览器对象模型 (BOM)"></a>浏览器对象模型 (BOM)</h2><p>浏览器对象模型（<strong>B</strong>rowser <strong>O</strong>bject <strong>M</strong>odel (BOM)）尚无正式标准。<br>由于现代浏览器已经（几乎）实现了 JavaScript 交互性方面的相同方法和属性，因此常被认为是 BOM 的方法和属性。<br><strong>Window 对象</strong><br>所有浏览器都支持 window 对象。它表示浏览器窗口。<br>所有 JavaScript 全局对象、函数以及变量均自动成为 window 对象的成员。<br>全局变量是 window 对象的属性。<br>全局函数是 window 对象的方法。<br>甚至 HTML DOM 的 document 也是 window 对象的属性之一：<br>window.document.getElementById(“header”);<br>与此相同：<br>document.getElementById(“header”);</p>
+<h2 id="JavaScript-Window-Screen"><a href="#JavaScript-Window-Screen" class="headerlink" title="JavaScript Window Screen"></a>JavaScript Window Screen</h2><p>window.screen 对象包含有关用户屏幕的信息。<br>window.screen对象在编写时可以不使用 window 这个前缀。<br>一些属性：<br>•    screen.availWidth - 可用的屏幕宽度<br>•    screen.availHeight - 可用的屏幕高度</p>
+<h2 id="Window-Location"><a href="#Window-Location" class="headerlink" title="Window Location"></a>Window Location</h2><p>window.location 对象用于获得当前页面的地址 (URL)，并把浏览器重定向到新的页面。</p>
+<hr>
+<p><strong>Window Location</strong><br><code>window.location</code> 对象在编写时可不使用 window 这个前缀。 一些例子：<br>一些实例:<br>•    location.hostname 返回 web 主机的域名<br>•    location.pathname 返回当前页面的路径和文件名<br>•    location.port 返回 web 主机的端口 （80 或 443）<br>•    location.protocol 返回所使用的 web 协议（http:// 或 https://）</p>
+<p><strong>Window Location Href</strong><br>location.href 属性返回当前页面的 URL。<br>实例<br>返回（当前页面的）整个 URL：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">document.write(location.href);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>以上代码输出为：(根据实际情况)<br>eg:<a href="https://www.taobao.com/market/fspj/mzg.php" target="_blank" rel="noopener">https://www.taobao.com/market/fspj/mzg.php</a></p>
+<p><strong>Window Location Pathname</strong><br>location.pathname 属性返回 URL 的路径名。<br>实例<br>返回当前 URL 的路径名：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">document.write(location.pathname);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>以上代码输出为：(根据实际情况)</p>
+<p>eg:/market/fspj/mzg.php</p>
+<p><strong>Window Location Assign</strong><br>location.assign() 方法加载新的文档。<br>实例<br>加载一个新的文档：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function newDoc()</span><br><span class="line">  &#123;</span><br><span class="line">  window.location.assign(&quot;http://www.baidu.com&quot;)</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;input type=&quot;button&quot; value=&quot;Load new document&quot; onclick=&quot;newDoc()&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="JavaScript-Window-History"><a href="#JavaScript-Window-History" class="headerlink" title="JavaScript Window History"></a>JavaScript Window History</h2><p>window.history 对象包含浏览器的历史。</p>
+<hr>
+<p><strong>Window History</strong><br>window.history对象在编写时可不使用 window 这个前缀。<br>为了保护用户隐私，对 JavaScript 访问该对象的方法做出了限制。<br>一些方法：<br>•    history.back() - 与在浏览器点击后退按钮相同，加载历史列表中的前一个 URL。<br>实例<br>在页面上创建后退按钮：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"> &lt;html&gt;</span><br><span class="line"> &lt;head&gt;</span><br><span class="line"> &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line"> &lt;head&gt;</span><br><span class="line"> &lt;script&gt; </span><br><span class="line">function goBack() &#123;</span><br><span class="line"> window.history.back() </span><br><span class="line">&#125; </span><br><span class="line">&lt;/script&gt; </span><br><span class="line">&lt;/head&gt; </span><br><span class="line">&lt;body&gt;</span><br><span class="line"> &lt;input type=&quot;button&quot; value=&quot;Back&quot; onclick=&quot;goBack()&quot;&gt; </span><br><span class="line">&lt;/body&gt;</span><br><span class="line"> &lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p> 以上代码输出为：</p>
+<script> 
+function goBack() {
+    window.history.back() 
+} 
+</script>
+<input type="button" value="Back" onclick="goBack()">  
+
+
+
+•    history.forward() - 与在浏览器中点击向前按钮相同，加载历史列表中的下一个 URL。
+
+除此之外可以用 `history.go()` 这个方法来实现向前，后退的功能。
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function a()&#123;</span><br><span class="line">    history.go(1);  // go() 里面的参数表示跳转页面的个数 例如 history.go(1) 表示前进一个页面</span><br><span class="line">&#125;</span><br><span class="line">function b()&#123;</span><br><span class="line">    history.go(-1);  // go() 里面的参数表示跳转页面的个数 例如 history.go(-1) 表示后退一个页面</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+## JavaScript Window Navigator
+window.navigator 对象包含有关访问者浏览器的信息。
+________________________________________
+**Window Navigator**
+`window.navigator` 对象在编写时可不使用 window 这个前缀。
+实例
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;example&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">txt = &quot;&lt;p&gt;浏览器代号: &quot; + navigator.appCodeName + &quot;&lt;/p&gt;&quot;;</span><br><span class="line">txt+= &quot;&lt;p&gt;浏览器名称: &quot; + navigator.appName + &quot;&lt;/p&gt;&quot;;</span><br><span class="line">txt+= &quot;&lt;p&gt;浏览器版本: &quot; + navigator.appVersion + &quot;&lt;/p&gt;&quot;;</span><br><span class="line">txt+= &quot;&lt;p&gt;启用Cookies: &quot; + navigator.cookieEnabled + &quot;&lt;/p&gt;&quot;;</span><br><span class="line">txt+= &quot;&lt;p&gt;硬件平台: &quot; + navigator.platform + &quot;&lt;/p&gt;&quot;;</span><br><span class="line">txt+= &quot;&lt;p&gt;用户代理: &quot; + navigator.userAgent + &quot;&lt;/p&gt;&quot;;</span><br><span class="line">txt+= &quot;&lt;p&gt;用户代理语言: &quot; + navigator.systemLanguage + &quot;&lt;/p&gt;&quot;;</span><br><span class="line">document.getElementById(&quot;example&quot;).innerHTML=txt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+**警告!!!**
+来自 navigator 对象的信息具有误导性，不应该被用于检测浏览器版本，这是因为：
+•    navigator 数据可被浏览器使用者更改
+•    一些浏览器对测试站点会识别错误
+•    浏览器无法报告晚于浏览器发布的新操作系统
+________________________________________
+**浏览器检测**
+由于 navigator 可误导浏览器检测，使用对象检测可用来嗅探不同的浏览器。
+由于不同的浏览器支持不同的对象，您可以使用对象来检测浏览器。例如，由于只有 Opera 支持属性 "window.opera"，您可以据此识别出 Opera。
+
+例子：if (window.opera) {...some action...}
+
+## JavaScript 弹窗
+________________________________________
+可以在 JavaScript 中创建三种消息框：`警告框、确认框、提示框。`
+________________________________________
+**警告框**
+警告框经常用于确保用户可以得到某些信息。
+当警告框出现后，用户需要点击确定按钮才能继续进行操作。
+`语法`
+window.alert("sometext");
+`window.alert()` 方法可以不带上window对象，直接使用`alert()`方法。
+实例
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function myFunction()</span><br><span class="line">&#123;</span><br><span class="line">    alert(&quot;你好，我是一个警告框！&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;input type=&quot;button&quot; onclick=&quot;myFunction()&quot; value=&quot;显示警告框&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+________________________________________
+**确认框**
+确认框通常用于验证是否接受用户操作。
+当确认卡弹出时，用户可以点击 "确认" 或者 "取消" 来确定用户操作。
+当你点击 "确认", 确认框返回 true， 如果点击 "取消", 确认框返回 false。
+`语法`
+window.confirm("sometext");
+`window.confirm()` 方法可以不带上window对象，直接使用`confirm()`方法。
+实例
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;点击按钮，显示确认框。&lt;/p&gt;</span><br><span class="line">&lt;button onclick=&quot;myFunction()&quot;&gt;点我&lt;/button&gt;</span><br><span class="line">&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function myFunction()&#123;</span><br><span class="line">	var x;</span><br><span class="line">	var r=confirm(&quot;按下按钮!&quot;);</span><br><span class="line">	if (r==true)&#123;</span><br><span class="line">		x=&quot;你按下了\&quot;确定\&quot;按钮!&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	else&#123;</span><br><span class="line">		x=&quot;你按下了\&quot;取消\&quot;按钮!&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	document.getElementById(&quot;demo&quot;).innerHTML=x;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>点击按钮，显示确认框。</p>
+<button onclick="myFunction()">点我</button>
+<p id="demo"></p>
+<script>
+function myFunction(){
+    var x;
+    var r=confirm("按下按钮!");
+    if (r==true){
+        x="你按下了\"确定\"按钮!";
+    }
+    else{
+        x="你按下了\"取消\"按钮!";
+    }
+    document.getElementById("demo").innerHTML=x;
+}
+</script>
+
+<p><strong>提示框</strong><br>提示框经常用于提示用户在进入页面前输入某个值。<br>当提示框出现后，用户需要输入某个值，然后点击确认或取消按钮才能继续操纵。<br>如果用户点击确认，那么返回值为输入的值。如果用户点击取消，那么返回值为 null。<br><code>语法</code><br>window.prompt(“sometext”,”defaultvalue”);<br><code>window.prompt()</code> 方法可以不带上window对象，直接使用<code>prompt()</code>方法。<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;点击按钮查看输入的对话框。&lt;/p&gt;</span><br><span class="line">&lt;button onclick=&quot;myFunction()&quot;&gt;点我&lt;/button&gt;</span><br><span class="line">&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function myFunction()&#123;</span><br><span class="line">	var x;</span><br><span class="line">	var person=prompt(&quot;请输入你的名字&quot;,&quot;Harry Potter&quot;);</span><br><span class="line">	if (person!=null &amp;&amp; person!=&quot;&quot;)&#123;</span><br><span class="line">	    x=&quot;你好 &quot; + person + &quot;! 今天感觉如何?&quot;;</span><br><span class="line">	    document.getElementById(&quot;demo&quot;).innerHTML=x;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>换行</strong><br>弹窗使用 <code>反斜杠 + &quot;n&quot;(\n)</code>来设置换行。<br>实例<br>alert(“Hello\nHow are you?”);</p>
+<h2 id="JavaScript-计时事件"><a href="#JavaScript-计时事件" class="headerlink" title="JavaScript 计时事件"></a>JavaScript 计时事件</h2><p>JavaScript 一个设定的时间间隔之后来执行代码<br>我们称之为计时事件<br>通过使用 JavaScript，我们有能力做到在一个设定的时间间隔之后来执行代码，而不是在函数被调用后立即执行。我们称之为计时事件。<br>在 JavaScritp 中使用计时事件是很容易的，两个关键方法是:<br>•    setInterval() - 间隔指定的毫秒数不停地执行指定的代码。<br>•    setTimeout() - 在指定的毫秒数后执行指定代码。<br>注意: setInterval() 和 setTimeout() 是 HTML DOM Window对象的两个方法。<br><strong>setInterval() 方法</strong><br>setInterval() 间隔指定的毫秒数不停地执行指定的代码<br><code>语法</code><br>window.setInterval(“javascript function”,milliseconds);<br><code>window.setInterval()</code> 方法可以不使用window前缀，直接使用函数<code>setInterval()</code>。<br>setInterval() 第一个参数是函数（function）。<br>第二个参数间隔的毫秒数<br><code>注意: 1000 毫秒是一秒。</code><br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">每三秒弹出 &quot;hello&quot; ：</span><br><span class="line">&lt;p&gt;单击按钮每3秒出现一个“Hello”警告框。&lt;/p&gt;</span><br><span class="line">&lt;p&gt;再次点击警告框，经过3秒出现新的警告框，这将一直执行 ...&lt;/p&gt;</span><br><span class="line">&lt;button onclick=&quot;myFunction()&quot;&gt;点我&lt;/button&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function myFunction()&#123;</span><br><span class="line">	setInterval(function()&#123;alert(&quot;Hello&quot;)&#125;,3000);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>实例展示了如何使用 setInterval() 方法，但是每三秒弹出一次对用户体验并不好。<br>以下实例将显示当前时间。 setInterval() 方法设置每秒钟执行一次代码，就是手表一样。<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">显示当前时间</span><br><span class="line">&lt;p&gt;在页面显示一个时钟&lt;/p&gt;</span><br><span class="line">&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var myVar=setInterval(function()&#123;myTimer()&#125;,1000);</span><br><span class="line">function myTimer()&#123;</span><br><span class="line">	var d=new Date();</span><br><span class="line">	var t=d.toLocaleTimeString();</span><br><span class="line">	document.getElementById(&quot;demo&quot;).innerHTML=t;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>如何停止执行?</strong><br>clearInterval() 方法用于停止 setInterval() 方法执行的函数代码。<br><code>语法</code><br>window.clearInterval(intervalVariable)<br><code>window.clearInterval()</code> 方法可以不使用window前缀，直接使用函数<code>clearInterval()</code>。<br>要使用 clearInterval() 方法, 在创建计时方法时你必须使用全局变量：</p>
+<p>myVar=setInterval(“javascript function”,milliseconds);</p>
+<p>然后你可以使用clearInterval() 方法来停止执行。<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">以下例子,我们添加了 &quot;停止&quot; 按钮：</span><br><span class="line">&lt;p&gt;页面上显示时钟：&lt;/p&gt;</span><br><span class="line">&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;button onclick=&quot;myStopFunction()&quot;&gt;停止&lt;/button&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var myVar=setInterval(function()&#123;myTimer()&#125;,1000);</span><br><span class="line">function myTimer()&#123;</span><br><span class="line">	var d=new Date();</span><br><span class="line">	var t=d.toLocaleTimeString();</span><br><span class="line">	document.getElementById(&quot;demo&quot;).innerHTML=t;</span><br><span class="line">&#125;</span><br><span class="line">function myStopFunction()&#123;</span><br><span class="line">	clearInterval(myVar);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>setTimeout() 方法</strong><br><code>语法</code><br>myVar= window.setTimeout(“javascript function”, milliseconds);<br>setTimeout() 方法会返回某个值。在上面的语句中，值被储存在名为 myVar 的变量中。假如你希望取消这个 setTimeout()，你可以使用这个变量名来指定它。<br>setTimeout() 的第一个参数是含有 JavaScript 语句的字符串。这个语句可能诸如 “alert(‘5 seconds!’)”，或者对函数的调用，诸如 alertMsg。<br>第二个参数指示从当前起多少毫秒后执行第一个参数。<br>提示：1000 毫秒等于一秒。<br>实例<br>等待3秒，然后弹出 “Hello”:</p>
+<p>setTimeout(function(){alert(“Hello”)},3000);</p>
+<p>*<em>如何停止执行?</em><br>clearTimeout() 方法用于停止执行setTimeout()方法的函数代码。<br><code>语法</code><br>window.clearTimeout(timeoutVariable)<br><code>window.clearTimeout()</code> 方法可以不使用window 前缀。<br>要使用clearTimeout() 方法, 你必须在创建超时方法中（setTimeout）使用全局变量:<br>myVar=setTimeout(“javascript function”,milliseconds);<br>如果函数还未被执行，你可以使用 clearTimeout() 方法来停止执行函数代码。<br>实例<br>以下是同一个实例, 但是添加了 “Stop the alert” 按钮:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;点击第一个按钮等待3秒后出现&quot;Hello&quot;弹框。&lt;/p&gt;</span><br><span class="line">&lt;p&gt;点击第二个按钮来阻止第一个函数运行。（你必须在3秒之前点击它）。&lt;/p&gt;</span><br><span class="line">&lt;button onclick=&quot;myFunction()&quot;&gt;点我&lt;/button&gt;</span><br><span class="line">&lt;button onclick=&quot;myStopFunction()&quot;&gt;停止弹框&lt;/button&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var myVar;</span><br><span class="line">function myFunction()&#123;</span><br><span class="line">	myVar=setTimeout(function()&#123;alert(&quot;Hello&quot;)&#125;,3000);</span><br><span class="line">&#125;</span><br><span class="line">function myStopFunction()&#123;</span><br><span class="line">	clearTimeout(myVar);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="JavaScript-Cookie"><a href="#JavaScript-Cookie" class="headerlink" title="JavaScript Cookie"></a>JavaScript Cookie</h2><p>Cookie 用于存储 web 页面的用户信息。</p>
+<hr>
+<p><strong>什么是 Cookie？</strong><br>Cookie 是一些数据, 存储于你电脑上的文本文件中。<br>当 web 服务器向浏览器发送 web 页面时，在连接关闭后，服务端不会记录用户的信息。<br>Cookie 的作用就是用于解决 “如何记录客户端的用户信息”:<br>•    当用户访问 web 页面时，他的名字可以记录在 cookie 中。<br>•    在用户下一次访问该页面时，可以在 cookie 中读取用户访问记录。<br>Cookie 以名/值对形式存储，如下所示:<br>username=John Doe<br>当浏览器从服务器上请求 web 页面时， 属于该页面的 cookie 会被添加到该请求中。服务端通过这种方式来获取用户的信息。</p>
+<hr>
+<p><strong>使用 JavaScript 创建Cookie</strong><br>JavaScript 可以使用 <code>document.cookie</code> 属性来创建 、读取、及删除 cookie。<br>JavaScript 中，创建 cookie 如下所示：<br>document.cookie=”username=John Doe”;<br>您还可以为 cookie 添加一个过期时间（以 UTC 或 GMT 时间）。默认情况下，cookie 在浏览器关闭时删除：<br>document.cookie=”username=John Doe; expires=Thu, 18 Dec 2043 12:00:00 GMT”;<br>您可以使用 path 参数告诉浏览器 cookie 的路径。默认情况下，cookie 属于当前页面。<br>document.cookie=”username=John Doe; expires=Thu, 18 Dec 2043 12:00:00 GMT; path=/“;</p>
+<hr>
+<p><strong>使用 JavaScript 读取 Cookie</strong><br>在 JavaScript 中, 可以使用以下代码来读取 cookie：<br>var x = document.cookie;</p>
+<p>document.cookie 将以字符串的方式返回所有的 cookie，类型格式： cookie1=value; cookie2=value; cookie3=value;</p>
+<hr>
+<p><strong>使用 JavaScript 修改 Cookie</strong><br>在 JavaScript 中，修改 cookie 类似于创建 cookie，如下所示：<br>document.cookie=”username=John Smith; expires=Thu, 18 Dec 2043 12:00:00 GMT; path=/“;<br>旧的 cookie 将被覆盖。</p>
+<hr>
+<p><strong>使用 JavaScript 删除 Cookie</strong><br>删除 cookie 非常简单。您只需要设置 expires 参数为以前的时间即可，如下所示，设置为 Thu, 01 Jan 1970 00:00:00 GMT:<br>document.cookie = “username=; expires=Thu, 01 Jan 1970 00:00:00 GMT”;<br>注意，当您删除时不必指定 cookie 的值。</p>
+<hr>
+<p><strong>Cookie 字符串</strong><br>document.cookie 属性看起来像一个普通的文本字符串，其实它不是。<br>即使您在 document.cookie 中写入一个完整的 cookie 字符串, 当您重新读取该 cookie 信息时，cookie 信息是以名/值对的形式展示的。<br>如果您设置了新的 cookie，旧的 cookie 不会被覆盖。 新 cookie 将添加到 document.cookie 中，所以如果您重新读取document.cookie，您将获得如下所示的数据：<br>cookie1=value; cookie2=value;<br>如果您需要查找一个指定 cookie 值，您必须创建一个JavaScript 函数在 cookie 字符串中查找 cookie 值。<br><strong>JavaScript Cookie 实例</strong><br>在以下实例中，我们将创建 cookie 来存储访问者名称。<br>首先，访问者访问 web 页面, 他将被要求填写自己的名字。该名字会存储在 cookie 中。<br>访问者下一次访问页面时，他会看到一个欢迎的消息。<br>在这个实例中我们会创建 3 个 JavaScript 函数:</p>
+<ol>
+<li>设置 cookie 值的函数</li>
+<li>获取 cookie 值的函数</li>
+<li>检测 cookie 值的函数</li>
+</ol>
+<hr>
+<ul>
+<li>设置 cookie 值的函数<br>首先，我们创建一个函数用于存储访问者的名字：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function setCookie(cname,cvalue,exdays)</span><br><span class="line">&#123;</span><br><span class="line">  var d = new Date();</span><br><span class="line">  d.setTime(d.getTime()+(exdays*24*60*60*1000));</span><br><span class="line">  var expires = &quot;expires=&quot;+d.toGMTString();</span><br><span class="line">  document.cookie = cname + &quot;=&quot; + cvalue + &quot;; &quot; + expires;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>函数解析</code>：<br>以上的函数参数中，cookie 的名称为 cname，cookie 的值为 cvalue，并设置了 cookie 的过期时间 expires。<br>该函数设置了 cookie 名、cookie 值、cookie过期时间。</p>
+<hr>
+<ul>
+<li>获取 cookie 值的函数<br>然后，我们创建一个函数用户返回指定 cookie 的值：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function getCookie(cname)</span><br><span class="line">&#123;</span><br><span class="line">  var name = cname + &quot;=&quot;;</span><br><span class="line">  var ca = document.cookie.split(&apos;;&apos;);</span><br><span class="line">  for(var i=0; i&lt;ca.length; i++) </span><br><span class="line">  &#123;</span><br><span class="line">    var c = ca[i].trim();</span><br><span class="line">    if (c.indexOf(name)==0) return c.substring(name.length,c.length);</span><br><span class="line">  &#125;</span><br><span class="line">  return &quot;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>函数解析：</code><br>cookie 名的参数为 cname。<br>创建一个文本变量用于检索指定 cookie :cname + “=”。<br>使用分号来分割 document.cookie 字符串，并将分割后的字符串数组赋值给 ca (ca = document.cookie.split(‘;’))。<br>循环 ca 数组 (i=0;i&lt;ca.length;i++)，然后读取数组中的每个值，并去除前后空格 (c=ca[i].trim())。<br>如果找到 cookie(c.indexOf(name) == 0)，返回 cookie 的值 (c.substring(name.length,c.length)。<br>如果没有找到 cookie, 返回 “”。</p>
+<hr>
+<ul>
+<li>检测 cookie 值的函数<br>最后，我们可以创建一个检测 cookie 是否创建的函数。<br>如果设置了 cookie，将显示一个问候信息。<br>如果没有设置 cookie，将会显示一个弹窗用于询问访问者的名字，并调用 setCookie 函数将访问者的名字存储 365 天：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function checkCookie()</span><br><span class="line">&#123;</span><br><span class="line">  var username=getCookie(&quot;username&quot;);</span><br><span class="line">  if (username!=&quot;&quot;)</span><br><span class="line">  &#123;</span><br><span class="line">    alert(&quot;Welcome again &quot; + username);</span><br><span class="line">  &#125;</span><br><span class="line">  else </span><br><span class="line">  &#123;</span><br><span class="line">    username = prompt(&quot;Please enter your name:&quot;,&quot;&quot;);</span><br><span class="line">    if (username!=&quot;&quot; &amp;&amp; username!=null)</span><br><span class="line">    &#123;</span><br><span class="line">      setCookie(&quot;username&quot;,username,365);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li>完整实例<br>实例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">function setCookie(cname,cvalue,exdays)&#123;</span><br><span class="line">	var d = new Date();</span><br><span class="line">	d.setTime(d.getTime()+(exdays*24*60*60*1000));</span><br><span class="line">	var expires = &quot;expires=&quot;+d.toGMTString();</span><br><span class="line">	document.cookie = cname+&quot;=&quot;+cvalue+&quot;; &quot;+expires;</span><br><span class="line">&#125;</span><br><span class="line">function getCookie(cname)&#123;</span><br><span class="line">	var name = cname + &quot;=&quot;;</span><br><span class="line">	var ca = document.cookie.split(&apos;;&apos;);</span><br><span class="line">	for(var i=0; i&lt;ca.length; i++) &#123;</span><br><span class="line">		var c = ca[i].trim();</span><br><span class="line">		if (c.indexOf(name)==0) &#123; return c.substring(name.length,c.length); &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return &quot;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">function checkCookie()&#123;</span><br><span class="line">	var user=getCookie(&quot;username&quot;);</span><br><span class="line">	if (user!=&quot;&quot;)&#123;</span><br><span class="line">		alert(&quot;欢迎 &quot; + user + &quot; 再次访问&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		user = prompt(&quot;请输入你的名字:&quot;,&quot;&quot;);</span><br><span class="line">  		if (user!=&quot;&quot; &amp;&amp; user!=null)&#123;</span><br><span class="line">    		setCookie(&quot;username&quot;,user,30);</span><br><span class="line">    	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>&lt;body onload=&quot;checkCookie()&quot;&gt;&lt;/body&gt;</code><br>下实例在页面载入时执行 checkCookie() 函数。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/12/26/JavaScript-Window/" data-id="cjq83x20p0000osfvpkond9nt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/12/27/初识js库/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            初识js库
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/12/24/javascript对象系列/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">javascript对象系列</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/Vuejs模板语法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/Vuejs模板语法/26235.png)" alt="Vuejs模板语法" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/Vuejs模板语法/" class="title">Vuejs模板语法</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T08:31:20.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/初识js库/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/初识js库/30da.png)" alt="初识js库" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/初识js库/" class="title">初识js库</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T03:24:08.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/26/JavaScript-Window/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/26/JavaScript-Window/2a77.jpg)" alt="JavaScript_Window" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/26/JavaScript-Window/" class="title">JavaScript_Window</a></p>
+                            <p class="item-date"><time datetime="2018-12-26T04:01:41.000Z" itemprop="datePublished">2018-12-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/24/javascript对象系列/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/24/javascript对象系列/40cfaf.jpg)" alt="javascript对象系列" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/24/javascript对象系列/" class="title">javascript对象系列</a></p>
+                            <p class="item-date"><time datetime="2018-12-24T07:34:02.000Z" itemprop="datePublished">2018-12-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/22/JavaScript-HTML-DOM/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/22/JavaScript-HTML-DOM/qw.gif)" alt="JavaScript-HTML-DOM" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/22/JavaScript-HTML-DOM/" class="title">JavaScript-HTML-DOM</a></p>
+                            <p class="item-date"><time datetime="2018-12-22T08:53:36.000Z" itemprop="datePublished">2018-12-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 15.71px;">JavaScript</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript库/" style="font-size: 10px;">javascript库</a> <a href="/tags/maven/" style="font-size: 18.57px;">maven</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 14.29px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 17.14px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/12/26/JavaScript-Window/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

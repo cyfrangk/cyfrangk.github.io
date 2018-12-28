@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>浅谈Java中的equals和== | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="java">
+    
+    <meta name="description" content="java中的数据类型，可分为两类：1.基本数据类型，也称原始数据类型。byte,short,char,int,long,float,double,boolean  他们之间的比较，应用双等号（==）,比较的是他们的值。2.复合数据类型(类) 当他们用（==）进行比较的时候，比较的是他们在内存中的存放地址，所以，除非是同一个new出来的对象，他们的比较后的结果为true，否则比较后结果为false。">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈Java中的equals和==">
+<meta property="og:url" content="http://yoursite.com/2018/11/27/浅谈Java中的equals和/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="java中的数据类型，可分为两类：1.基本数据类型，也称原始数据类型。byte,short,char,int,long,float,double,boolean  他们之间的比较，应用双等号（==）,比较的是他们的值。2.复合数据类型(类) 当他们用（==）进行比较的时候，比较的是他们在内存中的存放地址，所以，除非是同一个new出来的对象，他们的比较后的结果为true，否则比较后结果为false。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/11/27/浅谈Java中的equals和/11.jpg">
+<meta property="og:updated_time" content="2018-11-29T10:50:41.806Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈Java中的equals和==">
+<meta name="twitter:description" content="java中的数据类型，可分为两类：1.基本数据类型，也称原始数据类型。byte,short,char,int,long,float,double,boolean  他们之间的比较，应用双等号（==）,比较的是他们的值。2.复合数据类型(类) 当他们用（==）进行比较的时候，比较的是他们在内存中的存放地址，所以，除非是同一个new出来的对象，他们的比较后的结果为true，否则比较后结果为false。">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/27/浅谈Java中的equals和/11.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-浅谈Java中的equals和" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        浅谈Java中的equals和==
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/11/27/浅谈Java中的equals和/" class="article-date">
+            <time datetime="2018-11-27T08:21:38.000Z" itemprop="datePublished">2018-11-27</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/java/">java</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>java中的数据类型，可分为两类：<br>1.基本数据类型，也称原始数据类型。byte,short,char,int,long,float,double,boolean<br>  他们之间的比较，应用双等号（==）,比较的是他们的值。<br>2.复合数据类型(类)<br> 当他们用（==）进行比较的时候，比较的是他们在内存中的存放地址，所以，除非是同一个new出来的对象，他们的比较后的结果为true，否则比较后结果为false。 JAVA当中所有的类都是继承于Object这个基类的，在Object中的基类中定义了一个equals的方法， equals方法是用来比较两个对象的引用是否相等，即是否指向同一个对象。这个方法的初始行为是比较对象的内存地 址，但在一些类库当中这个方法被覆盖掉了，如 <strong>String,Integer,Date</strong> 在这些类当中equals有其自身的实现，而不再是比较类在堆内存中的存放地址了。<br> 对于复合数据类型之间进行equals比较，在没有覆写equals方法的情况下，他们之间的比较还是基于他们在内存中的存放位置的地址值的，因为Object的equals方法也是用双等号（==）进行比较的，所以比较后的结果跟双等号（==）的结果相同。<br>==操作符并不涉及到对象内容的比较，对象内容的比较，正是equals方法做的事。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">publicclass TestString &#123;</span><br><span class="line">	publicstaticvoid main(String[] args) &#123;</span><br><span class="line">	String s1 =  Monday ;</span><br><span class="line">	String s2 =  Monday ;</span><br><span class="line">	if (s1 == s2)</span><br><span class="line">		&#123;</span><br><span class="line">	System.out.println( s1 == s2 );</span><br><span class="line">	&#125;</span><br><span class="line">	else&#123;</span><br><span class="line">		System.out.println( s1 != s2 );&#125;</span><br><span class="line">	&#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>编译并运行程序，输出：s1 == s2说明：s1 与 s2 引用同一个 String 对象 –  Monday !<br>2.再稍微改动一下程序，会有更奇怪的发现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">publicclass TestString &#123;</span><br><span class="line">	publicstaticvoid main(String[] args) &#123;</span><br><span class="line">		String s1 =  Monday ;</span><br><span class="line">		String s2 = new String( Monday );</span><br><span class="line">		if (s1 == s2)</span><br><span class="line">			&#123;System.out.println( s1 == s2 );&#125;</span><br><span class="line">		else</span><br><span class="line">			&#123;System.out.println( s1 != s2 );&#125;</span><br><span class="line">		if (s1.equals(s2)) &#123;System.out.println( s1 equals s2 );&#125;</span><br><span class="line">		else&#123;</span><br><span class="line">			System.out.println( s1 not equals s2 );</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们将s2用new操作符创建<br>程序输出：<br>s1 != s2<br>s1 equals s2<br>说明：s1 s2分别引用了两个 Monday String对象<br> <img src="/2018/11/27/浅谈Java中的equals和/11.jpg" alt=""></p>
+<p>要想判断两个对象是否相等，不能通过比较两个对象的引用是否相等，这是永远都得不到相等的结果的，因为两个对象的引用永远不会相等，所以正确的比较方法是直接比较这两个对象，比较这两个对象的实质是不是一样的，即这两个对象里面的内容是不是相同的，通过比较这两个对象的属性值是否相同而决定这两个对象是否相等。Object类提供了一个equals()方法来比较两个对象的内容是否相同，因此我们可以采用这个方法去比较两个对象是否在逻辑上 相等 。</p>
+<ol start="3">
+<li>字符串缓冲池<br>原来，程序在运行的时候会创建一个字符串缓冲池当使用 s2 =  Monday  这样的表达是创建字符串的时候，程序首先会在这个String缓冲池中寻找相同值的对象，在第一个程序中，s1先被放到了池中，所以在s2被创建的时候，程序找到了具有相同值的 s1<br>将s2引用s1所引用的对象 Monday<br>第二段程序中，使用了 new 操作符，他明白的告诉程序： 我要一个新的！不要旧的！ 于是一个新的 Monday Sting对象被创建在内存中。他们的值相同，但是位置不同，一个在池中游泳一个在岸边休息。哎呀，真是资源浪费，明明是一样的非要分开做什么呢？</li>
+</ol>
+<p>4.再次更改程序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">publicclass TestString &#123;</span><br><span class="line">	publicstaticvoid main(String[] args) &#123;</span><br><span class="line">		String s1 =  Monday ;</span><br><span class="line">		String s2 = new String( Monday );</span><br><span class="line">		s2 = s2.intern();</span><br><span class="line">		if (s1 == s2)</span><br><span class="line">			&#123;System.out.println( s1 == s2 );&#125;</span><br><span class="line">		else</span><br><span class="line">			&#123;System.out.println( s1 != s2 );&#125;</span><br><span class="line">		if (s1.equals(s2)) &#123;System.out.println( s1 equals s2 );&#125;</span><br><span class="line">		else&#123;</span><br><span class="line">			System.out.println( s1 not equals s2 );</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这次加入：s2 = s2.intern();<br>程序输出：<br>s1 == s2<br>s1 equals s2<br>原 来，（java.lang.String的intern()方法 abc .intern()方法的返回值还是字符串 abc ，表面上看起来好像这个方 法没什么用处。但实际上，它做了个小动作：检查字符串池里是否存在 abc 这么一个字符串，如果存在，就返回池里的字符串；如果不存在，该方法会 把 abc 添加到字符串池中，然后再返回它的引用。）</p>
+<p>　总结来说：<br>　　1）对于==，如果作用于基本数据类型的变量，则直接比较其存储的  值 是否相等；<br>　　　　如果作用于引用类型的变量，则比较的是所指向的对象的地址<br>　　2）对于equals方法，注意：equals方法不能作用于基本数据类型的变量<br>　　　　如果没有对equals方法进行重写，则比较的是引用类型的变量所指向的对象的地址；<br>　　　　诸如String、Date等类对equals方法进行了重写的话，比较的是所指向的对象的内容。<br>一般我们在设计一个类时，需要重写父类的equals方法，在重写这个方法时，需要按照以下几个规则设计：<br>1、自反性：对任意引用值X，x.equals(x)的返回值一定为true.<br>2、对称性：对于任何引用值x,y,当且仅当y.equals(x)返回值为true时，x.equals(y)的返回值一定为true;<br>3、传递性：如果x.equals(y)=true, y.equals(z)=true,则x.equals(z)=true<br>4、一致性：如果参与比较的对象没任何改变，则对象比较的结果也不应该有任何改变<br>5、非空性：任何非空的引用值X，x.equals(null)的返回值一定为false<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//重写了Object类的 equals() 方法</span><br><span class="line">  @Override</span><br><span class="line">  public boolean equals(Object obj) &#123;</span><br><span class="line">      if (this == obj)</span><br><span class="line">          return true;</span><br><span class="line">      if (obj == null)</span><br><span class="line">          return false;</span><br><span class="line">      if (getClass() != obj.getClass())</span><br><span class="line">          return false;</span><br><span class="line">      Worker other = (Worker) obj;</span><br><span class="line">      if (name == null) &#123;</span><br><span class="line">          if (other.name != null)</span><br><span class="line">              return false;</span><br><span class="line">      &#125; else if (!name.equals(other.name))</span><br><span class="line">          return false;</span><br><span class="line">      if (Double.doubleToLongBits(salary) != Double</span><br><span class="line">              .doubleToLongBits(other.salary))</span><br><span class="line">          return false;</span><br><span class="line">      return true;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/11/27/浅谈Java中的equals和/" data-id="cjq840mox002gpkfvzmj4ponc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/11/28/Java-集合框架/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Java 集合框架
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/11/27/关于oracle中in和exists的区别/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">关于oracle中in和exists的区别</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/Vuejs模板语法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/Vuejs模板语法/26235.png)" alt="Vuejs模板语法" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/Vuejs模板语法/" class="title">Vuejs模板语法</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T08:31:20.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/初识js库/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/初识js库/30da.png)" alt="初识js库" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/初识js库/" class="title">初识js库</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T03:24:08.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/26/JavaScript-Window/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/26/JavaScript-Window/2a77.jpg)" alt="JavaScript_Window" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/26/JavaScript-Window/" class="title">JavaScript_Window</a></p>
+                            <p class="item-date"><time datetime="2018-12-26T04:01:41.000Z" itemprop="datePublished">2018-12-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/24/javascript对象系列/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/24/javascript对象系列/40cfaf.jpg)" alt="javascript对象系列" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/24/javascript对象系列/" class="title">javascript对象系列</a></p>
+                            <p class="item-date"><time datetime="2018-12-24T07:34:02.000Z" itemprop="datePublished">2018-12-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/22/JavaScript-HTML-DOM/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/22/JavaScript-HTML-DOM/qw.gif)" alt="JavaScript-HTML-DOM" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/22/JavaScript-HTML-DOM/" class="title">JavaScript-HTML-DOM</a></p>
+                            <p class="item-date"><time datetime="2018-12-22T08:53:36.000Z" itemprop="datePublished">2018-12-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 15.71px;">JavaScript</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript库/" style="font-size: 10px;">javascript库</a> <a href="/tags/maven/" style="font-size: 18.57px;">maven</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 14.29px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 17.14px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/11/27/浅谈Java中的equals和/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

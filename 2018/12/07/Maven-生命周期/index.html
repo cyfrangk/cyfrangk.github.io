@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Maven-生命周期 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="maven">
+    
+    <meta name="description" content="Maven 构建生命周期定义了一个项目构建跟发布的过程。一个典型的 Maven 构建（build）生命周期是由以下几个阶段的序列组成的：为了完成 default 生命周期，这些阶段（包括其他未在上面罗列的生命周期阶段）将被按顺序地执行。 Maven 有以下三个标准的生命周期：  clean：项目清理的处理 default(或 build)：项目部署的处理 site：项目站点文档创建的处理  构建阶">
+<meta name="keywords" content="maven">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maven-生命周期">
+<meta property="og:url" content="http://yoursite.com/2018/12/07/Maven-生命周期/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="Maven 构建生命周期定义了一个项目构建跟发布的过程。一个典型的 Maven 构建（build）生命周期是由以下几个阶段的序列组成的：为了完成 default 生命周期，这些阶段（包括其他未在上面罗列的生命周期阶段）将被按顺序地执行。 Maven 有以下三个标准的生命周期：  clean：项目清理的处理 default(或 build)：项目部署的处理 site：项目站点文档创建的处理  构建阶">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/12/07/Maven-生命周期/ba9ce.png">
+<meta property="og:updated_time" content="2018-12-07T02:56:07.665Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Maven-生命周期">
+<meta name="twitter:description" content="Maven 构建生命周期定义了一个项目构建跟发布的过程。一个典型的 Maven 构建（build）生命周期是由以下几个阶段的序列组成的：为了完成 default 生命周期，这些阶段（包括其他未在上面罗列的生命周期阶段）将被按顺序地执行。 Maven 有以下三个标准的生命周期：  clean：项目清理的处理 default(或 build)：项目部署的处理 site：项目站点文档创建的处理  构建阶">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/07/Maven-生命周期/ba9ce.png">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-Maven-生命周期" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Maven-生命周期
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/12/07/Maven-生命周期/" class="article-date">
+            <time datetime="2018-12-07T02:09:36.000Z" itemprop="datePublished">2018-12-07</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/maven/">maven</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>Maven 构建生命周期定义了一个项目构建跟发布的过程。<br><img src="/2018/12/07/Maven-生命周期/ba9ce.png" alt=""><br>一个典型的 Maven 构建（build）生命周期是由以下几个阶段的序列组成的：<br><img src="/2018/12/07/Maven-生命周期/3325.png" alt=""><br>为了完成 default 生命周期，这些阶段（包括其他未在上面罗列的生命周期阶段）将被按顺序地执行。</p>
+<p>Maven 有以下三个标准的生命周期：</p>
+<ul>
+<li><strong>clean：</strong>项目清理的处理</li>
+<li><strong>default(或 build)：</strong>项目部署的处理</li>
+<li><strong>site：</strong>项目站点文档创建的处理</li>
+</ul>
+<h3 id="构建阶段由插件目标构成"><a href="#构建阶段由插件目标构成" class="headerlink" title="构建阶段由插件目标构成"></a>构建阶段由插件目标构成</h3><p>一个插件目标代表一个特定的任务（比构建阶段更为精细），这有助于项目的构建和管理。这些目标可能被绑定到多个阶段或者无绑定。不绑定到任何构建阶段的目标可以在构建生命周期之外通过直接调用执行。这些目标的执行顺序取决于调用目标和构建阶段的顺序。</p>
+<p>例如，考虑下面的命令：<br>clean 和 pakage 是构建阶段，dependency:copy-dependencies 是目标</p>
+<p>mvn clean dependency:copy-dependencies package</p>
+<p>这里的 clean 阶段将会被首先执行，然后 dependency:copy-dependencies 目标会被执行，最终 package 阶段被执行。</p>
+<h4 id="Clean-生命周期"><a href="#Clean-生命周期" class="headerlink" title="Clean 生命周期"></a>Clean 生命周期</h4><p>当我们执行 mvn post-clean 命令时，Maven 调用 clean 生命周期，它包含以下阶段：</p>
+<ul>
+<li>pre-clean：执行一些需要在clean之前完成的工作</li>
+<li>clean：移除所有上一次构建生成的文件</li>
+<li>post-clean：执行一些需要在clean之后立刻完成的工作</li>
+</ul>
+<p>mvn clean 中的 clean 就是上面的 clean，在一个生命周期中，运行某个阶段的时候，它之前的所有阶段都会被运行，也就是说，mvn clean 等同于 mvn pre-clean clean ，如果我们运行 mvn post-clean ，那么 pre-clean，clean 都会被运行。</p>
+<p>我们可以通过在上面的 clean 生命周期的任何阶段定义目标来修改这部分的操作行为。<br>在下面的例子中，我们将 maven-antrun-plugin:run 目标添加到 pre-clean、clean 和 post-clean 阶段中。这样我们可以在 clean 生命周期的各个阶段显示文本信息。</p>
+<p>我们已经在 C:\MVN\project 目录下创建了一个 pom.xml 文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;</span><br><span class="line">   xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">   xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0</span><br><span class="line">   http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line">&lt;groupId&gt;com.companyname.projectgroup&lt;/groupId&gt;</span><br><span class="line">&lt;artifactId&gt;project&lt;/artifactId&gt;</span><br><span class="line">&lt;version&gt;1.0&lt;/version&gt;</span><br><span class="line">&lt;build&gt;</span><br><span class="line">&lt;plugins&gt;</span><br><span class="line">   &lt;plugin&gt;</span><br><span class="line">   &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">   &lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt;</span><br><span class="line">   &lt;version&gt;1.1&lt;/version&gt;</span><br><span class="line">   &lt;executions&gt;</span><br><span class="line">      &lt;execution&gt;</span><br><span class="line">         &lt;id&gt;id.pre-clean&lt;/id&gt;</span><br><span class="line">         &lt;phase&gt;pre-clean&lt;/phase&gt;</span><br><span class="line">         &lt;goals&gt;</span><br><span class="line">            &lt;goal&gt;run&lt;/goal&gt;</span><br><span class="line">         &lt;/goals&gt;</span><br><span class="line">         &lt;configuration&gt;</span><br><span class="line">            &lt;tasks&gt;</span><br><span class="line">               &lt;echo&gt;pre-clean phase&lt;/echo&gt;</span><br><span class="line">            &lt;/tasks&gt;</span><br><span class="line">         &lt;/configuration&gt;</span><br><span class="line">      &lt;/execution&gt;</span><br><span class="line">      &lt;execution&gt;</span><br><span class="line">         &lt;id&gt;id.clean&lt;/id&gt;</span><br><span class="line">         &lt;phase&gt;clean&lt;/phase&gt;</span><br><span class="line">         &lt;goals&gt;</span><br><span class="line">          &lt;goal&gt;run&lt;/goal&gt;</span><br><span class="line">         &lt;/goals&gt;</span><br><span class="line">         &lt;configuration&gt;</span><br><span class="line">            &lt;tasks&gt;</span><br><span class="line">               &lt;echo&gt;clean phase&lt;/echo&gt;</span><br><span class="line">            &lt;/tasks&gt;</span><br><span class="line">         &lt;/configuration&gt;</span><br><span class="line">      &lt;/execution&gt;</span><br><span class="line">      &lt;execution&gt;</span><br><span class="line">         &lt;id&gt;id.post-clean&lt;/id&gt;</span><br><span class="line">         &lt;phase&gt;post-clean&lt;/phase&gt;</span><br><span class="line">         &lt;goals&gt;</span><br><span class="line">            &lt;goal&gt;run&lt;/goal&gt;</span><br><span class="line">         &lt;/goals&gt;</span><br><span class="line">         &lt;configuration&gt;</span><br><span class="line">            &lt;tasks&gt;</span><br><span class="line">               &lt;echo&gt;post-clean phase&lt;/echo&gt;</span><br><span class="line">            &lt;/tasks&gt;</span><br><span class="line">         &lt;/configuration&gt;</span><br><span class="line">      &lt;/execution&gt;</span><br><span class="line">   &lt;/executions&gt;</span><br><span class="line">   &lt;/plugin&gt;</span><br><span class="line">&lt;/plugins&gt;</span><br><span class="line">&lt;/build&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure></p>
+<p>现在打开命令控制台，跳转到 pom.xml 所在目录，并执行下面的 mvn 命令。</p>
+<p>C:\MVN\project&gt;mvn post-clean</p>
+<p>Maven 将会开始处理并显示 clean 生命周期的所有阶段。<br>[INFO] Scanning for projects…<br>[INFO] ——————————————————————<br>[INFO] Building Unnamed - com.companyname.projectgroup:project:jar:1.0<br>[INFO]    task-segment: [post-clean]<br>[INFO] ——————————————————————<br>[INFO] [antrun:run {execution: id.pre-clean}]<br>[INFO] Executing tasks<br>     [echo] pre-clean phase<br>[INFO] Executed tasks<br>[INFO] [clean:clean {execution: default-clean}]<br>[INFO] [antrun:run {execution: id.clean}]<br>[INFO] Executing tasks<br>     [echo] clean phase<br>[INFO] Executed tasks<br>[INFO] [antrun:run {execution: id.post-clean}]<br>[INFO] Executing tasks<br>     [echo] post-clean phase<br>[INFO] Executed tasks<br>[INFO] ——————————————————————<br>[INFO] BUILD SUCCESSFUL<br>[INFO] ——————————————————————<br>[INFO] Total time: &lt; 1 second<br>[INFO] Finished at: Sat Jul 07 13:38:59 IST 2012<br>[INFO] Final Memory: 4M/44M<br>[INFO] ——————————————————————</p>
+<p>你可以尝试修改 mvn clean 命令，来显示 pre-clean 和 clean，而在 post-clean 阶段不执行任何操作。</p>
+<h4 id="Default-Build-生命周期"><a href="#Default-Build-生命周期" class="headerlink" title="Default (Build) 生命周期"></a>Default (Build) 生命周期</h4><p>这是 Maven 的主要生命周期，被用于构建应用，包括下面的 23 个阶段：<br>生命周期阶段                                    描述<br>validate                         检查工程配置是否正确，完成构建过程的所有必要信息是否能够获取到。<br>initialize                         初始化构建状态，例如设置属性。<br>generate-sources                生成编译阶段需要包含的任何源码文件。<br>process-sources                    处理源代码，例如，过滤任何值（filter any value）。<br>generate-resources                 生成工程包中需要包含的资源文件。<br>process-resources                 拷贝和处理资源文件到目的目录中，为打包阶段做准备。<br>compile                             编译工程源码。<br>process-classes                    处理编译生成的文件，例如 Java Class 字节码的加强和优化。<br>generate-test-sources          生成编译阶段需要包含的任何测试源代码。<br>process-test-sources          处理测试源代码，例如，过滤任何值（filter any values)。<br>test-compile                  编译测试源代码到测试目的目录。<br>process-test-classes           处理测试代码文件编译后生成的文件。<br>test                          使用适当的单元测试框架（例如JUnit）运行测试。<br>prepare-package                  在真正打包之前，为准备打包执行任何必要的操作。<br>package                          获取编译后的代码，并按照可发布的格式进行打包，例如 JAR、WAR 或者 EAR 文件。<br>pre-integration-test          在集成测试执行之前，执行所需的操作。例如，设置所需的环境变量。<br>integration-test              处理和部署必须的工程包到集成测试能够运行的环境中。<br>post-integration-test          在集成测试被执行后执行必要的操作。例如，清理环境。<br>verify                          运行检查操作来验证工程包是有效的，并满足质量要求。<br>install                          安装工程包到本地仓库中，该仓库可以作为本地其他工程的依赖。<br>deploy                          拷贝最终的工程包到远程仓库中，以共享给其他开发人员和工程。</p>
+<p>有一些与 Maven 生命周期相关的重要概念需要说明：</p>
+<p>当一个阶段通过 Maven 命令调用时，例如 mvn compile，只有该阶段之前以及包括该阶段在内的所有阶段会被执行。</p>
+<p>不同的 maven 目标将根据打包的类型（JAR / WAR / EAR），被绑定到不同的 Maven 生命周期阶段。<br><strong>命令行调用</strong><br>在开发环境中，使用下面的命令去构建、安装工程到本地仓库</p>
+<p>mvn install</p>
+<p>这个命令在执行 install 阶段前，按顺序执行了 default 生命周期的阶段 （validate，compile，package，等等），我们只需要调用最后一个阶段，如这里是 install。</p>
+<p>在构建环境中，使用下面的调用来纯净地构建和部署项目到共享仓库中</p>
+<p>mvn clean deploy</p>
+<p>这行命令也可以用于多模块的情况下，即包含多个子项目的项目，Maven 会在每一个子项目执行 clean 命令，然后再执行 deploy 命令。</p>
+<h4 id="Site-生命周期"><a href="#Site-生命周期" class="headerlink" title="Site 生命周期"></a>Site 生命周期</h4><p>Maven Site 插件一般用来创建新的报告文档、部署站点等。</p>
+<ul>
+<li>pre-site：执行一些需要在生成站点文档之前完成的工作</li>
+<li>site：生成项目的站点文档</li>
+<li>post-site： 执行一些需要在生成站点文档之后完成的工作，并且为部署做准备</li>
+<li>site-deploy：将生成的站点文档部署到特定的服务器上</li>
+</ul>
+<p>这里经常用到的是site阶段和site-deploy阶段，用以生成和发布Maven站点，这可是Maven相当强大的功能，Manager比较喜欢，文档及统计数据自动生成，很好看。 在下面的例子中，我们将 maven-antrun-plugin:run 目标添加到 Site 生命周期的所有阶段中。这样我们可以显示生命周期的所有文本信息。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/12/07/Maven-生命周期/" data-id="cjq840mlv000qpkfvho5f2zlu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/12/07/Maven的构建配置文件（Build-Profiles）/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Maven的构建配置文件（Build Profiles）
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/12/06/Maven-POM/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Maven-POM</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/Vuejs模板语法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/Vuejs模板语法/26235.png)" alt="Vuejs模板语法" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/Vuejs模板语法/" class="title">Vuejs模板语法</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T08:31:20.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/初识js库/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/初识js库/30da.png)" alt="初识js库" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/初识js库/" class="title">初识js库</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T03:24:08.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/26/JavaScript-Window/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/26/JavaScript-Window/2a77.jpg)" alt="JavaScript_Window" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/26/JavaScript-Window/" class="title">JavaScript_Window</a></p>
+                            <p class="item-date"><time datetime="2018-12-26T04:01:41.000Z" itemprop="datePublished">2018-12-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/24/javascript对象系列/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/24/javascript对象系列/40cfaf.jpg)" alt="javascript对象系列" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/24/javascript对象系列/" class="title">javascript对象系列</a></p>
+                            <p class="item-date"><time datetime="2018-12-24T07:34:02.000Z" itemprop="datePublished">2018-12-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/22/JavaScript-HTML-DOM/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/22/JavaScript-HTML-DOM/qw.gif)" alt="JavaScript-HTML-DOM" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/22/JavaScript-HTML-DOM/" class="title">JavaScript-HTML-DOM</a></p>
+                            <p class="item-date"><time datetime="2018-12-22T08:53:36.000Z" itemprop="datePublished">2018-12-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 15.71px;">JavaScript</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript库/" style="font-size: 10px;">javascript库</a> <a href="/tags/maven/" style="font-size: 18.57px;">maven</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 14.29px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 17.14px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/12/07/Maven-生命周期/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

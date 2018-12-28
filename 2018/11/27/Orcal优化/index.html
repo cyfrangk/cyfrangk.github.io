@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Orcal优化 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="orcal">
+    
+    <meta name="description" content="1.选用适合的Oracle优化器    Oracle的优化器共有3种：    a.RULE(基于规则)    b.COST(基于成本)    c.CHOOSE(选择性) 2.设置缺省的优化器，可以通过对init.ora文件中OPTIMIZER_MODE参数的各种声明，如RULE、COST、CHOOSE、ALL_ROWS、FIRST_R    OWS。你当然也在SQL句级或是会话(session)级">
+<meta name="keywords" content="orcal">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Orcal优化">
+<meta property="og:url" content="http://yoursite.com/2018/11/27/Orcal优化/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="1.选用适合的Oracle优化器    Oracle的优化器共有3种：    a.RULE(基于规则)    b.COST(基于成本)    c.CHOOSE(选择性) 2.设置缺省的优化器，可以通过对init.ora文件中OPTIMIZER_MODE参数的各种声明，如RULE、COST、CHOOSE、ALL_ROWS、FIRST_R    OWS。你当然也在SQL句级或是会话(session)级">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/11/27/Orcal优化/142.jpg">
+<meta property="og:updated_time" content="2018-11-29T11:11:42.230Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Orcal优化">
+<meta name="twitter:description" content="1.选用适合的Oracle优化器    Oracle的优化器共有3种：    a.RULE(基于规则)    b.COST(基于成本)    c.CHOOSE(选择性) 2.设置缺省的优化器，可以通过对init.ora文件中OPTIMIZER_MODE参数的各种声明，如RULE、COST、CHOOSE、ALL_ROWS、FIRST_R    OWS。你当然也在SQL句级或是会话(session)级">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/27/Orcal优化/142.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-Orcal优化" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Orcal优化
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/11/27/Orcal优化/" class="article-date">
+            <time datetime="2018-11-27T07:21:30.000Z" itemprop="datePublished">2018-11-27</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/orcal/">orcal</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/2018/11/27/Orcal优化/142.jpg" alt=""><br>1.选用适合的Oracle优化器<br>    Oracle的优化器共有3种：<br>    a.RULE(基于规则)<br>    b.COST(基于成本)<br>    c.CHOOSE(选择性)</p>
+<p>2.设置缺省的优化器，可以通过对init.ora文件中OPTIMIZER_MODE参数的各种声明，如RULE、COST、CHOOSE、ALL_ROWS、FIRST_R    OWS。你当然也在SQL句级或是会话(session)级对其进行覆盖。                              为了使用基于成本的优化器(CBO，Cost-BasedOptimizer)，你必须经常运行analyze命令，以增加数据库中的对象统计信息(object statistics)的准确性。<br>    如果数据库的优化器模式设置为选择性(CHOOSE)，那么实际的优化器模式将和是否运行过analyze命令有关。如果table已经被analyze过，优化器模式将自动成为CBO，反之，数据库将采用RULE形式的优化器。<br>在缺省情况下，Oracle采用CHOOSE优化器，为了避免那些不必要的全表扫描(full table scan)，你必须尽量避免使用CHOOSE优化器，而直接采用基于规则或者基于成本的优化器。</p>
+<pre><code>访问Table的方式Oracle采用两种访问表中记录的方式：
+a.全表扫描
+全表扫描就是顺序地访问表中每条记录。Oracle采用一次读入多个数据块(database block)的方式优化全表扫描。
+b. 通过ROWID访问表    你可以采用基于ROWID的访问方式情况，提高访问表的效率，ROWID包含了表中记录的物理位置信息……Oracle采用索引(INDEX)实现了数据和 存放数据的物理位置(ROWID)之间的联系。通常索引提供了快速访问ROWID的方法，因此那些基于索引列的查询就可以得到性能上的提高。
+</code></pre><p>3.共享SQL语句<br>    为了不重复解析相同的SQL语句，在第一次解析之后，Oracle将SQL语句存放在内存中。这块位于系统全局区域SGA(system global area)的共享池(shared buffer pool)中的内存可以被所有的数据库用户共享。因此，当你执行一个SQL语句(有时被称为一个游标)时，如果它和之前的执行过的语句完全相同， Oracle就能很快获得已经被解析的语句以及最好的执行路径。Oracle的这个功能大大地提高了SQL的执行性能并节省了内存的使用。<br>    可惜的是Oracle只对简单的表提供高速缓冲(cache buffering) ，这个功能并不适用于多表连接查询。<br>    数据库管理员必须在init.ora中为这个区域设置合适的参数，当这个内存区域越大，就可以保留更多的语句，当然被共享的可能性也就越大了。<br>    当你向Oracle提交一个SQL语句，Oracle会首先在这块内存中查找相同的语句。<br>    这里需要注明的是，Oracle对两者采取的是一种严格匹配，要达成共享，SQL语句必须完全相同(包括空格，换行等)。<br>    共享的语句必须满足三个条件：</p>
+<pre><code>A.字符级的比较：当前被执行的语句和共享池中的语句必须完全相同。
+B.两个语句所指的对象必须完全相同：
+C.两个SQL语句中必须使用相同的名字的绑定变量(bind variables)
+</code></pre><p>4.选择最有效率的表名顺序(只在基于规则的优化器中有效)<br>    Oracle 的解析器按照从右到左的顺序处理FROM子句中的表名，因此FROM子句中写在最后的表(基础表 driving table)将被最先处理。在FROM子句中包含多个表的情况下，你必须选择记录条数最少的表作为基础表。当Oracle处理多个表时，会运用排序及合并 的方式连接它们。首先，扫描第一个表(FROM子句中最后的那个表)并对记录进行派序，然后扫描第二个表(FROM子句中最后第二个表)，最后将所有从第 二个表中检索出的记录与第一个表中合适记录进行合并。</p>
+<ol start="5">
+<li>WHERE子句中的连接顺序<br> Oracle采用自下而上的顺序解析WHERE子句，根据这个原理，表之间的连接必须写在其他WHERE条件之前，那些可以过滤掉最大数量记录的条件必须写在WHERE子句的末尾。</li>
+</ol>
+<p>6.SELECT子句中避免使用’ <em> ‘<br>    当你想在SELECT子句中列出所有的COLUMN时，使用动态SQL列引用’</em>‘是一个方便的方法。不幸的是，这是一个非常低效的方法。实际上， Oracle在解析的过程中，会将’*’依次转换成所有的列名，这个工作是通过查询数据字典完成的，这意味着将耗费更多的时间。</p>
+<p>7.减少访问数据库的次数<br>    当执行每条SQL语句时，Oracle在内部执行了许多工作：解析SQL语句，估算索引的利用率，绑定变量，读数据块等等。由此可见，减少访问数据库的次数，就能实际上减少Oracle的工作量。</p>
+<pre><code>注意：在SQL*Plus，SQL*Forms和Pro*C中重新设置ARRAYSIZE参数，可以增加每次数据库访问的检索数据量，建议值为200。
+</code></pre><p>8.使用DECODE函数来减少处理时间<br>          使用DECODE函数可以避免重复扫描相同记录或重复连接相同的表。<br>         例如：<br>         SELECT COUNT(<em>)，SUM(SAL)<br>         FROM　EMP<br>         WHERE DEPT_NO = 0020<br>         AND ENAME LIKE’SMITH%’;<br>         SELECT COUNT(</em>)，SUM(SAL)<br>         FROM　EMP<br>         WHERE DEPT_NO = 0030<br>         AND ENAME LIKE’SMITH%’;<br>         你可以用DECODE函数高效地得到相同结果<br>         SELECT COUNT(DECODE(DEPT_NO，0020，’X’，NULL)) D0020_COUNT，<br>         COUNT(DECODE(DEPT_NO，0030，’X’，NULL)) D0030_COUNT，<br>         SUM(DECODE(DEPT_NO，0020，SAL，NULL)) D0020_SAL，<br>         SUM(DECODE(DEPT_NO，0030，SAL，NULL)) D0030_SAL<br>         FROM EMP WHERE ENAME LIKE’SMITH%’;</p>
+<pre><code>类似的，DECODE函数也可以运用于GROUP BY 和ORDER BY子句中。
+</code></pre><p>9.整合简单，无关联的数据库访问<br>  如果你有几个简单的数据库查询语句，你可以把它们整合到一个查询中(即使它们之间没有关系)<br>10.删除重复记录<br>    最高效的删除重复记录方法(因为使用了ROWID)<br>    DELETE FROM EMP E WHERE E.ROWID &gt; ( SELECT MIN(X.ROWID) FROM EMP X WHERE X.EMP_NO = E.EMP_NO);<br>11.用TRUNCATE替代DELETE<br>    当删除表中的记录时，在通常情况下，回滚段(rollback segments)用来存放可以被恢复的信息。如果你没有COMMIT事务，Oracle会将数据恢复到删除之前的状态(准确地说是恢复到执行删除命令之前的状况)<br>    而当运用TRUNCATE时，回滚段不再存放任何可被恢复的信息。当命令运行后，数据不能被恢复。因此很少的资源被调用，执行时间也会很短。<br>    (TRUNCATE只在删除全表适用，TRUNCATE是DDL不是DML)<br>12.尽量多使用COMMIT<br>   只要有可能，在程序中尽量多使用COMMIT，这样程序的性能得到提高，需求也会因为COMMIT所释放的资源而减少：COMMIT所释放的资源：<br>    a.回滚段上用于恢复数据的信息。<br>    b.被程序语句获得的锁<br>    c.redo log buffer中的空间<br>    d.Oracle为管理上述3种资源中的内部花费<br>13.计算记录条数<br>    和一般的观点相反，count(*) 比count(1)稍快，当然如果可以通过索引检索，对索引列的计数仍旧是最快的。例如 COUNT(EMPNO)<br>    (在CSDN论坛中，曾经对此有过相当热烈的讨论，作者的观点并不十分准确，通过实际的测试，上述三种方法并没有显著的性能差别)<br>14.用Where子句替换HAVING子句<br>   避免使用HAVING子句，HAVING 只会在检索出所有记录之后才对结果集进行过滤。这个处理需要排序，总计等操作。如果能通过WHERE子句限制记录的数目，那就能减少这方面的开销。<br>    例如： 低效：<br>    SELECT REGION，AVG(LOG_SIZE) FROM LOCATION<br>    GROUP BY REGION HAVING REGION</p>
+<pre><code>REGION !=&apos;SYDNEY&apos;AND REGION !=&apos;PERTH&apos;
+
+高效：
+
+SELECT REGION，AVG(LOG_SIZE) FROM LOCATION
+WHERE REGION REGION != &apos;SYDNEY&apos; AND REGION != &apos;PERTH&apos;
+GROUP BY REGION
+</code></pre><p>15.减少对表的查询<br>    在含有子查询的SQL语句中，要特别注意减少对表的查询。<br>16.通过内部函数提高SQL效率<br>    SELECT H.EMPNO，E.ENAME，H.HIST_TYPE，T.TYPE_DESC，COUNT(*)<br>    FROM HISTORY_TYPE T，EMP E，EMP_HISTORY H<br>    WHERE H.EMPNO = E.EMPNO<br>    AND H.HIST_TYPE = T.HIST_TYPE<br>    GROUP BY H.EMPNO，E.ENAME，H.HIST_TYPE，T.TYPE_DESC;<br>    通过调用下面的函数可以提高效率。<br>    FUNCTION LOOKUP_HIST_TYPE(TYP IN NUMBER) RETURN VARCHAR2<br>    AS<br>    TDESC VARCHAR2(30);<br>    CURSOR C1 IS<br>    SELECT TYPE_DESC<br>    FROM HISTORY_TYPE<br>    WHERE HIST_TYPE = TYP;<br>    BEGIN<br>    OPEN C1;<br>    FETCH C1 INTO TDESC;<br>    CLOSE C1;<br>    RETURN (NVL(TDESC，’？’));<br>    END;</p>
+<pre><code>FUNCTION LOOKUP_EMP(EMP IN NUMBER) RETURN VARCHAR2
+AS
+ENAME VARCHAR2(30);
+CURSOR C1 IS
+SELECT ENAME
+FROM EMP
+WHERE EMPNO=EMP;
+BEGIN
+OPEN C1;
+FETCH C1 INTO ENAME;
+CLOSE C1;
+RETURN (NVL(ENAME，&apos;？&apos;));
+END;
+SELECT H.EMPNO，LOOKUP_EMP(H.EMPNO)，
+H.HIST_TYPE，LOOKUP_HIST_TYPE(H.HIST_TYPE)，COUNT(*)
+FROM EMP_HISTORY H
+GROUP BY H.EMPNO ， H.HIST_TYPE;
+
+
+(经常在论坛中看到如&apos;能不能用一个SQL写出…。&apos;的贴子，殊不知复杂的SQL往往牺牲了执行效率。能够掌握上面的运用函数解决问题的方法在实际工作中是非常有意义的)
+</code></pre><p>17.使用表的别名(Alias)<br>    当在SQL语句中连接多个表时，请使用表的别名并把别名前缀于每个Column上。这样一来，就可以减少解析的时间并减少那些由Column歧义引起的语法错误。<br>    (Column歧义指的是由于SQL中不同的表具有相同的Column名，当SQL语句中出现这个Column时，SQL解析器无法判断这个Column的归属)<br>18.用EXISTS替代IN （前后表的数据量）<br>    在许多基于基础表的查询中，为了满足一个条件，往往需要对另一个表进行联接。在这种情况下，使用EXISTS(或NOT EXISTS)通常将提高查询的效率。<br>    低效：<br>    SELECT * FROM EMP (基础表) WHERE EMPNO &gt; 0 AND</p>
+<pre><code>DEPTNO IN (SELECT DEPTNO FROM DEPT WHERE LOC =&apos;MELB&apos;)
+
+高效：
+SELECT * FROM EMP (基础表)
+WHERE EMPNO &gt; 0 AND EXISTS ( SELECT&apos;X&apos; FROM DEPT
+WHERE DEPT.DEPTNO = EMP.DEPTNO AND LOC =&apos;MELB&apos;)
+(相对来说，用NOT EXISTS替换NOT IN将更显著地提高效率，下一节中将指出)
+</code></pre><p>19.用NOT EXISTS替代NOT IN<br>    在子查询中，NOT IN子句将执行一个内部的排序和合并。无论在哪种情况下，NOT IN都是最低效的 (因为它对子查询中的表执行了一个全表遍历)。为了避免使用NOT IN，我们可以把它改写成外连接(Outer Joins)或NOT EXISTS。<br>    例如：<br>    SELECT … FROM EMP WHERE DEPT_NO NOT IN (SELECT DEPT_NO FROM DEPT WHERE DEPT_CAT=’A’);</p>
+<pre><code>为了提高效率。改写为：
+(方法一：高效)
+SELECT …. FROM EMP A，DEPT B WHERE A.DEPT_NO = B.DEPT(+) AND B.DEPT_NO IS NULL AND B.DEPT_CAT(+) = &apos;A&apos;
+(方法二：最高效)
+SELECT …. FROM EMP E WHERE NOT EXISTS (SELECT &apos;X&apos;
+FROM DEPT D WHERE D.DEPT_NO = E.DEPT_NO AND DEPT_CAT = &apos;A&apos;);
+</code></pre><p>20.用表连接替换EXISTS<br>    通常来说，采用表连接的方式比EXISTS更有效率<br>    SELECT ENAME FROM EMP E WHERE EXISTS (SELECT ‘X’ FROM DEPT<br>    WHERE DEPT_NO = E.DEPT_NO AND DEPT_CAT = ‘A’);</p>
+<pre><code>(更高效)
+SELECT ENAME FROM DEPT D，EMP E WHERE E.DEPT_NO = D.DEPT_NO AND DEPT_CAT = &apos;A&apos; ;
+(在RBO的情况下，前者的执行路径包括FILTER，后者使用NESTED LOOP)
+</code></pre><p>21.用EXISTS替换DISTINCT<br>    当提交一个包含一对多表信息(比如部门表和雇员表)的查询时，避免在SELECT子句中使用DISTINCT。一般可以考虑用EXIST替换<br>    例如：<br>    低效：<br>    SELECT DISTINCT DEPT_NO，DEPT_NAME FROM DEPT D，EMP E WHERE D.DEPT_NO = E.DEPT_NO</p>
+<pre><code>高效：
+SELECT DEPT_NO，DEPT_NAME FROM DEPT D WHERE EXISTS ( SELECT &apos;X&apos; FROM EMP E WHERE E.DEPT_NO = D.DEPT_NO);
+EXISTS使查询更为迅速，因为RDBMS核心模块将在子查询的条件一旦满足后，立刻返回结果。
+</code></pre><p>22.识别’低效执行’的SQL语句<br>    用下列SQL工具找出低效SQL：<br>23.使用TKPROF工具来查询SQL性能状态<br>    SQLtrace工具收集正在执行的SQL的性能状态数据并记录到一个跟踪文件中。这个跟踪文件提供了许多有用的信息，例如解析次数。执行次数，CPU使用时间等。这些数据将可以用来优化你的系统。<br>    设置SQLTRACE在整个数据库有效仿，你必须将SQL_TRACE参数在init.ora中设为TRUE，USER_DUMP_DEST参数说明了生成跟踪文件的目录<br>    (这一节中，作者并没有提到TKPROF的用法，对SQL TRACE的用法也不够准确，设置SQL TRACE首先要在init.ora中设定TIMED_STATISTICS，这样才能得到那些重要的时间状态。生成的trace文件是不可读的，所以要 用TKPROF工具对其进行转换，TKPROF有许多执行参数。大家可以参考Oracle手册来了解具体的配置。)<br>24.用EXPLAIN PLAN 分析SQL语句<br>    EXPLAINPLAN是一个很好的分析SQL语句的工具，它甚至可以在不执行SQL的情况下分析语句。通过分析，我们就可以知道Oracle是怎么样连接表，使用什么方式扫描表(索引扫描或全表扫描)以及使用到的索引名称。<br>    你需要按照从里到外，从上到下的次序解读分析的结果。EXPLAIN PLAN分析的结果是用缩进的格式排列的， 最内部的操作将被最先解读，如果两个操作处于同一层中，带有最小操作号的将被首先执行。<br>    NESTED LOOP是少数不按照上述规则处理的操作，正确的执行路径是检查对NESTED LOOP提供数据的操作，其中操作号最小的将被最先处理。 通过实践，感到还是用SQLPLUS中的SET TRACE功能比较方便。</p>
+<pre><code>举例：
+SQL&gt; list
+1 SELECT *
+2 FROM dept， emp
+3 WHERE emp.deptno = dept.deptno
+SQL&gt; set autotrace traceonly /*traceonly 可以不显示执行结果*/
+SQL&gt; /
+14 rows selected.
+Execution Plan
+----------------------------------------------------------
+0 SELECT STATEMENT ptimizer=CHOOSE
+1 0 NESTED LOOPS
+2 1 TABLE ACCESS (FULL) OF &apos;EMP&apos;
+3 1 TABLE ACCESS (BY INDEX ROWID) OF &apos;DEPT&apos;
+4 3 INDEX (UNIQUE SCAN) OF &apos;PK_DEPT&apos; (UNIQUE)
+Statistics
+----------------------------------------------------------
+0 recursive calls
+2 db block gets
+30 consistent gets
+0 physical reads
+0 redo size
+2598 bytes sent via SQL*Net to client
+503 bytes received via SQL*Net from client
+2 SQL*Net roundtrips to/from client
+0 sorts (memory)
+0 sorts (disk)
+14 rows processed
+
+
+通过以上分析，可以得出实际的执行步骤是：
+
+
+1. TABLE ACCESS (FULL) OF &apos;EMP&apos;
+2. INDEX (UNIQUE SCAN) OF &apos;PK_DEPT&apos; (UNIQUE)
+3. TABLE ACCESS (BY INDEX ROWID) OF &apos;DEPT&apos;
+4. NESTED LOOPS (JOINING 1 AND 3)
+
+
+注：目前许多第三方的工具如TOAD和Oracle本身提供的工具如OMS的SQL Analyze都提供了极其方便的EXPLAIN PLAN工具。也许喜欢图形化界面的朋友们可以选用它们。
+</code></pre><p>25.用索引提高效率<br>    索引是表的一个概念部分，用来提高检索数据的效率。实际上，Oracle使用了一个复杂的自平衡B-tree结构。通常，通过索引查询数据比全表扫描要快。当Oracle找出执行查询和Update语句的最佳路径时，Oracle优化器将使用索引。同样在联结多个表时使用索引也可以提高效率。另一个使用索引 的好处是，它提供了主键(primary key)的唯一性验证。除了那些LONG或LONG RAW数据类型，你可以索引几乎所有的列。通常，在大型表中使用索引特别有效。当然，你也会发现，在扫描小表时，使用索引同样能提高效率。<br>    虽然使用索引能得到查询效率的提高，但是我们也必须注意到它的代价。索引需要空间来存储，也需要定期维护，每当有记录在表中增减或索引列被修改时，索引本身 也会被修改。这意味着每条记录的INSERT，DELETE，UPDATE将为此多付出4、5次的磁盘I/O。因为索引需要额外的存储空间和处理，那些不 必要的索引反而会使查询反应时间变慢。 定期的重构索引是有必要的。 ALTER INDEXREBUILD<br>26.索引的操作<br>    Oracle对索引有两种访问模式。<br>    索引唯一扫描(INDEX UNIQUE SCAN)<br>    大多数情况下，优化器通过WHERE子句访问INDEX.<br>    例如：<br>    表LODGING有两个索引：建立在LODGING列上的唯一性索引LODGING_PK和建立在MANAGER列上的非唯一性索引LODGING$MANAGER.<br>    SELECT * FROM LODGING WHERE LODGING = ‘ROSE HILL’; 在内部，上述SQL将被分成两步执行，首先，LODGING_PK索引将通过索引唯一扫描的方式被访问，获得相对应的ROWID，通过ROWID访问表的方式执行下一步检索。<br>    如果被检索返回的列包括在INDEX列中，Oracle将不执行第二步的处理(通过ROWID访问表)。因为检索数据保存在索引中，单单访问索引就可以完全满足查询结果。<br>    下面SQL只需要INDEX UNIQUE SCAN操作。<br>    SELECT LODGING FROM LODGING WHERE LODGING = ‘ROSE HILL’; 索引范围查询(INDEX RANGE SCAN)</p>
+<pre><code>适用于两种情况：
+1.基于一个范围的检索
+2.基于非唯一性索引的检索
+例1：
+SELECT LODGING FROM LODGING WHERE LODGING LIKE &apos;M%&apos;;
+WHERE子句条件包括一系列值， Oracle将通过索引范围查询的方式查询LODGING_PK . 由于索引范围查询将返回一组值， 它的效率就要比索引唯一扫描低一些。
+例2：
+SELECT LODGING FROM LODGING WHERE MANAGER = &apos;BILL GATES&apos;; 这个SQL的执行分两步，LODGING$MANAGER的索引范围查询(得到所有符合条件记录的ROWID)和下一步同过ROWID访问表得到LODGING列的值。由于LODGING$MANAGER是一个非唯一性的索引，数据库不能对它执行索引唯一扫描。
+由于SQL返回LODGING列，而它并不存在于LODGING$MANAGER索引中，所以在索引范围查询后会执行一个通过ROWID访问表的操作。
+WHERE子句中，如果索引列所对应的值的第一个字符由通配符(WILDCARD)开始，索引将不被采用。在这种情况下，Oracle将使用全表扫描。
+SELECT LODGING FROM LODGING WHERE MANAGER LIKE&apos;%HANMAN&apos;;
+</code></pre><p>27.基础表的选择<br>    基础表(DrivingTable)是指被最先访问的表(通常以全表扫描的方式被访问)。根据优化器的不同，SQL语句中基础表的选择是不一样的。<br>    如果你使用的是CBO (COST BASED OPTIMIZER)，优化器会检查SQL语句中的每个表的物理大小，索引的状态，然后选用花费最低的执行路径。<br>    如果你用RBO (RULE BASED OPTIMIZER)，并且所有的连接条件都有索引对应，在这种情况下，基础表就是FROM 子句中列在最后的那个表。blog<br>    举例：<br>    SELECT A.NAME ， B.MANAGER FROM　WORKER A， LODGING B WHERE　A.LODGING = B.LODING;<br>    于LODGING表的LODING列上有一个索引，而且WORKER表中没有相比较的索引，WORKER表将被作为查询中的基础表。<br>28.多个平等的索引<br>    当SQL语句的执行路径可以使用分布在多个表上的多个索引时，Oracle会同时使用多个索引并在运行时对它们的记录进行合并， 检索出仅对全部索引有效的记录。<br>    在Oracle选择执行路径时，唯一性索引的等级高于非唯一性索引。然而这个规则只有当WHERE子句中索引列和常量比较才有效。如果索引列和其他表的索引类相比较。这种子句在优化器中的等级是非常低的。<br>    如果不同表中两个想同等级的索引将被引用，FROM子句中表的顺序将决定哪个会被率先使用。FROM子句中最后的表的索引将有最高的优先级。<br>    如果相同表中两个想同等级的索引将被引用，WHERE子句中最先被引用的索引将有最高的优先级。<br>    举例：<br>    DEPTNO上有一个非唯一性索引，EMP_CAT也有一个非唯一性索引。<br>    SELECT ENAME， FROM EMP WHERE DEPT_NO = 20 AND EMP_CAT = ‘A’;<br>    这里，DEPTNO索引将被最先检索，然后同EMP_CAT索引检索出的记录进行合并。执行路径如下：<br>    TABLE ACCESS BY ROWID ON EMP<br>    AND-EQUAL<br>    INDEX RANGE SCAN ON DEPT_IDX<br>    INDEX RANGE SCAN ON CAT_IDX</p>
+<p>29.等式比较和范围比较<br>    当WHERE子句中有索引列，Oracle不能合并它们，Oracle将用范围比较。<br>    举例：<br>    DEPTNO上有一个非唯一性索引，EMP_CAT也有一个非唯一性索引：<br>    SELECT ENAME FROM EMP WHERE DEPTNO &gt; 20 AND EMP_CAT = ‘A’; 这里只有EMP_CAT索引被用到，然后所有的记录将逐条与DEPTNO条件进行比较。执行路径如下：<br>    TABLE ACCESS BY ROWID ON EMP<br>    INDEX RANGE SCAN ON CAT_IDX<br>30.不明确的索引等级<br>    当Oracle无法判断索引的等级高低差别，优化器将只使用一个索引，它就是在WHERE子句中被列在最前面的。<br>    举例：<br>    DEPTNO上有一个非唯一性索引，EMP_CAT也有一个非唯一性索引。<br>    SELECT ENAME FROM EMP WHERE DEPTNO &gt; 20 AND EMP_CAT &gt; ‘A’; 这里，Oracle只用到了DEPT_NO索引。执行路径如下：<br>    TABLE ACCESS BY ROWID ON EMP<br>    INDEX RANGE SCAN ON DEPT_IDX</p>
+<pre><code>我们来试一下以下这种情况：
+SQL&gt; select index_name， uniqueness from user_indexes where table_name = &apos;EMP&apos;;
+INDEX_NAME UNIQUENES
+------------------------------ ---------
+EMPNO UNIQUE
+EMPTYPE NONUNIQUE
+SQL&gt; select * from emp where empno &gt;= 2 and emp_type = &apos;A&apos; ;
+no rows selected
+Execution Plan
+----------------------------------------------------------
+0 SELECT STATEMENT ptimizer=CHOOSE
+1 0 TABLE ACCESS (BY INDEX ROWID) OF &apos;EMP&apos;
+2 1 INDEX (RANGE SCAN) OF &apos;EMPTYPE&apos; (NON-UNIQUE)
+虽然EMPNO是唯一性索引，但是由于它所做的是范围比较，等级要比非唯一性索引的等式比较低!
+</code></pre><p>31.当SQL中需要UNOIN时<br>    union 与 union all<br>    UNION 指令的目的是将两个 SQL 语句的结果合并起来,可以查看你要的查询结果<br>    从效率上说，UNION ALL 要比UNION快很多，所以，如果可以确认合并的两个结果集中不包含重复的数据的话，那么就使用UNION ALL，如下：<br>    尽量使用union all，因为union需要进行排序，去除重复记录，效率低。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/11/27/Orcal优化/" data-id="cjq840mm50010pkfvjba2abob" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/11/27/关于oracle中in和exists的区别/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            关于oracle中in和exists的区别
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/11/26/orcal备份与恢复/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">orcal备份与恢复</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/Vuejs模板语法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/Vuejs模板语法/26235.png)" alt="Vuejs模板语法" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/Vuejs模板语法/" class="title">Vuejs模板语法</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T08:31:20.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/初识js库/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/初识js库/30da.png)" alt="初识js库" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/初识js库/" class="title">初识js库</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T03:24:08.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/26/JavaScript-Window/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/26/JavaScript-Window/2a77.jpg)" alt="JavaScript_Window" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/26/JavaScript-Window/" class="title">JavaScript_Window</a></p>
+                            <p class="item-date"><time datetime="2018-12-26T04:01:41.000Z" itemprop="datePublished">2018-12-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/24/javascript对象系列/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/24/javascript对象系列/40cfaf.jpg)" alt="javascript对象系列" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/24/javascript对象系列/" class="title">javascript对象系列</a></p>
+                            <p class="item-date"><time datetime="2018-12-24T07:34:02.000Z" itemprop="datePublished">2018-12-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/22/JavaScript-HTML-DOM/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/22/JavaScript-HTML-DOM/qw.gif)" alt="JavaScript-HTML-DOM" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/22/JavaScript-HTML-DOM/" class="title">JavaScript-HTML-DOM</a></p>
+                            <p class="item-date"><time datetime="2018-12-22T08:53:36.000Z" itemprop="datePublished">2018-12-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 15.71px;">JavaScript</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript库/" style="font-size: 10px;">javascript库</a> <a href="/tags/maven/" style="font-size: 18.57px;">maven</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 14.29px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 17.14px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/11/27/Orcal优化/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

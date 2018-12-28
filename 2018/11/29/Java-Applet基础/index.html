@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Java Applet基础 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="java">
+    
+    <meta name="description" content="Applet 是一种 Java 程序。它一般运行在支持 Java 的 Web 浏览器内。因为它有完整的 Java API支持,所以Applet 是一个全功能的 Java 应用程序。 如下所示是独立的 Java 应用程序和 applet 程序之间重要的不同：  Java 中 Applet 类继承了 java.applet.Applet 类。 Applet 类没有定义 main()，所以一个 Appl">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Applet基础">
+<meta property="og:url" content="http://yoursite.com/2018/11/29/Java-Applet基础/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="Applet 是一种 Java 程序。它一般运行在支持 Java 的 Web 浏览器内。因为它有完整的 Java API支持,所以Applet 是一个全功能的 Java 应用程序。 如下所示是独立的 Java 应用程序和 applet 程序之间重要的不同：  Java 中 Applet 类继承了 java.applet.Applet 类。 Applet 类没有定义 main()，所以一个 Appl">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/11/29/Java-Applet基础/fw658.png">
+<meta property="og:updated_time" content="2018-12-28T07:42:33.500Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java Applet基础">
+<meta name="twitter:description" content="Applet 是一种 Java 程序。它一般运行在支持 Java 的 Web 浏览器内。因为它有完整的 Java API支持,所以Applet 是一个全功能的 Java 应用程序。 如下所示是独立的 Java 应用程序和 applet 程序之间重要的不同：  Java 中 Applet 类继承了 java.applet.Applet 类。 Applet 类没有定义 main()，所以一个 Appl">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/29/Java-Applet基础/fw658.png">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-Java-Applet基础" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Java Applet基础
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/11/29/Java-Applet基础/" class="article-date">
+            <time datetime="2018-11-29T08:12:24.000Z" itemprop="datePublished">2018-11-29</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/java/">java</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>Applet 是一种 Java 程序。它一般运行在支持 Java 的 Web 浏览器内。因为它有完整的<br><img src="/2018/11/29/Java-Applet基础/fw658.png" alt=""><br> Java API支持,所以Applet 是一个全功能的 Java 应用程序。</p>
+<p>如下所示是独立的 Java 应用程序和 applet 程序之间重要的不同：</p>
+<ul>
+<li>Java 中 Applet 类继承了 java.applet.Applet 类。</li>
+<li>Applet 类没有定义 main()，所以一个 Applet 程序不会调用 main() 方法。</li>
+<li>Applet 被设计为嵌入在一个 HTML 页面。</li>
+<li>当用户浏览包含 Applet 的 HTML 页面，Applet 的代码就被下载到用户的机器上。</li>
+<li>要查看一个 Applet 需要 JVM。 JVM 可以是 Web 浏览器的一个插件，或一个独立的运行时环境。</li>
+<li>用户机器上的 JVM 创建一个 Applet 类的实例，并调用 Applet 生命周期过程中的各种方法。</li>
+<li>Applet 有 Web 浏览器强制执行的严格的安全规则，Applet 的安全机制被称为沙箱安全。</li>
+<li>Applet 需要的其他类可以用 Java 归档（JAR）文件的形式下载下来。</li>
+</ul>
+<h3 id="Applet的生命周期"><a href="#Applet的生命周期" class="headerlink" title="Applet的生命周期"></a>Applet的生命周期</h3><p>Applet 类中的四个方法给我们提供了一个框架，你可以 <strong>在该框架上开发小程序</strong> ：</p>
+<ul>
+<li><strong>init: </strong> 该方法的目的是为你的 Applet 提供所需的任何 <strong>初始化</strong> 。在 Applet 标记内的 <strong>param</strong> 标签被处理后调用该方法。</li>
+<li><strong>start:</strong>  浏览器调用 init 方法后，该方法被自动调用。每当用户从其他页面返回到包含 Applet 的页面时，则调用该方法。</li>
+<li><strong>stop:</strong>  当用户从包含 Applet 的页面移除的时候，该方法自动被调用。因此，可以在相同的 Applet 中反复调用该方法。</li>
+<li><strong>destroy: </strong> 此方法仅当浏览器正常关闭时调用。因为 Applet 只有在 HTML 网页上有效，所以你不应该在用户离开包含 Applet 的页面后遗漏任何资源。</li>
+<li><strong>paint:</strong>  该方法在 start() 方法之后立即被调用，或者在 Applet 需要重绘在浏览器的时候调用。paint() 方法实际上继承于 java.awt。</li>
+</ul>
+<h3 id="quot-Hello-World-quot-Applet"><a href="#quot-Hello-World-quot-Applet" class="headerlink" title="&quot;Hello, World&quot; Applet:"></a>&quot;Hello, World&quot; Applet:</h3><p>下面是一个简单的 Applet 程序 HelloWorldApplet.java:</p>
+<h2 id="HelloWorldApplet-java-文件代码："><a href="#HelloWorldApplet-java-文件代码：" class="headerlink" title="HelloWorldApplet.java 文件代码："></a>HelloWorldApplet.java 文件代码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import java.applet.*;</span><br><span class="line">import java.awt.*;</span><br><span class="line"> </span><br><span class="line">public class HelloWorldApplet extends Applet</span><br><span class="line">&#123;</span><br><span class="line">   public void paint (Graphics g)</span><br><span class="line">   &#123;</span><br><span class="line">      g.drawString (&quot;Hello World&quot;, 25, 50);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这些 import 语句将以下类导入到我们的 Applet 类中：</p>
+<p>java.applet.Applet.<br>java.awt.Graphics.</p>
+<p>没有这些 import 语句，Java 编译器就识别不了 Applet 和 Graphics 类。</p>
+<h3 id="Applet-类"><a href="#Applet-类" class="headerlink" title="Applet 类"></a>Applet 类</h3><p>每一个 Applet 都是 java.applet.Applet 类的子类，基础的 Applet 类提供了供衍生类调用的方法,以此来得到浏览器上下文的信息和服务。</p>
+<p>这些方法做了如下事情：</p>
+<ul>
+<li>得到 Applet 的参数</li>
+<li>得到包含 Applet 的 HTML 文件的网络位置</li>
+<li>得到 Applet 类目录的网络位置</li>
+<li>打印浏览器的状态信息</li>
+<li>获取一张图片</li>
+<li>获取一个音频片段</li>
+<li>播放一个音频片段</li>
+<li>调整此 Applet 的大小</li>
+</ul>
+<p>除此之外，Applet 类还提供了一个接口，该接口供 Viewer 或浏览器来获取 Applet 的信息，并且来控制 Applet 的执行。</p>
+<p>Viewer 可能是：</p>
+<ul>
+<li>请求 Applet 作者、版本和版权的信息</li>
+<li>请求 Applet 识别的参数的描述</li>
+<li>初始化 Applet</li>
+<li>销毁 Applet</li>
+<li>开始执行 Applet</li>
+<li>结束执行 Applet</li>
+</ul>
+<p>Applet 类提供了对这些方法的默认实现，这些方法可以在需要的时候重写。</p>
+<p>&quot;Hello，World&quot;applet 都是按标准编写的。唯一被重写的方法是 paint 方法。</p>
+<h3 id="Applet-的调用"><a href="#Applet-的调用" class="headerlink" title="Applet 的调用"></a>Applet 的调用</h3><p>Applet 是一种 Java 程序。它一般运行在支持 Java 的 Web 浏览器内。因为它有完整的 Java API 支持,所以 Applet 是一个全功能的 Java 应用程序。</p>
+<p><applet>; 标签是在HTML文件中嵌入 Applet 的基础。以下是一个调用&quot;Hello World&quot;applet的例子；</applet></p>
+<h2 id="HTML-代码："><a href="#HTML-代码：" class="headerlink" title="HTML 代码："></a>HTML 代码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;title&gt;The Hello, World Applet&lt;/title&gt;</span><br><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;applet code=&quot;HelloWorldApplet.class&quot; width=&quot;320&quot; height=&quot;120&quot;&gt;</span><br><span class="line">If your browser was Java-enabled, a &quot;Hello, World&quot;</span><br><span class="line">message would appear here.</span><br><span class="line">&lt;/applet&gt;</span><br><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>注意: </strong> 你可以参照 HTML Applet 标签来更多的了解从 HTML中调用 applet 的方法。</p>
+<p><applet>; 标签的属性指定了要运行的 Applet 类。width 和 height 用来指定 Applet 运行面板的初始大小。Applet 必须使用 </applet>; 标签来关闭。</p>
+<p>如果 Applet 接受参数，那么参数的值需要在 <param>; 标签里添加，该标签位于 <applet>; 和 </applet>; 之间。浏览器忽略了 applet 标签之间的文本和其他标签。</p>
+<p>不支持 Java 的浏览器不能执行 <applet>; 和 </applet>;。因此，在标签之间显示并且和</p>
+<p>applet 没有关系的任何东西，在不支持的 Java 的浏览器里是可见的。</p>
+<p><strong>Viewer 或者浏览器在文档的位置寻找编译过的 Java 代码，要指定文档的路径，得使用 <applet>; 标签的 codebase 属性指定。</applet></strong></p>
+<p>如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;applet codebase=&quot;http://amrood.com/applets&quot;</span><br><span class="line">code=&quot;HelloWorldApplet.class&quot; width=&quot;320&quot; height=&quot;120&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>如果 Applet 所在一个包中而不是默认包，那么所在的包必须在 code 属性里指定，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;applet code=&quot;mypackage.subpackage.TestApplet.class&quot; width=&quot;320&quot; height=&quot;120&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="获得applet参数–"><a href="#获得applet参数–" class="headerlink" title="获得applet参数–;"></a>获得applet参数–<param>;</h3><p>下面的例子演示了如何使用一个 Applet 响应来设置文件中指定的参数。该 Applet 显示了一个黑色棋盘图案和第二种颜色。</p>
+<p>第二种颜色和每一列的大小通过文档中的 Applet 的参数指定。</p>
+<p>CheckerApplet 在 init() 方法里得到它的参数。也可以在 paint() 方法里得到它的参数。然而，在 Applet 开始得到值并保存了设置，而不是每一次刷新的时候都得到值，这样是很方便，并且高效的。</p>
+<p>Applet viewer或者浏览器在Applet每次运行的时候调用 init() 方法。在加载 Applet 之后，</p>
+<p>Viewer 立即调用 init() 方法（Applet.init()什么也没做），重写该方法的默认实现，添加一些自定义的初始化代码。</p>
+<p>Applet.getParameter() 方法通过给出参数名称得到参数值。如果得到的值是数字或者其他非字符数据，那么必须解析为字符串类型。</p>
+<p>下例是 CheckerApplet.java 的修改：</p>
+<h2 id="CheckerApplet-java-文件代码："><a href="#CheckerApplet-java-文件代码：" class="headerlink" title="CheckerApplet.java 文件代码："></a>CheckerApplet.java 文件代码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import java.applet.*;</span><br><span class="line">import java.awt.*;</span><br><span class="line">public class CheckerApplet extends Applet</span><br><span class="line">&#123;</span><br><span class="line">   int squareSize = 50;// 初始化默认大小</span><br><span class="line">   public void init () &#123;&#125;</span><br><span class="line">   private void parseSquareSize (String param) &#123;&#125;</span><br><span class="line">   private Color parseColor (String param) &#123;&#125;</span><br><span class="line">   public void paint (Graphics g) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面是 CheckerApplet 类的 init() 方法和私有的 parseSquareSize() 方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public void init ()</span><br><span class="line">&#123;</span><br><span class="line">   String squareSizeParam = getParameter (&quot;squareSize&quot;);</span><br><span class="line">   parseSquareSize (squareSizeParam);</span><br><span class="line">   String colorParam = getParameter (&quot;color&quot;);</span><br><span class="line">   Color fg = parseColor (colorParam);</span><br><span class="line">   setBackground (Color.black);</span><br><span class="line">   setForeground (fg);</span><br><span class="line">&#125;</span><br><span class="line">private void parseSquareSize (String param)</span><br><span class="line">&#123;</span><br><span class="line">   if (param == null) return;</span><br><span class="line">   try &#123;</span><br><span class="line">      squareSize = Integer.parseInt (param);</span><br><span class="line">   &#125;</span><br><span class="line">   catch (Exception e) &#123;</span><br><span class="line">     // 保留默认值</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>该Applet调用parseSquareSize()，来解析 squareSize 参数。parseSquareSize() 调用了库方法 Integer. parseInt() 该方法将一个字符串解析为一个整数，当参数无效的时候，</p>
+<p>Integer.parseInt() 抛出异常。</p>
+<p>因此，parseSquareSize() 方法也是捕获异常的，并不允许 Applet 接受无效的输入。</p>
+<p>Applet 调用 parseColor()方法将颜色参数解析为一个 Color 值。parseColor() 方法做了一系列字符串的比较，来匹配参数的值和预定义颜色的名字。你需要实现这些方法来使 Applet 工作。</p>
+<h3 id="指定-applet-参数"><a href="#指定-applet-参数" class="headerlink" title="指定 applet 参数"></a>指定 applet 参数</h3><p>如下的例子是一个HTML文件，其中嵌入了 CheckerApplet 类。HTML文件通过使用 <param>;标签的方法给 applet 指定了两个参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;title&gt;Checkerboard Applet&lt;/title&gt;</span><br><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;applet code=&quot;CheckerApplet.class&quot; width=&quot;480&quot; height=&quot;320&quot;&gt;</span><br><span class="line">&lt;param name=&quot;color&quot; value=&quot;blue&quot;&gt;</span><br><span class="line">&lt;param name=&quot;squaresize&quot; value=&quot;30&quot;&gt;</span><br><span class="line">&lt;/applet&gt;</span><br><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意: </strong> 参数名字大小写不敏感。</p>
+<h3 id="应用程序转换成-Applet"><a href="#应用程序转换成-Applet" class="headerlink" title="应用程序转换成 Applet"></a>应用程序转换成 Applet</h3><p>将图形化的 Java 应用程序（是指，使用AWT的应用程序和使用 java 程序启动器启动的程序）转换成嵌入在web页面里的applet是很简单的。</p>
+<p>下面是将应用程序转换成 Applet 的几个步骤：</p>
+<ul>
+<li>编写一个 HTML 页面，该页面带有能加载 applet 代码的标签。</li>
+<li>编写一个 JApplet 类的子类，将该类设置为 public。否则，Applet 不能被加载。</li>
+<li>消除应用程序的 main()方法。不要为应用程序构造框架窗口，因为你的应用程序要显示在浏览器中。**</li>
+<li>将应用程序中框架窗口的构造方法里的初始化代码移到 Applet 的 init() 方法中，你不必显示的构造 Applet 对象，浏览器将通过调用 init() 方法来实例化一个对象。</li>
+<li>移除对 setSize() 方法的调用，对于 Applet 来讲，大小已经通过 HTML 文件里的 width 和 height 参数设定好了。</li>
+<li>移除对 setDefaultCloseOperation() 方法的调用。Applet 不能被关闭，它随着浏览器的退出而终止。</li>
+<li>如果应用程序调用了 setTitle() 方法，消除对该方法的调用。applet 不能有标题栏。（当然你可以给通过 html 的 title 标签给网页自身命名）</li>
+<li>不要调用 setVisible(true),Applet 是自动显示的。</li>
+</ul>
+<h3 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h3><p>Applet 类从 Container 类继承了许多事件处理方法。Container 类定义了几个方法，例如：</p>
+<p>processKeyEvent() 和processMouseEvent()，用来处理特别类型的事件，还有一个捕获所有事件的方法叫做 processEvent。</p>
+<p>为了响应一个事件，Applet 必须重写合适的事件处理方法。</p>
+<h2 id="ExampleEventHandling-java-文件代码："><a href="#ExampleEventHandling-java-文件代码：" class="headerlink" title="ExampleEventHandling.java 文件代码："></a>ExampleEventHandling.java 文件代码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">import java.awt.event.MouseListener;</span><br><span class="line">import java.awt.event.MouseEvent;</span><br><span class="line">import java.applet.Applet;</span><br><span class="line">import java.awt.Graphics;</span><br><span class="line"> </span><br><span class="line">public class ExampleEventHandling extends Applet</span><br><span class="line">                             implements MouseListener &#123;</span><br><span class="line"> </span><br><span class="line">    StringBuffer strBuffer;</span><br><span class="line"> </span><br><span class="line">    public void init() &#123;</span><br><span class="line">         addMouseListener(this);</span><br><span class="line">         strBuffer = new StringBuffer();</span><br><span class="line">        addItem(&quot;initializing the applet &quot;);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    public void start() &#123;</span><br><span class="line">        addItem(&quot;starting the applet &quot;);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    public void stop() &#123;</span><br><span class="line">        addItem(&quot;stopping the applet &quot;);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    public void destroy() &#123;</span><br><span class="line">        addItem(&quot;unloading the applet&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    void addItem(String word) &#123;</span><br><span class="line">        System.out.println(word);</span><br><span class="line">        strBuffer.append(word);</span><br><span class="line">        repaint();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    public void paint(Graphics g) &#123;</span><br><span class="line">         //Draw a Rectangle around the applet&apos;s display area.</span><br><span class="line">        g.drawRect(0, 0,</span><br><span class="line">                      getWidth() - 1,</span><br><span class="line">                      getHeight() - 1);</span><br><span class="line"> </span><br><span class="line">         //display the string inside the rectangle.</span><br><span class="line">        g.drawString(strBuffer.toString(), 10, 20);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">  </span><br><span class="line">    public void mouseEntered(MouseEvent event) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    public void mouseExited(MouseEvent event) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    public void mousePressed(MouseEvent event) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    public void mouseReleased(MouseEvent event) &#123;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    public void mouseClicked(MouseEvent event) &#123;</span><br><span class="line">         addItem(&quot;mouse clicked! &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如下调用该 Applet：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;title&gt;Event Handling&lt;/title&gt;</span><br><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;applet code=&quot;ExampleEventHandling.class&quot;</span><br><span class="line">width=&quot;300&quot; height=&quot;300&quot;&gt;</span><br><span class="line">&lt;/applet&gt;</span><br><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>最开始运行，Applet 显示 &quot;initializing the applet. Starting the applet.&quot;，然后你一点击矩形框，就会显示 &quot;mouse clicked&quot; 。</p>
+<h3 id="显示图片"><a href="#显示图片" class="headerlink" title="显示图片"></a>显示图片</h3><p>Applet 能显示 GIF,JPEG,BMP 等其他格式的图片。为了在 Applet 中显示图片，你需要使用 java.awt.Graphics 类的drawImage()方法。</p>
+<p>如下实例演示了显示图片的所有步骤：</p>
+<h2 id="ImageDemo-java-文件代码："><a href="#ImageDemo-java-文件代码：" class="headerlink" title="ImageDemo.java 文件代码："></a>ImageDemo.java 文件代码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import java.applet.*;</span><br><span class="line">import java.awt.*;</span><br><span class="line">import java.net.*;</span><br><span class="line">public class ImageDemo extends Applet</span><br><span class="line">&#123;</span><br><span class="line">  private Image image;</span><br><span class="line">  private AppletContext context;</span><br><span class="line">  public void init()</span><br><span class="line">  &#123;</span><br><span class="line">      context = this.getAppletContext();</span><br><span class="line">      String imageURL = this.getParameter(&quot;image&quot;);</span><br><span class="line">      if(imageURL == null)</span><br><span class="line">      &#123;</span><br><span class="line">         imageURL = &quot;java.jpg&quot;;</span><br><span class="line">      &#125;</span><br><span class="line">      try</span><br><span class="line">      &#123;</span><br><span class="line">         URL url = new URL(this.getDocumentBase(), imageURL);</span><br><span class="line">         image = context.getImage(url);</span><br><span class="line">      &#125;catch(MalformedURLException e)</span><br><span class="line">      &#123;</span><br><span class="line">         e.printStackTrace();</span><br><span class="line">         // Display in browser status bar</span><br><span class="line">         context.showStatus(&quot;Could not load image!&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   public void paint(Graphics g)</span><br><span class="line">   &#123;</span><br><span class="line">      context.showStatus(&quot;Displaying image&quot;);</span><br><span class="line">      g.drawImage(image, 0, 0, 200, 84, null);</span><br><span class="line">      g.drawString(&quot;www.javalicense.com&quot;, 35, 100);</span><br><span class="line">   &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如下调用该applet：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;title&gt;The ImageDemo applet&lt;/title&gt;</span><br><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;applet code=&quot;ImageDemo.class&quot; width=&quot;300&quot; height=&quot;200&quot;&gt;</span><br><span class="line">&lt;param name=&quot;image&quot; value=&quot;java.jpg&quot;&gt;</span><br><span class="line">&lt;/applet&gt;</span><br><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="播放音频"><a href="#播放音频" class="headerlink" title="播放音频"></a>播放音频</h3><p>Applet 能通过使用 java.applet 包中的 AudioClip 接口播放音频。AudioClip 接口定义了三个方法：</p>
+<ul>
+<li><strong>public void play():</strong> 从一开始播放音频片段一次。</li>
+<li><strong>public void loop(): </strong>循环播放音频片段</li>
+<li><strong>public void stop(): </strong>停止播放音频片段</li>
+</ul>
+<p>为了得到 AudioClip 对象，你必须调用 Applet 类的 getAudioClip() 方法。无论 URL 指向的是否是一个真实的音频文件，该方法都会立即返回结果。</p>
+<p>直到要播放音频文件时，该文件才会下载下来。</p>
+<p>如下实例演示了播放音频的所有步骤：</p>
+<h2 id="AudioDemo-java-文件代码："><a href="#AudioDemo-java-文件代码：" class="headerlink" title="AudioDemo.java 文件代码："></a>AudioDemo.java 文件代码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import java.applet.*;</span><br><span class="line">import java.awt.*;</span><br><span class="line">import java.net.*;</span><br><span class="line">public class AudioDemo extends Applet</span><br><span class="line">&#123;</span><br><span class="line">   private AudioClip clip;</span><br><span class="line">   private AppletContext context;</span><br><span class="line">   public void init()</span><br><span class="line">   &#123;</span><br><span class="line">      context = this.getAppletContext();</span><br><span class="line">      String audioURL = this.getParameter(&quot;audio&quot;);</span><br><span class="line">      if(audioURL == null)</span><br><span class="line">      &#123;</span><br><span class="line">         audioURL = &quot;default.au&quot;;</span><br><span class="line">      &#125;</span><br><span class="line">      try</span><br><span class="line">      &#123;</span><br><span class="line">         URL url = new URL(this.getDocumentBase(), audioURL);</span><br><span class="line">         clip = context.getAudioClip(url);</span><br><span class="line">      &#125;catch(MalformedURLException e)</span><br><span class="line">      &#123;</span><br><span class="line">         e.printStackTrace();</span><br><span class="line">         context.showStatus(&quot;Could not load audio file!&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   public void start()</span><br><span class="line">   &#123;</span><br><span class="line">      if(clip != null)</span><br><span class="line">      &#123;</span><br><span class="line">         clip.loop();</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   public void stop()</span><br><span class="line">   &#123;</span><br><span class="line">      if(clip != null)</span><br><span class="line">      &#123;</span><br><span class="line">         clip.stop();</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如下调用applet：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;title&gt;The ImageDemo applet&lt;/title&gt;</span><br><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;applet code=&quot;ImageDemo.class&quot; width=&quot;0&quot; height=&quot;0&quot;&gt;</span><br><span class="line">&lt;param name=&quot;audio&quot; value=&quot;test.wav&quot;&gt;</span><br><span class="line">&lt;/applet&gt;</span><br><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>你可以使用你电脑上的 test.wav 来测试上面的实例。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/11/29/Java-Applet基础/" data-id="cjq840mkr0003pkfvh47fs3o1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/11/29/Java文档注释/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Java文档注释
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/11/28/Java多线程编程/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Java多线程编程</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/Vuejs模板语法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/Vuejs模板语法/26235.png)" alt="Vuejs模板语法" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/Vuejs模板语法/" class="title">Vuejs模板语法</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T08:31:20.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/初识js库/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/初识js库/30da.png)" alt="初识js库" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/初识js库/" class="title">初识js库</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T03:24:08.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/26/JavaScript-Window/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/26/JavaScript-Window/2a77.jpg)" alt="JavaScript_Window" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/26/JavaScript-Window/" class="title">JavaScript_Window</a></p>
+                            <p class="item-date"><time datetime="2018-12-26T04:01:41.000Z" itemprop="datePublished">2018-12-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/24/javascript对象系列/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/24/javascript对象系列/40cfaf.jpg)" alt="javascript对象系列" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/24/javascript对象系列/" class="title">javascript对象系列</a></p>
+                            <p class="item-date"><time datetime="2018-12-24T07:34:02.000Z" itemprop="datePublished">2018-12-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/22/JavaScript-HTML-DOM/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/22/JavaScript-HTML-DOM/qw.gif)" alt="JavaScript-HTML-DOM" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/22/JavaScript-HTML-DOM/" class="title">JavaScript-HTML-DOM</a></p>
+                            <p class="item-date"><time datetime="2018-12-22T08:53:36.000Z" itemprop="datePublished">2018-12-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 15.71px;">JavaScript</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript库/" style="font-size: 10px;">javascript库</a> <a href="/tags/maven/" style="font-size: 18.57px;">maven</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 14.29px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 17.14px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/11/29/Java-Applet基础/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

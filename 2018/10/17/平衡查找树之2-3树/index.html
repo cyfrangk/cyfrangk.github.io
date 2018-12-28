@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>平衡查找树之2-3树 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="数据结构与算法">
+    
+    <meta name="description" content="前面介绍了二叉查找树(Binary Search Tree)，它对于大多数情况下的查找和插入在效率上来说是没有问题的，但是它在最差的情况下效率比较低。本文及后面文章介绍的平衡查找树的数据结构，能够保证在最差的情况下也能达到 lgN 的效率，要实现这一目标我们需要保证树在插入完成之后始终保持平衡状态，这就是平衡查找树(Balanced Search Tree)。在一棵具有 N 个节点的树中，我们希望">
+<meta name="keywords" content="数据结构与算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="平衡查找树之2-3树">
+<meta property="og:url" content="http://yoursite.com/2018/10/17/平衡查找树之2-3树/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="前面介绍了二叉查找树(Binary Search Tree)，它对于大多数情况下的查找和插入在效率上来说是没有问题的，但是它在最差的情况下效率比较低。本文及后面文章介绍的平衡查找树的数据结构，能够保证在最差的情况下也能达到 lgN 的效率，要实现这一目标我们需要保证树在插入完成之后始终保持平衡状态，这就是平衡查找树(Balanced Search Tree)。在一棵具有 N 个节点的树中，我们希望">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/10/17/平衡查找树之2-3树/n3z0.jpg">
+<meta property="og:updated_time" content="2018-12-10T07:13:48.514Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="平衡查找树之2-3树">
+<meta name="twitter:description" content="前面介绍了二叉查找树(Binary Search Tree)，它对于大多数情况下的查找和插入在效率上来说是没有问题的，但是它在最差的情况下效率比较低。本文及后面文章介绍的平衡查找树的数据结构，能够保证在最差的情况下也能达到 lgN 的效率，要实现这一目标我们需要保证树在插入完成之后始终保持平衡状态，这就是平衡查找树(Balanced Search Tree)。在一棵具有 N 个节点的树中，我们希望">
+<meta name="twitter:image" content="http://yoursite.com/2018/10/17/平衡查找树之2-3树/n3z0.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-平衡查找树之2-3树" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        平衡查找树之2-3树
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/10/17/平衡查找树之2-3树/" class="article-date">
+            <time datetime="2018-10-17T09:03:20.000Z" itemprop="datePublished">2018-10-17</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/数据结构与算法/">数据结构与算法</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>前面介绍了二叉查找树(Binary Search Tree)，它对于大多数情况下的查找和插入在效率上来说是没有问题的，但是它在最差的情况下效率比较低。本文及后面文章介绍的平衡查找树的数据结构，能够保证在最差的情况下也能达到 lgN 的效率，要实现这一目标我们需要保证树在插入完成之后始终保持平衡状态，这就是平衡查找树(Balanced Search Tree)。在一棵具有 N 个节点的树中，我们希望该树的高度能够维持在 lgN 左右，这样我们就能保证只需要lgN次比较操作就可以查找到想要的值。不幸的是，每次插入元素之后维持树的平衡状态太昂贵。所以这里会介绍一些新的数据结构来保证在最坏的情况下插入和查找效率都能保证在对数的时间复杂度内完成。本文首先介绍2-3查找树(2-3 Search Tree)，后面会在此基础上介绍红黑树和B树。</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>和二叉树不一样，2-3树运行每个节点保存1个或者两个的值。对于普通的2节点(2-node)，它保存1个key和左右两个自己点。对应3节点(3-node)，保存两个Key，2-3查找树的定义如下：</p>
+<ol>
+<li>要么为空，要么：</li>
+</ol>
+<p>2.对于2节点，该节点保存一个key及对应value，以及两个指向左右节点的节点，左节点也是一个2-3节点，所有的值都比key有效，有节点也是一个2-3节点，所有的值比key要大。</p>
+<p>3.对于3节点，该节点保存两个key及对应value，以及三个指向左中右的节点。左节点也是一个2-3节点，所有的值均比两个key中的最小的key还要小；中间节点也是一个2-3节点，中间节点的key值在两个跟节点key值之间；右节点也是一个2-3节点，节点的所有key值比两个key中的最大的key还要大。</p>
+<p>如果中序遍历2-3查找树，就可以得到排好序的序列。在一个完全平衡的2-3查找树中，根节点到每一个为空节点的距离都相同。<br><img src="/2018/10/17/平衡查找树之2-3树/n3z0.jpg" alt=""></p>
+<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><p>在进行2-3树的平衡之前，我们先假设已经处于平衡状态，我们先看基本的查找操作。</p>
+<p>2-3树的查找和二叉查找树类似，要确定一个树是否属于2-3树，我们首先和其跟节点进行比较，如果相等，则查找成功；否则根据比较的条件，在其左中右子树中递归查找，如果找到的节点为空，则未找到，否则返回。查找过程如下图：<br><img src="/2018/10/17/平衡查找树之2-3树/775w.jpg" alt=""></p>
+<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><h3 id="往一个2-node节点插入"><a href="#往一个2-node节点插入" class="headerlink" title="往一个2-node节点插入"></a>往一个2-node节点插入</h3><p>往2-3树中插入元素和往二叉查找树中插入元素一样，首先要进行查找，然后将节点挂到未找到的节点上。2-3树之所以能够保证在最差的情况下的效率的原因在于其插入之后仍然能够保持平衡状态。如果查找后未找到的节点是一个2-node节点，那么很容易，我们只需要将新的元素放到这个2-node节点里面使其变成一个3-node节点即可。但是如果查找的节点结束于一个3-node节点，那么可能有点麻烦。<br><img src="/2018/10/17/平衡查找树之2-3树/i74q.jpg" alt=""></p>
+<h3 id="往一个3-node节点插入"><a href="#往一个3-node节点插入" class="headerlink" title="往一个3-node节点插入"></a>往一个3-node节点插入</h3><p>往一个3-node节点插入一个新的节点可能会遇到很多种不同的情况，下面首先从一个最简单的只包含一个3-node节点的树开始讨论。</p>
+<p><strong>只包含一个3-node节点</strong><br><img src="/2018/10/17/平衡查找树之2-3树/qt92.jpg" alt=""><br>如上图，假设2-3树只包含一个3-node节点，这个节点有两个key，没有空间来插入第三个key了，最自然的方式是我们假设这个节点能存放三个元素，暂时使其变成一个4-node节点，同时他包含四个子节点。然后，我们将这个4-node节点的中间元素提升，左边的节点作为其左节点，右边的元素作为其右节点。插入完成，变为平衡2-3查找树，树的高度从0变为1。</p>
+<p><strong>节点是3-node，父节点是2-node</strong></p>
+<p>和第一种情况一样，我们也可以将新的元素插入到3-node节点中，使其成为一个临时的4-node节点，然后，将该节点中的中间元素提升到父节点即2-node节点中，使其父节点成为一个3-node节点，然后将左右节点分别挂在这个3-node节点的恰当位置。操作如下图：<br><img src="/2018/10/17/平衡查找树之2-3树/aay.jpg" alt=""><br><strong>节点是3-node，父节点也是3-node</strong></p>
+<p>当我们插入的节点是3-node的时候，我们将该节点拆分，中间元素提升至父节点，但是此时父节点是一个3-node节点，插入之后，父节点变成了4-node节点，然后继续将中间元素提升至其父节点，直至遇到一个父节点是2-node节点，然后将其变为3-node，不需要继续进行拆分。<br><img src="/2018/10/17/平衡查找树之2-3树/dhg.jpg" alt=""><br><strong>根节点分裂</strong></p>
+<p>当根节点到字节点都是3-node节点的时候，这是如果我们要在字节点插入新的元素的时候，会一直查分到跟节点，在最后一步的时候，跟节点变成了一个4-node节点，这个时候，就需要将跟节点查分为两个2-node节点，树的高度加1，这个操作过程如下：<br><img src="/2018/10/17/平衡查找树之2-3树/wg1.jpg" alt=""><br><strong>本地转换</strong></p>
+<p>将一个4-node拆分为2-3node涉及到6种可能的操作。这4-node可能在跟节点，也可能是2-node的左子节点或者右子节点。或者是一个3-node的左，中，右子节点。所有的这些改变都是本地的，不需要检查或者修改其他部分的节点。所以只需要常数次操作即可完成2-3树的平衡。<br><img src="/2018/10/17/平衡查找树之2-3树/ab757.jpg" alt=""><br><strong>性质</strong></p>
+<p>这些本地操作保持了2-3树的平衡。对于4-node节点变形为2-3节点，变形前后树的高度没有发生变化。只有当跟节点是4-node节点，变形后树的高度才加一。如下图所示：<br><img src="/2018/10/17/平衡查找树之2-3树/8my3.jpg" alt=""></p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>完全平衡的2-3查找树如下图，每个根节点到叶子节点的距离是相同的：<br><img src="/2018/10/17/平衡查找树之2-3树/8q3h.jpg" alt=""><br>2-3树的查找效率与树的高度是息息相关的。</p>
+<ul>
+<li>在最坏的情况下，也就是所有的节点都是2-node节点，查找效率为lgN</li>
+<li>在最好的情况下，所有的节点都是3-node节点，查找效率为log3N约等于0.631lgN<br>距离来说，对于1百万个节点的2-3树，树的高度为12-20之间，对于10亿个节点的2-3树，树的高度为18-30之间。</li>
+</ul>
+<p>对于插入来说，只需要常数次操作即可完成，因为他只需要修改与该节点关联的节点即可，不需要检查其他节点，所以效率和查找类似。下面是2-3查找树的效率：<br><img src="/2018/10/17/平衡查找树之2-3树/dhr.jpg" alt=""></p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>直接实现2-3树比较复杂，因为：</p>
+<ul>
+<li>需要处理不同的节点类型，非常繁琐</li>
+<li>需要多次比较操作来将节点下移</li>
+<li>需要上移来拆分4-node节点</li>
+<li>拆分4-node节点的情况有很多种<br>2-3查找树实现起来比较复杂，在某些情况插入后的平衡操作可能会使得效率降低。在2-3查找树基础上改进的红黑树不仅具有较高的效率，并且实现起来较2-3查找树简单。</li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/10/17/平衡查找树之2-3树/" data-id="cjq840mon0022pkfv95ohydtq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/10/20/2-3-4树/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            2-3-4树
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/10/17/fristpage/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">夜光遥感的应用</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/Vuejs模板语法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/Vuejs模板语法/26235.png)" alt="Vuejs模板语法" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/Vuejs模板语法/" class="title">Vuejs模板语法</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T08:31:20.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/初识js库/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/初识js库/30da.png)" alt="初识js库" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/初识js库/" class="title">初识js库</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T03:24:08.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/26/JavaScript-Window/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/26/JavaScript-Window/2a77.jpg)" alt="JavaScript_Window" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/26/JavaScript-Window/" class="title">JavaScript_Window</a></p>
+                            <p class="item-date"><time datetime="2018-12-26T04:01:41.000Z" itemprop="datePublished">2018-12-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/24/javascript对象系列/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/24/javascript对象系列/40cfaf.jpg)" alt="javascript对象系列" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/24/javascript对象系列/" class="title">javascript对象系列</a></p>
+                            <p class="item-date"><time datetime="2018-12-24T07:34:02.000Z" itemprop="datePublished">2018-12-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/22/JavaScript-HTML-DOM/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/22/JavaScript-HTML-DOM/qw.gif)" alt="JavaScript-HTML-DOM" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/22/JavaScript-HTML-DOM/" class="title">JavaScript-HTML-DOM</a></p>
+                            <p class="item-date"><time datetime="2018-12-22T08:53:36.000Z" itemprop="datePublished">2018-12-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 15.71px;">JavaScript</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript库/" style="font-size: 10px;">javascript库</a> <a href="/tags/maven/" style="font-size: 18.57px;">maven</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 14.29px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 17.14px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/10/17/平衡查找树之2-3树/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

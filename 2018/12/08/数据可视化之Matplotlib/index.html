@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>数据可视化之Matplotlib | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="python">
+    
+    <meta name="description" content="Matplotlib 是 Python的一个绘图库。它包含了大量的工具，你可以使用这些工具创建各种图形，包括简单的散点图，正弦曲线，甚至是三维图形。 [TOC] 123# 导入相关模块import matplotlib.pyplot as pltimport numpy as np 画一个简单的图形这里我们通过画出一个正弦曲线图来讲解下基本用法。首先通过 np.linspace 方式生成 x，它包">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据可视化之Matplotlib">
+<meta property="og:url" content="http://yoursite.com/2018/12/08/数据可视化之Matplotlib/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="Matplotlib 是 Python的一个绘图库。它包含了大量的工具，你可以使用这些工具创建各种图形，包括简单的散点图，正弦曲线，甚至是三维图形。 [TOC] 123# 导入相关模块import matplotlib.pyplot as pltimport numpy as np 画一个简单的图形这里我们通过画出一个正弦曲线图来讲解下基本用法。首先通过 np.linspace 方式生成 x，它包">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/12/08/数据可视化之Matplotlib/5110c.png">
+<meta property="og:updated_time" content="2018-12-08T12:21:13.474Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据可视化之Matplotlib">
+<meta name="twitter:description" content="Matplotlib 是 Python的一个绘图库。它包含了大量的工具，你可以使用这些工具创建各种图形，包括简单的散点图，正弦曲线，甚至是三维图形。 [TOC] 123# 导入相关模块import matplotlib.pyplot as pltimport numpy as np 画一个简单的图形这里我们通过画出一个正弦曲线图来讲解下基本用法。首先通过 np.linspace 方式生成 x，它包">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/08/数据可视化之Matplotlib/5110c.png">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-数据可视化之Matplotlib" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        数据可视化之Matplotlib
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/12/08/数据可视化之Matplotlib/" class="article-date">
+            <time datetime="2018-12-08T08:55:09.000Z" itemprop="datePublished">2018-12-08</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/python/">python</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>Matplotlib 是 Python的一个绘图库。它包含了大量的工具，你可以使用这些工具创建各种图形，包括简单的散点图，正弦曲线，甚至是三维图形。<br><img src="/2018/12/08/数据可视化之Matplotlib/5110c.png" alt=""></p>
+<p>[TOC]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入相关模块</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+<h2 id="画一个简单的图形"><a href="#画一个简单的图形" class="headerlink" title="画一个简单的图形"></a>画一个简单的图形</h2><p>这里我们通过画出一个正弦曲线图来讲解下基本用法。<br>首先通过 <code>np.linspace</code> 方式生成 x，它包含了 50 个元素的数组，这 50 个元素均匀的分布在 [0, 2pi] 的区间上。然后通过 <code>np.sin(x)</code> 生成 y。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = np.linspace(0, 2 * np.pi, 50)</span><br><span class="line">y = np.sin(x)</span><br></pre></td></tr></table></figure></p>
+<p>有了 x 和 y 数据之后，我们通过 <code>plt.plot(x, y)</code> 来画出图形，并通过 <code>plt.show()</code> 来显示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(x, y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/12/08/数据可视化之Matplotlib/0427.jpg" alt=""></p>
+<h2 id="在一张图纸里绘制多个图形"><a href="#在一张图纸里绘制多个图形" class="headerlink" title="在一张图纸里绘制多个图形"></a>在一张图纸里绘制多个图形</h2><p>有时候，可能需要在一个图纸里绘制多个图形，这里我们同时绘制了 (x, y), (x, y * 2)两个图形。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(x, y)</span><br><span class="line">plt.plot(x, y * 2)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/12/08/数据可视化之Matplotlib/0633.jpg" alt=""><br>绘制出图形之后，我们可以自己调整更多的样式，比如颜色、点、线。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(x, y, &apos;y*-&apos;)</span><br><span class="line">plt.plot(x, y * 2, &apos;m--&apos;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/12/08/数据可视化之Matplotlib/0719.jpg" alt=""><br>可以看到，设置样式时，就是增加了一个字符串参数，比如 <code>&#39;y*-&#39;</code> ，其中 y 表示黄色，* 表示 星标的点，- 表示实线。</p>
+<p>这里列举一些常见的颜色表示方式：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">颜色</th>
+<th style="text-align:center">表示方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">蓝色</td>
+<td style="text-align:center">b</td>
+</tr>
+<tr>
+<td style="text-align:left">绿色</td>
+<td style="text-align:center">g</td>
+</tr>
+<tr>
+<td style="text-align:left">红色</td>
+<td style="text-align:center">r</td>
+</tr>
+<tr>
+<td style="text-align:left">青色</td>
+<td style="text-align:center">c</td>
+</tr>
+<tr>
+<td style="text-align:left">品红</td>
+<td style="text-align:center">m</td>
+</tr>
+<tr>
+<td style="text-align:left">黄色</td>
+<td style="text-align:center">y</td>
+</tr>
+<tr>
+<td style="text-align:left">黑色</td>
+<td style="text-align:center">k</td>
+</tr>
+<tr>
+<td style="text-align:left">白色</td>
+<td style="text-align:center">w</td>
+</tr>
+</tbody>
+</table>
+<p>常见的点的表示方式：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">点的类型</th>
+<th style="text-align:center">表示方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">点</td>
+<td style="text-align:center">.</td>
+</tr>
+<tr>
+<td style="text-align:left">像素</td>
+<td style="text-align:center">,</td>
+</tr>
+<tr>
+<td style="text-align:left">圆</td>
+<td style="text-align:center">o</td>
+</tr>
+<tr>
+<td style="text-align:left">方形</td>
+<td style="text-align:center">s</td>
+</tr>
+<tr>
+<td style="text-align:left">三角形</td>
+<td style="text-align:center">^</td>
+</tr>
+</tbody>
+</table>
+<p>常见的线的表示方式：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">线的类型</th>
+<th style="text-align:center">表示方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">直线</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">虚线</td>
+<td style="text-align:center">–</td>
+</tr>
+<tr>
+<td style="text-align:left">点线</td>
+<td style="text-align:center">:</td>
+</tr>
+<tr>
+<td style="text-align:left">点划线</td>
+<td style="text-align:center">-.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="更多设置"><a href="#更多设置" class="headerlink" title="更多设置"></a>更多设置</h2><p>Matplotlib 支持各种灵活的设置，这里我们列举一些常见的内容。</p>
+<h3 id="设置-figure"><a href="#设置-figure" class="headerlink" title="设置 figure"></a>设置 figure</h3><p>你可以认为Matplotlib绘制的图形都在一个默认的 figure 中，当然了，你可以自己创建 figure，好处就是可以控制更多的参数，常见的就是控制图形的大小，这里创建一个 figure，设置大小为 (6, 3)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(6, 3))</span><br><span class="line">plt.plot(x, y)</span><br><span class="line">plt.plot(x, y * 2)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/12/08/数据可视化之Matplotlib/1519.jpg" alt=""></p>
+<h3 id="设置标题"><a href="#设置标题" class="headerlink" title="设置标题"></a>设置标题</h3><p>来看下如何设置标题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(x, y)</span><br><span class="line">plt.plot(x, y * 2)</span><br><span class="line">plt.title(&quot;sin(x) &amp; 2sin(x)&quot;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/12/08/数据可视化之Matplotlib/1643.jpg" alt=""><br>直接通过 <code>plt.title</code>即可设置图形标题。</p>
+<h3 id="设置坐标轴"><a href="#设置坐标轴" class="headerlink" title="设置坐标轴"></a>设置坐标轴</h3><p>来看下如何设置坐标轴的范围以及名称。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(x, y)</span><br><span class="line">plt.plot(x, y * 2)</span><br><span class="line"></span><br><span class="line">plt.xlim((0, np.pi + 1))</span><br><span class="line">plt.ylim((-3, 3))</span><br><span class="line">plt.xlabel(&apos;X&apos;)</span><br><span class="line">plt.ylabel(&apos;Y&apos;)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/12/08/数据可视化之Matplotlib/1744.jpg" alt=""><br>通过 <code>xlim</code> 和 <code>ylim</code> 来设限定轴的范围，通过 <code>xlabel</code> 和 <code>ylabel</code> 来设置轴的名称。</p>
+<p>此外，我们也可以通过 <code>xticks</code> 和 <code>yticks</code> 来设置轴的刻度。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(x, y)</span><br><span class="line">plt.plot(x, y * 2)</span><br><span class="line">plt.xticks((0, np.pi * 0.5, np.pi, np.pi * 1.5, np.pi * 2))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/12/08/数据可视化之Matplotlib/1840.jpg" alt=""></p>
+<h3 id="设置-label-和-legend"><a href="#设置-label-和-legend" class="headerlink" title="设置 label 和 legend"></a>设置 label 和 legend</h3><p>设置 label 和 legend 的目的就是为了区分出每个数据对应的图形名称。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(x, y, label=&quot;sin(x)&quot;)</span><br><span class="line">plt.plot(x, y * 2, label=&quot;2sin(x)&quot;)</span><br><span class="line"># plt.legend()</span><br><span class="line">plt.legend(loc=&apos;best&apos;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/12/08/数据可视化之Matplotlib/2033.jpg" alt=""><br>添加注释</p>
+<p>有时候我们需要对特定的点进行标注，我们可以使用 plt.annotate 函数来实现。</p>
+<p>这里我们要标注的点是 <code>(x0, y0) = (π, 0)</code>。</p>
+<p>我们也可以使用 <code>plt.text</code> 函数来添加注释。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(x, y)</span><br><span class="line"></span><br><span class="line">x0 = np.pi</span><br><span class="line">y0 = 0</span><br><span class="line"></span><br><span class="line"># 画出标注点</span><br><span class="line">plt.scatter(x0, y0, s=50)</span><br><span class="line"></span><br><span class="line">plt.annotate(&apos;sin(np.pi)=%s&apos; % y0, xy=(np.pi, 0), xycoords=&apos;data&apos;, xytext=(+30, -30),</span><br><span class="line">             textcoords=&apos;offset points&apos;, fontsize=16,</span><br><span class="line">             arrowprops=dict(arrowstyle=&apos;-&gt;&apos;, connectionstyle=&quot;arc3,rad=.2&quot;))</span><br><span class="line"></span><br><span class="line">plt.text(0.5, -0.25, &quot;sin(np.pi) = 0&quot;, fontdict=&#123;&apos;size&apos;: 16, &apos;color&apos;: &apos;r&apos;&#125;)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/12/08/数据可视化之Matplotlib/2125.jpg" alt=""><br>对于 <code>annotate</code> 函数的参数，做一个简单解释：</p>
+<ul>
+<li><code>&#39;sin(np.pi)=%s&#39; % y0</code>代表标注的内容，可以通过字符串 %s 将 y0 的值传入字符串；</li>
+<li>参数 <code>xycoords=&#39;data&#39;</code> 是说基于数据的值来选位置;</li>
+<li><code>xytext=(+30, -30)</code> 和 <code>textcoords=&#39;offset points&#39;</code> 表示对于标注位置的描述 和 xy 偏差值，即标注位置是 xy 位置向右移动 30，向下移动30；</li>
+<li><code>arrowprops</code> 是对图中箭头类型和箭头弧度的设置，需要用 dict 形式传入。<h2 id="使用子图"><a href="#使用子图" class="headerlink" title="使用子图"></a>使用子图</h2></li>
+</ul>
+<p>有时候我们需要将多张子图展示在一起，可以使用 subplot() 实现。即在调用 plot() 函数之前需要先调用 subplot() 函数。该函数的第一个参数代表子图的总行数，第二个参数代表子图的总列数，第三个参数代表活跃区域。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ax1 = plt.subplot(2, 2, 1) # （行，列，活跃区）</span><br><span class="line">plt.plot(x, np.sin(x), &apos;r&apos;)</span><br><span class="line"></span><br><span class="line">ax2 = plt.subplot(2, 2, 2, sharey=ax1) # 与 ax1 共享y轴</span><br><span class="line">plt.plot(x, 2 * np.sin(x), &apos;g&apos;)</span><br><span class="line"></span><br><span class="line">ax3 = plt.subplot(2, 2, 3)</span><br><span class="line">plt.plot(x, np.cos(x), &apos;b&apos;)</span><br><span class="line"></span><br><span class="line">ax4 = plt.subplot(2, 2, 4, sharey=ax3) # 与 ax3 共享y轴</span><br><span class="line">plt.plot(x, 2 * np.cos(x), &apos;y&apos;)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/12/08/数据可视化之Matplotlib/2325.jpg" alt=""><br>上面的 <code>subplot(2, 2, x)</code> 表示将图像窗口分为 2 行 2 列。x 表示当前子图所在的活跃区。</p>
+<p>可以看到，上面的每个子图的大小都是一样的。有时候我们需要不同大小的子图。比如将上面第一张子图完全放置在第一行，其他的子图都放在第二行。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ax1 = plt.subplot(<span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>) <span class="comment"># （行，列，活跃区）</span></span><br><span class="line">plt.plot(x, np.sin(x), <span class="string">'r'</span>)</span><br><span class="line"></span><br><span class="line">ax2 = plt.subplot(<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">plt.plot(x, <span class="number">2</span> * np.sin(x), <span class="string">'g'</span>)</span><br><span class="line"></span><br><span class="line">ax3 = plt.subplot(<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, sharey=ax2)</span><br><span class="line">plt.plot(x, np.cos(x), <span class="string">'b'</span>)</span><br><span class="line"></span><br><span class="line">ax4 = plt.subplot(<span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>, sharey=ax2)</span><br><span class="line">plt.plot(x, <span class="number">2</span> * np.cos(x), <span class="string">'y'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/12/08/数据可视化之Matplotlib/2417.jpg" alt=""></p>
+<p>简单解释下，<code>plt.subplot(2, 1, 1)</code> 将图像窗口分为了 2 行 1 列, 当前活跃区为 1。</p>
+<p>使用 <code>plt.subplot(2, 3, 4)</code> 将整个图像窗口分为 2 行 3 列, 当前活跃区为 4。</p>
+<p>解释下为什么活跃区为 4，因为上一步中使用 plt.subplot(2, 1, 1) 将整个图像窗口分为 2 行 1 列, 第1个小图占用了第1个位置, 也就是整个第1行. 这一步中使用 plt.subplot(2, 3, 4) 将整个图像窗口分为 2 行 3 列, 于是整个图像窗口的第1行就变成了3列, 也就是成了3个位置, 于是第2行的第1个位置是整个图像窗口的第4个位置。</p>
+<h2 id="常见的图形"><a href="#常见的图形" class="headerlink" title="常见的图形"></a>常见的图形</h2><p>这里带大家画一些常见的示例图。</p>
+<h3 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h3><p>首先来看下如何绘制散点图。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">k = <span class="number">500</span></span><br><span class="line">x = np.random.rand(k) </span><br><span class="line">y = np.random.rand(k)</span><br><span class="line">size = np.random.rand(k) * <span class="number">50</span> <span class="comment"># 生成每个点的大小</span></span><br><span class="line">colour = np.arctan2(x, y) <span class="comment"># 生成每个点的颜色大小</span></span><br><span class="line">plt.scatter(x, y, s=size, c=colour)</span><br><span class="line">plt.colorbar() <span class="comment"># 添加颜色栏</span></span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/12/08/数据可视化之Matplotlib/2530.jpg" alt=""><br>上面我们首先生成了要绘制的数据的点x 和 y，接下来为每个数据点生成控制大小的数组 <code>size</code>，然后未每个数据点生成控制颜色的数组 colour。最后通过 colorbar() 来增加一个颜色栏。</p>
+<h3 id="柱状图"><a href="#柱状图" class="headerlink" title="柱状图"></a>柱状图</h3><p>柱状图我们经常会用到，我们来看下如何画出柱状图，并在图上标注出数据对应的数值。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">k = <span class="number">10</span></span><br><span class="line">x = np.arange(k)</span><br><span class="line">y = np.random.rand(k)</span><br><span class="line">plt.bar(x, y) <span class="comment"># 画出 x 和 y 的柱状图</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 增加数值</span></span><br><span class="line"><span class="keyword">for</span> x, y <span class="keyword">in</span> zip(x, y):</span><br><span class="line">    plt.text(x, y , <span class="string">'%.2f'</span> % y, ha=<span class="string">'center'</span>, va=<span class="string">'bottom'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/12/08/数据可视化之Matplotlib/2628.jpg" alt=""><br>生成数据 <code>x</code> 和<code>y</code> 之后，调用<code>plt.bar</code> 函数绘制出柱状图，然后通过 <code>plt.text</code> 标注数值，设置参数 <code>ha=&#39;center&#39;</code> 横向居中对齐，设置 <code>va=&#39;bottom&#39;</code>纵向底部（顶部）对齐。</p>
+<h2 id="中文乱码解决"><a href="#中文乱码解决" class="headerlink" title="中文乱码解决"></a>中文乱码解决</h2><p>Matplotlib 有个让人恼火的问题是，默认情况下，Matplotlib 中文会乱码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = [&apos;北京&apos;, &apos;上海&apos;, &apos;深圳&apos;, &apos;广州&apos;]</span><br><span class="line">y = [60000, 58000, 50000, 52000]</span><br><span class="line">plt.plot(x, y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/12/08/数据可视化之Matplotlib/2756.jpg" alt=""><br>可以看到，上面所有的中文都乱码了，显示成方框了，如何解决呢？</p>
+<p>其实只需要配置下后台字体即可。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plt.rcParams[<span class="string">'font.sans-serif'</span>]=[<span class="string">'SimHei'</span>] <span class="comment">#用来正常显示中文标签</span></span><br><span class="line">plt.rcParams[<span class="string">'axes.unicode_minus'</span>]=<span class="keyword">False</span> <span class="comment">#用来正常显示负号</span></span><br><span class="line"></span><br><span class="line">plt.plot(x, y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/12/08/数据可视化之Matplotlib/2855.jpg" alt=""></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/12/08/数据可视化之Matplotlib/" data-id="cjq840mq1002npkfvb1eumsu9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/12/11/前端开发面试题/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            前端开发面试题
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/12/08/Python分析影评/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Python分析影评</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/Vuejs模板语法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/Vuejs模板语法/26235.png)" alt="Vuejs模板语法" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/Vuejs模板语法/" class="title">Vuejs模板语法</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T08:31:20.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/初识js库/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/初识js库/30da.png)" alt="初识js库" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/初识js库/" class="title">初识js库</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T03:24:08.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/26/JavaScript-Window/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/26/JavaScript-Window/2a77.jpg)" alt="JavaScript_Window" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/26/JavaScript-Window/" class="title">JavaScript_Window</a></p>
+                            <p class="item-date"><time datetime="2018-12-26T04:01:41.000Z" itemprop="datePublished">2018-12-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/24/javascript对象系列/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/24/javascript对象系列/40cfaf.jpg)" alt="javascript对象系列" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/24/javascript对象系列/" class="title">javascript对象系列</a></p>
+                            <p class="item-date"><time datetime="2018-12-24T07:34:02.000Z" itemprop="datePublished">2018-12-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/22/JavaScript-HTML-DOM/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/22/JavaScript-HTML-DOM/qw.gif)" alt="JavaScript-HTML-DOM" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/22/JavaScript-HTML-DOM/" class="title">JavaScript-HTML-DOM</a></p>
+                            <p class="item-date"><time datetime="2018-12-22T08:53:36.000Z" itemprop="datePublished">2018-12-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 15.71px;">JavaScript</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript库/" style="font-size: 10px;">javascript库</a> <a href="/tags/maven/" style="font-size: 18.57px;">maven</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 14.29px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 17.14px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/12/08/数据可视化之Matplotlib/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

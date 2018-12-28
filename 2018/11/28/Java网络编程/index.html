@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Java网络编程 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="java">
+    
+    <meta name="description" content="网络编程是指编写运行在多个设备（计算机）的程序，这些设备都通过网络连接起来。java.net 包中 J2SE 的 API 包含有类和接口，它们提供低层次的通信细节。你可以直接使用这些类和接口，来专注于解决问题，而不用关注通信细节。java.net 包中提供了两种常见的网络协议的支持：  TCP ：TCP 是传输控制协议的缩写，它保障了两个应用程序之间的可靠通信。通常用于互联网协议，被称 TCP /">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java网络编程">
+<meta property="og:url" content="http://yoursite.com/2018/11/28/Java网络编程/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="网络编程是指编写运行在多个设备（计算机）的程序，这些设备都通过网络连接起来。java.net 包中 J2SE 的 API 包含有类和接口，它们提供低层次的通信细节。你可以直接使用这些类和接口，来专注于解决问题，而不用关注通信细节。java.net 包中提供了两种常见的网络协议的支持：  TCP ：TCP 是传输控制协议的缩写，它保障了两个应用程序之间的可靠通信。通常用于互联网协议，被称 TCP /">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/11/28/Java网络编程/6b9.jpg">
+<meta property="og:updated_time" content="2018-11-29T10:33:26.029Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java网络编程">
+<meta name="twitter:description" content="网络编程是指编写运行在多个设备（计算机）的程序，这些设备都通过网络连接起来。java.net 包中 J2SE 的 API 包含有类和接口，它们提供低层次的通信细节。你可以直接使用这些类和接口，来专注于解决问题，而不用关注通信细节。java.net 包中提供了两种常见的网络协议的支持：  TCP ：TCP 是传输控制协议的缩写，它保障了两个应用程序之间的可靠通信。通常用于互联网协议，被称 TCP /">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/28/Java网络编程/6b9.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-Java网络编程" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Java网络编程
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/11/28/Java网络编程/" class="article-date">
+            <time datetime="2018-11-28T10:23:21.000Z" itemprop="datePublished">2018-11-28</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/java/">java</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>网络编程是指编写运行在多个设备（计算机）的程序，这些设备都通过网络连接起来。<br><img src="/2018/11/28/Java网络编程/6b9.jpg" alt=""><br>java.net 包中 J2SE 的 API 包含有类和接口，它们提供低层次的通信细节。你可以直接使用这些类和接口，来专注于解决问题，而不用关注通信细节。<br>java.net 包中提供了两种常见的网络协议的支持：</p>
+<ul>
+<li><strong>TCP</strong> ：TCP 是传输控制协议的缩写，它保障了两个应用程序之间的可靠通信。通常用于互联网协议，被称 TCP / IP。</li>
+<li><strong>UDP</strong> ：UDP 是用户数据报协议的缩写，一个无连接的协议。提供了应用程序之间要发送的数据的数据包。</li>
+</ul>
+<p>本教程主要讲解以下两个主题。</p>
+<ul>
+<li><strong>Socket 编程</strong> ：这是使用最广泛的网络概念，它已被解释地非常详细。</li>
+<li><strong>URL 处理</strong> ：这部分会在另外的篇幅里讲，点击这里更详细地了解在 <a href="http://www.runoob.com/java/java-url-processing.html" target="_blank" rel="noopener">Java 语言中的 URL 处理</a>。</li>
+</ul>
+<h1 id="Socket-编程"><a href="#Socket-编程" class="headerlink" title="Socket 编程"></a>Socket 编程</h1><p>套接字使用TCP提供了两台计算机之间的通信机制。 客户端程序创建一个套接字，并尝试连接服务器的套接字。<br>当连接建立时，服务器会创建一个 Socket 对象。客户端和服务器现在可以通过对 Socket 对象的写入和读取来进行通信。<br>java.net.Socket 类代表一个套接字，并且 java.net.ServerSocket 类为服务器程序提供了一种来监听客户端，并与他们建立连接的机制。<br>以下步骤在两台计算机之间使用套接字建立TCP连接时会出现：</p>
+<ul>
+<li>服务器实例化一个 ServerSocket 对象，表示通过服务器上的端口通信。</li>
+<li>服务器调用 ServerSocket 类的 accept() 方法，该方法将一直等待，直到客户端连接到服务器上给定的端口。</li>
+<li>服务器正在等待时，一个客户端实例化一个 Socket 对象，指定服务器名称和端口号来请求连接。</li>
+<li>Socket 类的构造函数试图将客户端连接到指定的服务器和端口号。如果通信被建立，则在客户端创建一个 Socket 对象能够与服务器进行通信。</li>
+<li>在服务器端，accept() 方法返回服务器上一个新的 socket 引用，该 socket 连接到客户端的 socket。</li>
+</ul>
+<p>连接建立后，通过使用 I/O 流在进行通信，每一个socket都有一个输出流和一个输入流，客户端的输出流连接到服务器端的输入流，而客户端的输入流连接到服务器端的输出流。</p>
+<p>TCP 是一个双向的通信协议，因此数据可以通过两个数据流在同一时间发送.以下是一些类提供的一套完整的有用的方法来实现 socket。</p>
+<h1 id="ServerSocket-类的方法"><a href="#ServerSocket-类的方法" class="headerlink" title="ServerSocket 类的方法"></a>ServerSocket 类的方法</h1><p>服务器应用程序通过使用 java.net.ServerSocket 类以获取一个端口,并且侦听客户端请求。</p>
+<p>ServerSocket 类有四个构造方法：</p>
+<p>| <strong>序号</strong> | <strong>方法描述</strong> |<br>| 1 | <strong>public ServerSocket(int port) throws IOException</strong><br>创建绑定到特定端口的服务器套接字。<br>| 2 | <strong>public ServerSocket(int port, int backlog) throws IOException</strong><br>利用指定的 backlog 创建服务器套接字并将其绑定到指定的本地端口号。<br>| 3 | <strong>public ServerSocket(int port, int backlog, InetAddress address) throws IOException</strong><br>使用指定的端口、侦听 backlog 和要绑定到的本地 IP 地址创建服务器。<br>| 4 | <strong>public ServerSocket() throws IOException</strong><br>创建非绑定服务器套接字。 </p>
+<p>创建非绑定服务器套接字。 如果 ServerSocket 构造方法没有抛出异常，就意味着你的应用程序已经成功绑定到指定的端口，并且侦听客户端请求。</p>
+<p>这里有一些 ServerSocket 类的常用方法：</p>
+<p>| <strong>序号</strong> | <strong>方法描述</strong> |<br>| 1 | <strong>public int getLocalPort()</strong><br>  返回此套接字在其上侦听的端口。<br>| 2 | <strong>public Socket accept() throws IOException</strong><br>侦听并接受到此套接字的连接。<br>| 3 | <strong>public void setSoTimeout(int timeout)</strong><br> 通过指定超时值启用/禁用 SO_TIMEOUT，以毫秒为单位。<br>| 4 | <strong>public void bind(SocketAddress host, int backlog)</strong><br>将 ServerSocket 绑定到特定地址（IP 地址和端口号）。<br><img src="/2018/11/28/Java网络编程/492.png" alt=""></p>
+<h1 id="Socket-类的方法"><a href="#Socket-类的方法" class="headerlink" title="Socket 类的方法"></a>Socket 类的方法</h1><p>java.net.Socket 类代表客户端和服务器都用来互相沟通的套接字。客户端要获取一个 Socket 对象通过实例化 ，而 服务器获得一个 Socket 对象则通过 accept() 方法的返回值。</p>
+<p>Socket 类有五个构造方法.</p>
+<p>| <strong>序号</strong> | <strong>方法描述</strong> |<br>| 1 | <strong>public Socket(String host, int port) throws UnknownHostException, IOException.</strong><br>创建一个流套接字并将其连接到指定主机上的指定端口号。<br>| 2 | <strong>public Socket(InetAddress host, int port) throws IOException</strong><br>创建一个流套接字并将其连接到指定 IP 地址的指定端口号。<br>| 3 | <strong>public Socket(String host, int port, InetAddress localAddress, int localPort) throws IOException.</strong><br>创建一个套接字并将其连接到指定远程主机上的指定远程端口。<br>| 4 | <strong>public Socket(InetAddress host, int port, InetAddress localAddress, int localPort) throws IOException.</strong><br>创建一个套接字并将其连接到指定远程地址上的指定远程端口。<br>| 5 | <strong>public Socket()</strong><br>通过系统默认类型的 SocketImpl 创建未连接套接字 </p>
+<p>当 Socket 构造方法返回，并没有简单的实例化了一个 Socket 对象，它实际上会尝试连接到指定的服务器和端口。</p>
+<p>下面列出了一些感兴趣的方法，注意客户端和服务器端都有一个 Socket 对象，所以无论客户端还是服务端都能够调用这些方法。</p>
+<p>| <strong>序号</strong> | <strong>方法描述</strong> |<br>| 1 | <strong>public void connect(SocketAddress host, int timeout) throws IOException</strong><br>将此套接字连接到服务器，并指定一个超时值。<br>| 2 | <strong>public InetAddress getInetAddress()</strong><br> 返回套接字连接的地址。<br>| 3 | <strong>public int getPort()</strong><br>返回此套接字连接到的远程端口。<br>| 4 | <strong>public int getLocalPort()</strong><br>返回此套接字绑定到的本地端口。<br>| 5 | <strong>public SocketAddress getRemoteSocketAddress()</strong><br>返回此套接字连接的端点的地址，如果未连接则返回 null。<br>| 6 | <strong>public InputStream getInputStream() throws IOException</strong><br>返回此套接字的输入流。<br>| 7 | <strong>public OutputStream getOutputStream() throws IOException</strong><br>返回此套接字的输出流。<br>| 8 | <strong>public void close() throws IOException</strong><br>关闭此套接字。 </p>
+<h1 id="InetAddress-类的方法"><a href="#InetAddress-类的方法" class="headerlink" title="InetAddress 类的方法"></a>InetAddress 类的方法</h1><p>这个类表示互联网协议(IP)地址。下面列出了 Socket 编程时比较有用的方法：</p>
+<p>| <strong>序号</strong> | <strong>方法描述</strong> |<br>| 1 | <strong>static InetAddress getByAddress(byte[] addr)</strong><br>在给定原始 IP 地址的情况下，返回 InetAddress 对象。<br>| 2 | <strong>static InetAddress getByAddress(String host, byte[] addr)</strong><br>根据提供的主机名和 IP 地址创建 InetAddress。<br>| 3 | <strong>static InetAddress getByName(String host)</strong><br>在给定主机名的情况下确定主机的 IP 地址。<br>| 4 | <strong>String getHostAddress() </strong><br>返回 IP 地址字符串（以文本表现形式）。<br>| 5 | <strong>String getHostName() </strong><br> 获取此 IP 地址的主机名。<br>| 6 | <strong>static InetAddress getLocalHost()</strong><br>返回本地主机。<br>| 7 | <strong>String toString()</strong><br>将此 IP 地址转换为 String。<br><img src="/2018/11/28/Java网络编程/9d0.png" alt=""><br><strong>同步和异步：</strong> 同步和异步是针对应用程序和内核的交互而言的，同步指的是用户进程触发IO 操作并等待或者轮询的去查看IO 操作是否就绪，而异步是指用户进程触发IO 操作以后便开始做自己的事情，而当IO 操作已经完成的时候会得到IO 完成的通知。</p>
+<p>以银行取款为例：</p>
+<p><strong>同步</strong>  ： 自己亲自出马持银行卡到银行取钱（使用同步 IO 时，Java 自己处理IO 读写）；<br><strong>异步</strong>  ： 委托一小弟拿银行卡到银行取钱，然后给你（使用异步IO 时，Java 将 IO 读写委托给OS 处理，需要将数据缓冲区地址和大小传给OS(银行卡和密码)，OS 需要支持异步IO操作API）；<br><strong>阻塞和非阻塞：</strong> 阻塞和非阻塞是针对于进程在访问数据的时候，根据IO操作的就绪状态来采取的不同方式，说白了是一种读取或者写入操作方法的实现方式，阻塞方式下读取或者写入函数将一直等待，而非阻塞方式下，读取或者写入方法会立即返回一个状态值。<br>以银行取款为例：<br><strong>阻塞</strong>  ： ATM排队取款，你只能等待（使用阻塞IO时，Java调用会一直阻塞到读写完成才返回）；<br><strong>非阻塞</strong>  ： 柜台取款，取个号，然后坐在椅子上做其它事，等号广播会通知你办理，没到号你就不能去，你可以不断问大堂经理排到了没有，大堂经理如果说还没到你就不能去（使用非阻塞IO时，如果不能读写Java调用会马上返回，当IO事件分发器通知可读写时再继续进行读写，不断循环直到读写完成）</p>
+<p><strong>1.BIO 编程</strong></p>
+<p>Blocking IO： 同步阻塞的编程方式。<br>BIO编程方式通常是在JDK1.4版本之前常用的编程方式。编程实现过程为：首先在服务端启动一个ServerSocket来监听网络请求，客户端启动Socket发起网络请求，默认情况下ServerSocket回建立一个线程来处理此请求，如果服务端没有线程可用，客户端则会阻塞等待或遭到拒绝。<br>且建立好的连接，在通讯过程中，是同步的。在并发处理效率上比较低。大致结构如下：<br><img src="/2018/11/28/Java网络编程/3778.png" alt=""><br>同步并阻塞，服务器实现模式为一个连接一个线程，即客户端有连接请求时服务器端就需要启动一个线程进行处理，如果这个连接不做任何事情会造成不必要的线程开销，当然可以通过线程池机制改善。<br>BIO方式适用于连接数目比较小且固定的架构，这种方式对服务器资源要求比较高，并发局限于应用中，JDK1.4以前的唯一选择，但程序直观简单易理解。<br>使用线程池机制改善后的BIO模型图如下:<br><img src="/2018/11/28/Java网络编程/2827.png" alt=""><br><strong>2.NIO 编程：Unblocking IO（New IO）： 同步非阻塞的编程方式。</strong><br>NIO本身是基于事件驱动思想来完成的，其主要想解决的是BIO的大并发问题，NIO基于Reactor，当socket有流可读或可写入socket时，操作系统会相应的通知引用程序进行处理，应用再将流读取到缓冲区或写入操作系统。也就是说，这个时候，已经不是一个连接就要对应一个处理线程了，而是有效的请求，对应一个线程，当连接没有数据时，是没有工作线程来处理的。<br>NIO的最重要的地方是当一个连接创建后，不需要对应一个线程，这个连接会被注册到多路复用器上面，所以所有的连接只需要一个线程就可以搞定，当这个线程中的多路复用器进行轮询的时候，发现连接上有请求的话，才开启一个线程进行处理，也就是一个请求一个线程模式。<br>在NIO的处理方式中，当一个请求来的话，开启线程进行处理，可能会等待后端应用的资源(JDBC连接等)，其实这个线程就被阻塞了，当并发上来的话，还是会有BIO一样的问题</p>
+<p><strong>3.AIO编程：Asynchronous IO： 异步非阻塞的编程方式。</strong><br>与NIO不同，当进行读写操作时，只须直接调用API的read或write方法即可。这两种方法均为异步的，对于读操作而言，当有流可读取时，操作系统会将可读的流传入read方法的缓冲区，并通知应用程序；对于写操作而言，当操作系统将write方法传递的流写入完毕时，操作系统主动通知应用程序。即可以理解为，read/write方法都是异步的，完成后会主动调用回调函数。在JDK1.7中，这部分内容被称作NIO.2，主要在java.nio.channels包下增加了下面四个异步通道：AsynchronousSocketChannel、AsynchronousServerSocketChannel、AsynchronousFileChannel、AsynchronousDatagramChannel</p>
+<p><strong>bio示例</strong><br>server示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">publicclassServer&#123;</span><br><span class="line">    publicstaticvoid main(String[] args)&#123;</span><br><span class="line">        int port = genPort(args);</span><br><span class="line">        ServerSocket server =null;</span><br><span class="line">        ExecutorService service =Executors.newFixedThreadPool(50);</span><br><span class="line">        try&#123;</span><br><span class="line">            server =newServerSocket(port);</span><br><span class="line">            System.out.println(&amp;quot;server started!&amp;quot;);</span><br><span class="line">            while(true)&#123;</span><br><span class="line">                Socket socket = server.accept();</span><br><span class="line">               service.execute(newHandler(socket));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;catch(Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;finally&#123;</span><br><span class="line">            if(server !=null)&#123;</span><br><span class="line">                try&#123;</span><br><span class="line">                    server.close();</span><br><span class="line">                &#125;catch(IOException e)&#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            server =null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    staticclassHandlerimplementsRunnable&#123;</span><br><span class="line">        Socket socket =null;</span><br><span class="line">        publicHandler(Socket socket)&#123;</span><br><span class="line">            this.socket = socket;</span><br><span class="line">        &#125;</span><br><span class="line">        @Override</span><br><span class="line">        publicvoid run()&#123;</span><br><span class="line">            BufferedReader reader =null;</span><br><span class="line">            PrintWriter writer =null;</span><br><span class="line">            try&#123;</span><br><span class="line">                reader =newBufferedReader(</span><br><span class="line">                        newInputStreamReader(socket.getInputStream(),&amp;quot;UTF-8&amp;quot;));</span><br><span class="line">                writer =newPrintWriter(</span><br><span class="line">                        newOutputStreamWriter(socket.getOutputStream(),&amp;quot;UTF-8&amp;quot;));</span><br><span class="line">                String readMessage =null;</span><br><span class="line">                while(true)&#123;</span><br><span class="line">                    System.out.println(&amp;quot;server reading... &amp;quot;);</span><br><span class="line">                    if((readMessage = reader.readLine())==null)&#123;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                    System.out.println(readMessage);</span><br><span class="line">                    writer.println(&amp;quot;server recive : &amp;quot;+ readMessage);</span><br><span class="line">                    writer.flush();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;catch(Exception e)&#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;finally&#123;</span><br><span class="line">                if(socket !=null)&#123;</span><br><span class="line">                    try&#123;</span><br><span class="line">                        socket.close();</span><br><span class="line">                    &#125;catch(IOException e)&#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                socket =null;</span><br><span class="line">                if(reader !=null)&#123;</span><br><span class="line">                    try&#123;</span><br><span class="line">                        reader.close();</span><br><span class="line">                    &#125;catch(IOException e)&#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                reader =null;</span><br><span class="line">                if(writer !=null)&#123;</span><br><span class="line">                    writer.close();</span><br><span class="line">                &#125;</span><br><span class="line">                writer =null;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    privatestaticint genPort(String[] args)&#123;</span><br><span class="line">        if(args.length \&amp;gt;0)&#123;</span><br><span class="line">            try&#123;</span><br><span class="line">                returnInteger.parseInt(args[0]);</span><br><span class="line">            &#125;catch(NumberFormatException e)&#123;</span><br><span class="line">                return9999;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return9999;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.client示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">publicclassClient&#123;</span><br><span class="line">    publicstaticvoid main(String[] args)&#123;</span><br><span class="line">        String host =null;</span><br><span class="line">        int port =0;</span><br><span class="line">        if(args.length \&amp;gt;2)&#123;</span><br><span class="line">            host = args[0];</span><br><span class="line">            port =Integer.parseInt(args[1]);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            host =&amp;quot;127.0.0.1&amp;quot;;</span><br><span class="line">            port =9999;</span><br><span class="line">        &#125;</span><br><span class="line">        Socket socket =null;</span><br><span class="line">        BufferedReader reader =null;</span><br><span class="line">        PrintWriter writer =null;</span><br><span class="line">        Scanner s =newScanner(System.in);</span><br><span class="line">        try&#123;</span><br><span class="line">            socket =newSocket(host, port);</span><br><span class="line">            String message =null;</span><br><span class="line">            reader =newBufferedReader(</span><br><span class="line">                    newInputStreamReader(socket.getInputStream(),&amp;quot;UTF-8&amp;quot;));</span><br><span class="line">            writer =newPrintWriter(</span><br><span class="line">                    socket.getOutputStream(),true);</span><br><span class="line">            while(true)&#123;</span><br><span class="line">                message = s.nextLine();</span><br><span class="line">                if(message.equals(&amp;quot;exit&amp;quot;))&#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                writer.println(message);</span><br><span class="line">                writer.flush();</span><br><span class="line">                System.out.println(reader.readLine());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;catch(Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;finally&#123;</span><br><span class="line">            if(socket !=null)&#123;</span><br><span class="line">                try&#123;</span><br><span class="line">                    socket.close();</span><br><span class="line">                &#125;catch(IOException e)&#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            socket =null;</span><br><span class="line">            if(reader !=null)&#123;</span><br><span class="line">                try&#123;</span><br><span class="line">                    reader.close();</span><br><span class="line">                &#125;catch(IOException e)&#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            reader =null;</span><br><span class="line">            if(writer !=null)&#123;</span><br><span class="line">                writer.close();</span><br><span class="line">            &#125;</span><br><span class="line">            writer =null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以上只是简单示例，仅供参考！</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/11/28/Java网络编程/" data-id="cjq840mll000lpkfvyik5ei80" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/11/28/Java多线程编程/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Java多线程编程
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/11/28/Java-泛型/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Java 泛型</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/Vuejs模板语法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/Vuejs模板语法/26235.png)" alt="Vuejs模板语法" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/Vuejs模板语法/" class="title">Vuejs模板语法</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T08:31:20.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/初识js库/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/初识js库/30da.png)" alt="初识js库" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/初识js库/" class="title">初识js库</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T03:24:08.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/26/JavaScript-Window/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/26/JavaScript-Window/2a77.jpg)" alt="JavaScript_Window" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/26/JavaScript-Window/" class="title">JavaScript_Window</a></p>
+                            <p class="item-date"><time datetime="2018-12-26T04:01:41.000Z" itemprop="datePublished">2018-12-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/24/javascript对象系列/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/24/javascript对象系列/40cfaf.jpg)" alt="javascript对象系列" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/24/javascript对象系列/" class="title">javascript对象系列</a></p>
+                            <p class="item-date"><time datetime="2018-12-24T07:34:02.000Z" itemprop="datePublished">2018-12-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/22/JavaScript-HTML-DOM/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/22/JavaScript-HTML-DOM/qw.gif)" alt="JavaScript-HTML-DOM" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/22/JavaScript-HTML-DOM/" class="title">JavaScript-HTML-DOM</a></p>
+                            <p class="item-date"><time datetime="2018-12-22T08:53:36.000Z" itemprop="datePublished">2018-12-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 15.71px;">JavaScript</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript库/" style="font-size: 10px;">javascript库</a> <a href="/tags/maven/" style="font-size: 18.57px;">maven</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 14.29px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 17.14px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/11/28/Java网络编程/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

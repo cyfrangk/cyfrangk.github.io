@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Java中处理异常中return关键字 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="java">
+    
+    <meta name="description" content="我们知道return语句用在某一个方法中，一是用于返回函数的执行结果，二是用于返回值为void类型的函数中，仅仅是一个return语句（return;），此时用于结束方法的执行，也即此return后的语句将不会被执行，当然，这种情况下return语句后不能再有其它的语句了。 一段代码如果可能抛出异常，我们通常就会用try catch代码块包起来，以防止当程序crash掉，增强代码的健壮性。如果程序">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java中处理异常中return关键字">
+<meta property="og:url" content="http://yoursite.com/2018/12/03/Java中处理异常中return关键字/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="我们知道return语句用在某一个方法中，一是用于返回函数的执行结果，二是用于返回值为void类型的函数中，仅仅是一个return语句（return;），此时用于结束方法的执行，也即此return后的语句将不会被执行，当然，这种情况下return语句后不能再有其它的语句了。 一段代码如果可能抛出异常，我们通常就会用try catch代码块包起来，以防止当程序crash掉，增强代码的健壮性。如果程序">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/12/03/Java中处理异常中return关键字/&amp;gp.jpg">
+<meta property="og:updated_time" content="2018-12-03T10:22:41.590Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java中处理异常中return关键字">
+<meta name="twitter:description" content="我们知道return语句用在某一个方法中，一是用于返回函数的执行结果，二是用于返回值为void类型的函数中，仅仅是一个return语句（return;），此时用于结束方法的执行，也即此return后的语句将不会被执行，当然，这种情况下return语句后不能再有其它的语句了。 一段代码如果可能抛出异常，我们通常就会用try catch代码块包起来，以防止当程序crash掉，增强代码的健壮性。如果程序">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/03/Java中处理异常中return关键字/&amp;gp.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-Java中处理异常中return关键字" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Java中处理异常中return关键字
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/12/03/Java中处理异常中return关键字/" class="article-date">
+            <time datetime="2018-12-03T09:53:59.000Z" itemprop="datePublished">2018-12-03</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/java/">java</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>我们知道return语句用在某一个方法中，一是用于返回函数的执行结果，二是用于返回值为void类型的函数中，仅仅是一个return语句（return;），此时用于结束方法的执行，也即此return后的语句将不会被执行，当然，这种情况下return语句后不能再有其它的语句了。<br><img src="/2018/12/03/Java中处理异常中return关键字/&amp;gp.jpg" alt=""><br> 一段代码如果可能抛出异常，我们通常就会用try catch代码块包起来，以防止当程序crash掉，增强代码的健壮性。如果程序在执行这段代码后有些操作必须得完成，比如IO流用完后得关闭，就得用到finally。正常的try catch finally语句没有太多要讲的，也很容易理解，但是如果try catch中遇到return 语句就比较复杂了。</p>
+<p>如果仅仅是满足结果输出是哪个？这有一个简单的文字总结，主要可以分为9种情况：<br>（1）try，catch，finally语句块中均有return，三个语句块中都没有抛出异常：将执行finally语句块中的return。<br>（2）try，catch语句块中均有return，finally语句块中无return，三个语句块中都没有抛出异常：将执行try语句块的return。<br>（3）try，catch语句块中均有return，finally语句块中无return，try语句块中抛出异常且catch捕捉到异常：将执行catch语句块的return。<br>（4）try，catch，finally语句块中均有return，try语句块中抛出异常且catch捕捉到异常：将执行finally语句块的return。<br>（5）try，catch语句块中均有return，finally语句块中无return，try语句块中抛出异常且catch捕捉到异常，catch语句块又抛出了异常：将抛出catch语句块中的抛出的异常。<br>（6）try，catch，finally语句块中均有return，try语句块中抛出异常且catch捕捉到异常，catch语句块又抛出了异常：将执行finally语句块中的return。<br>（7）try，catch语句块中均有return，finally语句块中无return，try语句块中抛出异常与catch要捕捉的异常类型不一致：将抛出try语句块中的异常。<br>（8）try，catch，finally语句块中均有return，try语句块中抛出异常与catch要捕捉的异常类型不一致：将执行finally语句块中的return。<br>（9）try，catch，finally语句块中均有return，try和catch语句块没有抛出异常，finally语句块中抛出异常：将抛出finally语句块中的异常。</p>
+<p>Java中，执行try-catch-finally语句需要注意：<br>第一：return语句并不是函数的最终出口，如果有finally语句，这在return之后还会执行finally（return的值会暂存在栈里面，等待finally执行后再返回）<br>第二：finally里面不建议放return语句，根据需要，return语句可以放在try和catch里面和函数的最后。可行的做法有四种：<br>　　1）return语句只在方法最后出现一次。<br>　　2）return语句仅在try和catch里面都出现。<br>　　3）return语句仅在try和方法最后都出现。<br>　　4）return语句仅在catch和方法的最后都出现。<br>注意，除此之外的其他做法都是不可行的，编译器会报错。<br>（1）如果程序运行到try成功时可以返回结果，则采用方法2。<br>（2）如果程序运行到catch时（即中途出错时）无需再继续执行后面的代码了，则采取方法4。<br>（3）如果程序运行到try或catch时还需要继续执行后面的代码，则采取方法1。</p>
+<p>1.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">package cn.day006;</span><br><span class="line"></span><br><span class="line">public class Test &#123;</span><br><span class="line"></span><br><span class="line">     public static void main(String[] args) &#123;</span><br><span class="line">            System.out.println(getResult());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @SuppressWarnings(&quot;finally&quot;)</span><br><span class="line">        public static int getResult()&#123;</span><br><span class="line">            int a =100;</span><br><span class="line">            </span><br><span class="line">            try&#123;</span><br><span class="line">                return a+1; //注意，java的基础数据类型是值传递，这里的返回值已经和上面的a没有关系了</span><br><span class="line">            &#125;catch(Exception e)&#123;</span><br><span class="line">                e.printStackTrace();  </span><br><span class="line">            &#125;finally&#123;</span><br><span class="line">                return a;    //最后再把值重定向到a(相当于将try中的返回值覆盖掉)，所以输出还是100</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>结果：100<br>2.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">package cn.day006;</span><br><span class="line"></span><br><span class="line">public class Test &#123;</span><br><span class="line"></span><br><span class="line">     public static void main(String[] args) &#123;</span><br><span class="line">            System.out.println(getResult());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @SuppressWarnings(&quot;finally&quot;)</span><br><span class="line">        public static int getResult()&#123;</span><br><span class="line">            int a =100;</span><br><span class="line">            </span><br><span class="line">            try&#123;                </span><br><span class="line">                return a++;   //切记 a++   ----&gt; a=a+1 此时a的值做出了改变</span><br><span class="line">            &#125;catch(Exception e)&#123;</span><br><span class="line">                e.printStackTrace();  </span><br><span class="line">            &#125;finally&#123;</span><br><span class="line">                return a;   </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>结果：101<br>3.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package cn.day006;</span><br><span class="line"></span><br><span class="line">public class Test &#123;</span><br><span class="line"></span><br><span class="line">     public static void main(String[] args) &#123;</span><br><span class="line">            System.out.println(getResult());</span><br><span class="line">        &#125;</span><br><span class="line">        public static int getResult()&#123;</span><br><span class="line">            int a =100;            </span><br><span class="line">            try&#123;</span><br><span class="line">                  a++;</span><br><span class="line">                return a;              </span><br><span class="line">            &#125;finally&#123;</span><br><span class="line">                a++;   </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>结果是101。</p>
+<p>分析：</p>
+<p>在try语句中，在执行return语句时，要返回的结果已经准备好了，就在此时，程序转到finally执行了。</p>
+<p>在转去之前，try中先把要返回的结果存放到不同于x的局部变量中去，执行完finally之后，在从中取出返回结果，</p>
+<p>因此，即使finally中对变量x进行了改变，但是不会影响返回结果。</p>
+<p>它应该使用栈保存返回值。</p>
+<p>4.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">package cn.day006;</span><br><span class="line"></span><br><span class="line">public class Test2 &#123;</span><br><span class="line">     public static void main(String[] args) &#123;</span><br><span class="line">            try&#123;</span><br><span class="line">            System.out.println(getResult());</span><br><span class="line">            &#125;catch(Exception e)&#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">                System.out.println(&quot;截获异常catch&quot;);</span><br><span class="line">            &#125;finally&#123;</span><br><span class="line">                System.out.println(&quot;异常处理finally&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @SuppressWarnings(&quot;finally&quot;)</span><br><span class="line">        public static int getResult() throws Exception&#123;</span><br><span class="line">            int a =100;            </span><br><span class="line">            try&#123;                </span><br><span class="line">                a=a+10; </span><br><span class="line">                throw new RuntimeException();</span><br><span class="line">            &#125;catch(Exception e)&#123;</span><br><span class="line">                System.out.println(&quot;截获异常并重新抛出异常&quot;);</span><br><span class="line">                throw new Exception();            </span><br><span class="line">            &#125;finally&#123;</span><br><span class="line">                return a;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<p>截获异常并重新抛出异常<br>110<br>异常处理finally</p>
+<p>关键的“截获异常catch”却没有执行！！！<br>原因是在getResult()的finally中return一个值，等同于告诉编译器该方法没有异常,但实际上异常是有的，这样的结果是该方法的调用者却捕获不到异常，相对于异常被无端的被吃掉了，隐藏杀机啊！！</p>
+<p>###过程分析：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public static int print() &#123;</span><br><span class="line">        int c = 1;</span><br><span class="line">        try &#123;</span><br><span class="line">            c++;</span><br><span class="line">            System.out.println(&quot;try执行中...&quot;);</span><br><span class="line">            return c+100; //--------1</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            //return c;   //--------4</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            c++;</span><br><span class="line">            System.out.println(&quot;finally执行中...&quot;);</span><br><span class="line">            return c;  //--------2</span><br><span class="line">        &#125;</span><br><span class="line">        //return c;   //---------3</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>　程序执行的结果为：</p>
+<p>run:<br>try执行中…<br>finally执行中…<br>3<br>成功构建 (总时间: 0 秒)</p>
+<p>　　注意，2与3位置处的return语句只能有一个，<strong>并且2、3、4中必须有一个return语句</strong>，如果2出执行后方法就结束了，3处的语句得不到执行。</p>
+<p>　  try语句块执行到1处时，会将会将函数的<strong>返回值存放到另外一个临时变量（不同与c的变量，它的值为102）中</strong>，由于未发生异常，紧接着将会执行finally语句块，2处又遇到一个语句块，并将<strong>返回值存放到临时变量（值为3）中</strong>，最终返回的是此处的临时变量的值，此处return执行完成后，该方法结束。</p>
+<p>###再多看几个例子　：　　<br>　　<br>例1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">    public class TrycatchTest &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        System.out.println(&quot;x:&quot; + new TrycatchTest().test());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int test() &#123;</span><br><span class="line">        int x = 1;</span><br><span class="line">        try &#123;</span><br><span class="line">            System.out.println(&quot;try start&quot;);</span><br><span class="line">            x++;</span><br><span class="line">            return x;</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            System.out.println(&quot;finally start&quot;);</span><br><span class="line">            x++;</span><br><span class="line">            System.out.println(&quot;finally end&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出的x是2还是3？<br>结果：<br>try start<br>finally start<br>finally end<br>x:2<br>也就是说，try语句执行到return前将要返回的x值2 保存了，然后进入到finally，之后再回到try中返回之前保存的值，也就是说不管finally中你x怎么变化，返回的值都是返回之前保存的，与后来发生的改变无关。</p>
+<p>好的，再看下面这个例子：<br>例2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class TrycatchTest &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        System.out.println(&quot;x:&quot; + new TrycatchTest().test());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int test() &#123;</span><br><span class="line">        int x = 1;</span><br><span class="line">        try &#123;</span><br><span class="line">            System.out.println(&quot;try start&quot;);</span><br><span class="line">            x++;</span><br><span class="line">            return x;</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            System.out.println(&quot;finally start&quot;);</span><br><span class="line">            x++;</span><br><span class="line">            return x;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码跟上面基本一样，只不过在finally中加了一条 return x ；  猜猜这时候返回值为多少？<br>输出结果：<br>try start<br>finally start<br>x:3<br>解析： try中x自加后为2，这时候看到了return语句保存了当前的值2，然后进入了finally代码块，x自加为3。关键来了，这时候多了条return语句。首先第一个问题：这条语句执行吗？第二：还会回到try吗？ 根据java的设计原则，finally中的语句必须是要执行的，所以finally中的return自然也会作为一条正常语句执行掉，那么还会回到try吗？ 代码块都已经return结束掉了，还会再回去return一条吗？对吧，明显是不能的。 那么x值为多少，在当下的finally中x值为3然后直接给return回去了，所以是3。</p>
+<p>再看看下面的例子：<br>例3：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class TrycatchTest &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        System.out.println(&quot;x:&quot; + new TrycatchTest().test2());</span><br><span class="line">    &#125;</span><br><span class="line">    int test2() &#123;</span><br><span class="line">        int x = 1;</span><br><span class="line">        try &#123;</span><br><span class="line">            x++;</span><br><span class="line">            if (x == 2) &#123;</span><br><span class="line">                System.out.println(&quot;try x:&quot; + x);</span><br><span class="line">                throw new Exception();</span><br><span class="line">            &#125;</span><br><span class="line">            return x;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            x++;</span><br><span class="line">            System.out.println(&quot;catch:&quot;+x);</span><br><span class="line">            return x;</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            x++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码也很简单，加了个catch代码块，在try中将异常抛出就会进入到catch代码块中，注意这时候在catch中加入了条return语句，那么结果是多少？<br>try x:2<br>catch:3<br>x:3<br>看到没，也是之前的规则：首先try中x自加为2，然后抛出了异常进入到catch，自加为3，这时候当想要return的时候将3的值暂存下来，进入到finally，finally中的x值自加为4， 然后回到try，return掉之前保存的值3.</p>
+<p>好了，估计你也多少明白了，每次我们要return前，都会将return的值都暂时保存下来，然后为了符合java设计规范我们不得不临时跳到其他代码块处理些事情，处理完再把我们暂存的值给返回；如果我们跳到其他代码块的时候遇到了return语句，就直接执行了那个代码块中的返回语句了，之前保存的值无效。 最后再看一个例子：<br>例4：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class TrycatchTest &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        System.out.println(&quot;x:&quot; + new TrycatchTest().test2());</span><br><span class="line">    &#125;</span><br><span class="line">    int test2() &#123;</span><br><span class="line">        int x = 1;</span><br><span class="line">        try &#123;</span><br><span class="line">            x++;</span><br><span class="line">            if (x == 2) &#123;</span><br><span class="line">                System.out.println(&quot;try x:&quot; + x);</span><br><span class="line">                throw new Exception();</span><br><span class="line">            &#125;</span><br><span class="line">            return x;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            x++;</span><br><span class="line">            System.out.println(&quot;catch:&quot;+x);</span><br><span class="line">            return x;</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            x++;</span><br><span class="line">            System.out.println(&quot;finally x:&quot;+x);</span><br><span class="line">            return x;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在finally中加了条return语句，聪明的你此刻一定能猜出最终返回值是多少了，没错，就是4。 看下面的结果：<br>try x:2<br>catch:3<br>finally x:4<br>x:4</p>
+<p>如果你能猜出来，代表你已经掌握了，如果还不清楚，再看看我上边写的，应该没多大问题。带有return 的try catch在面试题中经常会出现，掌握一下还是有必要了。 </p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/12/03/Java中处理异常中return关键字/" data-id="cjq840mlb000gpkfvzj9203x6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/12/05/Maven教程/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Maven教程
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/11/29/Java-MySQL连接/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Java MySQL连接</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/Vuejs模板语法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/Vuejs模板语法/26235.png)" alt="Vuejs模板语法" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/Vuejs模板语法/" class="title">Vuejs模板语法</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T08:31:20.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/初识js库/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/初识js库/30da.png)" alt="初识js库" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/初识js库/" class="title">初识js库</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T03:24:08.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/26/JavaScript-Window/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/26/JavaScript-Window/2a77.jpg)" alt="JavaScript_Window" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/26/JavaScript-Window/" class="title">JavaScript_Window</a></p>
+                            <p class="item-date"><time datetime="2018-12-26T04:01:41.000Z" itemprop="datePublished">2018-12-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/24/javascript对象系列/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/24/javascript对象系列/40cfaf.jpg)" alt="javascript对象系列" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/24/javascript对象系列/" class="title">javascript对象系列</a></p>
+                            <p class="item-date"><time datetime="2018-12-24T07:34:02.000Z" itemprop="datePublished">2018-12-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/22/JavaScript-HTML-DOM/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/22/JavaScript-HTML-DOM/qw.gif)" alt="JavaScript-HTML-DOM" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/22/JavaScript-HTML-DOM/" class="title">JavaScript-HTML-DOM</a></p>
+                            <p class="item-date"><time datetime="2018-12-22T08:53:36.000Z" itemprop="datePublished">2018-12-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 15.71px;">JavaScript</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript库/" style="font-size: 10px;">javascript库</a> <a href="/tags/maven/" style="font-size: 18.57px;">maven</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 14.29px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 17.14px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/12/03/Java中处理异常中return关键字/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

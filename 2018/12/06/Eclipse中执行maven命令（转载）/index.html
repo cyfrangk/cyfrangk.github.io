@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Eclipse中执行maven命令（转载） | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="maven">
+    
+    <meta name="description" content="maven在eclipse中的应用在最新版本的eclipse中，已经默认集成maven的插件，可以非常方便的集成各种命令。在eclipse示意图如下： 转载自：http://blog.csdn.net/u011939453/article/details/43017865 1.Eclipse中执行maven命令1、如下图，右击需要执行maven命令的工程，选择”Debug As”或”Run As”">
+<meta name="keywords" content="maven">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eclipse中执行maven命令（转载）">
+<meta property="og:url" content="http://yoursite.com/2018/12/06/Eclipse中执行maven命令（转载）/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="maven在eclipse中的应用在最新版本的eclipse中，已经默认集成maven的插件，可以非常方便的集成各种命令。在eclipse示意图如下： 转载自：http://blog.csdn.net/u011939453/article/details/43017865 1.Eclipse中执行maven命令1、如下图，右击需要执行maven命令的工程，选择”Debug As”或”Run As”">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/12/06/Eclipse中执行maven命令（转载）/51c9.jpg">
+<meta property="og:updated_time" content="2018-12-07T03:19:14.079Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Eclipse中执行maven命令（转载）">
+<meta name="twitter:description" content="maven在eclipse中的应用在最新版本的eclipse中，已经默认集成maven的插件，可以非常方便的集成各种命令。在eclipse示意图如下： 转载自：http://blog.csdn.net/u011939453/article/details/43017865 1.Eclipse中执行maven命令1、如下图，右击需要执行maven命令的工程，选择”Debug As”或”Run As”">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/06/Eclipse中执行maven命令（转载）/51c9.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-Eclipse中执行maven命令（转载）" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Eclipse中执行maven命令（转载）
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/12/06/Eclipse中执行maven命令（转载）/" class="article-date">
+            <time datetime="2018-12-06T11:48:42.000Z" itemprop="datePublished">2018-12-06</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/maven/">maven</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>maven在eclipse中的应用<br><img src="/2018/12/06/Eclipse中执行maven命令（转载）/51c9.jpg" alt=""><br>在最新版本的eclipse中，已经默认集成maven的插件，可以非常方便的集成各种命令。在eclipse示意图如下：<br><img src="/2018/12/06/Eclipse中执行maven命令（转载）/19174.png" alt=""></p>
+<p>转载自：<a href="http://blog.csdn.net/u011939453/article/details/43017865" target="_blank" rel="noopener">http://blog.csdn.net/u011939453/article/details/43017865</a></p>
+<h3 id="1-Eclipse中执行maven命令"><a href="#1-Eclipse中执行maven命令" class="headerlink" title="1.Eclipse中执行maven命令"></a>1.Eclipse中执行maven命令</h3><p>1、如下图，右击需要执行maven命令的工程，选择”Debug As”或”Run As”，再选择”Maven build…”<br><img src="/2018/12/06/Eclipse中执行maven命令（转载）/9048.jpg" alt=""><br>进行如上操作之后，会出现如下图所示的对话框：<br><img src="/2018/12/06/Eclipse中执行maven命令（转载）/0968.jpg" alt=""><br>Name:可以给这个操作命令命名，每执行一个maven命令都会被保存。</p>
+<p>Goals:输入我们需要执行的maven命令，<strong>一次执行多个命令用空格隔开。</strong></p>
+<p>复选框：下面的复选框可以让我们进行一些选择性的操作，如上图跳过测试。</p>
+<p>我们执行过的命令可以选择”Run Configutations…”来查看<br><img src="/2018/12/06/Eclipse中执行maven命令（转载）/3616.jpg" alt=""><br>在这里我们可以看到这个所有执行过的命令，在下图中我们可以得到如下信息：</p>
+<p>命令对应的工程，执行的命令等。</p>
+<p>在这个对话框中，我们可以删除命令，重命名，修改命令等操作<br><img src="/2018/12/06/Eclipse中执行maven命令（转载）/4691.jpg" alt=""><br>上面我们说过，执行过的命令都会被保存，如果我们要执行以前执行过的命令，可以选择”Maven build”：<br><img src="/2018/12/06/Eclipse中执行maven命令（转载）/3614.jpg" alt=""><br>如果我们右击的工程只执行了一条命令，那么不会弹出对话框，直接执行。</p>
+<p>如果执行了多条命令，那么会弹出一个对话框，供我们选择需要执行哪个命令。<br><img src="/2018/12/06/Eclipse中执行maven命令（转载）/2193.png" alt=""><br>maven还为我们提供了一些基本的命令，如下图：<br><img src="/2018/12/06/Eclipse中执行maven命令（转载）/3359.jpg" alt=""></p>
+<p>而针对webapp项目，可以使用Run as Server进行测试，如果你的项目不能运行，那么肯定是没有配置成功导致的。<br>很多时候我们已经不用tomcat进行测试了，转而使用更快捷更轻量级的jetty进行操作，比如：mvn jetty:run。</p>
+<h3 id="2、maven命令"><a href="#2、maven命令" class="headerlink" title="2、maven命令"></a>2、maven命令</h3><p>1、常用命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mvn generate-sources：开发环境与代码分离，很少使用，执行这个命令可以通过查看.classpath和.project两个文件来查看变化。</span><br><span class="line">mvn tomcat*:run：启动tomcat，前提是在项目的pom.xml文件中添加了tomcat插件</span><br><span class="line">mvn archetype:generate--构建项目  </span><br><span class="line">mvn clean--项目清理 清除目标目录中的生成结果。 </span><br><span class="line">mvn test--项目单元测试的编译  </span><br><span class="line">mvn compile--项目源代码的编译  </span><br><span class="line">mvn package--项目打包 生成jar文件 </span><br><span class="line">mvn install--发布项目提交到本地仓库  在本地库中安装jar</span><br><span class="line">mvn deploy--发布项目到  </span><br><span class="line">mvn jetty:run--启动jetty容器    </span><br><span class="line">mvn eclipse:clean--清除eclipse的一些系统设置                 </span><br><span class="line">mvn eclipse:eclipse--生成eclipse项目文件  即.classpath和.project文件</span><br><span class="line">mvn idea:clean--清除idea的一些系统设置                 </span><br><span class="line">mvn idea:idea--生成idea项目文件 </span><br><span class="line">mvn dependency:tree--查看依赖树 </span><br><span class="line">mvn dependency:sources：下载项目依赖的jar包的源码包 </span><br><span class="line">mvn assembly:assembly--需要配assembly插件，可用于把指定文件进行打包 tar.gz,zip包</span><br><span class="line">//指定maven参数：  </span><br><span class="line">-DskipTests=true--默认不走单元测试  </span><br><span class="line">-P local--选择资源文件类型 local,需在pom开启资源配置</span><br></pre></td></tr></table></figure></p>
+<p>提示1：关于maven的参数，在参数前面的大写D是传递参数的符号，后面才是参数的真正名称，这一说法可以参考《maven实战》一书，里面有详细的解释。链接：<a href="https://item.jd.com/10476794.html" target="_blank" rel="noopener">https://item.jd.com/10476794.html</a></p>
+<p>提示2：个人理解，maven其实都是以插件的机制组合而成的，比如archetype，eclipse，jetty，idea这些，每一个都代表了一个插件。比如archetype的用法为什么用grenrate，还有参数要传递生成，直接搜索：maven archetype plugin。</p>
+<p>提示3：maven执行时，是有顺序的，比如mvn clean test compile，如果单独运行mvn compile时，默认会执行clean，test命令。</p>
+<p>2、常用搭建项目骨架的命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">生成application项目：mvn archetype:generate -DarchetypeCatalog=internal -DarchetypeArtifactId=maven-archetype-quickstart  </span><br><span class="line">生成web项目：mvn archetype:generate -DarchetypeCatalog=internal -DarchetypeArtifactId=maven-archetype-webapp</span><br></pre></td></tr></table></figure></p>
+<p>提示1：如上面解释的，archetype实质上一个插件，那么我们可以直接搜索这插件的用法，官方链接：<a href="http://maven.apache.org/guides/introduction/introduction-to-archetypes.html，在页面的右侧只要有超链接的都可以点进去看其它扩展说明。" target="_blank" rel="noopener">http://maven.apache.org/guides/introduction/introduction-to-archetypes.html，在页面的右侧只要有超链接的都可以点进去看其它扩展说明。</a></p>
+<p>提示2：而对于maven-archetype-quickstart这些参数，也是官网提供的，参考：<a href="http://maven.apache.org/archetypes/index.html，里面明确给出了示例和创建文件夹的意思代表的是什么。" target="_blank" rel="noopener">http://maven.apache.org/archetypes/index.html，里面明确给出了示例和创建文件夹的意思代表的是什么。</a></p>
+<p>上面的命令执行时，会提示输入groupid，artifactid这些信息，依次输入即可完成。</p>
+<p>比如我们要默认生成一个项目骨架时，可以是如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn archetype:generate -DarchetypeCatalog=internal -DgroupId=(项目组)com.jsoft.testproject -DartifactId=(项目名/模块名)testmaven -Dversion=(版本号)1.0-SNAPSHOT  -Dpackage=(包名)testpackage</span><br></pre></td></tr></table></figure></p>
+<p>提示1：以上创建是以maven-archetype-quickstart为主的项目。</p>
+<p>提示2：同样，经过测试，无论是新建的是quickstart项目还是webapp项目，只要文件夹新建对了即可。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/12/06/Eclipse中执行maven命令（转载）/" data-id="cjq840mk70001pkfv8nhf3wm8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/12/06/Maven-POM/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Maven-POM
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/12/05/Maven教程/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Maven教程</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/Vuejs模板语法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/Vuejs模板语法/26235.png)" alt="Vuejs模板语法" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/Vuejs模板语法/" class="title">Vuejs模板语法</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T08:31:20.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/初识js库/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/初识js库/30da.png)" alt="初识js库" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/初识js库/" class="title">初识js库</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T03:24:08.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/26/JavaScript-Window/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/26/JavaScript-Window/2a77.jpg)" alt="JavaScript_Window" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/26/JavaScript-Window/" class="title">JavaScript_Window</a></p>
+                            <p class="item-date"><time datetime="2018-12-26T04:01:41.000Z" itemprop="datePublished">2018-12-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/24/javascript对象系列/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/24/javascript对象系列/40cfaf.jpg)" alt="javascript对象系列" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/24/javascript对象系列/" class="title">javascript对象系列</a></p>
+                            <p class="item-date"><time datetime="2018-12-24T07:34:02.000Z" itemprop="datePublished">2018-12-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/22/JavaScript-HTML-DOM/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/22/JavaScript-HTML-DOM/qw.gif)" alt="JavaScript-HTML-DOM" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/22/JavaScript-HTML-DOM/" class="title">JavaScript-HTML-DOM</a></p>
+                            <p class="item-date"><time datetime="2018-12-22T08:53:36.000Z" itemprop="datePublished">2018-12-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 15.71px;">JavaScript</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript库/" style="font-size: 10px;">javascript库</a> <a href="/tags/maven/" style="font-size: 18.57px;">maven</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 14.29px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 17.14px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/12/06/Eclipse中执行maven命令（转载）/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

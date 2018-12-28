@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Windows的自动更新，我禁止了 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="">
+    
+    <meta name="description" content="2018 年 10 月份的 Windows 10 更新并不是微软最成功的一次更新。在推出更新后不久，就有用户反应数据丢失，微软不得不暂停发行更新。这并不是第一次 Windows 功能更新出现问题——在之前的更新中就已出现硬件不兼容等重大问题——但这次肯定是最糟糕的一次。虽然我们大多数人都知道备份的重要性，但实际情况是大量数据（尤其是家用 PC 上的数据）都没有进行备份，因此一旦数据被删除简直是灾难">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows的自动更新，我禁止了">
+<meta property="og:url" content="http://yoursite.com/2018/11/08/Windows的自动更新，我禁止了/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="2018 年 10 月份的 Windows 10 更新并不是微软最成功的一次更新。在推出更新后不久，就有用户反应数据丢失，微软不得不暂停发行更新。这并不是第一次 Windows 功能更新出现问题——在之前的更新中就已出现硬件不兼容等重大问题——但这次肯定是最糟糕的一次。虽然我们大多数人都知道备份的重要性，但实际情况是大量数据（尤其是家用 PC 上的数据）都没有进行备份，因此一旦数据被删除简直是灾难">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/11/08/Windows的自动更新，我禁止了/2018110801.jpg">
+<meta property="og:updated_time" content="2018-11-08T10:58:53.114Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows的自动更新，我禁止了">
+<meta name="twitter:description" content="2018 年 10 月份的 Windows 10 更新并不是微软最成功的一次更新。在推出更新后不久，就有用户反应数据丢失，微软不得不暂停发行更新。这并不是第一次 Windows 功能更新出现问题——在之前的更新中就已出现硬件不兼容等重大问题——但这次肯定是最糟糕的一次。虽然我们大多数人都知道备份的重要性，但实际情况是大量数据（尤其是家用 PC 上的数据）都没有进行备份，因此一旦数据被删除简直是灾难">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/08/Windows的自动更新，我禁止了/2018110801.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-Windows的自动更新，我禁止了" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Windows的自动更新，我禁止了
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/11/08/Windows的自动更新，我禁止了/" class="article-date">
+            <time datetime="2018-11-08T10:04:12.000Z" itemprop="datePublished">2018-11-08</time>
+        </a>
+    </div>
+
+		
+
+                
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>2018 年 10 月份的 Windows 10 更新并不是微软最成功的一次更新。在推出更新后不久，就有用户反应数据丢失，微软不得不暂停发行更新。<br><img src="/2018/11/08/Windows的自动更新，我禁止了/2018110801.jpg" alt=""><br>这并不是第一次 Windows 功能更新出现问题——在之前的更新中就已出现硬件不兼容等重大问题——但这次肯定是最糟糕的一次。虽然我们大多数人都知道备份的重要性，但实际情况是大量数据（尤其是家用 PC 上的数据）都没有进行备份，因此一旦数据被删除简直是灾难性的。$$Windows 即服务$$微软对 Windows 10 雄心勃勃，想要彻底改变 Windows 10 的开发方式。他们希望能够更好地响应用户和市场需求，能够尽快将改进过的功能提供给用户。他们把 Windows 10 看成是 Windows 的“最后”一个版本——之后所有的开发都将被视为对 Windows 10 的更新，并且每年会提供几次功能更新。这个新的开发模型被称为“Windows 即服务”。<br>Windows 即服务的问题主要出在质量上。之前的功能和安全更新问题已经打击了微软对 Windows 10 更新策略的信心。人们普遍认为，Windows 10 每月安全更新的质量已经大幅下降，每年两次赶鸭子上架式的功能更新也很疯狂。用户的这些抱怨长期存在。在 Windows 10 发布后不久，这些不可靠的更新就引起了人们的关注。</p>
+<p>Windows Subsystem for Linux（WSL）能够在 Windows 系统上运行原生 Linux 软件，这对开发人员和管理员来说无疑是一个福音。对于纯粹的消费者来说，Windows 10 更新所带来的好处可能没有那么明显。虽然整体改进较小，但目前的 Windows 10 肯定比三年前发布的版本更好。$$这是方式问题，而不是频率问题$$Windows 10 的一年两次更新比 macOS、iOS 和 Android 来得更频繁，从某种意义上说，微软是在试图超越它们。但这种发布频率并不是前所未有的：Ubuntu 每年都会发布两个版本，谷歌 Chrome 浏览器每六周就会推出一次更新。除了操作系统之外，微软的 Office Insider 计划每月为 Office 用户提供新功能，并且可以在不产生太多投诉的情况下实现这一目标，提供稳定的新功能和修复。Visual Studio 团队同样为其开发环境和在线服务提供频繁的更新。显然，微软内部的一些团队能够很好地为他们的应用程序提供定期更新。</p>
+<p>从在线服务和云服务方面来看，无论是在微软内部还是在其他领域，都在逐步采用持续交付。系统更新在通过足够的自动化测试之后就会被自动部署到生产服务器上。</p>
+<p>Windows 包含了很多单独的组件，它们的规模也异常庞大，集成方式也不同寻常。至少在某种程度上，Windows 已经非常老了。这些因素让开发 Windows 变得极具挑战性——但至于让<strong>每年发布两个版本</strong>变得那么不切实际吗？我只知道，它需要的可能是一个正确的开发流程。$$由来已久的流程$$在过去，当产品发布周期为两到三年时，开发流程被分为几个阶段：设计和规划、功能开发、集成、稳定。规划和设计可能为期 4 到 6 个月，编码时间为 6 到 8 周，然后是 4 个月的集成（每个功能通常都在自己的分支中开发，到最后必须合并在一起）和稳定（测试和 bug 修复）。在产品开发周期中，这些阶段将被迭代两到三次，对于 Windows 来说需要经过三次迭代，第一次是针对原型，接下来的两次是针对真实的产品。阶段的时间跨度可能会发生变化，但基本结构在公司内部得到了广泛应用。</p>
+<p>我们从这种流程中可以看出一些问题。也许最引人注目的是花在编码上的时间非常少：一个 Windows 版本在三年内只有 6 到 8 周的编码时间，而在规划设计阶段与产品成型之间的时间跨度却非常长。这个因素足以说明这个开发流程并不那么“敏捷”。在你将产品放到客户面前时，新功能已经融入到最终产品中，很难根据反馈做出修改。</p>
+<p>开发和 bug 修复的分离也是一个问题：在开发和集成阶段，软件的可靠性和稳定性会急剧下降。被集成的功能未经过全面的测试（因为测试是在后面进行的），并且从未相互使调用过（它们在进入集成阶段之前都是在各自的分支中单独开发的）。然后，通过测试、报告 bug 和冗长的 bug 修复阶段，软件才逐步成型。$$由来已久的流程$$在新的世界里，我们可以看到微软将整个周期变为七到八个月。虽然版本之间只间隔了六个月，但下一个周期的开始发生在上一个周期结束之前。</p>
+<p>每次更新在一开始都很平静，没有明显的变更，然后在接下来的几个月会引入一些重大变更和大量 bug。在更新即将发布之前的一个月左右，我们会发现变更的数量急剧减少，他们开始关注 bug 修复而不是引入新功能。</p>
+<p>流程当中肯定存在一些差异。例如，新功能会在预览版本中存在几个月时间。这表明新功能的集成似乎进行得更快，开发完成后就进行集成，而不是在最后来一次大融合。$$在交付之前进行测试，而不是之后$$这无疑是在告诉我们一些有关 Windows 开发的基本信息。要么代码压根就没有经过测试，要么测试失败被认为是可接受的非阻塞问题，并且允许开发人员集成他们知道无法正常运行的代码。对于外人来说，无法确切地知道哪种情况是真的——有可能是两者的混合——但不管哪样都不好。</p>
+<p>微软确实提供了很多测试，Windows 的完整测试周期需要数周时间。他们确实使用了完整的测试周期，只是没有被用在实际要发布的构建版本上。2018 年 10 月的更新就是一个例子：代码建于 9 月 15 日，然后于 10 月 2 日发布。不管是 RS5 的哪个版本经过了完整的测试周期，但肯定不是我们实际使用的那个版本，因为完整的测试周期太长了。</p>
+<p>我们进入了一个最糟糕的世界：在旧的 Windows 开发时代，发布的初始版本不够好。在新的 Windows 开发时代，我们每年会看到两次发布，而不是每三年一次。这个不稳定的 Service Pack 一直与我们如影随形。</p>
+<p>根本的问题在于，集成没有经过充分测试的功能，破坏了代码库的稳定性，然后希望在以后解决所有问题，但这不是一个好的流程。Windows 每三年发布一次并不好，但即使是每六个月发布一次也好不到哪去。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/11/08/Windows的自动更新，我禁止了/" data-id="cjq840mmf0015pkfv7xdjeev0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/11/18/拖垮你人生的或许就是“理性”/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            拖垮你人生的或许就是““理性”
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/11/04/当自动驾驶遇上电车问题/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">当自动驾驶遇上电车问题</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/Vuejs模板语法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/Vuejs模板语法/26235.png)" alt="Vuejs模板语法" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/Vuejs模板语法/" class="title">Vuejs模板语法</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T08:31:20.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/27/初识js库/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/27/初识js库/30da.png)" alt="初识js库" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/27/初识js库/" class="title">初识js库</a></p>
+                            <p class="item-date"><time datetime="2018-12-27T03:24:08.000Z" itemprop="datePublished">2018-12-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/26/JavaScript-Window/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/26/JavaScript-Window/2a77.jpg)" alt="JavaScript_Window" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/26/JavaScript-Window/" class="title">JavaScript_Window</a></p>
+                            <p class="item-date"><time datetime="2018-12-26T04:01:41.000Z" itemprop="datePublished">2018-12-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/24/javascript对象系列/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/24/javascript对象系列/40cfaf.jpg)" alt="javascript对象系列" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/24/javascript对象系列/" class="title">javascript对象系列</a></p>
+                            <p class="item-date"><time datetime="2018-12-24T07:34:02.000Z" itemprop="datePublished">2018-12-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/22/JavaScript-HTML-DOM/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/22/JavaScript-HTML-DOM/qw.gif)" alt="JavaScript-HTML-DOM" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/22/JavaScript-HTML-DOM/" class="title">JavaScript-HTML-DOM</a></p>
+                            <p class="item-date"><time datetime="2018-12-22T08:53:36.000Z" itemprop="datePublished">2018-12-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 15.71px;">JavaScript</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript库/" style="font-size: 10px;">javascript库</a> <a href="/tags/maven/" style="font-size: 18.57px;">maven</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 14.29px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 17.14px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/11/08/Windows的自动更新，我禁止了/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
