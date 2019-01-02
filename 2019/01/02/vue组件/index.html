@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>vue组件 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="javascript库">
+    
+    <meta name="description" content="定义组件 (Component) 是 Vue.js 最强大的功能之一。组件可以扩展 HTML 元素，封装可重用的代码。在较高层面上，组件是自定义元素，Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以表现为用 is 特性进行了扩展的原生 HTML 元素。所有的 Vue 组件同时也都是 Vue 的实例，所以可接受相同的选项对象 (除了一些根级特有的选项) 并提供相同的生命周期钩子。1.">
+<meta name="keywords" content="javascript库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue组件">
+<meta property="og:url" content="http://yoursite.com/2019/01/02/vue组件/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="定义组件 (Component) 是 Vue.js 最强大的功能之一。组件可以扩展 HTML 元素，封装可重用的代码。在较高层面上，组件是自定义元素，Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以表现为用 is 特性进行了扩展的原生 HTML 元素。所有的 Vue 组件同时也都是 Vue 的实例，所以可接受相同的选项对象 (除了一些根级特有的选项) 并提供相同的生命周期钩子。1.">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/01/02/vue组件/27_549.png">
+<meta property="og:updated_time" content="2019-01-02T08:03:57.457Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue组件">
+<meta name="twitter:description" content="定义组件 (Component) 是 Vue.js 最强大的功能之一。组件可以扩展 HTML 元素，封装可重用的代码。在较高层面上，组件是自定义元素，Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以表现为用 is 特性进行了扩展的原生 HTML 元素。所有的 Vue 组件同时也都是 Vue 的实例，所以可接受相同的选项对象 (除了一些根级特有的选项) 并提供相同的生命周期钩子。1.">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/02/vue组件/27_549.png">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-vue组件" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        vue组件
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/01/02/vue组件/" class="article-date">
+            <time datetime="2019-01-02T02:18:53.000Z" itemprop="datePublished">2019-01-02</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/javascript库/">javascript库</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><strong>定义</strong><br>组件 (Component) 是 Vue.js 最强大的功能之一。组件可以扩展 HTML 元素，封装可重用的代码。在较高层面上，组件是自定义元素，Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以表现为用 is 特性进行了扩展的原生 HTML 元素。所有的 Vue 组件同时也都是 Vue 的实例，所以可接受相同的选项对象 (除了一些根级特有的选项) 并提供相同的生命周期钩子。<br>1.component 组件注册器</p>
+<pre><code>官网描述：很详细很详细很详细 &amp;&amp; 例子很多很多很多 &amp;&amp; 初学者肯定会用的
+
+个人描述：我也不需要挂载到dom文档流中，我也还是一个说明(大家都爱用)
+</code></pre><p>组件系统让我们可以用独立可复用的小组件来构建大型应用，几乎任意类型的应用的界面都可以抽象为一个组件树：<br><img src="/2019/01/02/vue组件/27_549.png" alt=""><br>注册一个语法格式如下：<br>Vue.component(s)(tagName, options)</p>
+<p>tagName 为组件名，options 为配置选项。注册后，我们可以使用以下方式来调用组件：<br><code>&lt;tagName&gt;&lt;/tagName&gt;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//注册组件(全局 component)</span><br><span class="line">Vue.component(&quot;my-component&quot;,&#123;</span><br><span class="line">    template:&apos;&lt;div&gt;这是一个全局组件测试 &lt;/div&gt;&apos;</span><br><span class="line">&#125;);</span><br><span class="line">new Vue(&#123;</span><br><span class="line">    el:&quot;#app5&quot;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//(局部components)</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">    el:&quot;#app6&quot;,</span><br><span class="line">    components:&#123;</span><br><span class="line">        &apos;test-component&apos;:&#123;</span><br><span class="line">            template:&quot;&lt;div&gt;这是一个局部的组件测试&lt;/div&gt;&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>全局组件</strong><br>我们知道，可以通过以下方式创建一个Vue实例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">  el: &apos;#some-element&apos;,</span><br><span class="line">  // 选项</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>要注册一个全局组件，可以使用 <code>Vue.**component**(tagName, options)</code>。例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&apos;my-component&apos;, &#123;</span><br><span class="line">  // 选项</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>组件在注册之后，便可以作为自定义元素 <my-component></my-component> 在一个实例的模板中使用。注意确保在初始化根实例<strong>之前</strong>注册组件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;example&quot;&gt;</span><br><span class="line">  &lt;my-component&gt;&lt;/my-component&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>案例1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">&lt;title&gt;Vue 测试实例 - 全局组件&lt;/title&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.bootcss.com/vue/2.2.2/vue.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">	&lt;!-----引用组件-----&gt;</span><br><span class="line">	&lt;my-component&gt;&lt;/my-component&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script&gt;</span><br><span class="line">// 注册</span><br><span class="line">Vue.component(&apos;my-component&apos;, &#123;</span><br><span class="line">  template: &apos;&lt;h3&gt;我是全局组件！&lt;/h3&gt;&apos;</span><br><span class="line">&#125;)</span><br><span class="line">// 创建根实例</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &apos;#app&apos;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>渲染为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;example&quot;&gt;</span><br><span class="line">  &lt;div&gt;&lt;h3&gt;我是全局组件！&lt;/h3&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>局部组件</strong><br>你不必把每个组件都注册到全局。你可以通过某个 Vue 实例/组件的实例选项 <code>components</code>注册仅在其作用域中可用的组件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var Child = &#123;</span><br><span class="line">template: &apos;&lt;h3&gt;我是局部组件！&lt;/h3&gt;&apos;</span><br><span class="line">&#125;</span><br><span class="line">new Vue(&#123; </span><br><span class="line">// ... </span><br><span class="line">components: &#123; </span><br><span class="line">	// &lt;my-component&gt; 将只在父组件模板中可用 </span><br><span class="line">	&apos;my-component&apos;: Child </span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>案例2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">&lt;title&gt;Vue 测试实例 - 局部组件&lt;/title&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.bootcss.com/vue/2.2.2/vue.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">	&lt;!-----引用组件-----&gt;</span><br><span class="line">	&lt;my-component&gt;&lt;/my-component&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script&gt;</span><br><span class="line">var Child = &#123;</span><br><span class="line">  template: &apos;&lt;h3&gt;自定义组件!&lt;/h3&gt;&apos;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">// 创建根实例</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &apos;#app&apos;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    // &lt;my-component&gt; 将只在父组件模板可用</span><br><span class="line">    &apos;my-component&apos;: Child</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>DOM 模板解析注意事项</strong><br>当使用 DOM 作为模板时 (例如，使用 el 选项来把 Vue 实例挂载到一个已有内容的元素上)，你会受到 HTML 本身的一些限制，因为 Vue 只有在浏览器解析、规范化模板<strong>之后</strong>才能获取其内容。尤其要注意，像 <code>&lt;ul&gt;</code>、<code>&lt;ol&gt;</code>、<code>&lt;table&gt;</code>、<code>&lt;select&gt;</code> 这样的元素里允许包含的元素有限制，而另一些像 <code>&lt;option&gt;</code> 这样的元素只能出现在某些特定元素的内部。</p>
+<p>在自定义组件中使用这些受限制的元素时会导致一些问题，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">  &lt;my-row&gt;...&lt;/my-row&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure></p>
+<p>应当注意，如果使用来自以下来源之一的字符串模板，则没有这些限制：</p>
+<ul>
+<li><code>&lt;script type=&quot;text/x-template&quot;&gt;</code></li>
+<li>JavaScript 内联模板字符串</li>
+<li>.vue 组件<br><code>因此，请尽可能使用字符串模板。</code></li>
+</ul>
+<p>上面的意思是下面的例子是会不行的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">&lt;title&gt;Vue 测试实例&lt;/title&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.bootcss.com/vue/2.2.2/vue.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">        &lt;select&gt;</span><br><span class="line">            &lt;optioncomp&gt;&lt;/optioncomp&gt;</span><br><span class="line">        &lt;/select&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script&gt;</span><br><span class="line">        new Vue(&#123;</span><br><span class="line">            el: &apos;#app&apos;,</span><br><span class="line">            components:&#123;</span><br><span class="line">                &apos;optioncomp&apos;:&#123;</span><br><span class="line">                    template: &apos;&lt;option &gt;a&lt;/option&gt;&apos;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>但是用js特殊属性可以：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">&lt;title&gt;Vue 测试实例&lt;/title&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.bootcss.com/vue/2.2.2/vue.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">        &lt;select&gt;</span><br><span class="line">            &lt;option is=&quot;optioncomp&quot;&gt;&lt;/option&gt;</span><br><span class="line">        &lt;/select&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script&gt;</span><br><span class="line">        new Vue(&#123;</span><br><span class="line">            el: &apos;#app&apos;,</span><br><span class="line">            components:&#123;</span><br><span class="line">                &apos;optioncomp&apos;:&#123;</span><br><span class="line">                    template: &apos;&lt;option &gt;a&lt;/option&gt;&apos;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>或者temp模板标签也可以：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">        &lt;select&gt;</span><br><span class="line">            &lt;option is=&quot;optioncomp&quot;&gt;&lt;/option&gt;</span><br><span class="line">        &lt;/select&gt;</span><br><span class="line"> </span><br><span class="line">        &lt;!--模板内容存放区域--&gt;</span><br><span class="line">        &lt;script type=&quot;x-template&quot; id=&quot;optioncompTemp&quot;&gt;</span><br><span class="line">            &lt;option &gt;a&lt;/option&gt;</span><br><span class="line">        &lt;/script&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    </span><br><span class="line">&lt;script src=&quot;https://cdn.bootcss.com/vue/2.2.2/vue.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt; </span><br><span class="line">new Vue(&#123;</span><br><span class="line"> el: &apos;#app&apos;,</span><br><span class="line"> components:&#123;</span><br><span class="line"> &apos;optioncomp&apos;:&#123;</span><br><span class="line"> template: &apos;#optioncompTemp&apos;</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
+<p>或者内联模板字符串也行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">        &lt;selectcomp&gt;&lt;/selectcomp&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">   </span><br><span class="line">&lt;script src=&quot;https://cdn.bootcss.com/vue/2.2.2/vue.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"> Vue.component(&apos;optioncomp&apos;,&#123; template: &apos;&lt;option &gt;a&lt;/option&gt;&apos; &#125;);</span><br><span class="line"> new Vue(&#123;</span><br><span class="line"> el: &apos;#app&apos;,</span><br><span class="line"> components:&#123;</span><br><span class="line"> &apos;selectcomp&apos;:&#123;</span><br><span class="line">		template: &apos; &lt;select&gt;</span><br><span class="line">					&lt;optioncomp&gt;&lt;/optioncomp&gt;</span><br><span class="line">					&lt;/select&gt;&apos; </span><br><span class="line">			&#125; </span><br><span class="line">		&#125; </span><br><span class="line">	&#125;) </span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
+<p>table 元素对能出现在其内部的元素类型有限制，因此自定义元素会被提到外部而且无法正常渲染。在那种情况下你可以使用指令式组件语法： <code>&lt;tr v-component=&quot;my-component&quot;&gt;&lt;/tr&gt;</code>。</p>
+<p><strong>data必须是函数</strong><br>构造 Vue 实例时传入的各种选项大多数都可以在组件里使用。只有一个例外：data 必须是函数。实际上，如果你这么做：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&apos;my-component&apos;, &#123;</span><br><span class="line">  template: &apos;&lt;span&gt;&#123;&#123; message &#125;&#125;&lt;/span&gt;&apos;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: &apos;hello&apos;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>那么 Vue 会停止运行，并在控制台发出警告，告诉你在组件实例中 data 必须是一个函数。但理解这种规则为何存在也是很有益处的，<br>所以让我们先作个弊：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">&lt;title&gt;Vue 测试实例&lt;/title&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.bootcss.com/vue/2.2.2/vue.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;example-2&quot;&gt;</span><br><span class="line">  &lt;simple-counter&gt;&lt;/simple-counter&gt;</span><br><span class="line">  &lt;simple-counter&gt;&lt;/simple-counter&gt;</span><br><span class="line">  &lt;simple-counter&gt;&lt;/simple-counter&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script&gt;</span><br><span class="line">var data = &#123;counter:0&#125;;</span><br><span class="line">	Vue.component(&apos;simple-counter&apos;,&#123;</span><br><span class="line">		template:&apos;&lt;button v-on:click=&quot;counter+=1&quot;&gt;&#123;&#123;counter&#125;&#125;&lt;/button&gt;&apos;,</span><br><span class="line">		data:function()&#123;</span><br><span class="line">			return data;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">	new Vue(&#123;</span><br><span class="line">		el: &apos;#example-2&apos;</span><br><span class="line">	&#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/01/02/vue组件/3705.png" alt=""><br><code>解析：</code><br>由于这三个组件实例共享了同一个 data 对象，因此递增一个 counter 会影响所有组件！这就错了。我们可以通过为每个组件返回全新的数据对象来修复这个问题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data: function () &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    counter: 0</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">&lt;title&gt;Vue 测试实例&lt;/title&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.bootcss.com/vue/2.2.2/vue.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;example-2&quot;&gt;</span><br><span class="line">  &lt;simple-counter&gt;&lt;/simple-counter&gt;</span><br><span class="line">  &lt;simple-counter&gt;&lt;/simple-counter&gt;</span><br><span class="line">  &lt;simple-counter&gt;&lt;/simple-counter&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script&gt;</span><br><span class="line"> </span><br><span class="line">    Vue.component(&apos;simple-counter&apos;,&#123;</span><br><span class="line">        template:&apos;&lt;button v-on:click=&quot;counter+=1&quot;&gt;&#123;&#123;counter&#125;&#125;&lt;/button&gt;&apos;,</span><br><span class="line">        data: function () &#123;</span><br><span class="line">             return &#123;</span><br><span class="line">             counter: 0</span><br><span class="line">              &#125;</span><br><span class="line">&#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    new Vue(&#123;</span><br><span class="line">        el: &apos;#example-2&apos;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/01/02/vue组件/3957.png" alt=""></p>
+<h3 id="接下来要搞事情了"><a href="#接下来要搞事情了" class="headerlink" title="接下来要搞事情了"></a>接下来要搞事情了</h3><p>2.extend组件构建器</p>
+<pre><code>官网描述：听不懂听不懂听不懂 &amp;&amp; 官网给的例子很坑 &amp;&amp; 官网的组件部分只提到了component（过分啦）
+
+个人描述：暂时还没有挂载到dom文档流中的一个组件说明
+</code></pre><p>Vue.extend({})简述：使用vue.extend返回一个子类构造函数，也就是预设部分选项的vue实例构造器。</p>
+<p>后可使用vue.component进行实例化、或使用new extendName().$mount(‘’+el)方式进行实例化（从而实现模拟组件）。</p>
+<p><strong>官网的坑：</strong></p>
+<p>extend 写法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;mount-point&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">// 创建构造器</span><br><span class="line">var Profile = Vue.extend(&#123;</span><br><span class="line">  template: &apos;&lt;p&gt;&#123;&#123;firstName&#125;&#125;&lt;/p&gt;&apos;,</span><br><span class="line">  data: function () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      firstName: &apos;Walter&apos;,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">// 创建 Profile 实例，并挂载到一个元素上（坑！！！！！！！！！！）</span><br><span class="line">new Profile().$mount(&apos;#mount-point&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>我用component写一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;hello&gt;&lt;/hello&gt;</span><br><span class="line"></span><br><span class="line">Vue.component(&apos;hello&apos;,</span><br><span class="line">template: &apos;&lt;p&gt;&#123;&#123;firstName&#125;&#125;&lt;/p&gt;&apos;,</span><br><span class="line">  data: function () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      firstName: &apos;Walter&apos;,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>结果都是一样的<br><code>&lt;p&gt;Walter&lt;/p&gt;</code></p>
+<p>Vue 的构造函数可接收的大部分选项都能在 Vue.extend() 中使用，不过也有两个特例：data 和 el。由于每个 Vue 的实例都应该有自己的 $data 和 $el，我们显然不希望传递给 Vue.extend() 的值被所有通过这个构造函数创建的实例所共享。因此如果要定义组件初始化默认数据和元素的方式，应该传入一个函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var ComponentWithDefaultData = Vue.extend(&#123;</span><br><span class="line">  data: function () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      title: &apos;Hello!&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<pre><code>看起来，extend写法还更恶心一点
+
+不但要创建构造器，还要new一个实例，还要挂载到特定的元素上，这个特定元素最终还被完全替换了，不像component用起来那么舒服，注册好特定的名字之后，想在哪里用，就在哪里写组件名，程序还更易读。
+
+那不用看下去了，以后都用component了。
+</code></pre><p><img src="/2019/01/02/vue组件/22311.jpg" alt=""><br>  所以说extend到底有什么优势呢？只要绕开官网的坑就明白了，生成的实例并不一定要”挂载到一个元素上”。也就是</p>
+<pre><code>new 实例().$mount() 的 $mount()$mount()$mount()$mount()$mount()......（重要的坑要提醒一百遍）的参数可以为空，但他依旧能生成一个实例。
+</code></pre><p>   那么问题来了，生成的实例不挂载到dom文档流里面，有什么用？木有关系！生成的实例里面有$el这个参数，记录了生成的dom啊，这个dom你想插哪里插哪里。（document.body.appendChild( 实例.$el）)<br>    总结：component是extend的亲民版，但在实现某些特殊需求的时候，就需要用到extend，如alert组件，你肯定希望alert可以动态插入到body中，而不需要在dom文档流中放一个莫名其妙的alert，大部分时间他还是隐藏的。（你能用component实现我服你）</p>
+<p><code>理解 Vue.extend() 和 Vue.component() 的区别非常重要。</code><br>在Vue.js中，Vue本身是一个constructor。</p>
+<p>Vue.extend() 是一个继承于方法的 class，参数是一个包含组件选项的对象。它的目的是创建一个Vue的子类并且返回相应的 constructor。由于 Vue 本身是一个构造函数，Vue.extend() 是一个<strong>类继承方法</strong>。它用来创建一个 Vue 的子类并返回其构造函数。而另一方面，Vue.component() 是一个类似 Vue.directive() 和 Vue.filter() 的资源注册方法,它的目的是给指定的一个constructor一个String类型的ID，之后Vue.js可以把它用作模板，实际上当你直接传递选项给Vue.component()的时候，它会在背后调用Vue.extend()。它作用是建立指定的构造函数与 ID 字符串间的关系，从而让 Vue.js 能在模板中使用它。直接向 Vue.component() 传递 options 时，它会在内部调用 Vue.extend()。</p>
+<p>Vue.js 支持两种不同风格的调用组件的 API：一种是基于类的，命令式的，Backbone 类型的API；另一种是基于标记语言的，声明式的，Web组件类型的API。<br>如果你感到困惑，想一下通过 new Image() 和通过 <img> 标签这两种创建图片元素的方式。它们都在各自的适用场景下发挥着作用，为了尽可能灵活，Vue.js 同时提供这两种方式。</p>
+<p><code>下面看下vue.extend，new vue 和vue.component的区别</code><br>extend 是构造一个组件的语法器. 你给它参数 他给你一个组件 然后这个组件<br>你可以作用到Vue.component 这个全局注册方法里， 也可以在任意vue模板里使用apple组件<br><code>var apple = Vue.extend({ …. }) Vue.component(‘apple&#39;,apple)</code><br>你可以作用到vue实例或者某个组件中的components属性中并在内部使用apple组件<br><code>new Vue({ components:{ apple:apple } })</code><br>Vue.component 你可以创建 ，也可以取组件 例如下<br><code>var apple = Vue.component(‘apple&#39;)</code> 而new vue 是新建一个vue对象 所以可以理解为<code>new vue &lt; vue.extand &lt; vue.component</code></p>
+<h2 id="数据流-prop"><a href="#数据流-prop" class="headerlink" title="数据流 prop"></a>数据流 prop</h2><p><strong>通过 prop 传递数据</strong><br>默认情况下，组件有<code>独立作用域</code>。这意味着你无法在子组件的模板中引用父级的数据。为了传递数据到拥有独立作用域的子组件中，我们需要用到 prop。<br>一个 “prop” 是指组件的数据对象上的一个预期会从父级组件取得的字段。<br>父组件的数据需要通过 props 把数据传给子组件，子组件需要显式地用 props 选项声明 “prop”：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&apos;child&apos;, &#123;</span><br><span class="line">  // 声明 props</span><br><span class="line">  props: [&apos;msg&apos;],</span><br><span class="line">  // prop 可以在模板内部被使用，</span><br><span class="line">  // 也可以类似 `this.msg` 这样来赋值</span><br><span class="line">  template: &apos;&lt;span&gt;&#123;&#123;msg&#125;&#125;&lt;/span&gt;&apos;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>然后，我们可以像这样向这个组件传递数据：</p>
+<p><code>&lt;child msg=&quot;hello!&quot;&gt;&lt;/child&gt;</code></p>
+<p>结果：<br>    hello!</p>
+<p><strong>驼峰命名 vs. 连字符命名</strong><br>HTML 特性是大小写不敏感的。当驼峰式的 prop 名在 HTML 中作为特性名出现时，你需要用对应的连字符（短横）分隔形式代替：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&apos;child&apos;, &#123;</span><br><span class="line">  props: [&apos;myMessage&apos;],</span><br><span class="line">  template: &apos;&lt;span&gt;&#123;&#123;myMessage&#125;&#125;&lt;/span&gt;&apos;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;!-- 重要：使用连字符分隔的名称！ --&gt;</span><br><span class="line">&lt;child my-message=&quot;hello!&quot;&gt;&lt;/child&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>动态 prop</strong><br>类似于用 v-bind 绑定 HTML 特性到一个表达式，也可以用 v-bind 动态绑定 props 的值到父组件的数据中。每当父组件的数据变化时，该变化也会从父级向下传递动态数据给子组件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;input v-model=&quot;parentMsg&quot;&gt;</span><br><span class="line">  &lt;br&gt;</span><br><span class="line">  &lt;child msg=&quot;&#123;&#123;parentMsg&#125;&#125;&quot;&gt;&lt;/child&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>结果：<br><img src="/2019/01/02/vue组件/8.png" alt=""><br><code>暴露 $data 作为 prop 也是可行的。传入的值必须是一个对象，它会被用来替换组件默认的 $data 对象。</code><br><code>**注意**: prop 是单向绑定的：当父组件的属性变化时，将传导给子组件，但是不会反过来。</code></p>
+<p><strong>传递回调作为 prop</strong><br>同样可以向下传递一个方法或语句作为子组件的一个回调方法。借此可以进行声明式的、解耦的父子通信：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&apos;parent&apos;, &#123;</span><br><span class="line">  // ...</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onChildLoaded: function (msg) &#123;</span><br><span class="line">      console.log(msg)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">Vue.component(&apos;child&apos;, &#123;</span><br><span class="line">  // ...</span><br><span class="line">  props: [&apos;onLoad&apos;],</span><br><span class="line">  ready: function () &#123;</span><br><span class="line">    this.onLoad(&apos;message from child!&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;!-- 父级模板 --&gt;</span><br><span class="line">&lt;child on-load=&quot;&#123;&#123;onChildLoaded&#125;&#125;&quot;&gt;&lt;/child&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>prop 绑定类型</strong><br>默认情况下，所有 prop 都会在子级和父级的属性之间建立一个<strong>单向向下传递</strong>的绑定关系：当父级的属性更新时，它将向下同步至子级，反之则不会。这种默认设定是为了防止子级组件意外篡改父级的状态，那将导致难以推导应用的数据流。不过也可以显式指定一个双向或者一次性的绑定：</p>
+<p>对比这些语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 默认情况下，单向绑定 --&gt;</span><br><span class="line">&lt;child msg=&quot;&#123;&#123;parentMsg&#125;&#125;&quot;&gt;&lt;/child&gt;</span><br><span class="line">&lt;!-- 显式双向绑定 --&gt;</span><br><span class="line">&lt;child msg=&quot;&#123;&#123;@ parentMsg&#125;&#125;&quot;&gt;&lt;/child&gt;</span><br><span class="line">&lt;!-- 显示一次性绑定 --&gt;</span><br><span class="line">&lt;child msg=&quot;&#123;&#123;* parentMsg&#125;&#125;&quot;&gt;&lt;/child&gt;</span><br></pre></td></tr></table></figure></p>
+<p>双向绑定会反向同步子级的 <code>msg</code> 属性到父级的 <code>parentMsg</code> 属性。一次性绑定在完成之后不会在父级和子级之间同步未来发生的变化。</p>
+<blockquote>
+<p>注意如果传递的 prop 值是对象或数组，将会是引用传递。在子级改动对象或数组将会影响到父级的状态，这种情况会无视你使用的绑定的类型。</p>
+</blockquote>
+<p><strong>prop 规则</strong><br>组件可以对接收的 prop 声明一定的规则限制。在开发给他人使用的组件时这会很有用，因为对 prop 的有效性检验可以看做是组件 API 的一部分，并且能保证用户正确地使用了组件。与直接把 prop 定义成字符串不同，你需要使用包含验证规则的对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&apos;example&apos;, &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    // 基本类型检查 (`null` 表示接受所有类型)</span><br><span class="line">    onSomeEvent: Function,</span><br><span class="line">    // 必需性检查</span><br><span class="line">    requiredProp: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      required: true</span><br><span class="line">    &#125;,</span><br><span class="line">    // 指定默认值</span><br><span class="line">    propWithDefault: &#123;</span><br><span class="line">      type: Number,</span><br><span class="line">      default: 100</span><br><span class="line">    &#125;,</span><br><span class="line">    // 对象或数组类型的默认值</span><br><span class="line">    // 应该由工厂函数返回</span><br><span class="line">    propWithObjectDefault: &#123;</span><br><span class="line">      type: Object,</span><br><span class="line">      default: function () &#123;</span><br><span class="line">        return &#123; msg: &apos;hello&apos; &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    // 双向 prop。</span><br><span class="line">    // 如果绑定类型不匹配将抛出警告.</span><br><span class="line">    twoWayProp: &#123;</span><br><span class="line">      twoWay: true</span><br><span class="line">    &#125;,</span><br><span class="line">    // 自定义验证函数</span><br><span class="line">    greaterThanTen: &#123;</span><br><span class="line">      validator: function (value) &#123;</span><br><span class="line">        return value &gt; 10</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>其中 type 可以是以下任一原生构造函数：</p>
+<ul>
+<li>String</li>
+<li>Number</li>
+<li>Boolean</li>
+<li>Function</li>
+<li>Object</li>
+<li>Array<br>另外，<code>type</code> 还可以是自定义构造函数，断言将会是一个 <code>instanceof</code> 检查。</li>
+</ul>
+<p>如果 prop 检验不通过，Vue 会拒绝这次针对子组件的赋值，并且在使用开发版本时会抛出一个警告。<br><code>props 验证补充代码：注意 替换 vue.min.js 为 vue.js，验证结果可以到浏览器 console 查看</code></p>
+<p><strong>自定义事件</strong><br>父组件是使用 props 传递数据给子组件，但如果子组件要把数据传递回去，就需要使用自定义事件！</p>
+<p>我们可以使用 v-on 绑定自定义事件, 每个 Vue 实例都实现了事件接口(Events interface)，即：</p>
+<ul>
+<li>使用 $on(eventName) 监听事件</li>
+<li>使用 $emit(eventName) 触发事件<br>另外，父组件可以在使用子组件的地方直接用 v-on 来监听子组件触发的事件。<br>以下实例中子组件已经和它外部完全解耦了。它所做的只是触发一个父组件关心的内部事件。<br>实例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div id=&quot;counter-event-example&quot;&gt;</span><br><span class="line">      &lt;p&gt;&#123;&#123; total &#125;&#125;&lt;/p&gt;</span><br><span class="line">      &lt;button-counter v-on:increment=&quot;incrementTotal&quot;&gt;&lt;/button-counter&gt;</span><br><span class="line">      &lt;button-counter v-on:increment=&quot;incrementTotal&quot;&gt;&lt;/button-counter&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script&gt;</span><br><span class="line">Vue.component(&apos;button-counter&apos;, &#123;</span><br><span class="line">  template: &apos;&lt;button v-on:click=&quot;incrementHandler&quot;&gt;&#123;&#123; counter &#125;&#125;&lt;/button&gt;&apos;,</span><br><span class="line">  data: function () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      counter: 0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    incrementHandler: function () &#123;</span><br><span class="line">      this.counter += 1</span><br><span class="line">      this.$emit(&apos;increment&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &apos;#counter-event-example&apos;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    total: 0</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    incrementTotal: function () &#123;</span><br><span class="line">      this.total += 1</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果你想在某个组件的根元素上监听一个原生事件。可以使用 .native 修饰 v-on 。例如：</p>
+<p><code>&lt;my-component v-on:click.native=&quot;doTheThing&quot;&gt;&lt;/my-component&gt;</code></p>
+<h2 id="组件额外了解"><a href="#组件额外了解" class="headerlink" title="组件额外了解"></a>组件额外了解</h2><p><strong>继承父级作用域</strong><br>如果有需要，你也可以使用 <code>inherit: true</code> 选项来让子组件通过原型链继承父级的全部属性：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var parent = new Vue(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    a: 1</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">// $addChild() 是一个实例方法，</span><br><span class="line">// 它允许你用代码创建子实例。</span><br><span class="line">var child = parent.$addChild(&#123;</span><br><span class="line">  inherit: true,</span><br><span class="line">  data: &#123;</span><br><span class="line">    b: 2</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">console.log(child.a) // -&gt; 1</span><br><span class="line">console.log(child.b) // -&gt; 2</span><br><span class="line">parent.a = 3</span><br><span class="line">console.log(child.a) // -&gt; 3</span><br></pre></td></tr></table></figure></p>
+<p>这里有一点需要注意：由于 Vue 实例上的数据属性都是 <code>getter/setter</code>，设置 <code>child.a = 2</code> 会直接改变 <code>parent.a</code> 的值，而非在子级创建一个新属性遮蔽父级中的属性：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">child.a = 4</span><br><span class="line">console.log(parent.a) // -&gt; 4</span><br><span class="line">console.log(child.hasOwnProperty(&apos;a&apos;)) // -&gt; false</span><br></pre></td></tr></table></figure></p>
+<p><strong>作用域注意事项</strong><br>当组件被用在父模板中时，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 父模板 --&gt;</span><br><span class="line">&lt;my-component v-show=&quot;active&quot; v-on=&quot;click:onClick&quot;&gt;&lt;/my-component&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这里的命令 <code>(v-show 和 v-on)</code> 会在父作用域编译，所以 <code>active</code> 和 <code>onClick</code> 的取值取决于父级。任何子模版中的命令和插值都会在子作用域中编译。这样使得上下级组件间更好地分离。</p>
+<p><strong>组件生命周期</strong><br>每一个组件，或者说 Vue 的实例，都有着自己的生命周期：它会被创建、编译、插入、移除，最终销毁。在这每一个时间点，实例都会触发相应的事件，而在创建实例或者定义组件时，我们可以传入生命周期钩子函数来响应这些事件。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var MyComponent = Vue.extend(&#123;</span><br><span class="line">  created: function () &#123;</span><br><span class="line">    console.log(&apos;An instance of MyComponent has been created!&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><strong>动态组件</strong><br>你可以使用内置的 <code>&lt;component&gt;</code> 元素在组件间动态切换来实现 “页面切换”：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">  el: &apos;body&apos;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    currentView: &apos;home&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    home: &#123; /* ... */ &#125;,</span><br><span class="line">    posts: &#123; /* ... */ &#125;,</span><br><span class="line">    archive: &#123; /* ... */ &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;component is=&quot;&#123;&#123;currentView&#125;&#125;&quot;&gt;</span><br><span class="line">  `&lt;!-- 内容随 vm.currentview 一同改变！ --&gt;</span><br><span class="line">&lt;/component&gt;</span><br></pre></td></tr></table></figure>
+<p>如果希望被切换出去的组件保持存活，从而保留它的当前状态或者避免反复重新渲染，你可以加上 <code>keep-alive</code> 特性参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;component is=&quot;&#123;&#123;currentView&#125;&#125;&quot; keep-alive&gt;</span><br><span class="line">  `&lt;!-- 不活跃的的组件会被缓存！ --&gt;</span><br><span class="line">&lt;/component&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>过渡控制</strong><br>有两个额外的特性参数能够支持对需要渲染或过渡的组件进行高级控制。</p>
+<h3 id="transition-mode-过渡模式"><a href="#transition-mode-过渡模式" class="headerlink" title="transition-mode 过渡模式"></a><code>transition-mode</code> 过渡模式</h3><p><code>transition-mode</code> 特性参数允许指定两个动态组件之间的过渡应如何进行。</p>
+<p>默认情况下，进入组件和退出组件的过渡是同时进行的。这个特性参数允许设置成另外两种模式：</p>
+<ul>
+<li><code>in-out</code>：先进后出；先执行新组件过渡，当前组件在新组件过渡结束后执行过渡并退出。</li>
+<li><code>out-in</code>：先出后进；当前组件首先执行过渡并退出，新组件在当前组件过渡结束后执行过渡并进入。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<p><code>&lt;component is=&quot;&quot; v-transition=&quot;fade&quot; transition-mode=&quot;out-in&quot;&gt;</code></p>
+<h2 id="列表与组件"><a href="#列表与组件" class="headerlink" title="列表与组件"></a>列表与组件</h2><p>对于一个对象数组，你可以把组件和 <code>v-repeat</code> 组合使用。这种场景下，对于数组中的每个对象，都以该对象为 <code>$data</code> 创建一个子组件，以指定组件作为构造函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul id=&quot;list-example&quot;&gt;</span><br><span class="line">  &lt;user-profile v-repeat=&quot;users&quot;&gt;&lt;/user-profile&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">new Vue(&#123;</span><br><span class="line">	el: &apos;#list-example&apos;, </span><br><span class="line">	data: &#123; </span><br><span class="line">		users: [ &#123;</span><br><span class="line">				name: &apos;Chuck Norris&apos;, </span><br><span class="line">				email: &apos;chuck@norris.com&apos; </span><br><span class="line">				&#125;,</span><br><span class="line">				&#123; name: &apos;Bruce Lee&apos;, </span><br><span class="line">				email: &apos;bruce@lee.com&apos; &#125;</span><br><span class="line">				] </span><br><span class="line">			&#125;, </span><br><span class="line">	components: &#123; </span><br><span class="line">	&apos;user-profile&apos;: &#123; template: &apos;&#123;&#123;name&#125;&#125; &#123;&#123;email&#125;&#125;&apos; &#125; </span><br><span class="line">	&#125; </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>结果：</p>
+<ul>
+<li>Chuck Norris - <a href="mailto:chuck@norris.com" target="_blank" rel="noopener">chuck@norris.com</a></li>
+<li>Bruce Lee - <a href="mailto:bruce@lee.com" target="_blank" rel="noopener">bruce@lee.com</a></li>
+</ul>
+<p><strong> 在组件循环中使用标识符</strong></p>
+<p>在组件中标识符语法同样适用，并且被循环的数据会被设置成组件的一个属性，以标识符作为键名：</p>
+<blockquote>
+<p>注意一旦组件跟 <code>v-repeat</code> 一同使用，同样的作用域规则也会被应用到该组件容器上的其他命令。结果就是，你在父级模板中将获取不到 <code>$index</code>；只能在组件自身的模板中获取。</p>
+</blockquote>
+<blockquote>
+<p>或者，你也可以通过循环 <code>&lt;template&gt;</code> 来建立一个媒介作用域，但是大多数情况下在组件内部使用 <code>$index</code> 是更好的实践。</p>
+</blockquote>
+<h2 id="子组件引用"><a href="#子组件引用" class="headerlink" title="子组件引用"></a>子组件引用</h2><p>某些情况下需要通过 JavaScript 访问嵌套的子组件。要实现这种操作，需要使用 <code>v-ref</code> 为子组件分配一个 ID。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var parent = new Vue(&#123; el: &apos;#parent&apos; &#125;) // 访问子组件 </span><br><span class="line">var child = parent.$.profile</span><br></pre></td></tr></table></figure></p>
+<p>当 <code>v-ref</code> 与 <code>v-repeat</code> 一同使用时，会获得一个与数据数组对应的子组件数组。</p>
+<h2 id="私有资源"><a href="#私有资源" class="headerlink" title="私有资源"></a>私有资源</h2><p>有时一个组件需要使用类似命令、过滤器和子组件这样的资源，但是又希望把这些资源封装起来以便自己在别处复用。这一点可以用私有资源实例化选项来实现。私有资源只能被拥有该资源的组件及其继承组件和子组件的实例访问。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 全部5种类型的资源 </span><br><span class="line">var MyComponent = Vue.extend(&#123; directives: &#123; </span><br><span class="line">// “id : 定义”键值对，与处理全局方法的方式相同 </span><br><span class="line">&apos;private-directive&apos;: function () &#123; // ... &#125; </span><br><span class="line">&#125;, </span><br><span class="line">filters: &#123; // ... &#125;, </span><br><span class="line">components: &#123; // ... &#125;, </span><br><span class="line">partials: &#123; // ... &#125;, </span><br><span class="line">effects: &#123; // ... &#125; </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>你可以通过设置 <code>Vue.config.strict = true</code> 阻止子组件访问父组件的私有资源。<br>又或者，可以用与全局资源注册方法类似的链式 API 为现有组件构造方法添加私有资源：<br><code>MyComponent.directive(&#39;...&#39;, {}).filter(&#39;...&#39;, function () {}).component(&#39;...&#39;, {})</code></p>
+</blockquote>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/01/02/vue组件/" data-id="cjqew5hal00258gfvxtoip214" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/12/29/vue表单/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">vue表单</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/02/vue组件/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/02/vue组件/27_549.png)" alt="vue组件" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/02/vue组件/" class="title">vue组件</a></p>
+                            <p class="item-date"><time datetime="2019-01-02T02:18:53.000Z" itemprop="datePublished">2019-01-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/29/vue表单/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/29/vue表单/27_549.png)" alt="vue表单" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/29/vue表单/" class="title">vue表单</a></p>
+                            <p class="item-date"><time datetime="2018-12-29T09:33:43.000Z" itemprop="datePublished">2018-12-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/29/Vue-js事件处理机制/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/29/Vue-js事件处理机制/b78f.jpg)" alt="Vue.js事件处理机制" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/29/Vue-js事件处理机制/" class="title">Vue.js事件处理机制</a></p>
+                            <p class="item-date"><time datetime="2018-12-29T07:41:12.000Z" itemprop="datePublished">2018-12-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/29/Vue-js样式绑定/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/29/Vue-js样式绑定/8f5e3.png)" alt="Vue.js样式绑定" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/29/Vue-js样式绑定/" class="title">Vue.js样式绑定</a></p>
+                            <p class="item-date"><time datetime="2018-12-29T07:01:31.000Z" itemprop="datePublished">2018-12-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/29/vue的属性/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/29/vue的属性/eb33.jpg)" alt="vue的属性" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/29/vue的属性/" class="title">vue的属性</a></p>
+                            <p class="item-date"><time datetime="2018-12-29T06:02:11.000Z" itemprop="datePublished">2018-12-29</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 15.71px;">JavaScript</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript库/" style="font-size: 17.14px;">javascript库</a> <a href="/tags/maven/" style="font-size: 18.57px;">maven</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 14.29px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 17.14px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/01/02/vue组件/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
