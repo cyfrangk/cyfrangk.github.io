@@ -21,7 +21,7 @@
 <meta property="og:description" content="关于设定开始使用git，先要设置使用者的email和名称，比如在终端中输入12345678910 # 设置你的 Git 用户名git config --global user.name &amp;quot;&amp;lt;Your-Full-Name&amp;gt;&amp;quot;# 设置你的 Git 邮箱git config --global user.email &amp;quot;&amp;lt;your-email-address&amp;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/01/03/git你了解了多少/4145.png">
-<meta property="og:updated_time" content="2019-01-03T13:05:38.378Z">
+<meta property="og:updated_time" content="2019-01-03T13:14:08.764Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git你了解了多少">
 <meta name="twitter:description" content="关于设定开始使用git，先要设置使用者的email和名称，比如在终端中输入12345678910 # 设置你的 Git 用户名git config --global user.name &amp;quot;&amp;lt;Your-Full-Name&amp;gt;&amp;quot;# 设置你的 Git 邮箱git config --global user.email &amp;quot;&amp;lt;your-email-address&amp;">
@@ -185,12 +185,16 @@
 <ul>
 <li>与文本编辑器无缝连接<br>1.我们都希望git可以直接在终端中打开编辑器如Sublime或者VS code，进行代码编写，然后直接上传到github备份。于是可以找到sublime的安装目录，在它的bin 目录下有一个subl ，然后编辑<code>bash_profile</code> 【针对mac环境】，添加<code>export PATH=$PATH:/Applications/Sublime\ Text.app/Contents/SharedSupport/bin</code> 就好。之后就可以利用<code>subl FILE</code> 在terminal中直接用Sublime打开相应的代码了。</li>
 </ul>
-<p>2.在Ubuntu环境下可以通过shell工具的gedit命令打开文件的，但是，在Windows环境下，git-bash不能直接用命令通过sublime或notepad++打开指定的文本文件，需要简单配置一下。<br>    a.切换到“\Git\mingw64\bin”目录下（这里是你Git工具的安装位置），新建一个命令文件，文件名称就是命令名称，例如np，<code>注意这里文件不能有后缀</code>。</p>
-<pre><code>打开文件输入以下内容：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">		#!/bin/sh</span><br><span class="line">		&quot;D:\Notepad++\notepad++.exe&quot; $1 &amp;</span><br><span class="line">		```	   第一行表示这是一个shell脚本，第二行双引号里面输入的是notepa++的安装路径，$1表示取命令之后输入的参数，&amp;表示在后台打开。</span><br><span class="line">		命令使用方法</span><br><span class="line">		`np xxx（文件路径`）</span><br><span class="line">       同理，使用sublime打开文件也可以通过这种方式来配置，这是git-bash的自定义命令，方便快捷，省时省力。当然，不局限于打开文本文件，也可以配置通过Chrome打开html文件。</span><br><span class="line"></span><br><span class="line">+ 少打重复的字或者少打错字</span><br><span class="line">设置缩写是比较不错的选择，例如：</span><br><span class="line">```git</span><br><span class="line">git config --global alias.co checkout</span><br><span class="line">git config --global alias.br branch</span><br><span class="line">git config --global alias.st status</span><br><span class="line">git config --global alias.l &quot;log --oneline --graph&quot;</span><br></pre></td></tr></table></figure>
-</code></pre><p>当然，这些都可以在<code>~/.gitconfig</code>中进行修改</p>
-<p><strong>全新的开始</strong><br>第一次使用最重要的就是<code></code>git init<code>，想对哪个目录进行版本控制（简称“版控”），就在哪个目录下进行该操作，结果就是在该目录下生成了</code>.git<code>的隐藏目录。
-别看我们平时看不到它，它可储存了整个Git的精华（也许正因如此，才让目录隐藏，避免用户删除）。因此，如果有一天，我们不想对这个目录进行版控了，那么只需要移除</code>.git`目录就好</p>
+<p>2.在Ubuntu环境下可以通过shell工具的gedit命令打开文件的，但是，在Windows环境下，git-bash不能直接用命令通过sublime或notepad++打开指定的文本文件，需要简单配置一下。<br>a.切换到“\Git\mingw64\bin”目录下（这里是你Git工具的安装位置），新建一个命令文件，文件名称就是命令名称，例如np，<code>注意这里文件不能有后缀</code>。</p>
+<p>打开文件输入以下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">&quot;D:\Notepad++\notepad++.exe&quot; $1 &amp;</span><br></pre></td></tr></table></figure></p>
+<p>第一行表示这是一个shell脚本，第二行双引号里面输入的是notepa++的安装路径，$1表示取命令之后输入的参数，&amp;表示在后台打开。<br>命令使用方法<br>    <code>np xxx（文件路径</code>）</p>
+<p>同理，使用sublime打开文件也可以通过这种方式来配置，这是git-bash的自定义命令，方便快捷，省时省力。当然，不局限于打开文本文件，也可以配置通过Chrome打开html文件。</p>
+<ul>
+<li>少打重复的字或者少打错字<br>设置缩写是比较不错的选择，例如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.co checkout</span><br><span class="line">git config --global alias.br branch</span><br><span class="line">git config --global alias.st status</span><br><span class="line">git config --global alias.l &quot;log --oneline --graph&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>当然，这些都可以在<code>~/.gitconfig</code>中进行修改</p>
+<p><strong>全新的开始</strong><br>第一次使用最重要的就是<code>git init</code> ，想对哪个目录进行版本控制（简称“版控”），就在哪个目录下进行该操作，结果就是在该目录下生成了<code>.git</code>的隐藏目录。<br>别看我们平时看不到它，它可储存了整个Git的精华（也许正因如此，才让目录隐藏，避免用户删除）。因此，如果有一天，我们不想对这个目录进行版控了，那么只需要移除<code>.git</code>目录就好</p>
 <h2 id="文件放心交给Git吧"><a href="#文件放心交给Git吧" class="headerlink" title="文件放心交给Git吧"></a>文件放心交给Git吧</h2><p><strong>先把文件添加进暂存区</strong><br>首先看看<code>git status</code>这个命令，它是用来查询目录当前的状态，如果是一个新的目录执行这个指令，会返回<code>nothing to commit</code> 表示当前没有什么东西可以提交；<br>但是如果新建了一个文件，那么就会提示<code>Untraced files</code>，就是说这个文件还没有被加入Git版控系统中，并没有被Git正式追踪，仅仅是检查到有这个东西；<br>我们有了<code>Untracked</code>文件，下面就是把新建的文件交给Git，让它来管理、追踪，也就是使用<code>git add + 文件名称或整个目录</code>，随后不会提示任何信息，但是可以再次使用<code>git status</code>来查看当前状态。<br>只要<code>git add</code>后，文件的状态就会变成<code>new file</code>，而不再是<code>Untracked</code>，表示此时文件被放在了暂存区（Staging Area），随后看看有没有一起做伴的，去到储存库中。</p>
 <blockquote>
 <p>问题1： 如果在git add之后，我们又修改了文件的内容，会发生什么？<br>【例如：我们之前新增一个文件叫<code>a.txt</code>，然后我们使用<code>git add a.txt</code>将文件添加到暂存区，突然想起来有个地方需要修改，于是又在终端中修改了<code>a.txt</code>】<br>作为刚接触Git的我们，一般会在修改完直接<code>Commmit</code>提交，把刚做的修改保存下来（因为默认commit命令是时刻跟随我们的脚步的，我们修改到哪里，它就帮我们保存到哪里。其实并不是，它并没有这么智能，还是需要我们的指令）<br>回到上面👆的问题，我们对文件做了修改，再<code>git status</code>一下（这里是不是就发现了：最常用的是status命令，我们是需要时刻提醒的，自己做到了哪一步）。得到的结果就变成了两个<code>a.txt</code>文件了，一个<code>new file: a.txt</code>，一个<code>modified: a.txt</code> 。<br>这里的原因就是：我们在第二步添加文件到暂存区是没错的，Git也帮我们记录下来了；但是问题出现在重新编辑后，这里编辑的内容其实并没有再次被加入暂存区。因此，实际上暂存区的内容还是我们刚才第二步加入的原始内容<br>当然，也不是不能保存修改。如果确认无误，可以再次使用<code>git add a.txt</code>，将修改后的文件添加到暂存区<br>问题2：在添加文件时，如果想全部添加，是使用<code>git add .</code>还是<code>git add -all</code>呢？<br>这二者在git 2.0以上版本中确实都表示全部文件；但是还有有其他的差别，例如在git主目录下有这几个目录，其中main.css和index.html都做了改动。如果在根目录下执行<code>git add .</code>，那么这两个改动的文件都会被放如暂存区；但是如果在css目录下执行<code>git add.</code>，那么就只有mian.css会被放入暂存区。<br>但是，我们用<code>git add -all</code>就不用担心这个问题，因为即便是在css目录下执行这个操作，还是会把两个修改文件都加入</p>
@@ -318,7 +322,7 @@
 
 
 
-    <a data-url="http://yoursite.com/2019/01/03/git你了解了多少/" data-id="cjqgmixvl001tuwfvl6y5t3c3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2019/01/03/git你了解了多少/" data-id="cjqgmw1o1001szgfv8g801hpe" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
