@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>git你了解了多少 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="git">
+    
+    <meta name="description" content="关于设定开始使用git，先要设置使用者的email和名称，比如在终端中输入12345678910 # 设置你的 Git 用户名git config --global user.name &amp;quot;&amp;lt;Your-Full-Name&amp;gt;&amp;quot;# 设置你的 Git 邮箱git config --global user.email &amp;quot;&amp;lt;your-email-address&amp;">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git你了解了多少">
+<meta property="og:url" content="http://yoursite.com/2019/01/03/git你了解了多少/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="关于设定开始使用git，先要设置使用者的email和名称，比如在终端中输入12345678910 # 设置你的 Git 用户名git config --global user.name &amp;quot;&amp;lt;Your-Full-Name&amp;gt;&amp;quot;# 设置你的 Git 邮箱git config --global user.email &amp;quot;&amp;lt;your-email-address&amp;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/git你了解了多少/4145.png">
+<meta property="og:updated_time" content="2019-01-03T13:05:38.378Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git你了解了多少">
+<meta name="twitter:description" content="关于设定开始使用git，先要设置使用者的email和名称，比如在终端中输入12345678910 # 设置你的 Git 用户名git config --global user.name &amp;quot;&amp;lt;Your-Full-Name&amp;gt;&amp;quot;# 设置你的 Git 邮箱git config --global user.email &amp;quot;&amp;lt;your-email-address&amp;">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/03/git你了解了多少/4145.png">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-git你了解了多少" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        git你了解了多少
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/01/03/git你了解了多少/" class="article-date">
+            <time datetime="2019-01-03T11:38:32.000Z" itemprop="datePublished">2019-01-03</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/git/">git</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><strong>关于设定</strong><br>开始使用git，先要设置使用者的email和名称，比如在终端中输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> # 设置你的 Git 用户名</span><br><span class="line">git config --global user.name &quot;&lt;Your-Full-Name&gt;&quot;</span><br><span class="line"># 设置你的 Git 邮箱</span><br><span class="line">git config --global user.email &quot;&lt;your-email-address&gt;&quot;</span><br><span class="line"># 确保 Git 输出内容带有颜色标记</span><br><span class="line">git config --global color.ui auto</span><br><span class="line"># 对比显示原始状态</span><br><span class="line">git config --global merge.conflictstyle diff3</span><br><span class="line"></span><br><span class="line">git config --list</span><br></pre></td></tr></table></figure></p>
+<p>可以用<code>git config --list</code>查看当前的设定<br>当然使用<code>--global</code>是针对整个环境来讲，如果想要根据不同的项目设定不同作者，就可以在项目目录下替换为<code>--local</code>设定</p>
+<blockquote>
+<p>我们都知道，工程师的美德之一就是懒惰，抛弃重复性工作，因此可以设置一些快捷方式帮助git更快处理<br>体验Linux的感觉</p>
+</blockquote>
+<ul>
+<li>与文本编辑器无缝连接<br>1.我们都希望git可以直接在终端中打开编辑器如Sublime或者VS code，进行代码编写，然后直接上传到github备份。于是可以找到sublime的安装目录，在它的bin 目录下有一个subl ，然后编辑<code>bash_profile</code> 【针对mac环境】，添加<code>export PATH=$PATH:/Applications/Sublime\ Text.app/Contents/SharedSupport/bin</code> 就好。之后就可以利用<code>subl FILE</code> 在terminal中直接用Sublime打开相应的代码了。</li>
+</ul>
+<p>2.在Ubuntu环境下可以通过shell工具的gedit命令打开文件的，但是，在Windows环境下，git-bash不能直接用命令通过sublime或notepad++打开指定的文本文件，需要简单配置一下。<br>    a.切换到“\Git\mingw64\bin”目录下（这里是你Git工具的安装位置），新建一个命令文件，文件名称就是命令名称，例如np，<code>注意这里文件不能有后缀</code>。</p>
+<pre><code>打开文件输入以下内容：
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">		#!/bin/sh</span><br><span class="line">		&quot;D:\Notepad++\notepad++.exe&quot; $1 &amp;</span><br><span class="line">		```	   第一行表示这是一个shell脚本，第二行双引号里面输入的是notepa++的安装路径，$1表示取命令之后输入的参数，&amp;表示在后台打开。</span><br><span class="line">		命令使用方法</span><br><span class="line">		`np xxx（文件路径`）</span><br><span class="line">       同理，使用sublime打开文件也可以通过这种方式来配置，这是git-bash的自定义命令，方便快捷，省时省力。当然，不局限于打开文本文件，也可以配置通过Chrome打开html文件。</span><br><span class="line"></span><br><span class="line">+ 少打重复的字或者少打错字</span><br><span class="line">设置缩写是比较不错的选择，例如：</span><br><span class="line">```git</span><br><span class="line">git config --global alias.co checkout</span><br><span class="line">git config --global alias.br branch</span><br><span class="line">git config --global alias.st status</span><br><span class="line">git config --global alias.l &quot;log --oneline --graph&quot;</span><br></pre></td></tr></table></figure>
+</code></pre><p>当然，这些都可以在<code>~/.gitconfig</code>中进行修改</p>
+<p><strong>全新的开始</strong><br>第一次使用最重要的就是<code></code>git init<code>，想对哪个目录进行版本控制（简称“版控”），就在哪个目录下进行该操作，结果就是在该目录下生成了</code>.git<code>的隐藏目录。
+别看我们平时看不到它，它可储存了整个Git的精华（也许正因如此，才让目录隐藏，避免用户删除）。因此，如果有一天，我们不想对这个目录进行版控了，那么只需要移除</code>.git`目录就好</p>
+<h2 id="文件放心交给Git吧"><a href="#文件放心交给Git吧" class="headerlink" title="文件放心交给Git吧"></a>文件放心交给Git吧</h2><p><strong>先把文件添加进暂存区</strong><br>首先看看<code>git status</code>这个命令，它是用来查询目录当前的状态，如果是一个新的目录执行这个指令，会返回<code>nothing to commit</code> 表示当前没有什么东西可以提交；<br>但是如果新建了一个文件，那么就会提示<code>Untraced files</code>，就是说这个文件还没有被加入Git版控系统中，并没有被Git正式追踪，仅仅是检查到有这个东西；<br>我们有了<code>Untracked</code>文件，下面就是把新建的文件交给Git，让它来管理、追踪，也就是使用<code>git add + 文件名称或整个目录</code>，随后不会提示任何信息，但是可以再次使用<code>git status</code>来查看当前状态。<br>只要<code>git add</code>后，文件的状态就会变成<code>new file</code>，而不再是<code>Untracked</code>，表示此时文件被放在了暂存区（Staging Area），随后看看有没有一起做伴的，去到储存库中。</p>
+<blockquote>
+<p>问题1： 如果在git add之后，我们又修改了文件的内容，会发生什么？<br>【例如：我们之前新增一个文件叫<code>a.txt</code>，然后我们使用<code>git add a.txt</code>将文件添加到暂存区，突然想起来有个地方需要修改，于是又在终端中修改了<code>a.txt</code>】<br>作为刚接触Git的我们，一般会在修改完直接<code>Commmit</code>提交，把刚做的修改保存下来（因为默认commit命令是时刻跟随我们的脚步的，我们修改到哪里，它就帮我们保存到哪里。其实并不是，它并没有这么智能，还是需要我们的指令）<br>回到上面👆的问题，我们对文件做了修改，再<code>git status</code>一下（这里是不是就发现了：最常用的是status命令，我们是需要时刻提醒的，自己做到了哪一步）。得到的结果就变成了两个<code>a.txt</code>文件了，一个<code>new file: a.txt</code>，一个<code>modified: a.txt</code> 。<br>这里的原因就是：我们在第二步添加文件到暂存区是没错的，Git也帮我们记录下来了；但是问题出现在重新编辑后，这里编辑的内容其实并没有再次被加入暂存区。因此，实际上暂存区的内容还是我们刚才第二步加入的原始内容<br>当然，也不是不能保存修改。如果确认无误，可以再次使用<code>git add a.txt</code>，将修改后的文件添加到暂存区<br>问题2：在添加文件时，如果想全部添加，是使用<code>git add .</code>还是<code>git add -all</code>呢？<br>这二者在git 2.0以上版本中确实都表示全部文件；但是还有有其他的差别，例如在git主目录下有这几个目录，其中main.css和index.html都做了改动。如果在根目录下执行<code>git add .</code>，那么这两个改动的文件都会被放如暂存区；但是如果在css目录下执行<code>git add.</code>，那么就只有mian.css会被放入暂存区。<br>但是，我们用<code>git add -all</code>就不用担心这个问题，因为即便是在css目录下执行这个操作，还是会把两个修改文件都加入</p>
+</blockquote>
+<p><img src="/2019/01/03/git你了解了多少/4145.png" alt=""></p>
+<p><strong>再从暂存区提交到仓库中</strong><br>上面的一大段文字都是在描述：如何将文件加入暂存区，但是仅仅这样是不够的。暂存暂存，顾名思义它不会长久。如果想让暂存区的东西永久保存下来，我们还需要用到<code>git commit</code><br>一般用法就是：<code>git commit -m &quot;first commit&quot;</code> ，其中的<code>-m以</code>及后面的字符都是在说明：你在这次commit的操作中干了啥。比如第一次提交这个文件就可以用<code>first commit</code>，简单清楚，让别人和自己都能看懂就行，不限中英文。</p>
+<blockquote>
+<p>这个操作结束后，Git就把暂存区的东西储存到了仓库（Repository）中，也就是说：我Git完成了一个文件的存档/备份，也就是做了第一份的版本建立。<br><strong>直到Commit结束，才算完成了整个流程！</strong></p>
+</blockquote>
+<p>关于commit，还有一点知识需要了解：</p>
+<ul>
+<li>Commit到底做了啥？<br>其实它就是负责了暂存区的东西，也就是说，我们在执行<code>git commit</code>的时候，那些没有添加到暂存区中的档案，就不会被Commit到仓库中</li>
+<li>另外，可不可以不加<code>-m</code>以及后面的啰嗦话？<br>答案是：不能！因为没有这个看似啰嗦，实际非常有用的语句，Git是不会允许你完成Commit的操作的。并且添加的话，那些模糊的话就不用加了，比如<code>trouble shooting</code>，我们就是想看shoot了什么trouble，这个重要的问题需要指出，例如可以<code>#12 bug fixed</code>，表示改正了12号错误</li>
+<li>Commit可不可以提交“空”？<br>因为在R里，空也是被当成字符来处理的（虽然很绕，它为空，应该没东西，但却还占据着位置）。那么Commit其实也是可以的，但是除了作演示Git的合并以外一般没啥用，可以使用<code>git commit --allow-empty -m &quot;empty&quot;</code>提交一个“空”文档，然后描述就是“empty”</li>
+</ul>
+<h2 id="三大重要空间"><a href="#三大重要空间" class="headerlink" title="三大重要空间"></a>三大重要空间</h2><p>Git中的三大重要空间就是：工作区（Working directory）、暂存区（Staging area）、仓库（Repository），它们的关系是：</p>
+<p><img src="/2019/01/03/git你了解了多少/4011.png" alt=""></p>
+<blockquote>
+<p>那么就有一个问题：难道所有的流程都要通过<code>add、commit</code>后才能完成吗？<strong>能不能简化流程？</strong><br>其实可以在commit的时候加上一个参数，如: <code>git commit -a -m &quot;update&quot;</code>，但是这个参数只对已经在仓库中的文件有效，对新加入的文件（即Untracked）的文件无效</p>
+</blockquote>
+<p>其实用分段式管理还是不麻烦的，并且对所有文件通用：可以想象有个仓库，仓库门口是个中转站，中转站上有货物有进有出，要存放到仓库的货物可以先放到中转站（git add），然后等待货物达到一定数量了，就打开仓库门，把中转站的货物一起运进仓库（git commit），并且对每一批货物都做好记录（干嘛的、谁送的）</p>
+<p><strong>为什么要攒一段时间再开一次仓库门呢？</strong><br>其实来一件货物开一次门是可以的，但是问题就是记录次数太多，让Commit记录变得太零散，如果让别人看的时候，大家希望看到一个比较完整的内容，而不是一个Commit接着一个看</p>
+<p>因此，问题又来了：<strong>什么时候选择进行Commit比较好？</strong><br>没什么硬性规定，当完成一个任务时或者一天紧张的工作学习时光结束时，可以备份也作为记录</p>
+<p>保持看记录的习惯<br>回顾一般的操作流程：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">touch a.txt                             # 建立文件 a.txt   </span><br><span class="line">git add a.txt                           # 把 a.txt  加进暂存区</span><br><span class="line">git commit -m &quot;first submit&quot;            # 进行 Commit</span><br></pre></td></tr></table></figure></p>
+<p>查看之前的记录是用<code>git log</code> ，其中会包含几项重要信息</p>
+<ul>
+<li>Commit作者是谁</li>
+<li>什么时候进行的commit</li>
+<li>每次Commit都做了什么</li>
+</ul>
+<p>另外，还会看到<code>commit cc797cdb7c7a337824a25075e0dbe0bc7c703a1e</code> 这种信息，看似乱码，其实是非常关键的内容：它其实是SHA-1 （Secure Hash Algorithm 1）演算得到的结果，特点就是重复率极低，因此可以当做Commit的ID号【一般使用6-8位就足以区分不同的Commit了】<br>当然，如果在<code>git log</code>后加上<code>--oneline --graph</code>，结果就会变得更精简，一次显示的结果更多<br>利用log信息，我们可以做的事情可以包括：</p>
+<ul>
+<li><p>查找某个人的Commit（团队协作中很重要）<br><code>git log --oneline --author=&quot;doodle&quot;</code></p>
+</li>
+<li><p>查找包括某个字符的<br><code>git log --oneline --grep=&quot;btw&quot;</code></p>
+</li>
+<li><p>还可以对Commit的文件进行查找，比如想找提到“地球”的文件<br><code>git log -S &quot;地球&quot;</code></p>
+</li>
+<li><p>查询历史资料时，可以限定时间<br><code>git log --oneline --since=&quot;9am&quot; --until=&quot;5pm&quot; --after=&quot;2018-12&quot;</code></p>
+</li>
+</ul>
+<h2 id="不可避免的修改"><a href="#不可避免的修改" class="headerlink" title="不可避免的修改"></a>不可避免的修改</h2><p>在Git中，不管是删除文件还是重命名，对Git都是一种 【修改】<br>关于修改的部分，比较零散，我在前面都加了编号，表示不同的操作</p>
+<p><strong>1 删除文件</strong><br>方案一 自己删除自己提交<br>可以把原来文件直接<code>rm a.txt</code>删除，看下状态，就会提示<code>deleted: a.txt</code>。但这只是第一步，只是说明我们做了更改，<strong>并不是本地删除Git存档中就删除</strong>。但是还是要继续往下走<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 还是先将做的修改加到暂存区</span><br><span class="line">git add a.txt</span><br><span class="line"># 看一下状态</span><br><span class="line">git status</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">    deleted:    a.txt</span><br><span class="line"># 说明现在已经加入了暂存区，下面就要commit就可以了</span><br></pre></td></tr></table></figure></p>
+<p>方案二 Git帮忙删<br>使用<code>git rm a.txt</code>可以省去<code>add</code>的步骤，然后直接commit就好了</p>
+<p><strong>2 只想把文件打入冷宫？</strong></p>
+<p>上面两种办法都是直接删除文件（直接kill掉），万一我们只是想把文件从Git中移出来，打入冷宫，并不kill它呢？<br>使用<code>--cached</code>参数即可<br>例如：<code>git rm a.txt --cached</code>，提示信息会显示：<code>rm a.txt</code>。实际上，并不是真的把文件删了，而是把文件从Git中剔除，如果此时再查看一下状态，就会发现变成了<code>Untracked</code></p>
+<p><strong>3 想变个名字时尚一下？</strong><br>例如想把<code>a.txt</code>改为<code>b.txt</code>，也是可以用两种方案：<br>方案一 自己改名<br><code>mv a.txt b.txt</code> ，注意：虽然只有一个更改的动作，但是Git完成了两个：一个是删除a.txt文件，另一个是新建了b.txt文件。因此最后的状态变成了Untracked。接下来，只需要用<code>git add --all</code>，就会发现现在的状态变成了<code>renamed: a.txt -&gt; b.txt</code><br>方案二 Git改名<br>利用<code>git mv a.txt b.txt</code>，也是想删除操作一样，可以少一步操作直接变成<code>renamed</code>状态</p>
+<p>事实上，Git并不在乎你取什么名字，它是根据文件内容计算得到SHA-1值，然后当我们更改文件名时，Git的第一步只是指向了原来的文件，当文件名改变后，Git才又为它重新生成一个新的编号/名称</p>
+<p><strong>4 想修改Commit记录？</strong><br>如果有时因为情绪向Commit中掺杂了个人情感，事后感到后悔想修改下，一般有这几种方法（严重性从大到小排列）：</p>
+<ul>
+<li>整个删除<code>.git</code></li>
+<li>使用<code>git rebase</code>修改</li>
+<li>先用<code>git reset</code>拆除commit，整理后再重新commit</li>
+<li>利用<code>--amend</code>参数修改最后一次Commit</li>
+</ul>
+<p><strong>修修补补最后一次Commit amend</strong><br>加入原来的log中有一句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git log --oneline</span><br><span class="line">3879515 GUN</span><br><span class="line">5dbc437 add a.txt</span><br><span class="line">357fce7 add container</span><br><span class="line">adb4f43 update index</span><br></pre></td></tr></table></figure></p>
+<p>现在感觉第一句不太恰当，想要做下修改，于是可以<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git commit --amend -m &quot;Good Ur Night&quot;</span><br><span class="line">[master 414a91c] Good Ur Night</span><br></pre></td></tr></table></figure></p>
+<p>当然，如果不加<code>-m</code>参数，就会弹出VIM窗口，让你从里面编辑<br><strong>想要修改更早的Commit =》 Rebase</strong><br>amend只能修改最后一次的记录，但是Rebase可以修改更早的</p>
+<p>切记： 上面的例子可以看到，虽然我们只是改了下语言，但是最后的SHA-1值就发生了变化，于是就相当于改变了时间线【看过”闪电侠”或者“蝴蝶效应”的朋友都知道改变时间线的后果】。因此，尽量不要在push后重新修改</p>
+<p><strong>想要撤销Commit =》Reset</strong><br>例如现在的log包含了以下信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git log --oneline</span><br><span class="line">f12d8ef (HEAD -&gt; master) add c.txt</span><br><span class="line">83e7e30 add b.txt</span><br><span class="line">687fce7 add a.txt</span><br></pre></td></tr></table></figure></p>
+<p>现在想要撤销最后一次的Commit，就可以用<code>git reset f12d8ef^</code>【其中这个^表示前一次的Commit，如果是要到前两次就^^，次数再多就直接f12d8ef~5 表示5次】。但是如果是返回HEAD这个Commit的话，还有种简单的方法可以表示：就是<code>git reset master^</code>或者<code>git reset HEAD^</code> 。<br>因此，如果想回到<code>687fce7</code>，就可以：git reset 687fce7、git reset HEAD~3、git reset master~3 。第一种就像绝对路径，而后两种有点相对路径的意思。<br>另外，<strong>reset还有三个参数</strong>，它们还是有一些不同的，主要区别就是对<strong>从Commit中撤销回来的文件怎么处理</strong></p>
+<ul>
+<li>模式              从Commit撤销的文件去向</li>
+<li>–mixed（默认）      丢回工作目录</li>
+<li>–soft               丢回暂存区</li>
+<li>–hard               直接丢弃</li>
+</ul>
+<p>虽然我们知道，reset的英文含义是“重置”，但是在Git中更像“become”或者“go to”的意思，表示“去到哪里”。因此即便用了reset也不要有什么心理压力，既然表示“去到哪里/变成什么样子”，那我们也可以撤回，都不是事。<strong>不要认为用了reset就和恢复出厂一样的严重</strong><br>例如：这里如果使用<code>—hard</code>参数从f12d8ef退回到687fce7，git reset HEAD~2 –hard ，那么暂时的结果就是只保留了687fce7的文件，其余全部消失。如果想恢复到reset之前的状态，把所有的文件再重新恢复，可以看一下Git中的<code>git reflog</code>(里面存放了对HEAD的每一次改动信息)，看看之前的SHA-1值是多少，查到是f12d8ef，于是就可以用git reset f12d8ef –hard 把刚才reset的文件都捡回来</p>
+<p><strong>5 已经Commit完，却发现还有一个文件忘了加</strong><br>一般会碰到多个文件一起Commit，但完成后发现忘了一个，这时情况就比较尴尬：不想花一份同样的时间却只为了一个孤零零的文件；但是这个文件不添加又怕后来忘记。于是可以。。。</p>
+<ul>
+<li><p>使用<code>git reset</code>撤掉最后一次的Commit，加入新文件后重新Commit</p>
+</li>
+<li><p>使用<code>--amend</code>进行Commit<br>例如：文件<code>c.txt</code>是被落下的，可以先<code>git add c.txt</code>，然后用git commit –amend –no-edit 就可以吧c.txt并入最后一次Commit【–no-edit表示我不想编辑Commit信息，所以也不要跳出来VIM编辑器了】</p>
+</li>
+</ul>
+<p>还是一样，push前需要检查清楚，尽量不在push后重新修改</p>
+<p><strong>6 可以只Commit文件的一部分吗</strong><br>在<code>git add</code>时可以就加上<code>-p</code>参数，然后Git就问你需不需要把这个区块（hunk）加入暂存区，接下来选择y就表示将整个档案加入；选择e就弹出编辑器，让你自己删除那些不想添加的区域，保存后离开，这部分就被加到暂存区了<br><strong>7 Git对空目录是不认识的</strong><br>比如新建一个目录，想要Commit，但是<code>git status</code> 始终显示工作目录没有发生任何修改，这是因为Git是针对文件内容进行计算的，只有空目录没有内容，它感受不到目录存在。解决办法就是：<code>touch DIR/.keep</code> 在新目录下新建一个隐藏的文件就好，然后就继续<code>add +commit</code> 就可以<br><strong>8 误删了文件怎么办？</strong><br>很多情况下（尤其精神不好的时候），容易冲动用<code>rm</code>搞砸一切，假入不小心删除了Git目录下的一些文件，此时的状态都应该是<code>deleted</code>。通过<code>git checkout c.txt</code> 可以救活一个，想全部救活就用<code>git checkout</code>.<br>上面的操作全都是恢复到上一次commit操作，如果想恢复更远（例如两个版本以前），就可以加个参数：<code>git checkout HEAD~2 c.txt</code><br><strong>9 Git中经常见到的HEAD是什么东西</strong><br>在Git的逻辑中，HEAD相当于一个风向标，指向某个分支，而分支只想某个Commit。一般可以认为HEAD是“目前所在的分支” 。HEAD信息存放在<code>.git</code>目录下 ，<code>cat .git/HEAD</code>得到ref: refs/heads/master 信息。其中可以看到，目前HEAD指向master分支，看一下master分支中都有什么：cat .git/refs/heads/master ，结果就是这样的字符：ecdfbac9f5fe463e078fb4f737ce39773895e121<br>因此，如果我们有多个分支（例如有master、doudou、huahau），想切换的话，可以用<code>git checkout</code> 。在变动的时候，随之改变的还有.git/HEAD文件和Reflog文件<br><strong>10 修改历史信息</strong><br>感觉就像坐着时光机穿越似的，利用rebase这个时光机可以回到过去，修改多个历史的Commit信息<br>先看看当前的记录：<code>git log --oneline</code> ，然后选择一个时间节点git rebase -i bc08d2 （其中-i是互动模式），之后会打开一个编辑器，其中开头的pick 意思是保留Commit，不做修改。找到想改的Commit行，把pick改成reword，保存离开。接着就会跳到我们要改的那个Commit的编辑器中，更改完信息后，保存退出；进行下一个…【需要注意的是：在互动模式中，文件从上到下是由旧到新，正好与log记录中相反】<br>如果改着改着，中途不小心退出了，不用担心。其实Git是为你保留了记录的，接下来选择g<code>it rebase --continue</code>就是继续，选择<code>--abort</code>就是彻底退出之前的编辑。<br>我们改完后，如果想回到修改之前，需要用到<code>git reset ORIG_HEAD --hard</code><br><strong>11 合并臃肿的Commit信息</strong><br>有时候，我们在提交Commit信息时，难免有些复杂，比如一个文件写add doodle 1 ，另一个又写add doodle 2 ，一个Commit的利用率不高（这里的一个Commit只对一个文件有效，造成了最后log文件的繁琐）。如果可以将多个相似的Commit进行合并，是不是能清爽一些？<br>像上面一样，还是先git log –oneline ，再<code>git rebase -i bc08d2</code>，只不过对于要合并的Commit的信息将pick改成squash ，最后在弹出的编辑器中进行编辑，保存就结束了<br><strong>12 撤销三兄弟</strong></p>
+<ul>
+<li>Reset ： 改变历史记录【把目前状态设成某个指定的Commit状态，一般用于未push的Commit】</li>
+<li>Rebase： 改变历史记录【新增、修改、删除Commit都很方便，一般用于未push的Commit】</li>
+<li>Revert：不改变历史记录【新增一个Commit来对之前的Commit做反转，当然原来的Commit还是会留在历史记录中，一般用于push过的Commit】</li>
+</ul>
+<p><strong>13 打个Tag</strong><br>一般当我们认为自己的代码完成了里程碑式的发展时，比如开发版本1.0.0或者beta发布，一般会打个tag<br>分为轻量标签（lightweight tag）和附注标签（annotated tag）</p>
+<p>官方说明：Annotated tags are meant for release while lightweight tags are meant for private or temporary object labels</p>
+<ul>
+<li><p>轻量标签：相当于一个贴纸，直接粘上就完事，例如<code>git tag douhua 347dfe</code></p>
+</li>
+<li><p>附注标签：含有的信息会多一些，像一个简短的介绍，例如git tag douhua 347dfe -a -m “Doudou and Huahua” (-a 表示 annotation；-m 和Commit中的一个意思)</p>
+</li>
+</ul>
+<p>删除标签使用<code>-d</code>参数，例如git tag -d douhua</p>
+<blockquote>
+<p>既然标签和分支都充当风向标，那么有什么不同吗？<br>当Commit修改时，分支是随之移动的，而标签还在原地，牢牢贴在那里</p>
+</blockquote>
+<h2 id="分支？分身？"><a href="#分支？分身？" class="headerlink" title="分支？分身？"></a>分支？分身？</h2><p>假入你有一个分身，你要让他干嘛呢？<br>答：帮你吓退敌人；帮你学习；帮你写作业；帮你做实验。。。这些确实都是不错的选择，但是分身有个最大的作用就是：一旦任务执行失败，本体并不受影响</p>
+<p>如果我们的任务比较复杂，尤其一个package需要多个人共同完成时，就不能随便Commit。我们可以在另一个分支中来测试某些新功能或者修复某些bug，当效果满意时我们可以选择合并到主线；即便效果不好，也不会对主线造成影响<br><strong>新接触一个分支</strong><br>查看分支 很简单，直接<code>git branch</code>就好，预先设置的都是<code>master</code>分支，当前分支前面有*标明<br>想要 增加一个分支，可以直接加上名字<code>git branch doodle</code> ，这样就增加了一个doodle的分支<br>分支名字 不够霸气？改！例如有一个分支叫<code>紫薯</code>，我们完全可以用<code>git branch -m 紫薯 紫薯侠</code> ，即便是预先安装的master也可以改<br>删除分支 也是可以的：使用<code>git branch -d test</code> ，但是这里如果test分支还没有合并到主线，删除时会提醒你。如果真的不想要他了，并且不要合并，可以用<code>-D</code>强制删除。因此，所有的分支都能删，包括master，只不过不能删当前的分支（就像conda删除环境一样，不能删除当前所在的）<br>想要 切换分支？ 直接<code>git checkout doodle</code> ，随后星号就移到了doodle上面<br><strong>什么？切换分支文件丢失！</strong><br>加入我们在doodle分支下新建了两个文件，并且<code>add+commit</code> 后也确实看到文件在列表中；但是如果切回原来的master分支，发现新建的两个文件没了，其实不用担心，文件还在，只不过在当前分支显示不出来。我们只需要切换回原来的<code>doodle</code>分支就好了<br><strong>切换到不存在的分支可以么？</strong><br>一般来说，我们都要先建立一个分支，然后再切换。但是如果想切换到一个之前没有建立过的分支，有一个快速的办法就是<code>git checkout -b 新分支名字</code>  【-b参数的作用就是：如果切换的分支存在，就直接切换；如果不存在，就新建一个分支，然后切换过去】<br>或者可以利用这个命令，在之前的某个Commit来新建一个分支，感觉就好像 ”回到年轻时，做点不一样的事“，例如之前有一个Commit <code>347dfe4</code>值，我们想回到这里新建一个huahau的分支：<code>git branch huahau 347dfe4</code><br><strong>分支合并</strong><br>如果我们之前新建了分支doodle，并且在doodle中Commit了两个文件，然后想要回到master分支，把doodle中的文件合并过来，可以用：git checkout master + git merge doodle ，这时master中就会出现doodle中的两个文件。</p>
+<blockquote>
+<p><strong>那么合并完的分支还要继续留着么？</strong><br>其实按道理讲，主线master已经拥有了doodle的一切，那么doodle就没有作用了。但是如果不想让自己对亲分身有”过河拆桥“的愧疚的话🥺，留着也不是不行。完全看自己<br><strong>没有合并的分支不小心被砍掉，怎么办？</strong><br>合并完的我们可以随心意，但是如果使用了git branch -D强行删除没有合并的分支，就会给你一个信息（<code>Deleted branch doodle (was c274a5a).</code>）,其中那串Commit字符SHA-1值很重要，就是你的”后悔药“。我们知道，<strong>分支只是一个指向某一Commit的风向标</strong>，删除这个风向标并不会导致Commit消失<br>于是想要恢复分支，可以利用原来的Commit SHA-1值，用git branch new_doodle c274a5a 来迎接老朋友【还是那句话，SHA-1值不需要刻意记忆，需要去到Reflog中查询】</p>
+</blockquote>
+<p><strong>只要某个分支的某几个Commit</strong><br>使用<code>cherry-pick</code> 加上想要的Commit号，就把那个Commit内容复制过来，于是在当前的分支上就多了一个commit。加多个Commit就在命令后多写几个Commit号。<br>默认情况是复制过来就合并到当前分支的，如果不想合并只放在暂存区，就用<code>git cherry-pick --no-commit</code></p>
+<p><strong>什么？记录到一半，又有新任务？</strong><br>我们的学习过程都是并行的，可能同时手头有多个任务，如果自己在做一项，同时又有新任务来，并且很紧急，那么就需要切换到重要级优先的任务中去。<br>先不管那么多，先保存目前的所有修改git add -all ，然后Commitgit commit -m “not finish yet” ，接下来就可以切换到其他分支去工作，做完后再切换回之前的分支，最后Reset一下git reset HEAD^</p>
+<p><strong>了解了Git，那GitHub呢？</strong></p>
+<p>首先说GitHub的G和H是大写哦，它是一个商业网站，目前是全球最大的Git Server。为什么这么多人在用，并且代码都放上面？因为在GitHub上造假是非常麻烦的事情，而且我们知道，开发者都有懒惰的美德。因此，自己做过什么贡献，开发过什么项目一目了然，可以说，<strong>GitHub是开发者最好的简历。</strong></p>
+<p><strong>让本地与远端保持同步</strong><br>有时我们会在网站上直接更改，如果本地想保持最新，可以用<code>git pull --rebase</code> 。我们知道，这也算是一个合并的任务，因此也会在本地默认加上Commit，加上rebase的目的就是不要加这个关于合并的Commit<br><strong>本地推不上去什么鬼？</strong><br>有时本地push会报错<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git push</span><br><span class="line">To https://github.com/eddiekao/dummy-git.git</span><br><span class="line"> ! [rejected]        master -&gt; master (fetch first)</span><br></pre></td></tr></table></figure></p>
+<p>这是因为远端比本地的版本还新，Git不想这么做，解决办法如下：<br><strong>先拉再推</strong>，就是先从远端pull到最新版<code>git pull --rebase</code> ，如果合并没有冲突，再往上推<br>甚至还有一种：<code>git push -f</code>使用蛮力往上推，造成的影响就是可能会把共同开发者的版本覆盖掉，导致他们资料丢失【一般不用！】<br><strong>网上发现某人写的不错，想拷贝到本地看看</strong><br>使用<code>git clone</code>，可以选择HTTPS或者SSH，如果clone下来想保存不同的名称，可以在命令后面加目录名<br>git clone xxx doodle ，于是就把xxx上的整个内容（包括历史记录、分支、标签等）复制到本地一份，保存为doodle</p>
+<blockquote>
+<p>一般来讲，clone命令只需要用一次，并且命好名字，之后想追更新，直接用pull就好</p>
+</blockquote>
+<p><strong>小叉子Fork用起来</strong><br>Pull Request （PR）过程就是一个相互交流、共同开发的过程，事情是这样的：</p>
+<ul>
+<li>先是从GitHub上看到一个作者写的东西，自己感兴趣，于是自己先Fork一份原作者的文档到自己的账户下</li>
+<li>自己拥有所有修改权限，想怎么动就怎么动</li>
+<li>改完后，push回自己的账号，然后给原作者发通知，说你帮他搞了一点新功能，请查收</li>
+<li>作者如果满意，就会把你的工作merge到他的文档中</li>
+</ul>
+<p><strong>想要删除远端的分支</strong><br>比如本地的分支是master，远端服务器地址是origin表示【如果要本地修改远端仓库名称，可以用<code>git remote rename</code>; 或者修改远端仓库的URL： <code>git remote set-url origin url</code> 】</p>
+<blockquote>
+<p>复习一下：如果我们要将本地的文件推到远端，并且建立远端分支doodle，可以用git push -u origin master:doodle    就是说，将本地的master推上去后，本来默认是在远端建立一个相同名字的分支，但现在指定了叫doodle<br>这个origin怎么来的呢？是利用git remote add得到的，如果我们命名为huahua，那么也可以用huahua表示远端服务器的地址</p>
+</blockquote>
+<p>现在我们有了远端分支doodle，那么怎么删除它？<br>其实我们只需要把原来push操作中的本地分支变成空，就相当于删除了远端分支。也就是说，上传一个空的分支到远端git push origin :doodle</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/01/03/git你了解了多少/" data-id="cjqgmixvl001tuwfvl6y5t3c3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/01/03/Vue自定义指令/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Vue自定义指令</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/03/git你了解了多少/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/03/git你了解了多少/4145.png)" alt="git你了解了多少" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/03/git你了解了多少/" class="title">git你了解了多少</a></p>
+                            <p class="item-date"><time datetime="2019-01-03T11:38:32.000Z" itemprop="datePublished">2019-01-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/03/Vue自定义指令/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/03/Vue自定义指令/957e.png)" alt="Vue自定义指令" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/03/Vue自定义指令/" class="title">Vue自定义指令</a></p>
+                            <p class="item-date"><time datetime="2019-01-03T02:25:56.000Z" itemprop="datePublished">2019-01-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/02/vue组件/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/02/vue组件/27_549.png)" alt="vue组件" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/02/vue组件/" class="title">vue组件</a></p>
+                            <p class="item-date"><time datetime="2019-01-02T02:18:53.000Z" itemprop="datePublished">2019-01-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/29/vue表单/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/29/vue表单/27_549.png)" alt="vue表单" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/29/vue表单/" class="title">vue表单</a></p>
+                            <p class="item-date"><time datetime="2018-12-29T09:33:43.000Z" itemprop="datePublished">2018-12-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/29/Vue-js事件处理机制/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/12/29/Vue-js事件处理机制/b78f.jpg)" alt="Vue.js事件处理机制" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/29/Vue-js事件处理机制/" class="title">Vue.js事件处理机制</a></p>
+                            <p class="item-date"><time datetime="2018-12-29T07:41:12.000Z" itemprop="datePublished">2018-12-29</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 15.71px;">JavaScript</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript库/" style="font-size: 18.57px;">javascript库</a> <a href="/tags/maven/" style="font-size: 18.57px;">maven</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 14.29px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 17.14px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/01/03/git你了解了多少/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
