@@ -21,7 +21,7 @@
 <meta property="og:description" content="定义组件 (Component) 是 Vue.js 最强大的功能之一。组件可以扩展 HTML 元素，封装可重用的代码。在较高层面上，组件是自定义元素，Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以表现为用 is 特性进行了扩展的原生 HTML 元素。所有的 Vue 组件同时也都是 Vue 的实例，所以可接受相同的选项对象 (除了一些根级特有的选项) 并提供相同的生命周期钩子。1.">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/01/02/vue组件/27_549.png">
-<meta property="og:updated_time" content="2019-01-02T08:03:57.457Z">
+<meta property="og:updated_time" content="2019-01-02T10:23:22.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue组件">
 <meta name="twitter:description" content="定义组件 (Component) 是 Vue.js 最强大的功能之一。组件可以扩展 HTML 元素，封装可重用的代码。在较高层面上，组件是自定义元素，Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以表现为用 is 特性进行了扩展的原生 HTML 元素。所有的 Vue 组件同时也都是 Vue 的实例，所以可接受相同的选项对象 (除了一些根级特有的选项) 并提供相同的生命周期钩子。1.">
@@ -226,10 +226,8 @@
 
 那不用看下去了，以后都用component了。
 </code></pre><p><img src="/2019/01/02/vue组件/22311.jpg" alt=""><br>  所以说extend到底有什么优势呢？只要绕开官网的坑就明白了，生成的实例并不一定要”挂载到一个元素上”。也就是</p>
-<pre><code>new 实例().$mount() 的 $mount()$mount()$mount()$mount()$mount()......（重要的坑要提醒一百遍）的参数可以为空，但他依旧能生成一个实例。
-</code></pre><p>   那么问题来了，生成的实例不挂载到dom文档流里面，有什么用？木有关系！生成的实例里面有$el这个参数，记录了生成的dom啊，这个dom你想插哪里插哪里。（document.body.appendChild( 实例.$el）)<br>    总结：component是extend的亲民版，但在实现某些特殊需求的时候，就需要用到extend，如alert组件，你肯定希望alert可以动态插入到body中，而不需要在dom文档流中放一个莫名其妙的alert，大部分时间他还是隐藏的。（你能用component实现我服你）</p>
-<p><code>理解 Vue.extend() 和 Vue.component() 的区别非常重要。</code><br>在Vue.js中，Vue本身是一个constructor。</p>
-<p>Vue.extend() 是一个继承于方法的 class，参数是一个包含组件选项的对象。它的目的是创建一个Vue的子类并且返回相应的 constructor。由于 Vue 本身是一个构造函数，Vue.extend() 是一个<strong>类继承方法</strong>。它用来创建一个 Vue 的子类并返回其构造函数。而另一方面，Vue.component() 是一个类似 Vue.directive() 和 Vue.filter() 的资源注册方法,它的目的是给指定的一个constructor一个String类型的ID，之后Vue.js可以把它用作模板，实际上当你直接传递选项给Vue.component()的时候，它会在背后调用Vue.extend()。它作用是建立指定的构造函数与 ID 字符串间的关系，从而让 Vue.js 能在模板中使用它。直接向 Vue.component() 传递 options 时，它会在内部调用 Vue.extend()。</p>
+<p>new 实例().$mount() 的 $mount()$mount()$mount()$mount()$mount()……（重要的坑要提醒一百遍）的参数可以为空，但他依旧能生成一个实例。<br>   那么问题来了，生成的实例不挂载到dom文档流里面，有什么用？木有关系！生成的实例里面有$el这个参数，记录了生成的dom啊，这个dom你想插哪里插哪里。（document.body.appendChild( 实例.$el）)<br>    总结：component是extend的亲民版，但在实现某些特殊需求的时候，就需要用到extend，如alert组件，你肯定希望alert可以动态插入到body中，而不需要在dom文档流中放一个莫名其妙的alert，大部分时间他还是隐藏的。（你能用component实现我服你）</p>
+<p><strong><code>理解 Vue.extend() 和 Vue.component() 的区别非常重要。</code></strong><br>在Vue.js中，Vue本身是一个constructor。Vue.extend() 是一个继承于方法的 class，参数是一个包含组件选项的对象。它的目的是创建一个Vue的子类并且返回相应的 constructor。由于 Vue 本身是一个构造函数，Vue.extend() 是一个<strong>类继承方法</strong>。它用来创建一个 Vue 的子类并返回其构造函数。而另一方面，Vue.component() 是一个类似 Vue.directive() 和 Vue.filter() 的资源注册方法,它的目的是给指定的一个constructor一个String类型的ID，之后Vue.js可以把它用作模板，实际上当你直接传递选项给Vue.component()的时候，它会在背后调用Vue.extend()。它作用是建立指定的构造函数与 ID 字符串间的关系，从而让 Vue.js 能在模板中使用它。直接向 Vue.component() 传递 options 时，它会在内部调用 Vue.extend()。</p>
 <p>Vue.js 支持两种不同风格的调用组件的 API：一种是基于类的，命令式的，Backbone 类型的API；另一种是基于标记语言的，声明式的，Web组件类型的API。<br>如果你感到困惑，想一下通过 new Image() 和通过 <img> 标签这两种创建图片元素的方式。它们都在各自的适用场景下发挥着作用，为了尽可能灵活，Vue.js 同时提供这两种方式。</p>
 <p><code>下面看下vue.extend，new vue 和vue.component的区别</code><br>extend 是构造一个组件的语法器. 你给它参数 他给你一个组件 然后这个组件<br>你可以作用到Vue.component 这个全局注册方法里， 也可以在任意vue模板里使用apple组件<br><code>var apple = Vue.extend({ …. }) Vue.component(‘apple&#39;,apple)</code><br>你可以作用到vue实例或者某个组件中的components属性中并在内部使用apple组件<br><code>new Vue({ components:{ apple:apple } })</code><br>Vue.component 你可以创建 ，也可以取组件 例如下<br><code>var apple = Vue.component(‘apple&#39;)</code> 而new vue 是新建一个vue对象 所以可以理解为<code>new vue &lt; vue.extand &lt; vue.component</code></p>
 <h2 id="数据流-prop"><a href="#数据流-prop" class="headerlink" title="数据流 prop"></a>数据流 prop</h2><p><strong>通过 prop 传递数据</strong><br>默认情况下，组件有<code>独立作用域</code>。这意味着你无法在子组件的模板中引用父级的数据。为了传递数据到拥有独立作用域的子组件中，我们需要用到 prop。<br>一个 “prop” 是指组件的数据对象上的一个预期会从父级组件取得的字段。<br>父组件的数据需要通过 props 把数据传给子组件，子组件需要显式地用 props 选项声明 “prop”：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&apos;child&apos;, &#123;</span><br><span class="line">  // 声明 props</span><br><span class="line">  props: [&apos;msg&apos;],</span><br><span class="line">  // prop 可以在模板内部被使用，</span><br><span class="line">  // 也可以类似 `this.msg` 这样来赋值</span><br><span class="line">  template: &apos;&lt;span&gt;&#123;&#123;msg&#125;&#125;&lt;/span&gt;&apos;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
@@ -272,8 +270,8 @@
 <p>这里的命令 <code>(v-show 和 v-on)</code> 会在父作用域编译，所以 <code>active</code> 和 <code>onClick</code> 的取值取决于父级。任何子模版中的命令和插值都会在子作用域中编译。这样使得上下级组件间更好地分离。</p>
 <p><strong>组件生命周期</strong><br>每一个组件，或者说 Vue 的实例，都有着自己的生命周期：它会被创建、编译、插入、移除，最终销毁。在这每一个时间点，实例都会触发相应的事件，而在创建实例或者定义组件时，我们可以传入生命周期钩子函数来响应这些事件。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var MyComponent = Vue.extend(&#123;</span><br><span class="line">  created: function () &#123;</span><br><span class="line">    console.log(&apos;An instance of MyComponent has been created!&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 <p><strong>动态组件</strong><br>你可以使用内置的 <code>&lt;component&gt;</code> 元素在组件间动态切换来实现 “页面切换”：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">  el: &apos;body&apos;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    currentView: &apos;home&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    home: &#123; /* ... */ &#125;,</span><br><span class="line">    posts: &#123; /* ... */ &#125;,</span><br><span class="line">    archive: &#123; /* ... */ &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;component is=&quot;&#123;&#123;currentView&#125;&#125;&quot;&gt;</span><br><span class="line">  `&lt;!-- 内容随 vm.currentview 一同改变！ --&gt;</span><br><span class="line">&lt;/component&gt;</span><br></pre></td></tr></table></figure>
-<p>如果希望被切换出去的组件保持存活，从而保留它的当前状态或者避免反复重新渲染，你可以加上 <code>keep-alive</code> 特性参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;component is=&quot;&#123;&#123;currentView&#125;&#125;&quot; keep-alive&gt;</span><br><span class="line">  `&lt;!-- 不活跃的的组件会被缓存！ --&gt;</span><br><span class="line">&lt;/component&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;component is=&quot;&#123;&#123;currentView&#125;&#125;&quot;&gt;</span><br><span class="line"> &lt;!-- 内容随 vm.currentview 一同改变！ --&gt;</span><br><span class="line">&lt;/component&gt;</span><br></pre></td></tr></table></figure>
+<p>如果希望被切换出去的组件保持存活，从而保留它的当前状态或者避免反复重新渲染，你可以加上 <code>keep-alive</code> 特性参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;component is=&quot;&#123;&#123;currentView&#125;&#125;&quot; keep-alive&gt;</span><br><span class="line">  &lt;!-- 不活跃的的组件会被缓存！ --&gt;</span><br><span class="line">&lt;/component&gt;</span><br></pre></td></tr></table></figure></p>
 <p><strong>过渡控制</strong><br>有两个额外的特性参数能够支持对需要渲染或过渡的组件进行高级控制。</p>
 <h3 id="transition-mode-过渡模式"><a href="#transition-mode-过渡模式" class="headerlink" title="transition-mode 过渡模式"></a><code>transition-mode</code> 过渡模式</h3><p><code>transition-mode</code> 特性参数允许指定两个动态组件之间的过渡应如何进行。</p>
 <p>默认情况下，进入组件和退出组件的过渡是同时进行的。这个特性参数允许设置成另外两种模式：</p>
@@ -310,7 +308,7 @@
 
 
 
-    <a data-url="http://yoursite.com/2019/01/02/vue组件/" data-id="cjqew5hal00258gfvxtoip214" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2019/01/02/vue组件/" data-id="cjqg0gdqc002fhsfvmd556yqa" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -448,6 +446,16 @@
         
 <nav id="article-nav">
     
+        <a href="/2019/01/03/Vue自定义指令/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Vue自定义指令
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
     
         <a href="/2018/12/29/vue表单/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
@@ -469,6 +477,26 @@
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/03/Vue自定义指令/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/03/Vue自定义指令/957e.png)" alt="Vue自定义指令" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/03/Vue自定义指令/" class="title">Vue自定义指令</a></p>
+                            <p class="item-date"><time datetime="2019-01-03T02:25:56.000Z" itemprop="datePublished">2019-01-03</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -550,26 +578,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2018/12/29/vue的属性/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/2018/12/29/vue的属性/eb33.jpg)" alt="vue的属性" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2018/12/29/vue的属性/" class="title">vue的属性</a></p>
-                            <p class="item-date"><time datetime="2018-12-29T06:02:11.000Z" itemprop="datePublished">2018-12-29</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -589,7 +597,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
         </div>
     </div>
 
@@ -599,7 +607,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -609,7 +617,7 @@
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/JavaScript/" style="font-size: 15.71px;">JavaScript</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript库/" style="font-size: 17.14px;">javascript库</a> <a href="/tags/maven/" style="font-size: 18.57px;">maven</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 14.29px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 17.14px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+            <a href="/tags/JavaScript/" style="font-size: 15.71px;">JavaScript</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript库/" style="font-size: 18.57px;">javascript库</a> <a href="/tags/maven/" style="font-size: 18.57px;">maven</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 14.29px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 17.14px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
         </div>
     </div>
 
