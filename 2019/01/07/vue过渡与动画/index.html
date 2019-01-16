@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>vue过渡与动画 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="javascript库">
+    
+    <meta name="description" content="过渡Vue 在插入、更新或者移除 DOM 时，提供多种不同方式的应用过渡效果。 Vue 提供了内置的过渡封装组件，该组件用于包裹要实现过渡效果的组件。在vue中，提供给我们一个很好写过渡动画的内置组件transition 语法格式123&amp;lt;transition name = &amp;quot;fade&amp;quot;&amp;gt;   &amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/transitio">
+<meta name="keywords" content="javascript库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue过渡与动画">
+<meta property="og:url" content="http://yoursite.com/2019/01/07/vue过渡与动画/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="过渡Vue 在插入、更新或者移除 DOM 时，提供多种不同方式的应用过渡效果。 Vue 提供了内置的过渡封装组件，该组件用于包裹要实现过渡效果的组件。在vue中，提供给我们一个很好写过渡动画的内置组件transition 语法格式123&amp;lt;transition name = &amp;quot;fade&amp;quot;&amp;gt;   &amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/transitio">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/vue过渡与动画/timg1.jpg">
+<meta property="og:updated_time" content="2019-01-16T08:27:49.070Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue过渡与动画">
+<meta name="twitter:description" content="过渡Vue 在插入、更新或者移除 DOM 时，提供多种不同方式的应用过渡效果。 Vue 提供了内置的过渡封装组件，该组件用于包裹要实现过渡效果的组件。在vue中，提供给我们一个很好写过渡动画的内置组件transition 语法格式123&amp;lt;transition name = &amp;quot;fade&amp;quot;&amp;gt;   &amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/transitio">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/07/vue过渡与动画/timg1.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-vue过渡与动画" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        vue过渡与动画
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/01/07/vue过渡与动画/" class="article-date">
+            <time datetime="2019-01-07T08:12:40.000Z" itemprop="datePublished">2019-01-07</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/javascript库/">javascript库</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="过渡"><a href="#过渡" class="headerlink" title="过渡"></a>过渡</h2><p>Vue 在插入、更新或者移除 DOM 时，提供多种不同方式的应用过渡效果。</p>
+<p>Vue 提供了内置的过渡封装组件，该组件用于包裹要实现过渡效果的组件。<br>在vue中，提供给我们一个很好写过渡动画的内置组件transition</p>
+<p><strong>语法格式</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;transition name = &quot;fade&quot;&gt;</span><br><span class="line">   &lt;div&gt;&lt;/div&gt;</span><br><span class="line">&lt;/transition&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这时候，我们命名了这个动画的名字叫fade</p>
+<p>vue给动画配置了4个类名来控制动画的变化自由</p>
+<p>v-enter: 定义进入过渡的开始状态。在元素被插入时生效，在下一个帧移除。<br>v-enter-active: 定义进入过渡的结束状态。在元素被插入时生效，在 transition/animation 完成之后移除。<br>v-leave: 定义离开过渡的开始状态。在离开过渡被触发时生效，在下一个帧移除。<br>v-leave-active: 定义离开过渡的结束状态。在离开过渡被触发时生效，在 transition/animation 完成之后移除。</p>
+<p><img src="/2019/01/07/vue过渡与动画/timg1.jpg" alt=""></p>
+<p>使用animate.css必须使用vue的  enter-active-class 和 leave-active-class;后面紧跟animated类名和想使用的动画名称(区分大小写)；<br>animate 使用的是@keyframes动画，fade-enter-active,<br>fade-leave-active加的是transition动画。</p>
+<p><img src="/2019/01/07/vue过渡与动画/timg.jpg" alt=""><br>transition动画和transform动画时长不一样，使用type=’transition’以transition动画时长为准。或者 绑定属性:duration=”5000”自定义时长;<br>fade名称与<transition name="fade">中name一致,<br>appear,appear-active-class实现页面加载的初次动画</transition></p>
+<p>当show = true时:</p>
+<p>这里的fold-enter，是在元素显示的一瞬间被加入，然后瞬间被移除，在上面的例子中，example这个块状元素本来因为有了transform: translate3d(0, -100px, 0)这个样式，<br>所以被上移了100px,但是因为fold-enter，所以将example这个块状元素移到了原位，但是fold-enter因为瞬间就被移除掉了，所以这时候的元素的样式又变成了<br>transform: translate3d(0, -100px, 0),但是这时候fold-enter-active这个样式就生效了，因为设置了transition: all .5s,所以元素会在0.5s的时间内上移100px,在过<br>渡动画结束之后,fold-enter-active这个类马上被移除.</p>
+<p>当show = false时:</p>
+<p>example不会马上消失，这个时候fold-leave-active这个类就起作用了,example这时的位置是在-100px，<br>fold-leave-active定义的是过渡的结束状态：transform: translate3d(0, 0, 0);，但是同时又设置了transition: all .5s，<br>所以这时元素会在0.5s的时间内下移100px.之后fold-leave-active被移除.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">&lt;title&gt;Document&lt;/title&gt;   </span><br><span class="line">&lt;style&gt;</span><br><span class="line">    /* .v-enter-active,.v-leave-active&#123;</span><br><span class="line">        transition:all 2s;</span><br><span class="line">    &#125;</span><br><span class="line">    .v-enter,.v-leave-to&#123;</span><br><span class="line">        margin-left: 100px;</span><br><span class="line">    &#125;</span><br><span class="line">    .v-enter-to,.v-leave&#123;</span><br><span class="line">        margin-left:0px;</span><br><span class="line">    &#125; */</span><br><span class="line">    .show-enter-active,.show-leave-active&#123;</span><br><span class="line">        transition:all 2s;</span><br><span class="line">    &#125;</span><br><span class="line">    .show-enter,.show-leave-to&#123;</span><br><span class="line">        margin-left: 100px;</span><br><span class="line">    &#125;</span><br><span class="line">    .show-enter-to,.show-leave&#123;</span><br><span class="line">        margin-left:0px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;script src=&quot;../vue2.4.4.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;!-- 定义一个vue的管理区块，（MVVM中的View） --&gt;</span><br><span class="line">&lt;!-- </span><br><span class="line">     如果要使用动画效果:</span><br><span class="line">        第一种方式是使用transition标签加css样式结合完成：</span><br><span class="line">        1.给需要运动的元素加入transition标签</span><br><span class="line">        2.默认情况下如果控制了transition标签元素的显示和隐藏它会默认</span><br><span class="line">        给这个元素加入一些class</span><br><span class="line">            隐藏: 加入类名:</span><br><span class="line">                    v-leave  </span><br><span class="line">                    v-leave-active </span><br><span class="line">                    v-leave-to</span><br><span class="line"></span><br><span class="line">            显示: 加入类名:</span><br><span class="line">                    v-enter  准备进行运动的状态(起始状态)</span><br><span class="line">                    v-enter-active  整个运动状态</span><br><span class="line">                    v-enter-to  整个运动状态(强调运动的结果，结束状态)</span><br><span class="line">        3.将来如果给transition设置一个name为“show”以后,将来所有的类的名称都需要改变，默认前缀为v-</span><br><span class="line">          如果加入了name属性，需要将v- 改为show-</span><br><span class="line"> --&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">      &lt;button @click=&quot;toggle&quot;&gt;显示/隐藏&lt;/button&gt;&lt;br&gt;</span><br><span class="line">      &lt;!-- &lt;transition &gt; --&gt;</span><br><span class="line">      &lt;transition name=&quot;show&quot; &gt;</span><br><span class="line">            &lt;span class=&quot;show&quot; v-show=&quot;isshow&quot;&gt;it 传说&lt;/span&gt;</span><br><span class="line">      &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">    // 实例化vue对象（MVVM中的View Model）</span><br><span class="line">    new Vue(&#123;</span><br><span class="line">        // vm控制的区块为id为app的div，此div中的所有vue指令均可以被vm解析</span><br><span class="line">        el:&apos;#app&apos;,</span><br><span class="line">        data:&#123;</span><br><span class="line">        // 数据 （MVVM中的Model）</span><br><span class="line">            isshow:false</span><br><span class="line">        &#125;,</span><br><span class="line">        methods:&#123;</span><br><span class="line">            toggle:function()&#123;</span><br><span class="line">                this.isshow = !this.isshow;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .show &#123;</span><br><span class="line">            transition: all 0.5s;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;script src=&quot;../vue2.4.4.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;!-- 定义一个vue的管理区块，（MVVM中的View） --&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">        &lt;button @click=&quot;toggle&quot;&gt;显示/隐藏&lt;/button&gt;&lt;br&gt;</span><br><span class="line">        &lt;transition @before-enter=&quot;beforeEnter&quot; @enter=&quot;enter&quot; @after-enter=&quot;afterEnter&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;show&quot;  v-show=&quot;isshow&quot;&gt;itcast 传智&lt;/div&gt;</span><br><span class="line">        &lt;/transition&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    // 实例化vue对象（MVVM中的View Model）</span><br><span class="line">    new Vue(&#123;</span><br><span class="line">        // vm控制的区块为id为app的div，此div中的所有vue指令均可以被vm解析</span><br><span class="line">        el: &apos;#app&apos;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            // 数据 （MVVM中的Model）   </span><br><span class="line">            isshow: false</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            toggle: function () &#123;</span><br><span class="line">                this.isshow = !this.isshow;</span><br><span class="line">            &#125;,</span><br><span class="line">            // 以下三个与enter相关的方法只会在元素由隐藏变为显示的时候才会执行</span><br><span class="line">            // el:指的是当前调用这个方法的元素对象</span><br><span class="line">            // done:用来决定是否要执行后续的代码如果不执行这个方法，那么将来执行完before执行完enter以后动画就会停止  </span><br><span class="line">            beforeEnter: function (el) &#123;</span><br><span class="line">                console.log(&quot;beforeEnter&quot;);</span><br><span class="line">                // 当入场之前会执行 v-enter</span><br><span class="line">                el.style = &quot;padding-left:100px&quot;;</span><br><span class="line">            &#125;,</span><br><span class="line">            enter: function (el, done) &#123;</span><br><span class="line">                // 当进行的过程中每执行 v-enter-active</span><br><span class="line">                console.log(&quot;enter&quot;);</span><br><span class="line">                // 为了能让代码正常进行，在设置了结束状态后必须调用一下这个元素的</span><br><span class="line">                // offsetHeight / offsetWeight  只是为了让动画执行</span><br><span class="line">                el.offsetHeight;</span><br><span class="line"></span><br><span class="line">                // 结束的状态最后啊写在enter中</span><br><span class="line">                el.style = &quot;padding-left:0px&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                // 执行done继续向下执行</span><br><span class="line">                done();</span><br><span class="line">            &#125;,</span><br><span class="line">            afterEnter: function (el) &#123;</span><br><span class="line">                // 当执行完毕以后会执行</span><br><span class="line">                console.log(&quot;afterEnter&quot;);</span><br><span class="line">                this.isshow = false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/01/07/vue过渡与动画/" data-id="cjqyx38a80010lcfv0atm8pum" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/01/08/Vue混入/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Vue混入
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/01/06/VUE路由/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">VUE路由</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/08/Vue混入/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/08/Vue混入/&amp;gp=0.jpg)" alt="Vue混入" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/08/Vue混入/" class="title">Vue混入</a></p>
+                            <p class="item-date"><time datetime="2019-01-08T08:17:15.000Z" itemprop="datePublished">2019-01-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/07/vue过渡与动画/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/07/vue过渡与动画/timg1.jpg)" alt="vue过渡与动画" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/07/vue过渡与动画/" class="title">vue过渡与动画</a></p>
+                            <p class="item-date"><time datetime="2019-01-07T08:12:40.000Z" itemprop="datePublished">2019-01-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/06/VUE路由/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/06/VUE路由/timg.jpg)" alt="VUE路由" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/06/VUE路由/" class="title">VUE路由</a></p>
+                            <p class="item-date"><time datetime="2019-01-06T08:03:48.000Z" itemprop="datePublished">2019-01-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/04/node安装之解放你的系统盘/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/04/node安装之解放你的系统盘/8a38a.png)" alt="node安装之解放你的系统盘" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/04/node安装之解放你的系统盘/" class="title">node安装之解放你的系统盘</a></p>
+                            <p class="item-date"><time datetime="2019-01-04T05:07:13.000Z" itemprop="datePublished">2019-01-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/03/git你了解了多少/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/03/git你了解了多少/4145.png)" alt="git你了解了多少" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/03/git你了解了多少/" class="title">git你了解了多少</a></p>
+                            <p class="item-date"><time datetime="2019-01-03T11:38:32.000Z" itemprop="datePublished">2019-01-03</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/201/12/">十二月 0201</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/html/" style="font-size: 11.25px;">html</a> <a href="/tags/java/" style="font-size: 18.75px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 17.5px;">maven</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/orcal/" style="font-size: 12.5px;">orcal</a> <a href="/tags/python/" style="font-size: 13.75px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.25px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 16.25px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/01/07/vue过渡与动画/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
