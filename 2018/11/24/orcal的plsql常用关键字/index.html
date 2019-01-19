@@ -12,19 +12,19 @@
     
         <meta name="keywords" content="orcal">
     
-    <meta name="description" content="orcal的plsql操作： ##1.整体的框架之查询操作select 列名，带别名的列名，列值表达式或子查询查询结果列名称（多个时用逗号隔开）必要子句from锻炼、表名或子查询查询对象名称（多个时用逗号隔开、多个时带别名）dual用于一个没有查询对象的色了传统语句非必要子句with别名 as 子查询构造查询用的历史表（写在select前）inner join 表名或子查询内连接（左右表或子查询都">
+    <meta name="description" content="orcal的plsql操作： 1.整体的框架之查询操作select 列名，带别名的列名，列值表达式或子查询查询结果列名称（多个时用逗号隔开）必要子句from锻炼、表名或子查询查询对象名称（多个时用逗号隔开、多个时带别名）dual用于一个没有查询对象的色了传统语句非必要子句with别名 as 子查询构造查询用的历史表（写在select前）inner join 表名或子查询内连接（左右表或子查询都存在">
 <meta name="keywords" content="orcal">
 <meta property="og:type" content="article">
 <meta property="og:title" content="orcal的plsql常用关键字">
 <meta property="og:url" content="http://yoursite.com/2018/11/24/orcal的plsql常用关键字/index.html">
 <meta property="og:site_name" content="陈义的个人博客">
-<meta property="og:description" content="orcal的plsql操作： ##1.整体的框架之查询操作select 列名，带别名的列名，列值表达式或子查询查询结果列名称（多个时用逗号隔开）必要子句from锻炼、表名或子查询查询对象名称（多个时用逗号隔开、多个时带别名）dual用于一个没有查询对象的色了传统语句非必要子句with别名 as 子查询构造查询用的历史表（写在select前）inner join 表名或子查询内连接（左右表或子查询都">
+<meta property="og:description" content="orcal的plsql操作： 1.整体的框架之查询操作select 列名，带别名的列名，列值表达式或子查询查询结果列名称（多个时用逗号隔开）必要子句from锻炼、表名或子查询查询对象名称（多个时用逗号隔开、多个时带别名）dual用于一个没有查询对象的色了传统语句非必要子句with别名 as 子查询构造查询用的历史表（写在select前）inner join 表名或子查询内连接（左右表或子查询都存在">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2018/11/24/orcal的plsql常用关键字/t014deeb6e160264fa6.jpg">
-<meta property="og:updated_time" content="2018-11-29T11:33:23.531Z">
+<meta property="og:updated_time" content="2019-01-17T09:29:31.393Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="orcal的plsql常用关键字">
-<meta name="twitter:description" content="orcal的plsql操作： ##1.整体的框架之查询操作select 列名，带别名的列名，列值表达式或子查询查询结果列名称（多个时用逗号隔开）必要子句from锻炼、表名或子查询查询对象名称（多个时用逗号隔开、多个时带别名）dual用于一个没有查询对象的色了传统语句非必要子句with别名 as 子查询构造查询用的历史表（写在select前）inner join 表名或子查询内连接（左右表或子查询都">
+<meta name="twitter:description" content="orcal的plsql操作： 1.整体的框架之查询操作select 列名，带别名的列名，列值表达式或子查询查询结果列名称（多个时用逗号隔开）必要子句from锻炼、表名或子查询查询对象名称（多个时用逗号隔开、多个时带别名）dual用于一个没有查询对象的色了传统语句非必要子句with别名 as 子查询构造查询用的历史表（写在select前）inner join 表名或子查询内连接（左右表或子查询都存在">
 <meta name="twitter:image" content="http://yoursite.com/2018/11/24/orcal的plsql常用关键字/t014deeb6e160264fa6.jpg">
     
 
@@ -178,11 +178,19 @@
         
         <div class="article-entry" itemprop="articleBody">
             <p><strong>orcal的plsql操作：</strong><br><img src="/2018/11/24/orcal的plsql常用关键字/t014deeb6e160264fa6.jpg" alt=""></p>
-<p>##1.整体的框架之查询操作<br>select 列名，带别名的列名，列值表达式或子查询<br>查询结果列名称（多个时用逗号隔开）<br><em>必要子句</em><br>from锻炼、表名或子查询<br>查询对象名称（多个时用逗号隔开、多个时带别名）<br>dual用于一个没有查询对象的色了传统语句<br><em>非必要子句</em><br>with别名 as 子查询<br>构造查询用的历史表（写在select前）<br>inner join 表名或子查询<br>内连接（左右表或子查询都存在时返回结果）<br>left join 表名或子查询<br>左连接（左表和子查询存在时就返回结果）<br>right join 表名或子查询<br>右连接（右表或子查询存在时就返回结果）<br>where 一个布尔运算表达式<br>筛选掉建的的布尔运算（单行数据）列值限制<br>group by 列名或带别名的列名<br>合并列分组聚合（多个时用逗号隔开）<br>having 一个布尔运算表达式<br>筛选条件的布尔运算（聚合函数）行值限制<br>order by/order by desc 一个可以作为结果列的列值表达式<br>正序排序/倒序排序（对字符串和数字类型的排序机制是不同的）desc在尾部<br>union/union all 与当前select返回的=结果列数量类型一致的select语句<br>排除重复拼接/完全拼接（结果列必须完全相同）</p>
-<p><strong>2.一些概念总体解释：</strong><br>DML(data manipulation language)：<br>它们是SELECT、UPDATE、INSERT、DELETE，就象它的名字一样，这4条命令是用来对数据库里的数据进行操作的语言<br>DDL(data definition language)<br>DDL比DML要多，主要的命令有CREATE、ALTER、DROP等，DDL主要是用在定义或改变表(TABLE)的结构，数据类型，表之间的链接和约束等初始化工作上，他们大多在建立表时使用<br>DCL(Data Control Language)：<br>是数据库控制功能。是用来设置或更改数据库用户或角色权限的语句，包括(grant,deny,revoke等)语句。在默认状态下，只有sysadmin,dbcreator,db_owner或db_securityadmin等人员才有权力执行DCL<br><strong>3.一些操作</strong><br>1.daul做为空表的操作<br>eg: 将sql操作当计算机用：<br>select 100<em>20 from dual;<br>查询当前日期：<br>select to_char(sysdate,’yyyy-mm-dd,hh24:mi:ss’) from dual;<br>2.连接字符串<br>eg:select 列1 | |列2 from 表1;<br>select concat(列1,列2) from 表1;<br>3.视图中不能使用order by，但可用group by取代来达到排序目的<br> create view a as select b1,b2 from b group by b1,b2;<br>4.删除重复行<br>SELECT语句中使用ALL或DISTINCT选项来显示表中符合条件的所有行或删除其中重复的数据行，默认为ALL。使用DISTINCT选项时，对于所有重复的数据行在SELECT返回的结果集合中只保留一行。<br>select distinct(列1) from 表1；<br>5.限制返回的行数（sqlserver）<br>使用TOP n [PERCENT]选项限制返回的数据行数，TOP n说明返回n行，而TOP n PERCENT时，说明n是表示一百分数，指定返回的行数等于总行数的百分之几。<br>例如：<br>代码:SELECT TOP 2 </em> FROM <code>testtable</code><br>代码:SELECT TOP 20 PERCENT <em> FROM <code>testtable</code><br><strong>对于orcal是使用rownum,且只有=1或者小于任意值：</strong><br>SELECT  </em> FROM <code>testtable</code> where 列1=“” and rownum&lt;10</p>
+<h2 id="1-整体的框架之查询操作"><a href="#1-整体的框架之查询操作" class="headerlink" title="1.整体的框架之查询操作"></a>1.整体的框架之查询操作</h2><p>select 列名，带别名的列名，列值表达式或子查询<br>查询结果列名称（多个时用逗号隔开）<br><em>必要子句</em><br>from锻炼、表名或子查询<br>查询对象名称（多个时用逗号隔开、多个时带别名）<br>dual用于一个没有查询对象的色了传统语句<br><em>非必要子句</em><br>with别名 as 子查询<br>构造查询用的历史表（写在select前）<br>inner join 表名或子查询<br>内连接（左右表或子查询都存在时返回结果）<br>left join 表名或子查询<br>左连接（左表和子查询存在时就返回结果）<br>right join 表名或子查询<br>右连接（右表或子查询存在时就返回结果）<br>where 一个布尔运算表达式<br>筛选掉建的的布尔运算（单行数据）列值限制<br>group by 列名或带别名的列名<br>合并列分组聚合（多个时用逗号隔开）<br>having 一个布尔运算表达式<br>筛选条件的布尔运算（聚合函数）行值限制<br>order by/order by desc 一个可以作为结果列的列值表达式<br>正序排序/倒序排序（对字符串和数字类型的排序机制是不同的）desc在尾部<br>union/union all 与当前select返回的=结果列数量类型一致的select语句<br>排除重复拼接/完全拼接（结果列必须完全相同）</p>
+<p><strong>2.一些概念总体解释：</strong></p>
+<ul>
+<li>数据查询语言DQL(Data QueryLanguage):<br>用于检索数据库中的数据，主要是select语句</li>
+<li>数据操纵语言DML(data manipulation language)：<br>它们是UPDATE、INSERT、DELETE，就象它的名字一样，这3条命令是用来对数据库里的数据进行操作的语言</li>
+<li>事务控制语言TCL(Transaction Control Language):<br>用于维护数据的一致性，包括commit、rollback、savepoint三条语句。commit用于提交对数据库的更改，rollback语句用于取消对数据库的更改，savepoint则用于设置保存点。</li>
+<li>数据定义语言DDL(data definition language):<br>DDL比DML要多，主要的命令有CREATE、ALTER、DROP等，DDL主要是用在定义或改变表(TABLE)的结构，数据类型，表之间的链接和约束等初始化工作上，他们大多在建立表时使用</li>
+<li>数据控制语言DCL(Data Control Language)：<br>是数据库控制功能。是用来设置或更改数据库用户或角色权限的语句，包括(grant,deny,revoke等)语句。在默认状态下，只有sysadmin,dbcreator,db_owner或db_securityadmin等人员才有权力执行DCL<br><strong>3.一些操作</strong><br>1.daul做为空表的操作<br>eg: 将sql操作当计算机用：<br>select 100<em>20 from dual;<br>查询当前日期：<br>select to_char(sysdate,’yyyy-mm-dd,hh24:mi:ss’) from dual;<br>2.连接字符串<br>eg:select 列1 | |列2 from 表1;<br>select concat(列1,列2) from 表1;<br>3.视图中不能使用order by，但可用group by取代来达到排序目的<br>create view a as select b1,b2 from b group by b1,b2;<br>4.删除重复行<br>SELECT语句中使用ALL或DISTINCT选项来显示表中符合条件的所有行或删除其中重复的数据行，默认为ALL。使用DISTINCT选项时，对于所有重复的数据行在SELECT返回的结果集合中只保留一行。<br>select distinct(列1) from 表1；<br>5.限制返回的行数（sqlserver）<br>使用TOP n [PERCENT]选项限制返回的数据行数，TOP n说明返回n行，而TOP n PERCENT时，说明n是表示一百分数，指定返回的行数等于总行数的百分之几。<br>例如：<br>代码:SELECT TOP 2 </em> FROM <code>testtable</code><br>代码:SELECT TOP 20 PERCENT <em> FROM <code>testtable</code><br><strong>对于orcal是使用rownum,且只有=1或者小于任意值：</strong><br>SELECT  </em> FROM <code>testtable</code> where 列1=“” and rownum&lt;10</li>
+</ul>
 <p>6.对于decode作为复合函数可以用于组合连接字段，<br>eg：decode（列，判断值，返回值1，返回值2）<br>当判断值不存在时返回返回值2，该复合函数还可以继续加判断值和返回值。</p>
 <p>7.对于构建程序流程处理<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">procedure</span> cy_del_dikuai(U_BDCDYH <span class="keyword">IN</span> VARCHAR2) <span class="keyword">is</span></span><br><span class="line">U_MYVAR varchar2(<span class="number">50</span>);</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">select</span> x.bdcdyid <span class="keyword">into</span> U_MYVAR <span class="keyword">from</span> bdcs_shyqzd_xz x <span class="keyword">WHERE</span> x.BDCDYH=U_BDCDYH <span class="keyword">and</span> <span class="keyword">rownum</span>=<span class="number">1</span>;</span><br><span class="line">  if U_MYVAR is not null then</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">delete</span> <span class="keyword">from</span> bdcs_shyqzd_xz x <span class="keyword">where</span> x.bdcdyid=U_MYVAR;</span><br><span class="line">  <span class="keyword">commit</span>;</span><br><span class="line">  <span class="keyword">delete</span> <span class="keyword">from</span> bdck_shyqzd_xz b <span class="keyword">where</span> b.bdcdyid=U_MYVAR;</span><br><span class="line">  <span class="keyword">commit</span>;</span><br><span class="line">  <span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line"><span class="keyword">end</span> cy_del_dikuai;</span><br></pre></td></tr></table></figure></p>
-<p>结果引用 call cy_del_dikuai(变量)便可以直接进行。</p>
+<p>结果引用 call cy_del_dikuai(变量)便可以直接进行。<br>8.分组查询<br>（1）select a,b from c group by a,b order by a;<br>查询c表，对a,b进行分组，列中的元素根据a值进行从小到大排列，同一类型的b分组在一起。<br>（2）select a,avg(b),sum(b),max(b),count(a) from z group by a where rownum&lt;=10;<br>对a进行分组，计算平均b的平均、总和，最高，行数。<br>注意：查询字段中有sum、AVG、max类似的聚合函数，那么其他字段必须要在group by中出现，通俗的说group by后面的字段不能少于查询中的非聚合字段。</p>
+<p>9.子查询<br>在执行数据操作中，如果某个操作需要依赖于另一个select语句的查询结果，那么就可以吧select语句嵌入到该操作语句中，这样就形成了一个子查询，子查询通常用于where子句中。<br>在使用子查询时，应注意以下规则：<br>a.子查询必须用“()”括起来<br>b.子查询中不能包含order by子句（order by子句只能对最终结果排序）<br>c.子查询允许嵌套多层，但不能超过255层</p>
 
         </div>
         <footer class="article-footer">
@@ -190,7 +198,7 @@
 
 
 
-    <a data-url="http://yoursite.com/2018/11/24/orcal的plsql常用关键字/" data-id="cjqyx38a0000ulcfvxvhuulsp" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/11/24/orcal的plsql常用关键字/" data-id="cjr3i25020010qcfve2uayaq7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -363,6 +371,46 @@
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2019/01/18/json专辑/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/18/json专辑/2d82.jpg)" alt="json专辑" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/18/json专辑/" class="title">json专辑</a></p>
+                            <p class="item-date"><time datetime="2019-01-18T09:39:46.000Z" itemprop="datePublished">2019-01-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/10/javaweb放弃jsp，做了前后分离，而现在的你依然全栈/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/10/javaweb放弃jsp，做了前后分离，而现在的你依然全栈/gp=0.jpg)" alt="javaweb放弃jsp，做了前后分离，而现在的你依然全栈" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/10/javaweb放弃jsp，做了前后分离，而现在的你依然全栈/" class="title">javaweb放弃jsp，做了前后分离，而现在的你依然全栈</a></p>
+                            <p class="item-date"><time datetime="2019-01-10T08:06:58.000Z" itemprop="datePublished">2019-01-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2019/01/08/Vue混入/" class="thumbnail">
     
     
@@ -420,46 +468,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2019/01/04/node安装之解放你的系统盘/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/2019/01/04/node安装之解放你的系统盘/8a38a.png)" alt="node安装之解放你的系统盘" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2019/01/04/node安装之解放你的系统盘/" class="title">node安装之解放你的系统盘</a></p>
-                            <p class="item-date"><time datetime="2019-01-04T05:07:13.000Z" itemprop="datePublished">2019-01-04</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2019/01/03/git你了解了多少/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/2019/01/03/git你了解了多少/4145.png)" alt="git你了解了多少" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2019/01/03/git你了解了多少/" class="title">git你了解了多少</a></p>
-                            <p class="item-date"><time datetime="2019-01-03T11:38:32.000Z" itemprop="datePublished">2019-01-03</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -479,7 +487,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/201/12/">十二月 0201</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/201/12/">十二月 0201</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -489,7 +497,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaScript/">javaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -499,7 +507,7 @@
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/html/" style="font-size: 11.25px;">html</a> <a href="/tags/java/" style="font-size: 18.75px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 17.5px;">maven</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/orcal/" style="font-size: 12.5px;">orcal</a> <a href="/tags/python/" style="font-size: 13.75px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.25px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 16.25px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+            <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/html/" style="font-size: 11.25px;">html</a> <a href="/tags/java/" style="font-size: 18.75px;">java</a> <a href="/tags/javaScript/" style="font-size: 10px;">javaScript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 17.5px;">maven</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/orcal/" style="font-size: 12.5px;">orcal</a> <a href="/tags/python/" style="font-size: 13.75px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.25px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 16.25px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
         </div>
     </div>
 
