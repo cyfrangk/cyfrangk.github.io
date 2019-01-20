@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>初识jQuery | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="javaScript">
+    
+    <meta name="description" content="什么是 jQuery ？jQuery是一个JavaScript函数库。jQuery是一个轻量级的”写的少，做的多”的JavaScript库。jQuery库包含以下功能：  HTML 元素选取 HTML 元素操作 CSS 操作 HTML 事件函数 JavaScript 特效和动画 HTML DOM 遍历和修改 AJAX Utilities提示： 除此之外，Jquery还提供了大量的插件。  jQue">
+<meta name="keywords" content="javaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识jQuery">
+<meta property="og:url" content="http://yoursite.com/2019/01/19/初识jQuery/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="什么是 jQuery ？jQuery是一个JavaScript函数库。jQuery是一个轻量级的”写的少，做的多”的JavaScript库。jQuery库包含以下功能：  HTML 元素选取 HTML 元素操作 CSS 操作 HTML 事件函数 JavaScript 特效和动画 HTML DOM 遍历和修改 AJAX Utilities提示： 除此之外，Jquery还提供了大量的插件。  jQue">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/01/19/初识jQuery/5024b.jpg">
+<meta property="og:updated_time" content="2019-01-20T07:37:50.842Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初识jQuery">
+<meta name="twitter:description" content="什么是 jQuery ？jQuery是一个JavaScript函数库。jQuery是一个轻量级的”写的少，做的多”的JavaScript库。jQuery库包含以下功能：  HTML 元素选取 HTML 元素操作 CSS 操作 HTML 事件函数 JavaScript 特效和动画 HTML DOM 遍历和修改 AJAX Utilities提示： 除此之外，Jquery还提供了大量的插件。  jQue">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/19/初识jQuery/5024b.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-初识jQuery" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        初识jQuery
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/01/19/初识jQuery/" class="article-date">
+            <time datetime="2019-01-19T13:31:11.000Z" itemprop="datePublished">2019-01-19</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/javaScript/">javaScript</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><strong>什么是 jQuery ？</strong><br>jQuery是一个JavaScript函数库。<br>jQuery是一个轻量级的”写的少，做的多”的JavaScript库。<br><img src="/2019/01/19/初识jQuery/5024b.jpg" alt=""><br>jQuery库包含以下功能：</p>
+<ul>
+<li>HTML 元素选取</li>
+<li>HTML 元素操作</li>
+<li>CSS 操作</li>
+<li>HTML 事件函数</li>
+<li>JavaScript 特效和动画</li>
+<li>HTML DOM 遍历和修改</li>
+<li>AJAX</li>
+<li>Utilities<br>提示： 除此之外，Jquery还提供了大量的插件。</li>
+</ul>
+<p><strong>jQuery 的功能概括</strong></p>
+<p>1、html 的元素选取<br>2、html的元素操作<br>3、html dom遍历和修改<br>4、js特效和动画效果<br>5、css操作<br>6、html事件操作<br>7、ajax异步请求方式</p>
+<h2 id="jQuery-语法"><a href="#jQuery-语法" class="headerlink" title="jQuery 语法"></a>jQuery 语法</h2><p>通过 jQuery，您可以选取（查询，query） HTML 元素，并对它们执行”操作”（actions）。</p>
+<p>jQuery 语法是通过选取 HTML 元素，并对选取的元素执行某些操作。</p>
+<p>基础语法：<strong> $(selector).action()</strong></p>
+<ul>
+<li>美元符号定义 jQuery</li>
+<li>选择符（selector）”查询”和”查找” HTML 元素</li>
+<li>jQuery 的 action() 执行对元素的操作<br>实例:</li>
+<li>$(this).hide() - 隐藏当前元素</li>
+<li>$(“p”).hide() - 隐藏所有 <p> 元素</p></li>
+<li>$(“p.test”).hide() - 隐藏所有 class=”test” 的 <p> 元素</p></li>
+<li>$(“#test”).hide() - 隐藏所有 id=”test” 的元素</li>
+</ul>
+<blockquote>
+<p>jQuery 使用的语法是 XPath 与 CSS 选择器语法的组合。</p>
+</blockquote>
+<p><strong>文档就绪事件</strong><br>您也许已经注意到在我们的实例中的所有 jQuery 函数位于一个 document ready 函数中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(document).ready(function()&#123;</span><br><span class="line"> </span><br><span class="line">   // 开始写 jQuery 代码...</span><br><span class="line"> </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>这是为了防止文档在完全加载（就绪）之前运行 jQuery 代码，即在 DOM 加载完成后才可以对 DOM 进行操作。</p>
+<p>如果在文档没有完全加载之前就运行函数，操作可能失败。下面是两个具体的例子：</p>
+<ul>
+<li>试图隐藏一个不存在的元素</li>
+<li>获得未完全加载的图像的大小<br><strong>提示</strong>：简洁写法（与以上写法效果相同）:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(function()&#123;</span><br><span class="line"> </span><br><span class="line">   // 开始写 jQuery 代码...</span><br><span class="line"> </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>以上两种方式你可以选择你喜欢的方式实现文档就绪后执行 jQuery 方法，下边与JavaScript入口函数比较一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.onload = function () &#123;</span><br><span class="line">    // 执行代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>jQuery 入口函数与 JavaScript 入口函数的区别：</p>
+<ul>
+<li>jQuery 的入口函数是在 html 所有标签(DOM)都加载之后，就会去执行。</li>
+<li>JavaScript 的 window.onload 事件是等到所有内容，包括外部图片之类的文件加载完后，才会执行。</li>
+</ul>
+<h2 id="jQuery-选择器"><a href="#jQuery-选择器" class="headerlink" title="jQuery 选择器"></a>jQuery 选择器</h2><p>jQuery 选择器允许您对 HTML 元素组或单个元素进行操作。<br>jQuery 选择器基于元素的 id、类、类型、属性、属性值等”查找”（或选择）HTML 元素。 它基于已经存在的 CSS 选择器，除此之外，它还有一些自定义的选择器。<br>jQuery 中所有选择器都以美元符号开头：<code>$()</code>。</p>
+<ul>
+<li>元素选择器<br>jQuery 元素选择器基于元素名选取元素。<br>在页面中选取所有 <p> 元素:<code>$(&quot;p&quot;)</code></p></li>
+<li>#id 选择器<br>jQuery #id 选择器通过 HTML 元素的 id 属性选取指定的元素。<br>页面中元素的 id 应该是唯一的，所以您要在页面中选取唯一的元素需要通过 #id 选择器。<br>通过 id 选取元素语法如下：<code>$(&quot;#test&quot;)</code></li>
+<li>.class 选择器<br>jQuery 类选择器可以通过指定的 class 查找元素。<br>语法如下：<code>$(&quot;.test&quot;)</code></li>
+</ul>
+<p><strong>更多实例</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>语法</strong></th>
+<th style="text-align:center"><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">$(“*”)</td>
+<td style="text-align:center">选取所有元素</td>
+</tr>
+<tr>
+<td style="text-align:left">$(this)</td>
+<td style="text-align:center">选取当前 HTML 元素</td>
+</tr>
+<tr>
+<td style="text-align:left">$(“p.intro”)</td>
+<td style="text-align:center">选取 class 为 intro 的<code>&lt;p&gt;</code> 元素</td>
+</tr>
+<tr>
+<td style="text-align:left">$(“p:first”)</td>
+<td style="text-align:center">选取第一个 <code>&lt;p&gt;</code>元素</td>
+</tr>
+<tr>
+<td style="text-align:left">$(“ul li:first”)</td>
+<td style="text-align:center">选取第一个<code>&lt;ul&gt;</code>元素的第一个<code>&lt;li&gt;</code>元素</td>
+</tr>
+<tr>
+<td style="text-align:left">$(“ul li:first-child”)</td>
+<td style="text-align:center">选取每个<code>&lt;ul&gt;</code> 元素的第一个<code>&lt;li&gt;</code>元素</td>
+</tr>
+<tr>
+<td style="text-align:left">$(“[href]”)</td>
+<td style="text-align:center">选取带有<code>href</code>属性的元素</td>
+</tr>
+<tr>
+<td style="text-align:left">$(“a[target=’_blank’]”)</td>
+<td style="text-align:center">选取所有<code>target</code>属性值等于 “_blank” 的<code>&lt;a&gt;</code>元素</td>
+</tr>
+<tr>
+<td style="text-align:left">$(“a[target!=’_blank’]”)</td>
+<td style="text-align:center">选取所有<code>target</code>属性值不等于<code>&quot;_blank&quot;</code>的<code>&lt;a&gt;</code>元素</td>
+</tr>
+<tr>
+<td style="text-align:left">$(“:button”)</td>
+<td style="text-align:center">选取所有<code>type=&quot;button&quot;</code>的<code>&lt;input&gt;</code>元素 和<code>&lt;button&gt;</code>元素</td>
+</tr>
+<tr>
+<td style="text-align:left">$(“tr:even”)</td>
+<td style="text-align:center">选取偶数位置的<code>&lt;tr&gt;</code>元素</td>
+</tr>
+<tr>
+<td style="text-align:left">$(“tr:odd”)</td>
+<td style="text-align:center">选取奇数位置的<code>&lt;tr&gt;</code>元素</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>关于 : 和 [] 这两个符号的理解</p>
+<ul>
+<li>：可以理解为种类的意思，如：p:first，p 的种类为第一个。即为 jQuery 的过滤选择器，语法类似于 css 中的伪类选择器.</li>
+<li>[] 很自然的可以理解为属性的意思，如：[href] 选取带有 href 属性的元素。<br><strong>注意</strong>：css 中的伪类选择器大概可以分为基本过滤（p:first 之类）、内容过滤（:empty）、子元素过滤(:first-child)和属性过滤 [href] 选择器。</li>
+</ul>
+</blockquote>
+<p>举例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#id&quot;, &quot;.class&quot;)  复合选择器</span><br><span class="line">$(div p span)       层级选择器 //div下的p元素中的span元素</span><br><span class="line">$(div&gt;p)            父子选择器 //div下的所有p元素</span><br><span class="line">$(div+p)            相邻元素选择器 //div后面的p元素(仅一个p)</span><br><span class="line">$(div~p)            兄弟选择器  //div后面的所有p元素(同级别)</span><br><span class="line">$(.p:last)          类选择器 加 过滤选择器  第一个和最后一个（first 或者 last）</span><br><span class="line">$(&quot;#mytable td:odd&quot;)      层级选择 加 过滤选择器 奇偶（odd 或者 even）</span><br><span class="line">$(&quot;div p:eq(2)&quot;)    索引选择器 div下的第三个p元素（索引是从0开始）</span><br><span class="line">$(&quot;a[href=&apos;www.baidu.com&apos;]&quot;)  属性选择器</span><br><span class="line">$(&quot;p:contains(test)&quot;)        // 内容过滤选择器，包含text内容的p元素</span><br><span class="line">$(&quot;:emtyp&quot;)        //内容过滤选择器，所有空标签（不包含子标签和内容的标签）parent 相反</span><br><span class="line">$(&quot;:hidden&quot;)       //所有隐藏元素 visible </span><br><span class="line">$(&quot;input:enabled&quot;) //选取所有启用的表单元素</span><br><span class="line">$(&quot;:disabled&quot;)     //所有不可用的元素</span><br><span class="line">$(&quot;input:checked&quot;) //获取所有选中的复选框单选按钮等</span><br><span class="line">$(&quot;select option:selected&quot;) //获取选中的选项元素</span><br></pre></td></tr></table></figure></p>
+<h2 id="什么是事件？"><a href="#什么是事件？" class="headerlink" title="什么是事件？"></a>什么是事件？</h2><p>页面对不同访问者的响应叫做事件。<br>事件处理程序指的是当 HTML 中发生某些事件时所调用的方法。<br>实例：</p>
+<ul>
+<li>在元素上移动鼠标。</li>
+<li>选取单选按钮</li>
+<li>点击元素<br>在事件中经常使用术语”触发”（或”激发”）例如： “当您按下按键时触发 keypress 事件”。</li>
+</ul>
+<p><strong>常见 DOM 事件：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">鼠标事件</th>
+<th style="text-align:left">键盘事件</th>
+<th style="text-align:left">表单事件</th>
+<th style="text-align:left">文档/窗口事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">click</td>
+<td style="text-align:left">keypress</td>
+<td style="text-align:left">submit</td>
+<td style="text-align:left">load</td>
+</tr>
+<tr>
+<td style="text-align:left">dblclick</td>
+<td style="text-align:left">keydown</td>
+<td style="text-align:left">change</td>
+<td style="text-align:left">resize</td>
+</tr>
+<tr>
+<td style="text-align:left">mouseenter</td>
+<td style="text-align:left">keyup</td>
+<td style="text-align:left">focus</td>
+<td style="text-align:left">scroll</td>
+</tr>
+<tr>
+<td style="text-align:left">mouseleave</td>
+<td style="text-align:left">hover</td>
+<td style="text-align:left">blur</td>
+<td style="text-align:left">unload</td>
+</tr>
+</tbody>
+</table>
+<p><strong>语法</strong><br>在 jQuery 中，大多数 DOM 事件都有一个等效的 jQuery 方法。<br>页面中指定一个点击事件：<br><code>$(&quot;p&quot;).click();</code><br>下一步是定义什么时间触发事件。您可以通过一个事件函数实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;p&quot;).click(function()&#123;</span><br><span class="line">    // 动作触发后执行的代码!!</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>一.keypress,keydown,keyup的区别:</strong></p>
+<ul>
+<li>1.keydown：在键盘上按下某键时发生,一直按着则会不断触发（opera浏览器除外）, 它返回的是键盘代码;</li>
+<li>2.keypress：在键盘上按下一个按键，并产生一个字符时发生, 返回ASCII码。注意: shift、alt、ctrl等键按下并不会产生字符，所以监听无效 ,换句话说, 只有按下能在屏幕上输出字符的按键时keypress事件才会触发。若一直按着某按键则会不断触发。</li>
+<li>3.keyup：用户松开某一个按键时触发, 与keydown相对, 返回键盘代码</li>
+</ul>
+<p><strong>二.两种常用用法举例</strong></p>
+<p>案例1:获取按键代码或字符的ASCII码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(window).keydown( function(event)&#123;</span><br><span class="line">   // 通过event.which可以拿到按键代码.  如果是keypress事件中,则拿到ASCII码.</span><br><span class="line">&#125; );</span><br></pre></td></tr></table></figure></p>
+<p>案例2:传递数据给事件处理函数</p>
+<p>语法:<code>jQueryObject.keydown( [[ data ,]  handler ] );</code></p>
+<ul>
+<li>data: 通过event.data传递给事件处理函数的任意数据;</li>
+<li>handler: 指定的事件处理函数;<br>举例:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 只允许按下的字母键生效, 65~90是所有小写字母的键盘代码范围.</span><br><span class="line">var validKeys = &#123; start: 65, end: 90  &#125;;</span><br><span class="line">$(&quot;#keys&quot;).keydown( validKeys, function(event)&#123;</span><br><span class="line">    var keys = event.data;  //拿到validKeys对象.</span><br><span class="line">    return event.which &gt;= keys.start &amp;&amp; event.which &lt;= keys.end;</span><br><span class="line">&#125; );</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>jQuery 使用的语法是 XPath 与 CSS 选择器语法的组合。在本教程接下来的章节，您将学习到更多有关选择器的语法。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/01/19/初识jQuery/" data-id="cjr4kvdco001dwkfvb39o7ewb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/01/20/jQuery-效果/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            jQuery 效果
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/01/18/json专辑/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">json专辑</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/20/jQuery-效果/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/20/jQuery-效果/77674493_5.jpg)" alt="jQuery 效果" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/20/jQuery-效果/" class="title">jQuery 效果</a></p>
+                            <p class="item-date"><time datetime="2019-01-20T06:28:03.000Z" itemprop="datePublished">2019-01-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/19/初识jQuery/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/19/初识jQuery/5024b.jpg)" alt="初识jQuery" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/19/初识jQuery/" class="title">初识jQuery</a></p>
+                            <p class="item-date"><time datetime="2019-01-19T13:31:11.000Z" itemprop="datePublished">2019-01-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/18/json专辑/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/18/json专辑/2d82.jpg)" alt="json专辑" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/18/json专辑/" class="title">json专辑</a></p>
+                            <p class="item-date"><time datetime="2019-01-18T09:39:46.000Z" itemprop="datePublished">2019-01-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/10/javaweb放弃jsp，做了前后分离，而现在的你依然全栈/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/10/javaweb放弃jsp，做了前后分离，而现在的你依然全栈/gp=0.jpg)" alt="javaweb放弃jsp，做了前后分离，而现在的你依然全栈" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/10/javaweb放弃jsp，做了前后分离，而现在的你依然全栈/" class="title">javaweb放弃jsp，做了前后分离，而现在的你依然全栈</a></p>
+                            <p class="item-date"><time datetime="2019-01-10T08:06:58.000Z" itemprop="datePublished">2019-01-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/08/Vue混入/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/08/Vue混入/&amp;gp=0.jpg)" alt="Vue混入" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/08/Vue混入/" class="title">Vue混入</a></p>
+                            <p class="item-date"><time datetime="2019-01-08T08:17:15.000Z" itemprop="datePublished">2019-01-08</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/201/12/">十二月 0201</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaScript/">javaScript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/html/" style="font-size: 11.25px;">html</a> <a href="/tags/java/" style="font-size: 18.75px;">java</a> <a href="/tags/javaScript/" style="font-size: 12.5px;">javaScript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 17.5px;">maven</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/orcal/" style="font-size: 12.5px;">orcal</a> <a href="/tags/python/" style="font-size: 13.75px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.25px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 16.25px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/01/19/初识jQuery/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
