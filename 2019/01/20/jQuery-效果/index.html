@@ -21,7 +21,7 @@
 <meta property="og:description" content="隐藏和显示__hide() 和 show()通过 jQuery，您可以使用 hide() 和 show() 方法来隐藏和显示 HTML 元素：语法:12$(selector).hide(speed,callback);$(selector).show(speed,callback); 可选的speed参数规定隐藏/显示的速度，可以取以下值：”slow”、”fast” 或毫秒。 可选的callba">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/01/20/jQuery-效果/77674493_5.jpg">
-<meta property="og:updated_time" content="2019-01-20T07:38:26.235Z">
+<meta property="og:updated_time" content="2019-01-22T08:09:36.978Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jQuery 效果">
 <meta name="twitter:description" content="隐藏和显示__hide() 和 show()通过 jQuery，您可以使用 hide() 和 show() 方法来隐藏和显示 HTML 元素：语法:12$(selector).hide(speed,callback);$(selector).show(speed,callback); 可选的speed参数规定隐藏/显示的速度，可以取以下值：”slow”、”fast” 或毫秒。 可选的callba">
@@ -189,19 +189,15 @@
 <blockquote>
 <p>第二个参数是一个字符串，表示过渡使用哪种缓动函数。（译者注：jQuery自身提供”linear” 和 “swing”，其他可以使用相关的插件）。</p>
 </blockquote>
-<p><code>是不是想合二为一呢？</code></p>
-<p><strong>jQuery toggle()</strong><br>通过 jQuery，您可以使用 toggle() 方法来切换 hide() 和 show() 方法。</p>
-<p>语法:<code>$(selector).toggle(speed,callback);</code></p>
+<h2 id="是不是想合二为一呢？"><a href="#是不是想合二为一呢？" class="headerlink" title="是不是想合二为一呢？"></a>是不是想合二为一呢？</h2><p><strong>jQuery toggle()</strong><br>通过 jQuery，您可以使用 toggle() 方法来切换 hide() 和 show() 方法。<br>语法:<code>$(selector).toggle(speed,callback);</code></p>
 <p>可选的 speed 参数规定隐藏/显示的速度，可以取以下值：”slow”、”fast” 或毫秒。<br>可选的 callback 参数是隐藏或显示完成后所执行的函数名称。</p>
 <h2 id="淡入淡出"><a href="#淡入淡出" class="headerlink" title="淡入淡出"></a>淡入淡出</h2><p><strong>jQuery fadeIn() 方法</strong><br>jQuery fadeIn() 用于淡入已隐藏的元素。</p>
 <p>语法:<code>$(selector).fadeIn(speed,callback);</code></p>
 <p>可选的 speed 参数规定效果的时长。它可以取以下值：”slow”、”fast” 或毫秒。.<br>可选的 callback 参数是 fading 完成后所执行的函数名称。<br>下面的例子演示了带有不同参数的 fadeIn() 方法：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">  $(&quot;#div1&quot;).fadeIn();</span><br><span class="line">  $(&quot;#div2&quot;).fadeIn(&quot;slow&quot;);</span><br><span class="line">  $(&quot;#div3&quot;).fadeIn(3000);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p><strong>jQuery fadeOut() 方法</strong><br>jQuery fadeOut() 方法用于淡出可见元素。</p>
 <p>语法:<code>$(selector).fadeOut(speed,callback);</code></p>
-<p>可选的 speed 参数规定效果的时长。它可以取以下值：”slow”、”fast” 或毫秒。<br>可选的 callback 参数是 fading 完成后所执行的函数名称。<br>下面的例子演示了带有不同参数的 fadeOut() 方法：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">  $(&quot;#div1&quot;).fadeOut();</span><br><span class="line">  $(&quot;#div2&quot;).fadeOut(&quot;slow&quot;);</span><br><span class="line">  $(&quot;#div3&quot;).fadeOut(3000);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p><strong>jQuery fadeToggle() 方法</strong><br>jQuery fadeToggle() 方法可以在 fadeIn() 与 fadeOut() 方法之间进行切换。<br>如果元素已淡出，则 fadeToggle() 会向元素添加淡入效果。<br>如果元素已淡入，则 fadeToggle() 会向元素添加淡出效果。</p>
-<p>语法:<code>$(selector).fadeToggle(speed,callback);</code></p>
-<p>可选的 speed 参数规定效果的时长。它可以取以下值：”slow”、”fast” 或毫秒。<br>可选的 callback 参数是 fading 完成后所执行的函数名称。</p>
+<p>可选的<code>speed</code>参数规定效果的时长。它可以取以下值：”slow”、”fast” 或毫秒。<br>可选的 callback 参数是 fading 完成后所执行的函数名称。<br>下面的例子演示了带有不同参数的 fadeOut() 方法：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">  $(&quot;#div1&quot;).fadeOut();</span><br><span class="line">  $(&quot;#div2&quot;).fadeOut(&quot;slow&quot;);</span><br><span class="line">  $(&quot;#div3&quot;).fadeOut(3000);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>jQuery fadeToggle() 方法</strong><br>jQuery fadeToggle() 方法可以在 fadeIn() 与 fadeOut() 方法之间进行切换。<br>如果元素已淡出，则 fadeToggle() 会向元素添加淡入效果。<br>如果元素已淡入，则 fadeToggle() 会向元素添加淡出效果。<br>语法:<code>$(selector).fadeToggle(speed,callback);</code><br>可选的 speed 参数规定效果的时长。它可以取以下值：”slow”、”fast” 或毫秒。<br>可选的 callback 参数是 fading 完成后所执行的函数名称。</p>
 <p>下面的例子演示了带有不同参数的 fadeToggle() 方法：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">  $(&quot;#div1&quot;).fadeToggle();</span><br><span class="line">  $(&quot;#div2&quot;).fadeToggle(&quot;slow&quot;);</span><br><span class="line">  $(&quot;#div3&quot;).fadeToggle(3000);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p><strong>jQuery fadeTo() 方法</strong><br>jQuery fadeTo() 方法允许渐变为给定的不透明度（值介于 0 与 1 之间）。</p>
 <p>语法:<code>$(selector).fadeTo(speed,opacity,callback);</code></p>
@@ -217,12 +213,11 @@
 <p>下面的例子演示了 slideUp() 方法：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#flip&quot;).click(function()&#123;</span><br><span class="line">  $(&quot;#panel&quot;).slideUp();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p><strong>jQuery slideToggle() 方法</strong><br>jQuery slideToggle() 方法可以在 slideDown() 与 slideUp() 方法之间进行切换。<br>如果元素向下滑动，则 slideToggle() 可向上滑动它们。<br>如果元素向上滑动，则 slideToggle() 可向下滑动它们。</p>
 <p><code>$(selector).slideToggle(speed,callback);</code></p>
-<p>可选的 speed 参数规定效果的时长。它可以取以下值：”slow”、”fast” 或毫秒。<br>可选的 callback 参数是滑动完成后所执行的函数名称。<br>下面的例子演示了 slideToggle() 方法：</p>
-<p>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#flip&quot;).click(function()&#123;</span><br><span class="line">  $(&quot;#panel&quot;).slideToggle();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>可选的 speed 参数规定效果的时长。它可以取以下值：”slow”、”fast” 或毫秒。<br>可选的 callback 参数是滑动完成后所执行的函数名称。<br>下面的例子演示了 slideToggle() 方法：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#flip&quot;).click(function()&#123;</span><br><span class="line">  $(&quot;#panel&quot;).slideToggle();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <h2 id="动画-animate-方法"><a href="#动画-animate-方法" class="headerlink" title="动画__ animate() 方法"></a>动画__ animate() 方法</h2><p>jQuery animate() 方法用于创建自定义动画。</p>
 <p>语法：<code>$(selector).animate({params},speed,callback);</code></p>
 <p>必需的 params 参数定义形成动画的 CSS 属性。<br>可选的 speed 参数规定效果的时长。它可以取以下值：”slow”、”fast” 或毫秒。<br>可选的 callback 参数是动画完成后所执行的函数名称。</p>
-<p>下面的例子演示 animate() 方法的简单应用。它把 <div> 元素往右边移动了 250 像素：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">  $(&quot;div&quot;).animate(&#123;left:&apos;250px&apos;&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></div></p>
+<p>下面的例子演示 animate() 方法的简单应用。它把<code>&lt;div&gt;</code>元素往右边移动了 250 像素：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">  $(&quot;div&quot;).animate(&#123;left:&apos;250px&apos;&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>默认情况下，所有 HTML 元素都有一个静态位置，且无法移动。<br>如需对位置进行操作，要记得首先把元素的 CSS position 属性设置为 relative、fixed 或 absolute！</p>
 </blockquote>
@@ -231,11 +226,8 @@
 <p><strong>可以用 animate() 方法来操作所有 CSS 属性吗？</strong><br>是的，几乎可以！不过，需要记住一件重要的事情：当使用 animate() 时，必须使用 Camel 标记法书写所有的属性名，比如，必须使用 paddingLeft 而不是 padding-left，使用 marginRight 而不是 margin-right，等等。<br>同时，色彩动画并不包含在核心 jQuery 库中。<br>如果需要生成颜色动画，您需要从 jquery.com 下载 颜色动画 插件。</p>
 </blockquote>
 <p><strong>使用相对值</strong><br>也可以定义相对值（该值相对于元素的当前值）。需要在值的前面加上 += 或 -=：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">  $(&quot;div&quot;).animate(&#123;</span><br><span class="line">    left:&apos;250px&apos;,</span><br><span class="line">    height:&apos;+=150px&apos;,</span><br><span class="line">    width:&apos;+=150px&apos;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p><strong>使用预定义的值</strong><br>您甚至可以把属性的动画值设置为 “show”、”hide” 或 “toggle”：</p>
-<p>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">  $(&quot;div&quot;).animate(&#123;</span><br><span class="line">    height:&apos;toggle&apos;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p><strong>使用队列功能</strong><br>默认地，jQuery 提供针对动画的队列功能。</p>
-<p>这意味着如果您在彼此之后编写多个 animate() 调用，jQuery 会创建包含这些方法调用的”内部”队列。然后逐一运行这些 animate 调用。</p>
-<p>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">  var div=$(&quot;div&quot;);</span><br><span class="line">  div.animate(&#123;height:&apos;300px&apos;,opacity:&apos;0.4&apos;&#125;,&quot;slow&quot;);</span><br><span class="line">  div.animate(&#123;width:&apos;300px&apos;,opacity:&apos;0.8&apos;&#125;,&quot;slow&quot;);</span><br><span class="line">  div.animate(&#123;height:&apos;100px&apos;,opacity:&apos;0.4&apos;&#125;,&quot;slow&quot;);</span><br><span class="line">  div.animate(&#123;width:&apos;100px&apos;,opacity:&apos;0.8&apos;&#125;,&quot;slow&quot;);</span><br><span class="line">  div.animate(&#123;fontSize:&apos;3em&apos;&#125;,&quot;slow&quot;);//更改字号</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>使用预定义的值</strong><br>您甚至可以把属性的动画值设置为 “show”、”hide” 或 “toggle”：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">  $(&quot;div&quot;).animate(&#123;</span><br><span class="line">    height:&apos;toggle&apos;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>使用队列功能</strong><br>默认地，jQuery 提供针对动画的队列功能。<br>这意味着如果您在彼此之后编写多个 animate() 调用，jQuery 会创建包含这些方法调用的”内部”队列。然后逐一运行这些 animate 调用。<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">  var div=$(&quot;div&quot;);</span><br><span class="line">  div.animate(&#123;height:&apos;300px&apos;,opacity:&apos;0.4&apos;&#125;,&quot;slow&quot;);</span><br><span class="line">  div.animate(&#123;width:&apos;300px&apos;,opacity:&apos;0.8&apos;&#125;,&quot;slow&quot;);</span><br><span class="line">  div.animate(&#123;height:&apos;100px&apos;,opacity:&apos;0.4&apos;&#125;,&quot;slow&quot;);</span><br><span class="line">  div.animate(&#123;width:&apos;100px&apos;,opacity:&apos;0.8&apos;&#125;,&quot;slow&quot;);</span><br><span class="line">  div.animate(&#123;fontSize:&apos;3em&apos;&#125;,&quot;slow&quot;);//更改字号</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p><strong>停止动画</strong><br>jQuery stop() 方法用于停止动画或效果，在它们完成之前。<br>stop() 方法适用于所有 jQuery 效果函数，包括滑动、淡入淡出和自定义动画。</p>
 <p>语法:<code>$(selector).stop(stopAll,goToEnd);</code></p>
 <p>可选的 stopAll 参数规定是否应该清除动画队列。默认是 false，即仅停止活动的动画，允许任何排入队列的动画向后执行。<br>可选的 goToEnd 参数规定是否立即完成当前动画。默认是 false。<br>因此，默认地，stop() 会清除在被选元素上指定的当前动画。</p>
@@ -243,18 +235,12 @@
 <p>动画队列停止动画测试，只停止当前正在进行的动画，停止当前动画后，队列中的下一个动画开始进行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(document).ready(function()&#123;</span><br><span class="line">  $(&quot;#flip&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;#panel&quot;).slideDown(5000);//第一个动画</span><br><span class="line">    $(&quot;#panel&quot;).slideUp(5000);//第二个动画</span><br><span class="line">  &#125;);</span><br><span class="line">  $(&quot;#stop&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;#panel&quot;).stop();//可以在 stop() 中设置 stopAll 的参数为 true，这样就可以停止所有动画效果而不是只停止当前动画</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <h2 id="链-Chaining"><a href="#链-Chaining" class="headerlink" title="链(Chaining)"></a>链(Chaining)</h2><p>通过 jQuery，可以把动作/方法链接在一起。<br>Chaining 允许我们在一条语句中运行多个 jQuery 方法（在相同的元素上）。<br>直到现在，我们都是一次写一条 jQuery 语句（一条接着另一条）。<br>不过，有一种名为链接（chaining）的技术，允许我们在相同的元素上运行多条 jQuery 命令，一条接着另一条。<br>提示： ·这样的话，浏览器就不必多次查找相同的元素。·</p>
 <p>如需链接一个动作，您只需简单地把该动作追加到之前的动作上。<br>下面的例子把 css()、slideUp() 和 slideDown() 链接在一起。”p1” 元素首先会变为红色，然后向上滑动，再然后向下滑动：<br>实例<br><code>$(&quot;#p1&quot;).css(&quot;color&quot;,&quot;red&quot;).slideUp(2000).slideDown(2000);</code></p>
-<p>如果需要，我们也可以添加多个方法调用。</p>
-<p><strong>提示</strong>：当进行链接时，代码行会变得很长。不过，jQuery 语法不是很严格；您可以按照希望的格式来写，包含换行和缩进。</p>
-<p>如下书写也可以很好地运行：</p>
-<p>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#p1&quot;).css(&quot;color&quot;,&quot;red&quot;)</span><br><span class="line">  .slideUp(2000)</span><br><span class="line">  .slideDown(2000);</span><br></pre></td></tr></table></figure></p>
+<p>如果需要，我们也可以添加多个方法调用。<br><strong>提示</strong>：当进行链接时，代码行会变得很长。不过，jQuery 语法不是很严格；您可以按照希望的格式来写，包含换行和缩进。<br>如下书写也可以很好地运行：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#p1&quot;).css(&quot;color&quot;,&quot;red&quot;)</span><br><span class="line">  .slideUp(2000)</span><br><span class="line">  .slideDown(2000);</span><br></pre></td></tr></table></figure></p>
 <p>jQuery 会抛掉多余的空格，并当成一行长代码来执行上面的代码行。</p>
-<h2 id="番外"><a href="#番外" class="headerlink" title="番外"></a>番外</h2><p><strong>队列操作</strong></p>
-<p>jquery中有一个Queue队列的接口，这个模块没有单独拿出来作为一个章节是因为这个是内部专门为动画服务的，Queue队列如同data数据缓存与Deferred异步模型一样，都是jQuery库的内部实现的基础设施</p>
-<p>Queue队列</p>
-<p>队列是一种特殊的线性表，只允许在表的前端（队头）进行删除操作（出队），在表的后端（队尾）进行出入操作（入队），队列的特点是先进先出，最先插入的元素最先被删除。</p>
+<h2 id="番外"><a href="#番外" class="headerlink" title="番外"></a>番外</h2><p><strong>队列操作</strong><br>jquery中有一个Queue队列的接口，这个模块没有单独拿出来作为一个章节是因为这个是内部专门为动画服务的，Queue队列如同data数据缓存与Deferred异步模型一样，都是jQuery库的内部实现的基础设施</p>
+<p>Queue队列<br>队列是一种特殊的线性表，只允许在表的前端（队头）进行删除操作（出队），在表的后端（队尾）进行出入操作（入队），队列的特点是先进先出，最先插入的元素最先被删除。</p>
 <p>为什么要引入队列<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">　　a=2;</span><br><span class="line">&#125;,0)</span><br><span class="line">alert(a);</span><br></pre></td></tr></table></figure></p>
-<p>我们一直习惯于线性的编写代码逻辑，但是在JavaScript编程几乎总是伴随着异步操作：</p>
-<p>setTImeout，css3Transition/Animation,ajax,dom的绘制，postmessage，web Database 等等，大量异步操作所带来的回调函数会把我们的算法分解，<code>对于“异步+回调”的模式，怎么“拉平”异步操作使之跟同步一样，因为异步操作进行流程控制的时候无非避免的要嵌套大量的回调逻辑，所以就会出现 promises 约定了。</code></p>
+<p>我们一直习惯于线性的编写代码逻辑，但是在JavaScript编程几乎总是伴随着异步操作：setTImeout，css3Transition/Animation,ajax,dom的绘制，postmessage，web Database 等等，大量异步操作所带来的回调函数会把我们的算法分解，<code>对于“异步+回调”的模式，怎么“拉平”异步操作使之跟同步一样，因为异步操作进行流程控制的时候无非避免的要嵌套大量的回调逻辑，所以就会出现 promises 约定了。</code></p>
 <p>那么 jQuery 引入队列其实从一个角度上可以认为：<strong>允许一系列函数被异步地调用而不会阻塞程序。</strong></p>
 <p>看一个代码段：<code>$(&quot;#Aaron&quot;).slideUp().fadeIn()</code><br>这是 jQuery 的一组动画链式序列，它的内部其实就是一组队列 Queue，所以队列和 Deferred 地位类似，是一个内部使用的基础设施。</p>
 <ul>
@@ -293,7 +279,7 @@
 
 
 
-    <a data-url="http://yoursite.com/2019/01/20/jQuery-效果/" data-id="cjr5o8j3g002rp4fvqhfj8int" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2019/01/20/jQuery-效果/" data-id="cjr7dyosd002p3wfvoq7zvzla" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -466,6 +452,46 @@
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2019/01/22/jQuery-AJAX/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/22/jQuery-AJAX/t01b44c744fbfcf7df2.png)" alt="jQuery-AJAX " class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/22/jQuery-AJAX/" class="title">jQuery-AJAX </a></p>
+                            <p class="item-date"><time datetime="2019-01-22T01:31:02.000Z" itemprop="datePublished">2019-01-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/22/jQuery-遍历/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/22/jQuery-遍历/img_travtree.png)" alt="jQuery 遍历" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/22/jQuery-遍历/" class="title">jQuery 遍历</a></p>
+                            <p class="item-date"><time datetime="2019-01-22T00:46:22.000Z" itemprop="datePublished">2019-01-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2019/01/20/jQuery-html/" class="thumbnail">
     
     
@@ -523,46 +549,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2019/01/18/json专辑/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/2019/01/18/json专辑/2d82.jpg)" alt="json专辑" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2019/01/18/json专辑/" class="title">json专辑</a></p>
-                            <p class="item-date"><time datetime="2019-01-18T09:39:46.000Z" itemprop="datePublished">2019-01-18</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2019/01/10/javaweb放弃jsp，做了前后分离，而现在的你依然全栈/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/2019/01/10/javaweb放弃jsp，做了前后分离，而现在的你依然全栈/gp=0.jpg)" alt="javaweb放弃jsp，做了前后分离，而现在的你依然全栈" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2019/01/10/javaweb放弃jsp，做了前后分离，而现在的你依然全栈/" class="title">javaweb放弃jsp，做了前后分离，而现在的你依然全栈</a></p>
-                            <p class="item-date"><time datetime="2019-01-10T08:06:58.000Z" itemprop="datePublished">2019-01-10</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -582,7 +568,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/201/12/">十二月 0201</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/201/12/">十二月 0201</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -592,7 +578,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaScript/">javaScript</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaScript/">javaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -602,7 +588,7 @@
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/html/" style="font-size: 11.25px;">html</a> <a href="/tags/java/" style="font-size: 18.75px;">java</a> <a href="/tags/javaScript/" style="font-size: 13.75px;">javaScript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 17.5px;">maven</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/orcal/" style="font-size: 12.5px;">orcal</a> <a href="/tags/python/" style="font-size: 13.75px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.25px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 16.25px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+            <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/html/" style="font-size: 11.25px;">html</a> <a href="/tags/java/" style="font-size: 18.75px;">java</a> <a href="/tags/javaScript/" style="font-size: 15px;">javaScript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 17.5px;">maven</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/orcal/" style="font-size: 12.5px;">orcal</a> <a href="/tags/python/" style="font-size: 13.75px;">python</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.25px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 16.25px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
         </div>
     </div>
 
