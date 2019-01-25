@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>前端模块化之seajs | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JavaScript">
+    
+    <meta name="description" content="SeaJS是一个遵循CommonJS规范的JavaScript模块加载框架，可以实现JavaScript的模块化开发及加载机制。与jQuery等JavaScript框架不同，SeaJS不会扩展封装语言特性，而只是实现JavaScript的模块化及按模块加载。SeaJS的主要目的是令JavaScript开发模块化并可以轻松愉悦进行加载，将前端工程师从繁重的JavaScript文件及对象依赖处理中解放">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端模块化之seajs">
+<meta property="og:url" content="http://yoursite.com/2019/01/24/前端模块化之seajs/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="SeaJS是一个遵循CommonJS规范的JavaScript模块加载框架，可以实现JavaScript的模块化开发及加载机制。与jQuery等JavaScript框架不同，SeaJS不会扩展封装语言特性，而只是实现JavaScript的模块化及按模块加载。SeaJS的主要目的是令JavaScript开发模块化并可以轻松愉悦进行加载，将前端工程师从繁重的JavaScript文件及对象依赖处理中解放">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/01/24/前端模块化之seajs/前端模块化之seajs/articlex.png">
+<meta property="og:updated_time" content="2019-01-25T10:35:21.132Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端模块化之seajs">
+<meta name="twitter:description" content="SeaJS是一个遵循CommonJS规范的JavaScript模块加载框架，可以实现JavaScript的模块化开发及加载机制。与jQuery等JavaScript框架不同，SeaJS不会扩展封装语言特性，而只是实现JavaScript的模块化及按模块加载。SeaJS的主要目的是令JavaScript开发模块化并可以轻松愉悦进行加载，将前端工程师从繁重的JavaScript文件及对象依赖处理中解放">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/24/前端模块化之seajs/前端模块化之seajs/articlex.png">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-前端模块化之seajs" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        前端模块化之seajs
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/01/24/前端模块化之seajs/" class="article-date">
+            <time datetime="2019-01-24T06:14:49.000Z" itemprop="datePublished">2019-01-24</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>SeaJS是一个遵循CommonJS规范的JavaScript模块加载框架，可以实现JavaScript的模块化开发及加载机制。与jQuery等JavaScript框架不同，SeaJS不会扩展封装语言特性，而只是实现JavaScript的模块化及按模块加载。SeaJS的主要目的是令JavaScript开发模块化并可以轻松愉悦进行加载，将前端工程师从繁重的JavaScript文件及对象依赖处理中解放出来，可以专注于代码本身的逻辑。SeaJS可以与jQuery这类框架完美集成。使用SeaJS可以提高JavaScript代码的可读性和清晰度，解决目前JavaScript编程中普遍存在的依赖关系混乱和代码纠缠等问题，方便代码的编写和维护。<br>SeaJS的作者是前淘宝UED,现支付宝前端工程师玉伯。<br>SeaJS本身遵循<code>KISS（Keep It Simple, Stupid）</code>—“保持简单和愚蠢”的理念进行开发，其本身仅有个位数的API，因此学习起来毫无压力。在学习SeaJS的过程中，处处能感受到KISS原则的精髓——仅做一件事，做好一件事。</p>
+<p>SeaJS 追求简单、自然的代码书写和组织方式，无论是中小型站点，还是大型复杂应用，使用 SeaJS，都可以让我们的工作变得更轻松愉悦。SeaJS 具有以下核心特性：</p>
+<ul>
+<li>简单一致的模块格式。<br>简单友好的模块定义规范：SeaJS 遵循CMD规范，可以像Node.js一般书写模块代码。</li>
+<li>依赖的自动管理和脚本的异步并行加载。<br>自然直观的代码组织方式：依赖的自动加载、配置的简洁清晰，可以让我们更多地享受编码的乐趣。</li>
+<li>丰富的插件。<br>SeaJS 还提供常用插件，非常有助于开发调试和性能优化，并具有丰富的可扩展接口。</li>
+<li>友好的调试。</li>
+</ul>
+<p>SeaJS 带来的最大好处是：提升代码的可维护性。上面的每一项特性，在使用文档中都会有详细阐述。如果一个网站的 JS 文件超过 3 个，就适合用 SeaJS 来组织和维护代码。涉及的 JS 文件越多，SeaJS 就越适合。<br>SeaJS 追求的是更简单、自然的代码书写和组织方式。</p>
+<p><strong>什么是 seaJS ？</strong><br>和requireJS相似的，seaJS 也是用JavaScript编写的JS框架，<code>主要功能</code>是可以按不同的先后依赖关系对 <code>JavaScript</code> 等文件的进行加载工作，<br>可简单理解为JS文件的加载器，它非常适合在浏览器中使用，它可以确保所依赖的JS文件加载完成之后再加载当前的JS文件，这在大量使用JS文件的项目中可确保各个JS文件的先后加载顺序，确保避免了以前因某些原因某个文件加载慢而导致其它加载快的文件需要依赖其某些功能而出现某函数或某变量找不到的问题，这点非常有用，也是 <code>seaJS</code>（遵守CMD） 的主要价值所在吧；但和<code>requireJS</code>（遵守AMD规范）有所区别。</p>
+<p><strong>快速简要知识点：</strong></p>
+<p>1、seajs.config({…});   //用来对 Sea.js 进行配置。<br>2、seajs.use([‘a’,’b’],function(a,b){…});   //用来在页面中加载一个或多个模块。<br>3、define(function(require, exports, module){…});   //用来定义模块。Sea.js 推崇一个模块一个文件，遵循统一的写法：<br>4、require(function(require){var a = require(“xModule”); … });   //require 用来获取指定模块的接口。<br>5、require.async,  //用来在模块内部异步加载一个或多个模块。 例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">define(function(require)&#123;</span><br><span class="line">    require.async([&apos;aModule&apos;,&apos;bModule&apos;],function(a,b)&#123;  // 异步加载多个模块，在加载完成时，执行回调</span><br><span class="line">    a.func();</span><br><span class="line">    b.func();</span><br><span class="line">    &#125;)    </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>6、exports, //用来在模块内部对外提供接口。 例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">define(function(require, exports)&#123;</span><br><span class="line">    exports.varName01 = &apos;varValue&apos;;  // 对外提供 varName01 属性    </span><br><span class="line">    exports.funName01 = function(p1,p2)&#123;  // 对外提供 funName01 方法</span><br><span class="line">    ....</span><br><span class="line">    &#125;       </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>7、module.exports, 与 exports 类似，用来在模块内部对外提供接口。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">define(function(require, exports, module) &#123;  </span><br><span class="line">  module.exports = &#123;  // 对外提供接口</span><br><span class="line">    name: &apos;a&apos;,</span><br><span class="line">    doSomething: function() &#123;...&#125;;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>以上 7 个接口是最常用的，要牢记于心。</p>
+<p>*路径问题**</p>
+<ul>
+<li>./是表示当前目录；../是上级目录；</li>
+<li>seajs.config 里alias的别名设置只是给路径取个别名，减少书写；</li>
+<li>seajs里主要两个用到路径的地方：一个是seajs.use()；一个是require()。</li>
+<li>base路径是seajs文件所在目录，</li>
+</ul>
+<h2 id="seajs的配置"><a href="#seajs的配置" class="headerlink" title="seajs的配置"></a>seajs的配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">seajs.config(&#123;</span><br><span class="line">    // 别名配置</span><br><span class="line">    alias: &#123;</span><br><span class="line">        &apos;es5-safe&apos;: &apos;gallery/es5-safe/0.9.3/es5-safe&apos;,</span><br><span class="line">        &apos;json&apos;: &apos;gallery/json/1.0.2/json&apos;,</span><br><span class="line">        &apos;jquery&apos;: &apos;jquery/jquery/1.10.1/jquery&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    // 路径配置</span><br><span class="line">    paths: &#123;</span><br><span class="line">        &apos;gallery&apos;: &apos;https://a.alipayobjects.com/gallery&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    // 变量配置</span><br><span class="line">    vars: &#123;</span><br><span class="line">        &apos;locale&apos;: &apos;zh-cn&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    // 映射配置</span><br><span class="line">    map: [</span><br><span class="line">        [&apos;http://example.com/js/app/&apos;, &apos;http://localhost/js/app/&apos;]</span><br><span class="line">    ],</span><br><span class="line">    // 预加载项</span><br><span class="line">    preload: [</span><br><span class="line">        Function.prototype.bind ? &apos;&apos; : &apos;es5-safe&apos;,</span><br><span class="line">        this.JSON ? &apos;&apos; : &apos;json&apos;</span><br><span class="line">    ],</span><br><span class="line">    // 调试模式</span><br><span class="line">    debug: true,</span><br><span class="line">    // Sea.js 的基础路径</span><br><span class="line">    base: &apos;http://example.com/path/to/base/&apos;,</span><br><span class="line">    // 文件编码</span><br><span class="line">    charset: &apos;utf-8&apos;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>alias Object 可以简化较长模块标示的书写。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">seajs.config(&#123;</span><br><span class="line">   // 别名配置</span><br><span class="line">    alias: &#123;</span><br><span class="line">        &apos;es5-safe&apos;: &apos;gallery/es5-safe/0.9.3/es5-safe&apos;,</span><br><span class="line">        &apos;json&apos;: &apos;gallery/json/1.0.2/json&apos;,</span><br><span class="line">        &apos;jquery&apos;: &apos;jquery/jquery/1.10.1/jquery&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>模块定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">define(function(require, exports , module)&#123;</span><br><span class="line">    var $ = require(&quot;jquery&quot;);</span><br><span class="line">    //==&gt;加载的是http://example.com/path/to/base/jquery/jquery/1.10.1/jquery.js</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>path Object 如果依赖层次较深，或者跨目录调用模块，path可以简化书写。<br>path 可以结合alias一起使用。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">seajs.config(&#123;</span><br><span class="line">    // 路径配置</span><br><span class="line">    paths: &#123;</span><br><span class="line">        &apos;gallery&apos;: &apos;https://a.alipayobjects.com/gallery&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>模块定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">define(function(require,exports, module)&#123;</span><br><span class="line">    var json = require(&quot;gallery/jsonparser&quot;);</span><br><span class="line">    //==&gt; 加载的是https://a.alipayobjects.com/gallery/jsonparser.js</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>vars Object 有些模块需要在运行时才能确定，可以使用vars指定。<br>vars 配置的是模块标识中的变量值，在模块标识中用 {key} 来表示变量。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">seajs.config(&#123;</span><br><span class="line">// 变量配置</span><br><span class="line">    vars: &#123;</span><br><span class="line">        &apos;local&apos;: &apos;zh-cn&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>模块定义<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">define(function(require, exports, module)&#123;</span><br><span class="line">    var language_config = require(&quot;language/&#123;local&#125;.js&quot;);</span><br><span class="line">    console.log(language_config);//获取中文配置文件</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>map Array 路由模块路径。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">seajs.config(&#123;</span><br><span class="line">    // 映射配置</span><br><span class="line">    map: [</span><br><span class="line">        [&apos;http://example.com/js/app/&apos;, &apos;http://localhost/js/app/&apos;],</span><br><span class="line">        [&apos;.js&apos;,&apos;-debg.js&apos;]</span><br><span class="line">    ],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">define(function(require, exports, module)&#123;</span><br><span class="line">    var m_a = require(&quot;./a&quot;);</span><br><span class="line">    //==&gt;加载的是./a-debug.js</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>preLoad Array 预加载一些公共模块或者指定模块<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">seajs.config(&#123;</span><br><span class="line">    // 预加载项</span><br><span class="line">    preload: [</span><br><span class="line">        Function.prototype.bind ? &apos;&apos; : &apos;es5-safe&apos;,</span><br><span class="line">        this.JSON ? &apos;&apos; : &apos;json&apos;</span><br><span class="line">    ],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>preLoad中的配置，需要等到use时才加载<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">seajs.use(&quot;./b&quot;,function()&#123;</span><br><span class="line">    //在加载b模块之前，预加载项已经加载完成。</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>preLoad中的配置，无法保证模块定义中已经加载完成并执行完成。</p>
+<ul>
+<li><p>debug String 值为 true 时，加载器不会删除动态插入的 script 标签。插件也可以根据 debug 配置，来决策 log 等信息的输出。</p>
+</li>
+<li><p>base String  Sea.js 在解析顶级标识时，会相对 base 路径来解析。</p>
+</li>
+</ul>
+<ul>
+<li>charset String | Function  获取模块文件时，<script> 或 <link> 标签的 charset 属性。 默认是 utf-8<br>charset还可以是函数：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">seajs.config(&#123;</span><br><span class="line">    charset: function(url) &#123;</span><br><span class="line">        // xxx 目录下的文件用 gbk 编码加载</span><br><span class="line">        if (url.indexOf(&apos;http://example.com/js/xxx&apos;) === 0) &#123;</span><br><span class="line">            return &apos;gbk&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">        // 其他文件用 utf-8 编码</span><br><span class="line">        return &apos;utf-8&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注意：seajs.config 可以多次执行，每次执行都会对配置项进行合并操作。<br>config 会自动合并不存在的项，对存在的项则进行覆盖。<br>建议seajs.config所在的js文件  独立成一个文件时，一般通过 script 标签在页面中同步引入。</p>
+<h2 id="模块定义（define-Function）"><a href="#模块定义（define-Function）" class="headerlink" title="模块定义（define Function）"></a>模块定义（define Function）</h2><ul>
+<li><p>定义函数：<br>函数：define(factory)<br>其中，define方法是全局方法，作用域是window；factory可以是字符串，对象或者函数。</p>
+</li>
+<li><p>Factory类型：<br>字符串或者对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">define(&#123;&quot;username&quot;:&quot;fol&quot;,&quot;age&quot;:&quot;23&quot;&#125;);    //factory是对象类型</span><br><span class="line">define(&quot;I love zhuzhou&quot;);    //factory是字符串类型</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果模块的factory类型是字符串或者对象，那么该模块对外提供的接口(输出)就是字符串或者对象本身。<br>函数定义格式1：<br>       <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">define(function(require, exports, module)&#123;</span><br><span class="line">    //todo</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>如果factory的类型是函数，那么给函数就是该模块的构造函数，执行该函数可以得到模块对外提供接口。<br>    factory默认传入的参数是require, exports, module。<br>    这种模块定义方式未指定模块id，模块依赖列表。<br>    定义格式2：<br>    define(id? , deps?, factory?)<br>    模块定义也可以接受两个以上参数，其中id定义模块的id，deps声明模块依赖的其他模块列表（Array）。<br>     <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">define(&quot;user&quot;, [&quot;jquery&quot;, &quot;ajax&quot;, &quot;upload&quot;, &quot;json&quot;], function(require, exports, module)&#123;</span><br><span class="line">     // todo </span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure></p>
+<pre><code>注意：id 和 deps参数是可选参数，可以通过构建工具自动生成。
+</code></pre><h2 id="模块引用（require-Function）"><a href="#模块引用（require-Function）" class="headerlink" title="模块引用（require Function）"></a>模块引用（require Function）</h2><ul>
+<li><p>模块加载函数：<br>函数：require( id? )<br>其中，require对象是factory的第一个参数，同样，require函数也是全局函数，作用域是window；<br>id是模块标识，一般在模块定义函数中被调用,用来获取其他模块提供的接口。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">define(function( require, exports, module ) &#123;</span><br><span class="line">    var $ = require(&quot;jquery&quot;);  //引入jquery模块</span><br><span class="line">    $(document).ready(function()&#123;</span><br><span class="line">        $(&quot;#bt&quot;).on(&quot;click&quot;, function()&#123;</span><br><span class="line">              console.log(&quot;the bt is clicked&quot;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异步加载：<br>函数：require.async( id?, callback? )<br>其中，id是模块的标识，callback是模块异步加载完成后的回调函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">define(function(require, exports, module)&#123;</span><br><span class="line">    //异步加载单个模块</span><br><span class="line">    require.async(&quot;plugins/bootstrap&quot;, function(b)&#123;</span><br><span class="line">        b.doSomething();</span><br><span class="line">    &#125;);</span><br><span class="line">    //异步加载多个模块</span><br><span class="line">    require.async([&quot;./utils/datepicker&quot;,&quot;./utils/colorpicker&quot;], function(datepicker, colorpicker)&#123;</span><br><span class="line">        datepicker.init();</span><br><span class="line">        colorpicker.init();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注意：require()是同步执行的，require.async()是异步回调执行，require.async用来执行可以延迟加载执行的模块。</p>
+<ul>
+<li>路径解析：<br>函数：require.resolve(id?)<br>其中，id 是模块的唯一标识，只用来解析模块的绝对路径。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">define(function(require, exports, module)&#123;</span><br><span class="line">    val jqueryPath = require.resolve(&quot;jquery&quot;);    //解析jquery的绝对路径    </span><br><span class="line">    //http://cdn.bootcss.com/jquery/3.0.0-beta1/jquery.js</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="seajs-三个对象"><a href="#seajs-三个对象" class="headerlink" title="seajs 三个对象"></a>seajs 三个对象</h2><ul>
+<li>exports Object ：exports 是一个对象，负责对外提供模块接口。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">define(function(require, exports, module)&#123;</span><br><span class="line">      function trim() &#123;</span><br><span class="line">            return this.replace(/(^\s*)|(\s*$)/g, &quot;&quot;)</span><br><span class="line">      &#125;</span><br><span class="line">      exports.trim = trim;    //把内部函数暴露给其他模块</span><br><span class="line">      exports.config = &#123;&quot;username&quot;:&quot;foo&quot;, &quot;age&quot;:&quot;23&quot;&#125;;//把内部对象暴露给其他模块</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>除了使用exports 对象对外提供接口外，还可以使用return直接对外提供接口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">define(function(require, exports, module)&#123;</span><br><span class="line">      function trim() &#123;</span><br><span class="line">            return this.replace(/(^\s*)|(\s*$)/g, &quot;&quot;)</span><br><span class="line">      &#125;</span><br><span class="line">      return &#123;</span><br><span class="line">        &quot;trim&quot;:trim,</span><br><span class="line">        &quot;config&quot;:&#123;&quot;username&quot;:&quot;foo&quot;, &quot;age&quot;:23&#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>如果模块中return语句是唯一的代码，那么可以使用define({})简化模块定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">define(&#123;</span><br><span class="line">   &quot;trim&quot;:function()&#123;</span><br><span class="line">          return this.replace(/(^\s*)|(\s*$)/g, &quot;&quot;)</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;config&quot;:&#123;&quot;username&quot;:&quot;foo&quot;,&quot;age&quot;:23&#125;</span><br><span class="line">&#125;  );</span><br></pre></td></tr></table></figure></p>
+<p>上面的格式可以适合定义JSONP模块。</p>
+<p>注意：不能对exports重新赋值，这样虽然不会影响到module.exports 。但是无法对外提供接口，可以赋值module.exports达到对外提供接口的目的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">define(function(require, exports , module)&#123;</span><br><span class="line">    module.exports = &#123;</span><br><span class="line">        trim:function()&#123;return this.replace(/(^\s*)|(\s*$)/g, &quot;&quot;);&#125;,</span><br><span class="line">        config:&#123;&quot;username&quot;:&quot;foo&quot;, &quot;age&quot;:23&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>module Object ：module是一个对象，其中存储着于当前模块相关的一些方法和属性。<br>module.id：返回模块的标识<br>module.uri：返回模块的绝对路径。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">define(function(require, exports, module)&#123;</span><br><span class="line">    var module_uri = module.uri;</span><br><span class="line">    //==&gt;  http://example.com/path/to/this/file.js</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>一般情况下，如果没有定义模块id, 那么module.id == module.uri，两者完全相同。</p>
+</blockquote>
+<p>module.dependencies Array：返回当前模块依赖的模块列表。<br>module.exports：返回当前模块对外提供的接口对象。<br>注意：传递给factory方法的参数中exports 只是module.exports 的一个引用，只能通过exports来对外提供接口，但是module.exports可以是一个类的实例。<br>而且，对module.exports 赋值不能通过回调函数等方法异步执行，只能同步执行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> define(function(require, exports, module) &#123;</span><br><span class="line"></span><br><span class="line">  // exports 是 module.exports 的一个引用</span><br><span class="line">  console.log(module.exports === exports); // true</span><br><span class="line"></span><br><span class="line">  // 重新给 module.exports 赋值</span><br><span class="line">  module.exports = new SomeClass();</span><br><span class="line"></span><br><span class="line">  // exports 不再等于 module.exports</span><br><span class="line">  console.log(module.exports === exports); // false</span><br><span class="line">  //module.exports 不能异步执行</span><br><span class="line">  setTimeout(function()&#123;</span><br><span class="line">    module.exports = &#123;&quot;username&quot;:&quot;foo&quot;, &quot;age&quot;:23&#125;;    //错误，无法对外提供接口</span><br><span class="line">  &#125;, 1000);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>require ：require 函数用来访问其他模块提供的 API.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">define(function(require) &#123;</span><br><span class="line">  var a = require(&apos;./a&apos;);</span><br><span class="line">  a.doSomething();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>它接受 模块标识 作为唯一参数。</p>
+<p>请牢记，为了使静态分析能成功获取到模块依赖信息，在书写模块时，需要遵循一些简单的 规则。</p>
+<p>require.async<br>该方法可用来异步加载模块，并在加载完成后执行回调函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">define(function(require, exports, module) &#123;</span><br><span class="line">  // 加载一个模块</span><br><span class="line">  require.async(&apos;./b&apos;, function(b) &#123;</span><br><span class="line">    b.doSomething();</span><br><span class="line">  &#125;);</span><br><span class="line">  </span><br><span class="line">  // 加载多个模块</span><br><span class="line">  require.async([&apos;./c&apos;, &apos;./d&apos;], function(c, d) &#123;</span><br><span class="line">    // do something</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>–require.resolve<br>使用 require() 的内部机制来解析并返回模块路径。该函数不会加载模块，只返回解析后的路径。</p>
+<p>–require.load<br>该方法可用来异步加载脚本，并在加载完成后，执行指定的回调函数。开发插件时， 可以通过覆盖该方法来实现自定义的资源加载。</p>
+<p>–require.constructor<br>有时候，我们需要给所有 require 参数对象添加一些公用属性或方法。这时， 使用 require.constructor 来实现会非常方便。</p>
+<h2 id="内部事件"><a href="#内部事件" class="headerlink" title="内部事件"></a>内部事件</h2><ul>
+<li>seajs.use Function<br>函数：seajs.use(ids?, callback?)<br>作用：用在页面上加载其他模块。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//加载一个模块</span><br><span class="line">seajs.use(&quot;./a&quot;);</span><br><span class="line"></span><br><span class="line">//加载一个模块并回调</span><br><span class="line">seajs.use(&quot;./a&quot;, function(a)&#123;</span><br><span class="line">    a.doSomething();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//加载多个模块并回调</span><br><span class="line">seajs.use([&quot;jquery&quot;,&quot;./a&quot;], function($, a)&#123;</span><br><span class="line">    $(&quot;#bt&quot;).click(function()&#123;</span><br><span class="line">        //doSomething</span><br><span class="line">    &#125;);</span><br><span class="line">    a.doSomething();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>注意：seajs.use方法和document.ready()方法没有必然关系，如果某些操作需要在document ready后才能执行操作，需要借助jquery等依赖模块。</code></p>
+<ul>
+<li><p>seajs.cache Function<br>函数：seajs.cache();<br>可以用来查看当前页面加载的依赖模块列表。</p>
+</li>
+<li><p>seajs.resolve Function<br>函数：seajs.resolve(id?);<br>可以用来获取依赖模块的绝对路径。</p>
+</li>
+<li><p>seajs.data Function<br>函数：seajs.data();<br>可以用来seajs的所有配置以及一些内部变量，可以用在插件开发中。</p>
+</li>
+</ul>
+<h2 id="模块标识与路径关系"><a href="#模块标识与路径关系" class="headerlink" title="模块标识与路径关系"></a>模块标识与路径关系</h2><ul>
+<li>模块标识：<br>模块标识主要以小驼峰，. 或者 .. 为主。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//在http://example.com/my/js/user.js中</span><br><span class="line">define(function(require, exports, module)&#123;</span><br><span class="line">    var path = require.resolve(&quot;./json&quot;);</span><br><span class="line">    //==&gt;路径为http://example.com/my/js/json.js</span><br><span class="line">    </span><br><span class="line">    var path2 = require.resolve(&quot;../json&quot;);</span><br><span class="line">    //==&gt; 路径为http://example.com/my/json.js</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注意：以小驼峰开头的模块标识是顶级标识，以base为根目录加载模块文件；以.和..开头的模块标识是相对标识，以当前模块文件所在的位置为基础根目录加载。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//假设base 是http://examle.com/my/js</span><br><span class="line">define(function(require, exports, module)&#123;</span><br><span class="line">    var path = require.resolve(&quot;json&quot;);</span><br><span class="line">    //==&gt;路径为http://example.com/my/js/json.js</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>注意：页面中基于当前页面为根目录加载模块文件。</p>
+<h2 id="构建工具那些事"><a href="#构建工具那些事" class="headerlink" title="构建工具那些事"></a>构建工具那些事</h2><p><strong>构建过程描述：</strong></p>
+<ul>
+<li>提取操作<br>提取模块的标识id以及模块的其他依赖dependencies。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//a.js</span><br><span class="line">define(function(require, exports, module)&#123;</span><br><span class="line">    var b = require(&quot;./b&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>经过提取操作，a.js文件会变成临时文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">define(&quot;xxx/1.0.0/a&quot;,[&quot;./b&quot;],function(require, exports, module)&#123;</span><br><span class="line">    var b = require(&quot;./b&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>压缩操作<br>经过上面的提取操作后，构建工具就可以调用任何 JS 压缩工具来进行压缩了，require 参数也可以被压缩成任意字符。相比于其他的压缩工具，CMD模块的构建过程增加了id和dependencies的提取过程。</li>
+</ul>
+<p><strong>为什么要提取模块标识Id：</strong></p>
+<p>我们在模块定义过程中，可能会合并两个模块定义文件，使得模块管理更加方便和易用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//a.js</span><br><span class="line">define(function(require, exports, module)&#123;</span><br><span class="line">    //todoSomething</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//b.js</span><br><span class="line">define(function(require, exports, module)&#123;</span><br><span class="line">    //todoSomething</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>如果我们希望合并以上两个文件，那么会出现模块定义不清楚，无法确认加载哪个模块的问题，所以在模块构建过程中需要提取模块标识id。<br>此外，即便不合并，保持一个文件一个模块，如果压缩时不提取 id，那么在 IE6-9 下也有可能会出现问题。</p>
+<p><strong>为什么要提取模块依赖dependencies：</strong></p>
+<p>为了保证压缩文件随意压缩代码，构建工具在提取id的同时，也会提取dependencies数组。这样seajs不会再通过factory.toString()借助于正则匹配来获取依赖，直接可以通过factory函数的第二个参数拿到依赖数组。<br><code>注意：一旦factory的第二个参数定义了依赖数组，那么seajs将不会使用正则匹配的方式去分析并获取依赖，而是直接使用factory第二个参数提供的依赖数组作为所有的依赖。</code></p>
+<h2 id="sea-js实战"><a href="#sea-js实战" class="headerlink" title="sea.js实战"></a>sea.js实战</h2><ul>
+<li>引入sea.js的库</li>
+<li>如何变成模块？<ul>
+<li>define</li>
+</ul>
+</li>
+<li>3.如何调用模块？<br>   -exports<br>   -sea.js.use</li>
+<li>4.如何依赖模块？<br>   -require<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">        define(function (require,exports,module) &#123;</span><br><span class="line">            //exports : 对外的接口</span><br><span class="line">            //requires : 依赖的接口</span><br><span class="line">            require(&apos;./test.js&apos;);//如果地址是一个模块的话，那么require的返回值就是模块中的exports</span><br><span class="line">        &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>sea.js 开发实例</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"> &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span><br><span class="line">&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;鼠标拖拽的模块化开发实践&lt;/title&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">#div1&#123; width:200px; height:200px; background:black; position:absolute; display:none;&#125;</span><br><span class="line">#div2&#123; width:30px; height:30px; background:yellow; position:absolute; bottom:0; right:0;&#125;</span><br><span class="line">#div3&#123; width:100px; height:100px; background:blue; position:absolute; right:0; top:0;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;./sea.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    </span><br><span class="line">//A同事 ：</span><br><span class="line">seajs.use(&apos;./main.js&apos;);</span><br><span class="line">    </span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;input type=&quot;button&quot; value=&quot;确定&quot; id=&quot;input1&quot; /&gt;</span><br><span class="line">&lt;div id=&quot;div1&quot;&gt;</span><br><span class="line">    &lt;div id=&quot;div2&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;div3&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>A同事</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//A同事写的main.js:</span><br><span class="line"></span><br><span class="line">define(function (require,exports,module) &#123;</span><br><span class="line">    var oInput = document.getElementById(&apos;input1&apos;);</span><br><span class="line">    var oDiv1 = document.getElementById(&apos;div1&apos;);</span><br><span class="line">    var oDiv2 = document.getElementById(&apos;div2&apos;);</span><br><span class="line">    var oDiv3 = document.getElementById(&apos;div3&apos;);</span><br><span class="line"></span><br><span class="line">    require(&apos;./drag.js&apos;).drag(oDiv3);</span><br><span class="line">    oInput.onclick = function () &#123;</span><br><span class="line">        oDiv1.style.display = &apos;block&apos;;</span><br><span class="line">        require(&apos;./scale.js&apos;).scale(oDiv1,oDiv2);</span><br><span class="line"></span><br><span class="line">        require.async(&apos;./scale.js&apos;, function (ex) &#123;</span><br><span class="line">            ex.scale(oDiv1,oDiv2);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>B同事<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">//B同事写的drag.js:</span><br><span class="line"></span><br><span class="line">define(function(require,exports,module)&#123;</span><br><span class="line">    </span><br><span class="line">    function drag(obj)&#123;</span><br><span class="line">        var disX = 0;</span><br><span class="line">        var disY = 0;</span><br><span class="line">        obj.onmousedown = function(ev)&#123;</span><br><span class="line">            var ev = ev || window.event;</span><br><span class="line">            disX = ev.clientX - obj.offsetLeft;</span><br><span class="line">            disY = ev.clientY - obj.offsetTop;</span><br><span class="line">            </span><br><span class="line">            document.onmousemove = function(ev)&#123;</span><br><span class="line">                var ev = ev || window.event;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                 var L = require(&apos;./range.js&apos;).range(ev.clientX - disX , document.documentElement.clientWidth - obj.offsetWidth , 0 );</span><br><span class="line">                 var T = require(&apos;./range.js&apos;).range(ev.clientY - disY , document.documentElement.clientHeight - obj.offsetHeight , 0 );</span><br><span class="line"></span><br><span class="line">                </span><br><span class="line">                obj.style.left = L + &apos;px&apos;;</span><br><span class="line">                obj.style.top = T + &apos;px&apos;;</span><br><span class="line">            &#125;;</span><br><span class="line">            document.onmouseup = function()&#123;</span><br><span class="line">                document.onmousemove = null;</span><br><span class="line">                document.onmouseup = null;</span><br><span class="line">            &#125;;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    exports.drag = drag;//对外提供接口</span><br><span class="line">    </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>C同事<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">//C同事写的scale.js:</span><br><span class="line"></span><br><span class="line">define(function(require,exports,module)&#123;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    function scale(obj1,obj2)&#123;</span><br><span class="line">        var disX = 0;</span><br><span class="line">        var disY = 0;</span><br><span class="line">        var disW = 0;</span><br><span class="line">        var disH = 0;</span><br><span class="line">        </span><br><span class="line">        obj2.onmousedown = function(ev)&#123;</span><br><span class="line">            var ev = ev || window.event;</span><br><span class="line">            disX = ev.clientX;</span><br><span class="line">            disY = ev.clientY;</span><br><span class="line">            disW = obj1.offsetWidth;</span><br><span class="line">            disH = obj1.offsetHeight;</span><br><span class="line">            </span><br><span class="line">            document.onmousemove = function(ev)&#123;</span><br><span class="line">                var ev = ev || window.event;</span><br><span class="line">                </span><br><span class="line">                var W = require(&apos;./range.js&apos;).range(ev.clientX - disX + disW , 500 , 100);</span><br><span class="line">                var H = require(&apos;./range.js&apos;).range(ev.clientY - disY + disH , 500 , 100);</span><br><span class="line">                </span><br><span class="line">                obj1.style.width = W + &apos;px&apos;;</span><br><span class="line">                obj1.style.height = H + &apos;px&apos;;</span><br><span class="line">            &#125;;</span><br><span class="line">            document.onmouseup = function()&#123;</span><br><span class="line">                document.onmousemove = null;</span><br><span class="line">                document.onmouseup = null;</span><br><span class="line">            &#125;;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    exports.scale = scale;</span><br><span class="line">    </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>D同事</p>
+<pre><code>// D同事的range.js--限定拖拽范围
+
+    define(function(require,exports,module){
+
+        function range(iNum,iMax,iMin){
+
+            if( iNum &gt; iMax ){
+                return iMax;
+            }
+            else if( iNum &lt; iMin ){
+                return iMin;
+            }
+            else{
+                return iNum;
+            }
+
+        }
+
+        exports.range = range;
+
+    });
+</code></pre><p><img src="前端模块化之seajs/articlex.png" alt=""></p>
+</script></li></ul>
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/01/24/前端模块化之seajs/" data-id="cjrc04g29004dwcfvhtz5lrg4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/01/24/orcal之时间加减和快速删除表空间所有表的数据/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            orcal之时间加减和快速删除表空间所有表的数据
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/01/23/前端模块化之requirejs/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">前端模块化之requirejs</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/25/前端模块化总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/25/前端模块化总结/e900d.png)" alt="前端模块化总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/25/前端模块化总结/" class="title">前端模块化总结</a></p>
+                            <p class="item-date"><time datetime="2019-01-25T06:54:36.000Z" itemprop="datePublished">2019-01-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/24/orcal之时间加减和快速删除表空间所有表的数据/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/24/orcal之时间加减和快速删除表空间所有表的数据/&amp;gp=0.jpg)" alt="orcal之时间加减和快速删除表空间所有表的数据" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/24/orcal之时间加减和快速删除表空间所有表的数据/" class="title">orcal之时间加减和快速删除表空间所有表的数据</a></p>
+                            <p class="item-date"><time datetime="2019-01-24T09:51:58.000Z" itemprop="datePublished">2019-01-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/24/前端模块化之seajs/" class="thumbnail">
+    
+    
+        <span style="background-image:url(前端模块化之seajs/articlex.png)" alt="前端模块化之seajs" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/24/前端模块化之seajs/" class="title">前端模块化之seajs</a></p>
+                            <p class="item-date"><time datetime="2019-01-24T06:14:49.000Z" itemprop="datePublished">2019-01-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/23/前端模块化之requirejs/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/23/前端模块化之requirejs/13841564386721.jpg)" alt="前端模块化之requirejs" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/23/前端模块化之requirejs/" class="title">前端模块化之requirejs</a></p>
+                            <p class="item-date"><time datetime="2019-01-23T06:52:39.000Z" itemprop="datePublished">2019-01-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/23/前端模块化/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/23/前端模块化/" class="title">前端模块化</a></p>
+                            <p class="item-date"><time datetime="2019-01-23T06:31:34.000Z" itemprop="datePublished">2019-01-23</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 18.57px;">JavaScript</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 17.14px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15.71px;">maven</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 12.86px;">python</a> <a href="/tags/冷知识/" style="font-size: 10px;">冷知识</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 14.29px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/01/24/前端模块化之seajs/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

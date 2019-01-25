@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>ajax专题 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JavaScript">
+    
+    <meta name="description" content="AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。AJAX 不是新的编程语言，而是一种使用现有标准的新方法。AJAX 最大的优点是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。AJAX 不需要任何浏览器插件，但需要用户允许JavaScript在浏览器上执行。 什么是 AJAX ？AJAX = 异步 Ja">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ajax专题">
+<meta property="og:url" content="http://yoursite.com/2019/01/23/ajax专题/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。AJAX 不是新的编程语言，而是一种使用现有标准的新方法。AJAX 最大的优点是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。AJAX 不需要任何浏览器插件，但需要用户允许JavaScript在浏览器上执行。 什么是 AJAX ？AJAX = 异步 Ja">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/01/23/ajax专题/&amp;gp=0.jpg">
+<meta property="og:updated_time" content="2019-01-23T04:32:34.568Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ajax专题">
+<meta name="twitter:description" content="AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。AJAX 不是新的编程语言，而是一种使用现有标准的新方法。AJAX 最大的优点是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。AJAX 不需要任何浏览器插件，但需要用户允许JavaScript在浏览器上执行。 什么是 AJAX ？AJAX = 异步 Ja">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/23/ajax专题/&amp;gp=0.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-ajax专题" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        ajax专题
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/01/23/ajax专题/" class="article-date">
+            <time datetime="2019-01-23T01:10:40.000Z" itemprop="datePublished">2019-01-23</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/2019/01/23/ajax专题/&amp;gp=0.jpg" alt=""><br>AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。<br>AJAX 不是新的编程语言，而是一种使用现有标准的新方法。<br>AJAX 最大的优点是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。<br>AJAX 不需要任何浏览器插件，但需要用户允许JavaScript在浏览器上执行。</p>
+<p><strong>什么是 AJAX ？</strong><br>AJAX = 异步 JavaScript 和 XML。<br>AJAX 是一种用于创建快速动态网页的技术。<br>通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。<br>传统的网页（不使用 AJAX）如果需要更新内容，必需重载整个网页面。<br>有很多使用 AJAX 的应用程序案例：新浪微博、Google 地图、开心网等等。</p>
+<p><strong>AJAX 工作原理</strong><br><img src="/2019/01/23/ajax专题/ajax.gif" alt=""></p>
+<p><strong>AJAX是基于现有的Internet标准，并且联合使用它们：</strong></p>
+<ul>
+<li>XMLHttpRequest 对象 (异步的与服务器交换数据)</li>
+<li>JavaScript/DOM (信息显示/交互)</li>
+<li>CSS (给数据定义样式)</li>
+<li>XML (作为转换数据的格式)<blockquote>
+<p>AJAX应用程序与浏览器和平台无关的！</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>AJAX 应用</strong></p>
+<ul>
+<li>运用XHTML+CSS来表达资讯；</li>
+<li>运用JavaScript操作DOM（Document Object Model）来执行动态效果；</li>
+<li>运用XML和XSLT操作资料;</li>
+<li>运用XMLHttpRequest或新的Fetch API与网页服务器进行异步资料交换；</li>
+<li>注意：AJAX与Flash、Silverlight和Java Applet等RIA技术是有区分的。</li>
+</ul>
+<h2 id="XMLHttpRequest-对象"><a href="#XMLHttpRequest-对象" class="headerlink" title="XMLHttpRequest 对象"></a>XMLHttpRequest 对象</h2><p><code>XMLHttpRequest 是 AJAX 的基础,用于和服务器交换数据。</code><br>所有现代浏览器均支持 XMLHttpRequest 对象（IE5 和 IE6 使用 ActiveXObject）。<br>XMLHttpRequest 用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。<br><strong>创建 XMLHttpRequest 对象</strong><br>所有现代浏览器（IE7+、Firefox、Chrome、Safari 以及 Opera）均内建 XMLHttpRequest 对象。<br>创建 XMLHttpRequest 对象的语法：<br><code>variable=new XMLHttpRequest();</code><br>老版本的 Internet Explorer （IE5 和 IE6）使用 ActiveX 对象：<br><code>variable=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</code><br>为了应对所有的现代浏览器，包括 IE5 和 IE6，请检查浏览器是否支持 XMLHttpRequest 对象。如果支持，则创建 XMLHttpRequest 对象。如果不支持，则创建 ActiveXObject ：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var xmlhttp;</span><br><span class="line">if (window.XMLHttpRequest)</span><br><span class="line">&#123;</span><br><span class="line">    //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span><br><span class="line">    xmlhttp=new XMLHttpRequest();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    // IE6, IE5 浏览器执行代码</span><br><span class="line">    xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>向服务器发送请求请求</strong><br>如需将请求发送到服务器，我们使用 XMLHttpRequest 对象的 open() 和 send() 方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(&quot;GET&quot;,&quot;ajax_info.txt&quot;,true);</span><br><span class="line">xmlhttp.send();</span><br></pre></td></tr></table></figure></p>
+<p><code>open(method,url,async)</code>规定请求的类型、URL 以及是否异步处理请求。</p>
+<ul>
+<li>method：请求的类型；GET 或 POST</li>
+<li>url：文件在服务器上的位置</li>
+<li>async：true（异步）或 false（同步）</li>
+</ul>
+<blockquote>
+<p>url - 服务器上的文件<br>open() 方法的 url 参数是服务器上文件的地址：xmlhttp.open(“GET”,”ajax_test.html”,true);<br>该文件可以是任何类型的文件，比如 .txt 和 .xml，或者服务器脚本文件，比如 .asp 和 .php （在传回响应之前，能够在服务器上执行任务）。</p>
+</blockquote>
+<blockquote>
+<p>异步(async) - True 或 False？<br>AJAX 指的是异步 JavaScript 和 XML（Asynchronous JavaScript and XML）。<br>要求为Boolean类型的参数，默认设置为true，所有请求均为异步请求。如果需要发送同步请求，请将此选项设置为false。注意，同步请求将锁住浏览器，用户其他操作必须等待请求完成才可以执行。<br>XMLHttpRequest 对象如果要用于 AJAX 的话，其 open() 方法的 async 参数必须设置为 true：<br><code>xmlhttp.open(&quot;GET&quot;,&quot;ajax_test.html&quot;,true);</code><br>对于 web 开发人员来说，发送异步请求是一个巨大的进步。很多在服务器执行的任务都相当费时。AJAX 出现之前，这可能会引起应用程序挂起或停止。<br>通过 AJAX，JavaScript 无需等待服务器的响应，而是：</p>
+<ul>
+<li>在等待服务器响应时执行其他脚本</li>
+<li>当响应就绪后对响应进行处理<br>我们不推荐使用 async=false，但是对于一些小型的请求，也是可以的。<br>请记住，JavaScript 会等到服务器响应就绪才继续执行。如果服务器繁忙或缓慢，应用程序会挂起或停止。</li>
+</ul>
+</blockquote>
+<p><code>send(string)</code>    将请求发送到服务器。</p>
+<ul>
+<li>string：仅用于 POST 请求</li>
+</ul>
+<p><strong>GET 还是 POST？</strong><br>与 POST 相比，GET 更简单也更快，并且在大部分情况下都能用。<br>然而，在以下情况中，请使用 POST 请求：</p>
+<ul>
+<li>无法使用缓存文件（更新服务器上的文件或数据库）</li>
+<li>向服务器发送大量数据（POST 没有数据量限制）</li>
+<li>发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠</li>
+</ul>
+<p>如果您希望通过 GET 方法发送信息，请向 URL 添加信息：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(&quot;GET&quot;,&quot;/try/ajax/demo_get2.php?fname=Henry&amp;lname=Ford&quot;,true);</span><br><span class="line">xmlhttp.send();</span><br></pre></td></tr></table></figure></p>
+<p>如果需要像 HTML 表单那样 POST 数据，请使用 setRequestHeader() 来添加 HTTP 头。然后在 send() 方法中规定您希望发送的数据：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(&quot;POST&quot;,&quot;/try/ajax/demo_post2.php&quot;,true);</span><br><span class="line">xmlhttp.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);</span><br><span class="line">xmlhttp.send(&quot;fname=Henry&amp;lname=Ford&quot;);</span><br></pre></td></tr></table></figure></p>
+<p><code>setRequestHeader(header,value)</code>向请求添加 HTTP 头。</p>
+<ul>
+<li>header: 规定头的名称</li>
+<li>value: 规定头的值</li>
+</ul>
+<p><strong>服务器响应</strong></p>
+<ul>
+<li><p>responseText 属性<br>如果来自服务器的响应并非 XML，请使用 responseText 属性。<br>responseText 属性返回字符串形式的响应，因此您可以这样使用：<br>实例<br><code>document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;</code></p>
+</li>
+<li><p>responseXML 属性<br>如果来自服务器的响应是 XML，而且需要作为 XML 对象进行解析，请使用 responseXML 属性：<br>实例<br>请求 <code>cd_catalog.xml</code> 文件，并解析响应：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function loadXMLDoc()</span><br><span class="line">&#123;</span><br><span class="line">  var xmlhttp;</span><br><span class="line">  var txt,x,i;</span><br><span class="line">  if (window.XMLHttpRequest)</span><br><span class="line">  &#123;</span><br><span class="line">    // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span><br><span class="line">    xmlhttp=new XMLHttpRequest();</span><br><span class="line">  &#125;</span><br><span class="line">  else</span><br><span class="line">  &#123;</span><br><span class="line">    // IE6, IE5 浏览器执行代码</span><br><span class="line">    xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  xmlhttp.onreadystatechange=function()</span><br><span class="line">  &#123;</span><br><span class="line">    if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)</span><br><span class="line">    &#123;</span><br><span class="line">      xmlDoc=xmlhttp.responseXML;</span><br><span class="line">      txt=&quot;&quot;;</span><br><span class="line">      x=xmlDoc.getElementsByTagName(&quot;ARTIST&quot;);</span><br><span class="line">      for (i=0;i&lt;x.length;i++)</span><br><span class="line">      &#123;</span><br><span class="line">        txt=txt + x[i].childNodes[0].nodeValue + &quot;&lt;br&gt;&quot;;</span><br><span class="line">      &#125;</span><br><span class="line">      document.getElementById(&quot;myDiv&quot;).innerHTML=txt;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  xmlhttp.open(&quot;GET&quot;,&quot;cd_catalog.xml&quot;,true);</span><br><span class="line">  xmlhttp.send();</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;h2&gt;我收藏的 CD :&lt;/h2&gt;</span><br><span class="line">&lt;div id=&quot;myDiv&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;button type=&quot;button&quot; onclick=&quot;loadXMLDoc()&quot;&gt;获取我的 CD&lt;/button&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>cd_catalog.xml</code> 文件内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--  Edited by XMLSpy®  --&gt;</span><br><span class="line">&lt;CATALOG&gt;</span><br><span class="line">&lt;CD&gt;</span><br><span class="line">&lt;TITLE&gt;Empire Burlesque&lt;/TITLE&gt;</span><br><span class="line">&lt;ARTIST&gt;Bob Dylan&lt;/ARTIST&gt;</span><br><span class="line">&lt;COUNTRY&gt;USA&lt;/COUNTRY&gt;</span><br><span class="line">&lt;COMPANY&gt;Columbia&lt;/COMPANY&gt;</span><br><span class="line">&lt;PRICE&gt;10.90&lt;/PRICE&gt;</span><br><span class="line">&lt;YEAR&gt;1985&lt;/YEAR&gt;</span><br><span class="line">&lt;/CD&gt;</span><br><span class="line">&lt;CD&gt;</span><br><span class="line">&lt;TITLE&gt;Hide your heart&lt;/TITLE&gt;</span><br><span class="line">&lt;ARTIST&gt;Bonnie Tyler&lt;/ARTIST&gt;</span><br><span class="line">&lt;COUNTRY&gt;UK&lt;/COUNTRY&gt;</span><br><span class="line">&lt;COMPANY&gt;CBS Records&lt;/COMPANY&gt;</span><br><span class="line">&lt;PRICE&gt;9.90&lt;/PRICE&gt;</span><br><span class="line">&lt;YEAR&gt;1988&lt;/YEAR&gt;</span><br><span class="line">&lt;/CD&gt;</span><br><span class="line">&lt;CD&gt;</span><br><span class="line">&lt;TITLE&gt;Greatest Hits&lt;/TITLE&gt;</span><br><span class="line">&lt;ARTIST&gt;Dolly Parton&lt;/ARTIST&gt;</span><br><span class="line">&lt;COUNTRY&gt;USA&lt;/COUNTRY&gt;</span><br><span class="line">&lt;COMPANY&gt;RCA&lt;/COMPANY&gt;</span><br><span class="line">&lt;PRICE&gt;9.90&lt;/PRICE&gt;</span><br><span class="line">&lt;YEAR&gt;1982&lt;/YEAR&gt;</span><br><span class="line">&lt;/CD&gt;</span><br><span class="line">&lt;CD&gt;</span><br><span class="line">&lt;TITLE&gt;Still got the blues&lt;/TITLE&gt;</span><br><span class="line">&lt;ARTIST&gt;Gary Moore&lt;/ARTIST&gt;</span><br><span class="line">&lt;COUNTRY&gt;UK&lt;/COUNTRY&gt;</span><br><span class="line">&lt;COMPANY&gt;Virgin records&lt;/COMPANY&gt;</span><br><span class="line">&lt;PRICE&gt;10.20&lt;/PRICE&gt;</span><br><span class="line">&lt;YEAR&gt;1990&lt;/YEAR&gt;</span><br><span class="line">&lt;/CD&gt;</span><br><span class="line">&lt;/CATALOG&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>onreadystatechange事件</strong><br>当请求被发送到服务器时，我们需要执行一些基于响应的任务。<br>每当 readyState 改变时，就会触发 onreadystatechange 事件。<br>readyState 属性存有 XMLHttpRequest 的状态信息。<br>下面是 XMLHttpRequest 对象的三个重要的属性：</p>
+<ul>
+<li>onreadystatechange  存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。</li>
+<li>readyState  存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。<ul>
+<li>0: 请求未初始化</li>
+<li>1: 服务器连接已建立</li>
+<li>2: 请求已接收</li>
+<li>3: 请求处理中</li>
+<li>4: 请求已完成，且响应已就绪</li>
+</ul>
+</li>
+<li>status<ul>
+<li>200: “OK”</li>
+<li>404: 未找到页面</li>
+</ul>
+</li>
+</ul>
+<p>在 onreadystatechange 事件中，我们规定当服务器响应已做好被处理的准备时所执行的任务。<br>当 readyState 等于 4 且状态为 200 时，表示响应已就绪：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.onreadystatechange=function()</span><br><span class="line">&#123;</span><br><span class="line">    if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)</span><br><span class="line">    &#123;</span><br><span class="line">        document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意：</strong> onreadystatechange 事件被触发 4 次（0 - 4）, 分别是： 0-1、1-2、2-3、3-4，对应着 readyState 的每个变化</p>
+<p><strong>使用回调函数</strong><br>回调函数是一种以参数形式传递给另一个函数的函数。<br>如果您的网站上存在多个 AJAX 任务，那么您应该为创建 XMLHttpRequest 对象编写一个标准的函数，并为每个 AJAX 任务调用该函数。<br>该函数调用应该包含 URL 以及发生 onreadystatechange 事件时执行的任务（每次调用可能不尽相同）：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function myFunction()</span><br><span class="line">&#123;</span><br><span class="line">    loadXMLDoc(&quot;/ajax/ajax_info.txt&quot;,function()</span><br><span class="line">    &#123;</span><br><span class="line">        if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)</span><br><span class="line">        &#123;</span><br><span class="line">            document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>服务器常用的状态码及其对应的含义如下：</strong></p>
+<ul>
+<li>200：服务器响应正常。</li>
+<li>304：该资源在上次请求之后没有任何修改（这通常用于浏览器的缓存机制，使用GET请求时尤其需要注意）。</li>
+<li>400：无法找到请求的资源。</li>
+<li>401：访问资源的权限不够。</li>
+<li>403：没有权限访问资源。</li>
+<li>404：需要访问的资源不存在。</li>
+<li>405：需要访问的资源被禁止。</li>
+<li>407：访问的资源需要代理身份验证。</li>
+<li>414：请求的URL太长。</li>
+<li>500：服务器内部错误。</li>
+</ul>
+<p><strong>补全状态码避免再去搜:</strong><br>100——客户必须继续发出请求<br>101——客户要求服务器根据请求转换HTTP协议版本<br>200——交易成功,服务器响应正常。<br>201——提示知道新文件的URL<br>202——接受和处理、但处理未完成<br>203——返回信息不确定或不完整<br>204——请求收到，但返回信息为空<br>205——服务器完成了请求，用户代理必须复位当前已经浏览过的文件<br>206——服务器已经完成了部分用户的GET请求<br>300——请求的资源可在多处得到<br>301——删除请求数据<br>302——在其他地址发现了请求数据<br>303——建议客户访问其他URL或访问方式<br>304——客户端已经执行了GET，但文件未变化<br>305——请求的资源必须从服务器指定的地址得到<br>306——前一版本HTTP中使用的代码，现行版本中不再使用<br>307——申明请求的资源临时性删除<br>400——错误请求，如语法错误<br>401——请求授权失败<br>402——保留有效ChargeTo头响应<br>403——请求不允许<br>404——没有发现文件、查询或URl<br>405——用户在Request-Line字段定义的方法不允许<br>406——根据用户发送的Accept拖，请求资源不可访问<br>407——类似401，用户必须首先在代理服务器上得到授权<br>408——客户端没有在用户指定的时间内完成请求<br>409——对当前资源状态，请求不能完成<br>410——服务器上不再有此资源且无进一步的参考地址<br>411——服务器拒绝用户定义的Content-Length属性请求<br>412——一个或多个请求头字段在当前请求中错误<br>413——请求的资源大于服务器允许的大小<br>414——请求的资源URL长于服务器允许的长度<br>415——请求资源不支持请求项目格式<br>416——请求中包含Range请求头字段，在当前请求资源范围内没有range指示值，请求也不包含If-Range请求头字段<br>417——服务器不满足请求Expect头字段指定的期望值，如果是代理服务器，可能是下一级服务器不能满足请求<br>500——服务器产生内部错误<br>501——服务器不支持请求的函数<br>502——服务器暂时不可用，有时是为了防止发生系统过载<br>503——服务器过载或暂停维修<br>504——关口过载，服务器使用另一个关口或服务来响应用户，等待时间设定值较长<br>505——服务器不支持或拒绝支请求头中指定的HTTP版本<br>1xx:信息响应类，表示接收到请求并且继续处理<br>2xx:处理成功响应类，表示动作被成功接收、理解和接受<br>3xx:重定向响应类，为了完成指定的动作，必须接受进一步处理<br>4xx:客户端错误，客户请求包含语法错误或者是不能正确执行<br>5xx:服务端错误，服务器不能正确执行一个正确的请求</p>
+<p>用 window.alert 跟踪 xmlHttp.readystate 的变化，发现于原来它运行的机制是这样的。首先创建一个 xmlHttpRequest 的对象之后 xmlHttp.readyState 的值是 0 了，然后xmlHttp.onreadystatechange = handlestatechange 没有运行。紧接着是 open()，这个函数发生了之后 xmlHttp.readyState 的值是 1 了，那么就会有一个断点在 Open() 函数处断开，保留现场，紧接着又返回到 xmlHttp.onreadystatechange = handlestatechange 运行，然后再执行 Send() 函数，这个函数发生了之后 xmlHttp.readyState 的值是 2 了，接着又返回到 xmlHttp.onreadystatechange = handlestatechange 运行，以此类推。</p>
+<h2 id="ASP-PHP-实例"><a href="#ASP-PHP-实例" class="headerlink" title="ASP/PHP 实例"></a>ASP/PHP 实例</h2><p>下面的例子将为您演示当用户在输入框中键入字符时，网页如何与 web 服务器进行通信： 请在下面的输入框中键入字母（A - Z）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function showHint(str)</span><br><span class="line">&#123;</span><br><span class="line">  var xmlhttp;</span><br><span class="line">  if (str.length==0)</span><br><span class="line">  &#123; </span><br><span class="line">    document.getElementById(&quot;txtHint&quot;).innerHTML=&quot;&quot;;</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line">  if (window.XMLHttpRequest)</span><br><span class="line">  &#123;</span><br><span class="line">    // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span><br><span class="line">    xmlhttp=new XMLHttpRequest();</span><br><span class="line">  &#125;</span><br><span class="line">  else</span><br><span class="line">  &#123;</span><br><span class="line">    // IE6, IE5 浏览器执行代码</span><br><span class="line">    xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  xmlhttp.onreadystatechange=function()</span><br><span class="line">  &#123;</span><br><span class="line">    if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)</span><br><span class="line">    &#123;</span><br><span class="line">      document.getElementById(&quot;txtHint&quot;).innerHTML=xmlhttp.responseText;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  xmlhttp.open(&quot;GET&quot;,&quot;/try/ajax/gethint.php?q=&quot;+str,true);</span><br><span class="line">  xmlhttp.send();</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;h3&gt;在输入框中尝试输入字母 a:&lt;/h3&gt;</span><br><span class="line">&lt;form action=&quot;&quot;&gt; </span><br><span class="line">输入姓名: &lt;input type=&quot;text&quot; id=&quot;txt1&quot; onkeyup=&quot;showHint(this.value)&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;p&gt;提示信息: &lt;span id=&quot;txtHint&quot;&gt;&lt;/span&gt;&lt;/p&gt; </span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>当用户在上面的输入框中键入字符时，会执行函数 “showHint()” 。该函数由 “onkeyup” 事件触发：<br>如果输入框为空 str.length==0，则该函数清空 txtHint 占位符的内容，并退出函数。<br>如果输入框不为空，showHint() 函数执行以下任务：</p>
+<ul>
+<li>创建 XMLHttpRequest 对象</li>
+<li>当服务器响应就绪时执行函数</li>
+<li>把请求发送到服务器上的文件</li>
+<li>请注意我们向 URL 添加了一个参数 q （带有输入框的内容）</li>
+</ul>
+<p>由上面的 JavaScript 调用的服务器页面是 ASP 文件，名为 “gethint.asp”。<br>下面，我们创建了两个版本的服务器文件，一个用 ASP 编写，另一个用 PHP 编写。</p>
+<ul>
+<li><p>ASP 文件<br>“gethint.asp” 中的源代码会检查一个名字数组，然后向浏览器返回相应的名字：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">response.expires=-1</span><br><span class="line">dim a(30)</span><br><span class="line">&apos;Fill up array with names</span><br><span class="line">a(1)=&quot;Anna&quot;</span><br><span class="line">a(2)=&quot;Brittany&quot;</span><br><span class="line">a(3)=&quot;Cinderella&quot;</span><br><span class="line">a(4)=&quot;Diana&quot;</span><br><span class="line">a(5)=&quot;Eva&quot;</span><br><span class="line">a(6)=&quot;Fiona&quot;</span><br><span class="line">a(7)=&quot;Gunda&quot;</span><br><span class="line">a(8)=&quot;Hege&quot;</span><br><span class="line">a(9)=&quot;Inga&quot;</span><br><span class="line">a(10)=&quot;Johanna&quot;</span><br><span class="line">a(11)=&quot;Kitty&quot;</span><br><span class="line">a(12)=&quot;Linda&quot;</span><br><span class="line">a(13)=&quot;Nina&quot;</span><br><span class="line">a(14)=&quot;Ophelia&quot;</span><br><span class="line">a(15)=&quot;Petunia&quot;</span><br><span class="line">a(16)=&quot;Amanda&quot;</span><br><span class="line">a(17)=&quot;Raquel&quot;</span><br><span class="line">a(18)=&quot;Cindy&quot;</span><br><span class="line">a(19)=&quot;Doris&quot;</span><br><span class="line">a(20)=&quot;Eve&quot;</span><br><span class="line">a(21)=&quot;Evita&quot;</span><br><span class="line">a(22)=&quot;Sunniva&quot;</span><br><span class="line">a(23)=&quot;Tove&quot;</span><br><span class="line">a(24)=&quot;Unni&quot;</span><br><span class="line">a(25)=&quot;Violet&quot;</span><br><span class="line">a(26)=&quot;Liza&quot;</span><br><span class="line">a(27)=&quot;Elizabeth&quot;</span><br><span class="line">a(28)=&quot;Ellen&quot;</span><br><span class="line">a(29)=&quot;Wenche&quot;</span><br><span class="line">a(30)=&quot;Vicky&quot;</span><br><span class="line"></span><br><span class="line">&apos;get the q parameter from URL</span><br><span class="line">q=ucase(request.querystring(&quot;q&quot;))</span><br><span class="line"></span><br><span class="line">&apos;lookup all hints from array if length of q&gt;0</span><br><span class="line">if len(q)&gt;0 then</span><br><span class="line">  hint=&quot;&quot;</span><br><span class="line">  for i=1 to 30</span><br><span class="line">    if q=ucase(mid(a(i),1,len(q))) then</span><br><span class="line">      if hint=&quot;&quot; then</span><br><span class="line">        hint=a(i)</span><br><span class="line">      else</span><br><span class="line">        hint=hint &amp; &quot; , &quot; &amp; a(i)</span><br><span class="line">      end if</span><br><span class="line">    end if</span><br><span class="line">  next</span><br><span class="line">end if</span><br><span class="line"></span><br><span class="line">&apos;Output &quot;no suggestion&quot; if no hint were found</span><br><span class="line">&apos;or output the correct values</span><br><span class="line">if hint=&quot;&quot; then</span><br><span class="line">  response.write(&quot;no suggestion&quot;)</span><br><span class="line">else</span><br><span class="line">  response.write(hint)</span><br><span class="line">end if</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>PHP 文件<br>下面的代码用 PHP 编写，与上面的 ASP 代码作用是一样的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// Fill up array with names</span><br><span class="line">$a[]=&quot;Anna&quot;;</span><br><span class="line">$a[]=&quot;Brittany&quot;;</span><br><span class="line">$a[]=&quot;Cinderella&quot;;</span><br><span class="line">$a[]=&quot;Diana&quot;;</span><br><span class="line">$a[]=&quot;Eva&quot;;</span><br><span class="line">$a[]=&quot;Fiona&quot;;</span><br><span class="line">$a[]=&quot;Gunda&quot;;</span><br><span class="line">$a[]=&quot;Hege&quot;;</span><br><span class="line">$a[]=&quot;Inga&quot;;</span><br><span class="line">$a[]=&quot;Johanna&quot;;</span><br><span class="line">$a[]=&quot;Kitty&quot;;</span><br><span class="line">$a[]=&quot;Linda&quot;;</span><br><span class="line">$a[]=&quot;Nina&quot;;</span><br><span class="line">$a[]=&quot;Ophelia&quot;;</span><br><span class="line">$a[]=&quot;Petunia&quot;;</span><br><span class="line">$a[]=&quot;Amanda&quot;;</span><br><span class="line">$a[]=&quot;Raquel&quot;;</span><br><span class="line">$a[]=&quot;Cindy&quot;;</span><br><span class="line">$a[]=&quot;Doris&quot;;</span><br><span class="line">$a[]=&quot;Eve&quot;;</span><br><span class="line">$a[]=&quot;Evita&quot;;</span><br><span class="line">$a[]=&quot;Sunniva&quot;;</span><br><span class="line">$a[]=&quot;Tove&quot;;</span><br><span class="line">$a[]=&quot;Unni&quot;;</span><br><span class="line">$a[]=&quot;Violet&quot;;</span><br><span class="line">$a[]=&quot;Liza&quot;;</span><br><span class="line">$a[]=&quot;Elizabeth&quot;;</span><br><span class="line">$a[]=&quot;Ellen&quot;;</span><br><span class="line">$a[]=&quot;Wenche&quot;;</span><br><span class="line">$a[]=&quot;Vicky&quot;;</span><br><span class="line"></span><br><span class="line">//get the q parameter from URL</span><br><span class="line">$q=$_GET[&quot;q&quot;];</span><br><span class="line"></span><br><span class="line">//lookup all hints from array if length of q&gt;0</span><br><span class="line">if (strlen($q) &gt; 0)</span><br><span class="line">&#123;</span><br><span class="line">  $hint=&quot;&quot;;</span><br><span class="line">  for($i=0; $i&lt;count($a); $i++)</span><br><span class="line">  &#123;</span><br><span class="line">    if (strtolower($q)==strtolower(substr($a[$i],0,strlen($q))))</span><br><span class="line">    &#123;</span><br><span class="line">      if ($hint==&quot;&quot;)</span><br><span class="line">      &#123;</span><br><span class="line">        $hint=$a[$i];</span><br><span class="line">      &#125;</span><br><span class="line">      else</span><br><span class="line">      &#123;</span><br><span class="line">        $hint=$hint.&quot; , &quot;.$a[$i];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Set output to &quot;no suggestion&quot; if no hint were found</span><br><span class="line">// or to the correct values</span><br><span class="line">if ($hint == &quot;&quot;)</span><br><span class="line">&#123;</span><br><span class="line">  $response=&quot;no suggestion&quot;;</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">  $response=$hint;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//output the response</span><br><span class="line">echo $response;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Database-实例"><a href="#Database-实例" class="headerlink" title="Database 实例"></a>Database 实例</h2><p>AJAX 可用来与数据库进行动态通信。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function showCustomer(str)</span><br><span class="line">&#123;</span><br><span class="line">  var xmlhttp;    </span><br><span class="line">  if (str==&quot;&quot;)</span><br><span class="line">  &#123;</span><br><span class="line">    document.getElementById(&quot;txtHint&quot;).innerHTML=&quot;&quot;;</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line">  if (window.XMLHttpRequest)</span><br><span class="line">  &#123;</span><br><span class="line">    // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span><br><span class="line">    xmlhttp=new XMLHttpRequest();</span><br><span class="line">  &#125;</span><br><span class="line">  else</span><br><span class="line">  &#123;</span><br><span class="line">    // IE6, IE5 浏览器执行代码</span><br><span class="line">    xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  xmlhttp.onreadystatechange=function()</span><br><span class="line">  &#123;</span><br><span class="line">    if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)</span><br><span class="line">    &#123;</span><br><span class="line">      document.getElementById(&quot;txtHint&quot;).innerHTML=xmlhttp.responseText;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  xmlhttp.open(&quot;GET&quot;,&quot;/try/ajax/getcustomer.php?q=&quot;+str,true);</span><br><span class="line">  xmlhttp.send();</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;form action=&quot;&quot;&gt; </span><br><span class="line">&lt;select name=&quot;customers&quot; onchange=&quot;showCustomer(this.value)&quot; style=&quot;font-family:Verdana, Arial, Helvetica, sans-serif;&quot;&gt;</span><br><span class="line">&lt;option value=&quot;APPLE&quot;&gt;Apple Computer, Inc.&lt;/option&gt;</span><br><span class="line">&lt;option value=&quot;BAIDU &quot;&gt;BAIDU, Inc&lt;/option&gt;</span><br><span class="line">&lt;option value=&quot;Canon&quot;&gt;Canon USA, Inc.&lt;/option&gt;</span><br><span class="line">&lt;option value=&quot;Google&quot;&gt;Google, Inc.&lt;/option&gt;</span><br><span class="line">&lt;option value=&quot;Nokia&quot;&gt;Nokia Corporation&lt;/option&gt;</span><br><span class="line">&lt;option value=&quot;SONY&quot;&gt;Sony Corporation of America&lt;/option&gt;</span><br><span class="line">&lt;/select&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;div id=&quot;txtHint&quot;&gt;客户信息将显示在这...&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>当用户在上面的下拉列表中选择某个客户时，会执行名为 “showCustomer()” 的函数。该函数由 “onchange” 事件触发：<br>showCustomer() 函数执行以下任务：</p>
+<ul>
+<li>检查是否已选择某个客户</li>
+<li>创建 XMLHttpRequest 对象</li>
+<li>当服务器响应就绪时执行所创建的函数</li>
+<li>把请求发送到服务器上的文件</li>
+<li>请注意我们向 URL 添加了一个参数 q （带有输入域中的内容）<br><strong>AJAX 服务器页面</strong><br>由上面的 JavaScript 调用的服务器页面是 PHP 文件，名为 “getcustomer.php”。<br>用 PHP 编写服务器文件也很容易，或者用其他服务器语言。请看用 PHP 编写的相应的例子。<br>“getcustomer.php” 中的源代码负责对数据库进行查询，然后用 HTML 表格返回结果：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">response.expires=-1</span><br><span class="line">sql=&quot;SELECT * FROM CUSTOMERS WHERE CUSTOMERID=&quot;</span><br><span class="line">sql=sql &amp; &quot;&apos;&quot; &amp; request.querystring(&quot;q&quot;) &amp; &quot;&apos;&quot;</span><br><span class="line"></span><br><span class="line">set conn=Server.CreateObject(&quot;ADODB.Connection&quot;)</span><br><span class="line">conn.Provider=&quot;Microsoft.Jet.OLEDB.4.0&quot;</span><br><span class="line">conn.Open(Server.Mappath(&quot;/db/northwind.mdb&quot;))</span><br><span class="line">set rs=Server.CreateObject(&quot;ADODB.recordset&quot;)</span><br><span class="line">rs.Open sql,conn</span><br><span class="line"></span><br><span class="line">response.write(&quot;&lt;table&gt;&quot;)</span><br><span class="line">do until rs.EOF</span><br><span class="line">  for each x in rs.Fields</span><br><span class="line">    response.write(&quot;&lt;tr&gt;&lt;td&gt;&lt;b&gt;&quot; &amp; x.name &amp; &quot;&lt;/b&gt;&lt;/td&gt;&quot;)</span><br><span class="line">    response.write(&quot;&lt;td&gt;&quot; &amp; x.value &amp; &quot;&lt;/td&gt;&lt;/tr&gt;&quot;)</span><br><span class="line">  next</span><br><span class="line">  rs.MoveNext</span><br><span class="line">loop</span><br><span class="line">response.write(&quot;&lt;/table&gt;&quot;)</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="XML-实例"><a href="#XML-实例" class="headerlink" title="XML 实例"></a>XML 实例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">table,th,td &#123;</span><br><span class="line">  border : 1px solid black;</span><br><span class="line">  border-collapse: collapse;</span><br><span class="line">&#125;</span><br><span class="line">th,td &#123;</span><br><span class="line">  padding: 5px;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;XMLHttpRequest 对象&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;button type=&quot;button&quot; onclick=&quot;loadXMLDoc()&quot;&gt;获取我收藏的 CD&lt;/button&gt;</span><br><span class="line">&lt;br&gt;&lt;br&gt;</span><br><span class="line">&lt;table id=&quot;demo&quot;&gt;&lt;/table&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">function loadXMLDoc() &#123;</span><br><span class="line">  var xhttp = new XMLHttpRequest();</span><br><span class="line">  xhttp.onreadystatechange = function() &#123;</span><br><span class="line">    if (this.readyState == 4 &amp;&amp; this.status == 200) &#123;</span><br><span class="line">      myFunction(this);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  xhttp.open(&quot;GET&quot;, &quot;cd_catalog.xml&quot;, true);</span><br><span class="line">  xhttp.send();</span><br><span class="line">&#125;</span><br><span class="line">function myFunction(xml) &#123;</span><br><span class="line">  var i;</span><br><span class="line">  var xmlDoc = xml.responseXML;</span><br><span class="line">  var table=&quot;&lt;tr&gt;&lt;th&gt;Artist&lt;/th&gt;&lt;th&gt;Title&lt;/th&gt;&lt;/tr&gt;&quot;;</span><br><span class="line">  var x = xmlDoc.getElementsByTagName(&quot;CD&quot;);</span><br><span class="line">  for (i = 0; i &lt;x.length; i++) &#123;</span><br><span class="line">    table += &quot;&lt;tr&gt;&lt;td&gt;&quot; +</span><br><span class="line">    x[i].getElementsByTagName(&quot;ARTIST&quot;)[0].childNodes[0].nodeValue +</span><br><span class="line">    &quot;&lt;/td&gt;&lt;td&gt;&quot; +</span><br><span class="line">    x[i].getElementsByTagName(&quot;TITLE&quot;)[0].childNodes[0].nodeValue +</span><br><span class="line">    &quot;&lt;/td&gt;&lt;/tr&gt;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  document.getElementById(&quot;demo&quot;).innerHTML = table;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>实例解析</strong>- loadXMLDoc() 函数<br>当用户点击上面的”获取我收藏的 CD”这个按钮，就会执行 loadXMLDoc() 函数。<br>loadXMLDoc() 函数创建 XMLHttpRequest 对象，添加当服务器响应就绪时执行的函数，并将请求发送到服务器。<br>当服务器响应就绪时，会构建一个 HTML 表格，从 XML 文件中提取节点（元素），最后使用 XML 数据的 填充 id=”demo” 的表格元素</p>
+<h2 id="总结一下："><a href="#总结一下：" class="headerlink" title="总结一下："></a>总结一下：</h2><p><strong>用原生 JS 实现 Ajax思路大致是这样的：</strong> </p>
+<ol>
+<li>根据不同的浏览器，创建 xmlHttpRequest 对象； </li>
+<li>用 open 调用，用 send 发送请求给 Ajax 引擎。 </li>
+<li>服务器程序执行完毕后，把结果返回给客户端（用 xml.readyState == 4 &amp;&amp; xml.status == 200 判定发送是否成功，然后用 xml.responseText接收后台传回来的数据）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//返回一个xmlHttpRequest 对象</span><br><span class="line">function creathttprequest()</span><br><span class="line">&#123;</span><br><span class="line">    if(window.XMLHttpRequest)</span><br><span class="line">        var xml=new XMLHttpRequest();</span><br><span class="line">    else</span><br><span class="line">        var xml=ActiveXObject(&quot;Miscrosoft.XMLHTTP&quot;);</span><br><span class="line">    return xml;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//这里是触发 AJAX 的事件（比如是一个按钮的点击事件之类的）</span><br><span class="line">function triggerAjax() &#123;</span><br><span class="line">   //上面思路步骤1，创建一个xmlHttpRequest 对象</span><br><span class="line">    var xml = creathttprequest();</span><br><span class="line"></span><br><span class="line">    //上面思路步骤2</span><br><span class="line">    xml.open(&quot;POST&quot;,&quot;result.php&quot;,false);   //open() 第二个参数是你后台php文件的相对路径</span><br><span class="line">    xml.setRequestHeader(&quot;Content-Type&quot;,&quot;application/x-www-form-urlencoded&quot;);</span><br><span class="line">    xml.send(url);</span><br><span class="line"></span><br><span class="line">    //上面思路步骤3</span><br><span class="line">    if(xml.readyState==4&amp;&amp;xml.status==200)</span><br><span class="line">    &#123;</span><br><span class="line">        alert(xml.responseText);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>JQuery 实现 Ajax</strong><br>JQuery实现 Ajax 的方法就简单很多了，已经封装好了一个 $.ajax函数，调用很方便。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123; </span><br><span class="line">  type: &quot;POST&quot;, //发送是以POST还是GET</span><br><span class="line">  url: &quot;ajax.php&quot;, //发送的地址</span><br><span class="line">  dataType: &quot;json&quot;, //传输数据的格式</span><br><span class="line">  data: &#123;&quot;username&quot;: &quot;zwkkkk1&quot;,&quot;password&quot;: 123456&#125;, //传输的数据</span><br><span class="line">  //成功的回调函数</span><br><span class="line">  success: function(msg) &#123; </span><br><span class="line">    console.log(msg) </span><br><span class="line">  &#125;, </span><br><span class="line">  //失败的回调函数</span><br><span class="line">  error: function() &#123; </span><br><span class="line">    console.log(&quot;error&quot;) </span><br><span class="line">  &#125; </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/01/23/ajax专题/" data-id="cjrc04g200045wcfvrvowf2r2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/01/23/前端模块化/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            前端模块化
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/01/22/jQuery-AJAX/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">jQuery-AJAX </p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/25/前端模块化总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/25/前端模块化总结/e900d.png)" alt="前端模块化总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/25/前端模块化总结/" class="title">前端模块化总结</a></p>
+                            <p class="item-date"><time datetime="2019-01-25T06:54:36.000Z" itemprop="datePublished">2019-01-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/24/orcal之时间加减和快速删除表空间所有表的数据/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/24/orcal之时间加减和快速删除表空间所有表的数据/&amp;gp=0.jpg)" alt="orcal之时间加减和快速删除表空间所有表的数据" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/24/orcal之时间加减和快速删除表空间所有表的数据/" class="title">orcal之时间加减和快速删除表空间所有表的数据</a></p>
+                            <p class="item-date"><time datetime="2019-01-24T09:51:58.000Z" itemprop="datePublished">2019-01-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/24/前端模块化之seajs/" class="thumbnail">
+    
+    
+        <span style="background-image:url(前端模块化之seajs/articlex.png)" alt="前端模块化之seajs" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/24/前端模块化之seajs/" class="title">前端模块化之seajs</a></p>
+                            <p class="item-date"><time datetime="2019-01-24T06:14:49.000Z" itemprop="datePublished">2019-01-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/23/前端模块化之requirejs/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/23/前端模块化之requirejs/13841564386721.jpg)" alt="前端模块化之requirejs" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/23/前端模块化之requirejs/" class="title">前端模块化之requirejs</a></p>
+                            <p class="item-date"><time datetime="2019-01-23T06:52:39.000Z" itemprop="datePublished">2019-01-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/23/前端模块化/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/23/前端模块化/" class="title">前端模块化</a></p>
+                            <p class="item-date"><time datetime="2019-01-23T06:31:34.000Z" itemprop="datePublished">2019-01-23</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 18.57px;">JavaScript</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 17.14px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15.71px;">maven</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 12.86px;">python</a> <a href="/tags/冷知识/" style="font-size: 10px;">冷知识</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 14.29px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/01/23/ajax专题/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

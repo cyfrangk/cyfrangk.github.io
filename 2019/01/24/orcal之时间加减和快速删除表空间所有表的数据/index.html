@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>orcal之时间加减和快速删除表空间所有表的数据 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="orcal">
+    
+    <meta name="description" content="oracle SQL语句中进行时间加减加法select sysdate,add_months(sysdate,12) from dual;         –加1年select sysdate,add_months(sysdate,1) from dual;         –加1月select sysdate,to_char(sysdate+7,’yyyy-mm-dd HH24:MI:SS’)">
+<meta name="keywords" content="orcal">
+<meta property="og:type" content="article">
+<meta property="og:title" content="orcal之时间加减和快速删除表空间所有表的数据">
+<meta property="og:url" content="http://yoursite.com/2019/01/24/orcal之时间加减和快速删除表空间所有表的数据/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="oracle SQL语句中进行时间加减加法select sysdate,add_months(sysdate,12) from dual;         –加1年select sysdate,add_months(sysdate,1) from dual;         –加1月select sysdate,to_char(sysdate+7,’yyyy-mm-dd HH24:MI:SS’)">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/01/24/orcal之时间加减和快速删除表空间所有表的数据/&amp;gp=0.jpg">
+<meta property="og:updated_time" content="2019-01-24T10:07:27.174Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="orcal之时间加减和快速删除表空间所有表的数据">
+<meta name="twitter:description" content="oracle SQL语句中进行时间加减加法select sysdate,add_months(sysdate,12) from dual;         –加1年select sysdate,add_months(sysdate,1) from dual;         –加1月select sysdate,to_char(sysdate+7,’yyyy-mm-dd HH24:MI:SS’)">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/24/orcal之时间加减和快速删除表空间所有表的数据/&amp;gp=0.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="w-orcal之时间加减和快速删除表空间所有表的数据" class="article article-single article-type-w" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        orcal之时间加减和快速删除表空间所有表的数据
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/01/24/orcal之时间加减和快速删除表空间所有表的数据/" class="article-date">
+            <time datetime="2019-01-24T09:51:58.000Z" itemprop="datePublished">2019-01-24</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/orcal/">orcal</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/2019/01/24/orcal之时间加减和快速删除表空间所有表的数据/&amp;gp=0.jpg" alt=""><br>oracle SQL语句中进行时间加减<br>加法<br>select sysdate,add_months(sysdate,12) from dual;         –加1年<br>select sysdate,add_months(sysdate,1) from dual;         –加1月<br>select sysdate,to_char(sysdate+7,’yyyy-mm-dd HH24:MI:SS’) from dual;    –加1星期<br>select sysdate,to_char(sysdate+1,’yyyy-mm-dd HH24:MI:SS’) from dual;    –加1天<br>select sysdate,to_char(sysdate+1/24,’yyyy-mm-dd HH24:MI:SS’) from dual;   –加1小时<br>select sysdate,to_char(sysdate+1/24/60,’yyyy-mm-dd HH24:MI:SS’) from dual;   –加1分钟<br>select sysdate,to_char(sysdate+1/24/60/60,’yyyy-mm-dd HH24:MI:SS’) from dual; –加1秒</p>
+<p>减法<br>select sysdate,add_months(sysdate,-12) from dual;         –减1年<br>select sysdate,add_months(sysdate,-1) from dual;         –减1月<br>select sysdate,to_char(sysdate-7,’yyyy-mm-dd HH24:MI:SS’) from dual;    –减1星期<br>select sysdate,to_char(sysdate-1,’yyyy-mm-dd HH24:MI:SS’) from dual;    –减1天<br>select sysdate,to_char(sysdate-1/24,’yyyy-mm-dd HH24:MI:SS’) from dual;   –减1小时<br>select sysdate,to_char(sysdate-1/24/60,’yyyy-mm-dd HH24:MI:SS’) from dual;   –减1分钟<br>select sysdate,to_char(sysdate-1/24/60/60,’yyyy-mm-dd HH24:MI:SS’) from dual; –减1秒</p>
+<p>对当前日期增加一个小时：<br>SQL&gt; select sysdate, sysdate+numtodsinterval(1,’hour’) from dual ;<br>SYSDATE             SYSDATE+NUMTODSINTE<br>——————- ——————-<br>2010-10-14 21:38:19 2010-10-14 22:38:19<br>对当前日期增加50分种<br>SQL&gt; select sysdate, sysdate+numtodsinterval(50,’minute’) from dual ;</p>
+<p>SYSDATE             SYSDATE+NUMTODSINTE<br>——————- ——————-<br>2010-10-14 21:39:12 2010-10-14 22:29:12<br>对当前日期增加45秒<br>SQL&gt; select sysdate, sysdate+numtodsinterval(45,’second’) from dual ;</p>
+<p>SYSDATE             SYSDATE+NUMTODSINTE<br>——————- ——————-<br>2010-10-14 21:40:06 2010-10-14 21:40:51<br>对当前日期增加3天<br>SQL&gt; select sysdate, sysdate+3 from dual ;</p>
+<p>SYSDATE             SYSDATE+3<br>——————- ——————-<br>2010-10-14 21:40:46 2010-10-17 21:40:46<br>对当前日期增加4个月<br>SQL&gt; select sysdate, add_months(sysdate,4) from dual ;</p>
+<p>SYSDATE             ADD_MONTHS(SYSDATE,<br>——————- ——————-<br>2010-10-14 21:41:43 2011-02-14 21:41:43</p>
+<p>当前日期增加2年<br>SQL&gt; select sysdate, add_months(sysdate,12*2) from dual ;</p>
+<p>SYSDATE             ADD_MONTHS(SYSDATE,<br>——————- ——————-<br>2010-10-14 21:42:17 2012-10-14 21:42:17</p>
+<h2 id="删除表数据drop、truncate和delete的用法"><a href="#删除表数据drop、truncate和delete的用法" class="headerlink" title="删除表数据drop、truncate和delete的用法"></a>删除表数据drop、truncate和delete的用法</h2><p>老大——drop<br>出没场合:drop table  tb –tb表示数据表的名字,下同<br>绝招:删除内容和定义，释放空间。简单来说就是把整个表去掉.以后要新增数据是不可能的,除非新增一个表,</p>
+<p>老二—–truncate<br>出没场合:truncate table tb<br>绝招:删除内容、释放空间但不删除定义。与drop不同的是,他只是清空表数据而已,他比较温柔.<br>       同样也是一个班,他只去除所有的学生.班还在,职务还在,如果有新增的学生可以进去,也可以分配上职务<br>删除内容很容易理解,不删除定义也很容易理解,就是保留表的数据结构，(truncate删除是释放空间)<br>注意:truncate 不能删除行数据,要删就要把表清空。</p>
+<p>老三—–delete<br>出没场合:delete table tb   –虽然也是删除整个表的数据,但是过程是痛苦的(系统一行一行地删,效率较truncate低)<br>            或<br>            delete table tb where 条件<br>绝招:删除内容不删除定义，不释放空间。三兄弟之中最容易欺负的一个<br>然后关于delete的就不详细说明了,大家都懂的<br>关于truncate的小小总结:<br>truncate table 在功能上与不带 WHERE 子句的 delete语句相同：二者均删除表中的全部行。<br>但 truncate 比 delete速度快，且使用的系统和事务日志资源少。<br>delete 语句每次删除一行，并在事务日志中为所删除的每行记录一项。所以可以对delete操作进行roll back<br>1、truncate 在各种表上无论是大的还是小的都非常快。如果有ROLLBACK命令Delete将被撤销，而 truncate 则不会被撤销。<br>2、truncate 是一个DDL语言，向其他所有的DDL语言一样，他将被隐式提交，不能对 truncate 使用ROLLBACK命令。<br>3、truncate 将重新设置高水平线和所有的索引。在对整个表和索引进行完全浏览时，经过 truncate 操作后的表比Delete操作后的表要快得多。<br>4、truncate 不能触发任何Delete触发器。<br>5、当表被清空后表和表的索引讲重新设置成初始大小，而delete则不能。<br>6、不能清空父表</p>
+<p><strong>所以我们就知道该用删除关键字了</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select &apos;truncate table  &apos;||table_name||&apos; ;&apos; from dba_tables where owner=&apos;表空间名&apos;</span><br></pre></td></tr></table></figure></p>
+<p>出来的结果：<br>truncate table tb1；<br>truncate table tb2；<br>.。。。。<br>现在只需要复制执行就好了</p>
+<p>timestamp的操作方法与上面类似；<br>求两个日期之差：<br>例：求2007-5-23 21：23：34与当前时间之间的差值。<br>SQL&gt; select sysdate-to_date(’20070523 21:23:34′,’yyyy-mm-dd hh24:mi:ss’) dt from<br>dual ;</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/01/24/orcal之时间加减和快速删除表空间所有表的数据/" data-id="cjrc04ftu0011wcfvpgv8fvhx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/01/25/前端模块化总结/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            前端模块化总结
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/01/24/前端模块化之seajs/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">前端模块化之seajs</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/25/前端模块化总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/25/前端模块化总结/e900d.png)" alt="前端模块化总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/25/前端模块化总结/" class="title">前端模块化总结</a></p>
+                            <p class="item-date"><time datetime="2019-01-25T06:54:36.000Z" itemprop="datePublished">2019-01-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/24/orcal之时间加减和快速删除表空间所有表的数据/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/24/orcal之时间加减和快速删除表空间所有表的数据/&amp;gp=0.jpg)" alt="orcal之时间加减和快速删除表空间所有表的数据" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/24/orcal之时间加减和快速删除表空间所有表的数据/" class="title">orcal之时间加减和快速删除表空间所有表的数据</a></p>
+                            <p class="item-date"><time datetime="2019-01-24T09:51:58.000Z" itemprop="datePublished">2019-01-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/24/前端模块化之seajs/" class="thumbnail">
+    
+    
+        <span style="background-image:url(前端模块化之seajs/articlex.png)" alt="前端模块化之seajs" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/24/前端模块化之seajs/" class="title">前端模块化之seajs</a></p>
+                            <p class="item-date"><time datetime="2019-01-24T06:14:49.000Z" itemprop="datePublished">2019-01-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/23/前端模块化之requirejs/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/23/前端模块化之requirejs/13841564386721.jpg)" alt="前端模块化之requirejs" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/23/前端模块化之requirejs/" class="title">前端模块化之requirejs</a></p>
+                            <p class="item-date"><time datetime="2019-01-23T06:52:39.000Z" itemprop="datePublished">2019-01-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/23/前端模块化/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/23/前端模块化/" class="title">前端模块化</a></p>
+                            <p class="item-date"><time datetime="2019-01-23T06:31:34.000Z" itemprop="datePublished">2019-01-23</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 18.57px;">JavaScript</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 17.14px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15.71px;">maven</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 12.86px;">python</a> <a href="/tags/冷知识/" style="font-size: 10px;">冷知识</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 14.29px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/01/24/orcal之时间加减和快速删除表空间所有表的数据/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
