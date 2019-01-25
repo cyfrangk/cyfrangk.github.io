@@ -21,7 +21,7 @@
 <meta property="og:description" content="js模块化的发展：最早js是没有模块化概念的，为了防止命名空间被污染，采用的是命名空间的方式，随着前端的发展，commonJs在后端的实践思想被应用在前端，再往后就出现各种模块化标准例如：AMD/CMD/UMD，到如今出现的新标准es6 module，js模块化不断演变，不断由复杂变的更好用。如下简单总结一个各个模块的特点。当今越来越多的网站已经从网页模式进化到了 Webapp 模式。它们运行在现">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/01/25/前端模块化总结/e900d.png">
-<meta property="og:updated_time" content="2019-01-25T12:06:57.410Z">
+<meta property="og:updated_time" content="2019-01-25T12:57:56.184Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端模块化总结">
 <meta name="twitter:description" content="js模块化的发展：最早js是没有模块化概念的，为了防止命名空间被污染，采用的是命名空间的方式，随着前端的发展，commonJs在后端的实践思想被应用在前端，再往后就出现各种模块化标准例如：AMD/CMD/UMD，到如今出现的新标准es6 module，js模块化不断演变，不断由复杂变的更好用。如下简单总结一个各个模块的特点。当今越来越多的网站已经从网页模式进化到了 Webapp 模式。它们运行在现">
@@ -187,69 +187,78 @@
 <li>全局作用域下容易造成变量冲突</li>
 <li>文件只能按照<code>&lt;script&gt;</code>的书写顺序进行加载</li>
 <li>开发人员必须主观解决模块和代码库的依赖关系</li>
-<li>在大型项目中各种资源难以管理，长期积累的问题导致代码库混乱不堪<h2 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h2>服务器端的 Node.js 遵循 CommonJS规范，该规范的核心思想是允许模块通过 require 方法来同步加载所要依赖的其他模块，然后通过 exports 或 module.exports 来导出需要暴露的接口。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">require(&quot;module&quot;);</span><br><span class="line">require(&quot;../file.js&quot;);</span><br><span class="line">exports.doStuff = function() &#123;&#125;;</span><br><span class="line">module.exports = someValue;</span><br></pre></td></tr></table></figure>
-</li>
+<li>在大型项目中各种资源难以管理，长期积累的问题导致代码库混乱不堪</li>
 </ul>
+<h2 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h2><p>服务器端的 Node.js 遵循 CommonJS规范，该规范的核心思想是允许模块通过 require 方法来同步加载所要依赖的其他模块，然后通过 exports 或 module.exports 来导出需要暴露的接口。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">require(&quot;module&quot;);</span><br><span class="line">require(&quot;../file.js&quot;);</span><br><span class="line">exports.doStuff = function() &#123;&#125;;</span><br><span class="line">module.exports = someValue;</span><br></pre></td></tr></table></figure></p>
 <p>是一种服务端的模块化规范，规定一个文件为一个模块，模块内的变量,方法外界是无法访问的，通过module.exports暴露模块接口，然后通过require的方式来引入使用模块接口。commonJs是运行在nodeJS服务端的，通过require进来模块接口都是同步执行的，因为对服务端来说，这种require方式都是本地加载。<br>如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//news.js</span><br><span class="line">const Controller = require(&apos;egg&apos;).Controller;</span><br><span class="line">class NewsController extends Controller &#123;</span><br><span class="line">    async list() &#123;</span><br><span class="line">        const dataList = await this.other();</span><br><span class="line">        this.ctx.body = &#123;</span><br><span class="line">            code:0,</span><br><span class="line">            masg:&apos;news list success&apos;,</span><br><span class="line">            data:dataList</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    async other() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            list: [</span><br><span class="line">                &#123; id: 1, title: &apos;this is news 1&apos;, url: &apos;/news/1&apos; &#125;,</span><br><span class="line">                &#123; id: 2, title: &apos;this is news 2&apos;, url: &apos;/news/2&apos; &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">module.exports = NewsController;</span><br></pre></td></tr></table></figure></p>
 <p>优点：</p>
 <ul>
 <li>服务器端模块便于重用</li>
 <li>NPM 中已经有将近20万个可以使用模块包</li>
-<li><p>简单并容易使用<br>缺点：</p>
-</li>
-<li><p>同步的模块加载方式不适合在浏览器环境中，同步意味着阻塞加载，浏览器资源是异步加载的</p>
-</li>
-<li><p>不能非阻塞的并行加载多个模块<br>实现：</p>
-</li>
-<li><p>服务器端的 Node.js</p>
-</li>
+<li>简单并容易使用</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>同步的模块加载方式不适合在浏览器环境中，同步意味着阻塞加载，浏览器资源是异步加载的</li>
+<li>不能非阻塞的并行加载多个模块</li>
+</ul>
+<p>实现：</p>
+<ul>
+<li>服务器端的 Node.js</li>
 <li>Browserify，浏览器端的 CommonJS 实现，可以使用 NPM 的模块，但是编译打包后的文件体积可能很大</li>
 <li>modules-webmake，类似Browserify，还不如 Browserify 灵活</li>
-<li>wreq，Browserify 的前身<h2 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h2>Asynchronous Module Definition 规范其实只有一个主要接口 define(id?, dependencies?, factory)，它要在声明模块的时候指定所有的依赖 dependencies，并且还要当做形参传到 factory 中，对于依赖的模块提前执行，依赖前置。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">define(&quot;module&quot;, [&quot;dep1&quot;, &quot;dep2&quot;], function(d1, d2) &#123;</span><br><span class="line">  return someExportedValue;</span><br><span class="line">&#125;);</span><br><span class="line">require([&quot;module&quot;, &quot;../file&quot;], function(module, file) &#123; /* ... */ &#125;);</span><br></pre></td></tr></table></figure>
-</li>
+<li>wreq，Browserify 的前身</li>
 </ul>
+<h2 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h2><p>Asynchronous Module Definition 规范其实只有一个主要接口 define(id?, dependencies?, factory)，它要在声明模块的时候指定所有的依赖 dependencies，并且还要当做形参传到 factory 中，对于依赖的模块提前执行，依赖前置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">define(&quot;module&quot;, [&quot;dep1&quot;, &quot;dep2&quot;], function(d1, d2) &#123;</span><br><span class="line">  return someExportedValue;</span><br><span class="line">&#125;);</span><br><span class="line">require([&quot;module&quot;, &quot;../file&quot;], function(module, file) &#123; /* ... */ &#125;);</span><br></pre></td></tr></table></figure></p>
 <p>用于浏览器端的js加载，使用define定义模块，使用require加载模块，代表库是RequireJS，这个库的特点就是所有的依赖都会被前置，提前执行，代码格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">define(</span><br><span class="line">  //模块名</span><br><span class="line">  &quot;alpha&quot;, </span><br><span class="line">   //依赖模块</span><br><span class="line">  [&quot;require&quot;, &quot;exports&quot;, &quot;beta&quot;], </span><br><span class="line">    //导出模块</span><br><span class="line">  function (require, exports, beta) &#123;</span><br><span class="line">       exports.verb = function() &#123;</span><br><span class="line">           return beta.verb();</span><br><span class="line">           //Or:</span><br><span class="line">           return require(&quot;beta&quot;).verb();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
 <p>优点：</p>
 <ul>
 <li>适合在浏览器环境中异步加载模块</li>
-<li><p>可以并行加载多个模块<br>缺点：</p>
-</li>
-<li><p>提高了开发成本，代码的阅读和书写比较困难，模块定义方式的语义不顺畅</p>
-</li>
-<li><p>不符合通用的模块化思维方式，是一种妥协的实现<br>实现：</p>
-</li>
-<li><p>RequireJS</p>
-</li>
-<li>curl<h2 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h2>Common Module Definition 规范和 AMD 很相似，尽量保持简单，并与 CommonJS 和 Node.js 的 Modules 规范保持了很大的兼容性。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">define(function(require, exports, module) &#123;</span><br><span class="line">  var $ = require(&apos;jquery&apos;);</span><br><span class="line">  var Spinning = require(&apos;./spinning&apos;);</span><br><span class="line">  exports.doSomething = ...</span><br><span class="line">  module.exports = ...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
+<li>可以并行加载多个模块</li>
 </ul>
+<p>缺点：</p>
+<ul>
+<li>提高了开发成本，代码的阅读和书写比较困难，模块定义方式的语义不顺畅</li>
+<li>不符合通用的模块化思维方式，是一种妥协的实现</li>
+</ul>
+<p>实现：</p>
+<ul>
+<li>RequireJS</li>
+<li>curl</li>
+</ul>
+<h2 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h2><p>Common Module Definition 规范和 AMD 很相似，尽量保持简单，并与 CommonJS 和 Node.js 的 Modules 规范保持了很大的兼容性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">define(function(require, exports, module) &#123;</span><br><span class="line">  var $ = require(&apos;jquery&apos;);</span><br><span class="line">  var Spinning = require(&apos;./spinning&apos;);</span><br><span class="line">  exports.doSomething = ...</span><br><span class="line">  module.exports = ...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 <p>cmd也是遵循一个文件为一个模块，也是通过define来定义模块，通过require加载模块，代表库是seaJS。<br>与AMD的区别就是执行方式不一样，CMD是尽可能的懒执行，模块会被下载下来，直到使用的时候才会执行。<br>代码如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 所有模块都通过 define 来定义</span><br><span class="line">define(function(require, exports, module) &#123;</span><br><span class="line"></span><br><span class="line">  // 通过 require 引入依赖</span><br><span class="line">  var $ = require(&apos;jquery&apos;);</span><br><span class="line">  var Spinning = require(&apos;./spinning&apos;);</span><br><span class="line"></span><br><span class="line">  // 通过 exports 对外提供接口</span><br><span class="line">  exports.doSomething = ...</span><br><span class="line"></span><br><span class="line">  // 或者通过 module.exports 提供整个接口</span><br><span class="line">  module.exports = ...</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>优点：</p>
 <ul>
 <li>依赖就近，延迟执行</li>
-<li><p>可以很容易在 Node.js 中运行<br>缺点：</p>
-</li>
-<li><p>依赖 SPM 打包，模块的加载逻辑偏重<br>实现：</p>
-</li>
-<li><p>Sea.js</p>
-</li>
-<li>coolie<h2 id="UMD（Universal-Module-Definition-）通用解决方案"><a href="#UMD（Universal-Module-Definition-）通用解决方案" class="headerlink" title="UMD（Universal Module Definition ）通用解决方案"></a>UMD（Universal Module Definition ）通用解决方案</h2>Universal Module Definition 规范类似于兼容 CommonJS 和 AMD 的语法糖，是模块定义的跨平台解决方案。<br>提供前后端统一的解决方案，实现大一统，支持AMD,CMD两种规范，基本原理就是：判断是否支持AMD，判断是否支持CommonJS，如果都不支持，就定义成全局变量，挂在到window上。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//代码体是个自执行函数</span><br><span class="line">(function (root, factory)&#123;</span><br><span class="line">    if (typeof define === &apos;function&apos; &amp;&amp; define.amd)&#123;</span><br><span class="line">        define([], factory);</span><br><span class="line">    &#125; else if (typeof exports === &apos;object&apos;) &#123;</span><br><span class="line">         module.exports = factory();</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">          //需要被暴露出去的对象eventUtil</span><br><span class="line">          root.eventUtil= factory();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;(this, function () &#123;</span><br><span class="line">    return &#123;&#125;;</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
-</li>
+<li>可以很容易在 Node.js 中运行</li>
 </ul>
+<p>缺点：</p>
+<ul>
+<li>依赖 SPM 打包，模块的加载逻辑偏重</li>
+</ul>
+<p>实现：</p>
+<ul>
+<li>Sea.js</li>
+<li>coolie</li>
+</ul>
+<h2 id="UMD（Universal-Module-Definition-）通用解决方案"><a href="#UMD（Universal-Module-Definition-）通用解决方案" class="headerlink" title="UMD（Universal Module Definition ）通用解决方案"></a>UMD（Universal Module Definition ）通用解决方案</h2><p>Universal Module Definition 规范类似于兼容 CommonJS 和 AMD 的语法糖，是模块定义的跨平台解决方案。<br>提供前后端统一的解决方案，实现大一统，支持AMD,CMD两种规范，基本原理就是：判断是否支持AMD，判断是否支持CommonJS，如果都不支持，就定义成全局变量，挂在到window上。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//代码体是个自执行函数</span><br><span class="line">(function (root, factory)&#123;</span><br><span class="line">    if (typeof define === &apos;function&apos; &amp;&amp; define.amd)&#123;</span><br><span class="line">        define([], factory);</span><br><span class="line">    &#125; else if (typeof exports === &apos;object&apos;) &#123;</span><br><span class="line">         module.exports = factory();</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">          //需要被暴露出去的对象eventUtil</span><br><span class="line">          root.eventUtil= factory();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;(this, function () &#123;</span><br><span class="line">    return &#123;&#125;;</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure></p>
 <h2 id="ES6-模块（EcmaScript-Module）"><a href="#ES6-模块（EcmaScript-Module）" class="headerlink" title="ES6 模块（EcmaScript Module）"></a>ES6 模块（EcmaScript Module）</h2><p>EcmaScript6 标准增加了 JavaScript 语言层面的模块体系定义。ES6 模块的设计思想，是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。CommonJS 和 AMD 模块，都只能在运行时确定这些东西。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &quot;jquery&quot;;</span><br><span class="line">export function doStuff() &#123;&#125;</span><br><span class="line">module &quot;localModule&quot; &#123;&#125;</span><br></pre></td></tr></table></figure></p>
 <p>es6 module也是一个文件就是一个模块,通过export暴露一个接口，通过import引入模块。模块打包现在最好用的就是webpack了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//定义模块</span><br><span class="line">//requistApi.js</span><br><span class="line">export const getListUrl = &apos;news/list&apos;;</span><br><span class="line">export const getListRequest = (url,params = &#123;&#125;) =&gt; &#123;</span><br><span class="line">     const promise = new Promise((resolve,reject) =&gt; &#123;</span><br><span class="line">           $.ajax(&#123;</span><br><span class="line">               type: &quot;GET&quot;,</span><br><span class="line">               url: url,</span><br><span class="line">               data: params,</span><br><span class="line">               dataType: &quot;json&quot;,</span><br><span class="line">               success: function(data)&#123;</span><br><span class="line">                   resolve(data);</span><br><span class="line">                &#125;,</span><br><span class="line">                error:function()&#123;</span><br><span class="line">                   reject();    </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">      return promise;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//引入模块</span><br><span class="line">//list.js</span><br><span class="line">import &#123; getListUrl, getListRequest &#125; from &apos;requistApi.js&apos;</span><br><span class="line">.....</span><br><span class="line">.....</span><br></pre></td></tr></table></figure>
 <p>优点：</p>
 <ul>
 <li>容易进行静态分析</li>
-<li><p>面向未来的 EcmaScript 标准<br>缺点：</p>
-</li>
-<li><p>原生浏览器端还没有实现该标准</p>
-</li>
-<li><p>全新的命令字，新版的 Node.js才支持<br>实现：</p>
-</li>
-<li><p>Babel</p>
-</li>
+<li>面向未来的 EcmaScript 标准</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>原生浏览器端还没有实现该标准</li>
+<li>全新的命令字，新版的 Node.js才支持</li>
+</ul>
+<p>实现：</p>
+<ul>
+<li>Babel</li>
 </ul>
 <p><strong>AMD与CMD区别</strong><br>最明显的区别就是在模块定义时对依赖的处理不同</p>
 <ul>
@@ -266,7 +275,10 @@
 <p>很多人说requireJS是异步加载模块，SeaJS是同步加载模块，这么理解实际上是不准确的，其实加载模块都是异步的，只不过AMD依赖前置，js可以方便知道依赖模块是谁，立即加载，而CMD就近依赖，需要使用把模块变为字符串解析一遍才知道依赖了那些模块，这也是很多人诟病CMD的一点，牺牲性能来带来开发的便利性，实际上解析模块用的时间短到可以忽略<br>为什么我们说两个的区别是依赖模块执行时机不同，为什么很多人认为ADM是异步的，CMD是同步的（除了名字的原因。。。）<br>同样都是异步加载模块，AMD在加载模块完成后就会执行改模块，所有模块都加载执行完后会进入require的回调函数，执行主逻辑，这样的效果就是依赖模块的执行顺序和书写顺序不一定一致，看网络速度，哪个先下载下来，哪个先执行，但是主逻辑一定在所有依赖加载完成后才执行<br>CMD加载完某个依赖模块后并不执行，只是下载而已，在所有依赖模块加载完成后进入主逻辑，遇到require语句的时候才执行对应的模块，这样模块的执行顺序和书写顺序是完全一致的<br>这也是很多人说AMD用户体验好，因为没有延迟，依赖模块提前执行了，CMD性能好，因为只有用户需要的时候才执行的原因</p>
 </blockquote>
 <p><strong>另外一个区别是：</strong></p>
-<p>+<code>AMD:</code>API根据使用范围有区别，但使用同一个api接口<br>+<code>CMD:</code>每个API的职责单一</p>
+<ul>
+<li><code>AMD:</code>API根据使用范围有区别，但使用同一个api接口</li>
+<li><code>CMD:</code>每个API的职责单一</li>
+</ul>
 <blockquote>
 <p><code>AMD</code>的优点是：异步并行加载，在<code>AMD</code>的规范下，同时异步加载是不会产生错误的。<br><code>CMD</code>的机制则不同，这种加载方式会产生错误，如果能规范化模块内容形式，也可以</p>
 </blockquote>
@@ -292,7 +304,7 @@
 
 
 
-    <a data-url="http://yoursite.com/2019/01/25/前端模块化总结/" data-id="cjrc04fzv003gwcfv11udztzm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2019/01/25/前端模块化总结/" data-id="cjrc23gzd003ewgfv7k3mkfht" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -498,7 +510,7 @@
                             <a href="/2019/01/24/前端模块化之seajs/" class="thumbnail">
     
     
-        <span style="background-image:url(前端模块化之seajs/articlex.png)" alt="前端模块化之seajs" class="thumbnail-image"></span>
+        <span style="background-image:url(/2019/01/24/前端模块化之seajs/下载.jpg)" alt="前端模块化之seajs" class="thumbnail-image"></span>
     
     
 </a>
@@ -538,7 +550,7 @@
                             <a href="/2019/01/23/前端模块化/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(/2019/01/23/前端模块化/timg.jpg)" alt="前端模块化" class="thumbnail-image"></span>
     
     
 </a>
@@ -571,7 +583,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
         </div>
     </div>
 
