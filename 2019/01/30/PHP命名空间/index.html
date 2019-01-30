@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>PHP命名空间 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="PHP">
+    
+    <meta name="description" content="PHP 命名空间(namespace)是在PHP 5.3中加入的，如果你学过C#和Java，那命名空间就不算什么新事物。 不过在PHP当中还是有着相当重要的意义。PHP 命名空间可以解决以下两类问题：  用户编写的代码与PHP内部的类/函数/常量或第三方类/函数/常量之间的名字冲突。 为很长的标识符名称(通常是为了缓解第一类问题而定义的)创建一个别名（或简短）的名称，提高源代码的可读性。  定义命">
+<meta name="keywords" content="PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP命名空间">
+<meta property="og:url" content="http://yoursite.com/2019/01/30/PHP命名空间/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="PHP 命名空间(namespace)是在PHP 5.3中加入的，如果你学过C#和Java，那命名空间就不算什么新事物。 不过在PHP当中还是有着相当重要的意义。PHP 命名空间可以解决以下两类问题：  用户编写的代码与PHP内部的类/函数/常量或第三方类/函数/常量之间的名字冲突。 为很长的标识符名称(通常是为了缓解第一类问题而定义的)创建一个别名（或简短）的名称，提高源代码的可读性。  定义命">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/01/30/PHP命名空间/092712687.png">
+<meta property="og:updated_time" content="2019-01-30T10:03:08.697Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP命名空间">
+<meta name="twitter:description" content="PHP 命名空间(namespace)是在PHP 5.3中加入的，如果你学过C#和Java，那命名空间就不算什么新事物。 不过在PHP当中还是有着相当重要的意义。PHP 命名空间可以解决以下两类问题：  用户编写的代码与PHP内部的类/函数/常量或第三方类/函数/常量之间的名字冲突。 为很长的标识符名称(通常是为了缓解第一类问题而定义的)创建一个别名（或简短）的名称，提高源代码的可读性。  定义命">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/30/PHP命名空间/092712687.png">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-PHP命名空间" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        PHP命名空间
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/01/30/PHP命名空间/" class="article-date">
+            <time datetime="2019-01-30T08:52:40.000Z" itemprop="datePublished">2019-01-30</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/PHP/">PHP</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>PHP 命名空间(namespace)是在PHP 5.3中加入的，如果你学过C#和Java，那命名空间就不算什么新事物。 不过在PHP当中还是有着相当重要的意义。<br><img src="/2019/01/30/PHP命名空间/092712687.png" alt=""><br>PHP 命名空间可以解决以下两类问题：</p>
+<ul>
+<li>用户编写的代码与PHP内部的类/函数/常量或第三方类/函数/常量之间的名字冲突。</li>
+<li>为很长的标识符名称(通常是为了缓解第一类问题而定义的)创建一个别名（或简短）的名称，提高源代码的可读性。</li>
+</ul>
+<p><strong>定义命名空间</strong><br>默认情况下，所有常量、类和函数名都放在全局空间下，就和PHP支持命名空间之前一样。<br>![PHP命名空间/ef5b06.jpg]<br>命名空间通过关键字namespace 来声明。如果一个文件中包含命名空间，它必须在其它所有代码之前声明命名空间。语法格式如下；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php  </span><br><span class="line">// 定义代码在 &apos;MyProject&apos; 命名空间中  </span><br><span class="line">namespace MyProject;  </span><br><span class="line"> </span><br><span class="line">// ... 代码 ...</span><br></pre></td></tr></table></figure></p>
+<p>你也可以在同一个文件中定义不同的命名空间代码，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php  </span><br><span class="line">namespace MyProject;</span><br><span class="line"></span><br><span class="line">const CONNECT_OK = 1;</span><br><span class="line">class Connection &#123; /* ... */ &#125;</span><br><span class="line">function connect() &#123; /* ... */  &#125;</span><br><span class="line"></span><br><span class="line">namespace AnotherProject;</span><br><span class="line"></span><br><span class="line">const CONNECT_OK = 1;</span><br><span class="line">class Connection &#123; /* ... */ &#125;</span><br><span class="line">function connect() &#123; /* ... */  &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>不建议使用这种语法在单个文件中定义多个命名空间。建议使用下面的大括号形式的语法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace MyProject &#123;</span><br><span class="line">    const CONNECT_OK = 1;</span><br><span class="line">    class Connection &#123; /* ... */ &#125;</span><br><span class="line">    function connect() &#123; /* ... */  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">namespace AnotherProject &#123;</span><br><span class="line">    const CONNECT_OK = 1;</span><br><span class="line">    class Connection &#123; /* ... */ &#125;</span><br><span class="line">    function connect() &#123; /* ... */  &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>将全局的非命名空间中的代码与命名空间中的代码组合在一起，只能使用大括号形式的语法。全局代码必须用一个不带名称的 namespace 语句加上大括号括起来，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace MyProject &#123;</span><br><span class="line"></span><br><span class="line">const CONNECT_OK = 1;</span><br><span class="line">class Connection &#123; /* ... */ &#125;</span><br><span class="line">function connect() &#123; /* ... */  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">namespace &#123; // 全局代码</span><br><span class="line">session_start();</span><br><span class="line">$a = MyProject\connect();</span><br><span class="line">echo MyProject\Connection::start();</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在声明命名空间之前唯一合法的代码是用于定义源文件编码方式的 declare 语句。所有非 PHP 代码包括空白符都不能出现在命名空间的声明之前。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">declare(encoding=&apos;UTF-8&apos;); //定义多个命名空间和不包含在命名空间中的代码</span><br><span class="line">namespace MyProject &#123;</span><br><span class="line"></span><br><span class="line">const CONNECT_OK = 1;</span><br><span class="line">class Connection &#123; /* ... */ &#125;</span><br><span class="line">function connect() &#123; /* ... */  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">namespace &#123; // 全局代码</span><br><span class="line">session_start();</span><br><span class="line">$a = MyProject\connect();</span><br><span class="line">echo MyProject\Connection::start();</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>以下代码会出现语法错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">namespace MyProject; // 命名空间前出现了“&lt;html&gt;” 会致命错误 -　命名空间必须是程序脚本的第一条语句</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>子命名空间</strong><br>与目录和文件的关系很像，PHP 命名空间也允许指定层次化的命名空间的名称。因此，命名空间的名字可以使用分层次的方式定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace MyProject\Sub\Level;  //声明分层次的单个命名空间</span><br><span class="line"></span><br><span class="line">const CONNECT_OK = 1;</span><br><span class="line">class Connection &#123; /* ... */ &#125;</span><br><span class="line">function Connect() &#123; /* ... */  &#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>上面的例子创建了常量 MyProject\Sub\Level\CONNECT_OK，类 MyProject\Sub\Level\Connection 和函数 MyProject\Sub\Level\Connect。</p>
+<p><strong>命名空间使用</strong><br>PHP 命名空间中的类名可以通过三种方式引用：</p>
+<ul>
+<li><strong>非限定名称，或不包含前缀的类名称</strong>，例如 $a=new foo(); 或 foo::staticmethod();。如果当前命名空间是 currentnamespace，foo 将被解析为 currentnamespace\foo。如果使用 foo 的代码是全局的，不包含在任何命名空间中的代码，则 foo 会被解析为foo。 警告：如果命名空间中的函数或常量未定义，则该非限定的函数名称或常量名称会被解析为全局函数名称或常量名称。</li>
+<li><strong>限定名称,或包含前缀的名称</strong>，例如 $a = new subnamespace\foo(); 或 subnamespace\foo::staticmethod();。如果当前的命名空间是 currentnamespace，则 foo 会被解析为 currentnamespace\subnamespace\foo。如果使用 foo 的代码是全局的，不包含在任何命名空间中的代码，foo 会被解析为subnamespace\foo。</li>
+<li><strong>完全限定名称，或包含了全局前缀操作符的名称</strong>，例如， $a = new \currentnamespace\foo(); 或 \currentnamespace\foo::staticmethod();。在这种情况下，foo 总是被解析为代码中的文字名(literal name)currentnamespace\foo。</li>
+</ul>
+<p>下面是一个使用这三种方式的实例：<br>file1.php 文件代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace Foo\Bar\subnamespace; </span><br><span class="line"></span><br><span class="line">const FOO = 1;</span><br><span class="line">function foo() &#123;&#125;</span><br><span class="line">class foo</span><br><span class="line">&#123;</span><br><span class="line">    static function staticmethod() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>file2.php 文件代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace Foo\Bar;</span><br><span class="line">include &apos;file1.php&apos;;</span><br><span class="line"></span><br><span class="line">const FOO = 2;</span><br><span class="line">function foo() &#123;&#125;</span><br><span class="line">class foo</span><br><span class="line">&#123;</span><br><span class="line">    static function staticmethod() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 非限定名称 */</span><br><span class="line">foo(); // 解析为函数 Foo\Bar\foo</span><br><span class="line">foo::staticmethod(); // 解析为类 Foo\Bar\foo ，方法为 staticmethod</span><br><span class="line">echo FOO; // 解析为常量 Foo\Bar\FOO</span><br><span class="line"></span><br><span class="line">/* 限定名称 */</span><br><span class="line">subnamespace\foo(); // 解析为函数 Foo\Bar\subnamespace\foo</span><br><span class="line">subnamespace\foo::staticmethod(); // 解析为类 Foo\Bar\subnamespace\foo,</span><br><span class="line">                                  // 以及类的方法 staticmethod</span><br><span class="line">echo subnamespace\FOO; // 解析为常量 Foo\Bar\subnamespace\FOO</span><br><span class="line">                                  </span><br><span class="line">/* 完全限定名称 */</span><br><span class="line">\Foo\Bar\foo(); // 解析为函数 Foo\Bar\foo</span><br><span class="line">\Foo\Bar\foo::staticmethod(); // 解析为类 Foo\Bar\foo, 以及类的方法 staticmethod</span><br><span class="line">echo \Foo\Bar\FOO; // 解析为常量 Foo\Bar\FOO</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>注意访问任意全局类、函数或常量，都可以使用完全限定名称，例如 \strlen() 或 \Exception 或 \INI_ALL。<br>在命名空间内部访问全局类、函数和常量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace Foo;</span><br><span class="line"></span><br><span class="line">function strlen() &#123;&#125;</span><br><span class="line">const INI_ALL = 3;</span><br><span class="line">class Exception &#123;&#125;</span><br><span class="line"></span><br><span class="line">$a = \strlen(&apos;hi&apos;); // 调用全局函数strlen</span><br><span class="line">$b = \INI_ALL; // 访问全局常量 INI_ALL</span><br><span class="line">$c = new \Exception(&apos;error&apos;); // 实例化全局类 Exception</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>命名空间和动态语言特征</strong><br>PHP 命名空间的实现受到其语言自身的动态特征的影响。因此，如果要将下面的代码转换到命名空间中，动态访问元素。<br>example1.php 文件代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class classname</span><br><span class="line">&#123;</span><br><span class="line">    function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">        echo __METHOD__,&quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function funcname()</span><br><span class="line">&#123;</span><br><span class="line">    echo __FUNCTION__,&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line">const constname = &quot;global&quot;;</span><br><span class="line"></span><br><span class="line">$a = &apos;classname&apos;;</span><br><span class="line">$obj = new $a; // prints classname::__construct</span><br><span class="line">$b = &apos;funcname&apos;;</span><br><span class="line">$b(); // prints funcname</span><br><span class="line">echo constant(&apos;constname&apos;), &quot;\n&quot;; // prints global</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>必须使用完全限定名称（包括命名空间前缀的类名称）。注意因为在动态的类名称、函数名称或常量名称中，限定名称和完全限定名称没有区别，因此其前导的反斜杠是不必要的。<br>动态访问命名空间的元素<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace namespacename;</span><br><span class="line">class classname</span><br><span class="line">&#123;</span><br><span class="line">    function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">        echo __METHOD__,&quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function funcname()</span><br><span class="line">&#123;</span><br><span class="line">    echo __FUNCTION__,&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line">const constname = &quot;namespaced&quot;;</span><br><span class="line"></span><br><span class="line">include &apos;example1.php&apos;;</span><br><span class="line"></span><br><span class="line">$a = &apos;classname&apos;;</span><br><span class="line">$obj = new $a; // 输出 classname::__construct</span><br><span class="line">$b = &apos;funcname&apos;;</span><br><span class="line">$b(); // 输出函数名</span><br><span class="line">echo constant(&apos;constname&apos;), &quot;\n&quot;; // 输出 global</span><br><span class="line"></span><br><span class="line">/* 如果使用双引号，使用方法为 &quot;\\namespacename\\classname&quot;*/</span><br><span class="line">$a = &apos;\namespacename\classname&apos;;</span><br><span class="line">$obj = new $a; // 输出 namespacename\classname::__construct</span><br><span class="line">$a = &apos;namespacename\classname&apos;;</span><br><span class="line">$obj = new $a; // 输出 namespacename\classname::__construct</span><br><span class="line">$b = &apos;namespacename\funcname&apos;;</span><br><span class="line">$b(); // 输出 namespacename\funcname</span><br><span class="line">$b = &apos;\namespacename\funcname&apos;;</span><br><span class="line">$b(); // 输出 namespacename\funcname</span><br><span class="line">echo constant(&apos;\namespacename\constname&apos;), &quot;\n&quot;; // 输出 namespaced</span><br><span class="line">echo constant(&apos;namespacename\constname&apos;), &quot;\n&quot;; // 输出 namespaced</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>namespace关键字和<strong>NAMESPACE</strong>常量</strong><br>PHP支持两种抽象的访问当前命名空间内部元素的方法，<strong>NAMESPACE</strong> 魔术常量和namespace关键字。<br>常量<strong>NAMESPACE</strong>的值是包含当前命名空间名称的字符串。在全局的，不包括在任何命名空间中的代码，它包含一个空的字符串。</p>
+<p><strong>NAMESPACE</strong> 示例, 在命名空间中的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace MyProject;</span><br><span class="line"></span><br><span class="line">echo &apos;&quot;&apos;, __NAMESPACE__, &apos;&quot;&apos;; // 输出 &quot;MyProject&quot;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>NAMESPACE</strong> 示例，全局代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">echo &apos;&quot;&apos;, __NAMESPACE__, &apos;&quot;&apos;; // 输出 &quot;&quot;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>常量 <strong>NAMESPACE</strong> 在动态创建名称时很有用，例如：</p>
+<p>使用<strong>NAMESPACE</strong>动态创建名称<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace MyProject;</span><br><span class="line"></span><br><span class="line">function get($classname)</span><br><span class="line">&#123;</span><br><span class="line">    $a = __NAMESPACE__ . &apos;\\&apos; . $classname;</span><br><span class="line">    return new $a;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>关键字 namespace 可用来显式访问当前命名空间或子命名空间中的元素。它等价于类中的 self 操作符。</p>
+<p>namespace操作符，命名空间中的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace MyProject;</span><br><span class="line"></span><br><span class="line">use blah\blah as mine; // see &quot;Using namespaces: importing/aliasing&quot;</span><br><span class="line"></span><br><span class="line">blah\mine(); // calls function blah\blah\mine()</span><br><span class="line">namespace\blah\mine(); // calls function MyProject\blah\mine()</span><br><span class="line"></span><br><span class="line">namespace\func(); // calls function MyProject\func()</span><br><span class="line">namespace\sub\func(); // calls function MyProject\sub\func()</span><br><span class="line">namespace\cname::method(); // calls static method &quot;method&quot; of class MyProject\cname</span><br><span class="line">$a = new namespace\sub\cname(); // instantiates object of class MyProject\sub\cname</span><br><span class="line">$b = namespace\CONSTANT; // assigns value of constant MyProject\CONSTANT to $b</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>namespace操作符, 全局代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace\func(); // calls function func()</span><br><span class="line">namespace\sub\func(); // calls function sub\func()</span><br><span class="line">namespace\cname::method(); // calls static method &quot;method&quot; of class cname</span><br><span class="line">$a = new namespace\sub\cname(); // instantiates object of class sub\cname</span><br><span class="line">$b = namespace\CONSTANT; // assigns value of constant CONSTANT to $b</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>使用命名空间：别名/导入</strong><br>PHP 命名空间支持 有两种使用别名或导入方式：为类名称使用别名，或为命名空间名称使用别名。<br>在PHP中，别名是通过操作符 use 来实现的. 下面是一个使用所有可能的三种导入方式的例子：<br>1、使用use操作符导入/使用别名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace foo;</span><br><span class="line">use My\Full\Classname as Another;</span><br><span class="line"></span><br><span class="line">// 下面的例子与 use My\Full\NSname as NSname 相同</span><br><span class="line">use My\Full\NSname;</span><br><span class="line"></span><br><span class="line">// 导入一个全局类</span><br><span class="line">use \ArrayObject;</span><br><span class="line"></span><br><span class="line">$obj = new namespace\Another; // 实例化 foo\Another 对象</span><br><span class="line">$obj = new Another; // 实例化 My\Full\Classname　对象</span><br><span class="line">NSname\subns\func(); // 调用函数 My\Full\NSname\subns\func</span><br><span class="line">$a = new ArrayObject(array(1)); // 实例化 ArrayObject 对象</span><br><span class="line">// 如果不使用 &quot;use \ArrayObject&quot; ，则实例化一个 foo\ArrayObject 对象</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>2、 一行中包含多个use语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">use My\Full\Classname as Another, My\Full\NSname;</span><br><span class="line"></span><br><span class="line">$obj = new Another; // 实例化 My\Full\Classname 对象</span><br><span class="line">NSname\subns\func(); // 调用函数 My\Full\NSname\subns\func</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>导入操作是在编译执行的，但动态的类名称、函数名称或常量名称则不是。</p>
+<p>3、导入和动态名称<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">use My\Full\Classname as Another, My\Full\NSname;</span><br><span class="line"></span><br><span class="line">$obj = new Another; // 实例化一个 My\Full\Classname 对象</span><br><span class="line">$a = &apos;Another&apos;;</span><br><span class="line">$obj = new $a;      // 实际化一个 Another 对象</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>另外，导入操作只影响非限定名称和限定名称。完全限定名称由于是确定的，故不受导入的影响。</p>
+<p>4、导入和完全限定名称<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">use My\Full\Classname as Another, My\Full\NSname;</span><br><span class="line"></span><br><span class="line">$obj = new Another; // 实例化 My\Full\Classname 类</span><br><span class="line">$obj = new \Another; // 实例化 Another 类</span><br><span class="line">$obj = new Another\thing; // 实例化 My\Full\Classname\thing 类</span><br><span class="line">$obj = new \Another\thing; // 实例化 Another\thing 类</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>使用命名空间：后备全局函数/常量</strong><br>在一个命名空间中，当 PHP 遇到一个非限定的类、函数或常量名称时，它使用不同的优先策略来解析该名称。类名称总是解析到当前命名空间中的名称。因此在访问系统内部或不包含在命名空间中的类名称时，必须使用完全限定名称，例如：</p>
+<p>1、在命名空间中访问全局类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace A\B\C;</span><br><span class="line">class Exception extends \Exception &#123;&#125;</span><br><span class="line"></span><br><span class="line">$a = new Exception(&apos;hi&apos;); // $a 是类 A\B\C\Exception 的一个对象</span><br><span class="line">$b = new \Exception(&apos;hi&apos;); // $b 是类 Exception 的一个对象</span><br><span class="line"></span><br><span class="line">$c = new ArrayObject; // 致命错误, 找不到 A\B\C\ArrayObject 类</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>对于函数和常量来说，如果当前命名空间中不存在该函数或常量，PHP 会退而使用全局空间中的函数或常量。</p>
+<p>2、 命名空间中后备的全局函数/常量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace A\B\C;</span><br><span class="line"></span><br><span class="line">const E_ERROR = 45;</span><br><span class="line">function strlen($str)</span><br><span class="line">&#123;</span><br><span class="line">    return \strlen($str) - 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo E_ERROR, &quot;\n&quot;; // 输出 &quot;45&quot;</span><br><span class="line">echo INI_ALL, &quot;\n&quot;; // 输出 &quot;7&quot; - 使用全局常量 INI_ALL</span><br><span class="line"></span><br><span class="line">echo strlen(&apos;hi&apos;), &quot;\n&quot;; // 输出 &quot;2&quot;</span><br><span class="line">if (is_array(&apos;hi&apos;)) &#123; // 输出 &quot;is not array&quot;</span><br><span class="line">    echo &quot;is array\n&quot;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;is not array\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>全局空间</strong><br>如果没有定义任何命名空间，所有的类与函数的定义都是在全局空间，与 PHP 引入命名空间概念前一样。在名称前加上前缀 \ 表示该名称是全局空间中的名称，即使该名称位于其它的命名空间中时也是如此。</p>
+<p>使用全局空间说明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace A\B\C;</span><br><span class="line"></span><br><span class="line">/* 这个函数是 A\B\C\fopen */</span><br><span class="line">function fopen() &#123; </span><br><span class="line">     /* ... */</span><br><span class="line">     $f = \fopen(...); // 调用全局的fopen函数</span><br><span class="line">     return $f;</span><br><span class="line">&#125; </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>命名空间的顺序</strong><br>自从有了命名空间之后，最容易出错的该是使用类的时候，这个类的寻找路径是什么样的了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace A;</span><br><span class="line">use B\D, C\E as F;</span><br><span class="line"></span><br><span class="line">// 函数调用</span><br><span class="line"></span><br><span class="line">foo();      // 首先尝试调用定义在命名空间&quot;A&quot;中的函数foo()</span><br><span class="line">            // 再尝试调用全局函数 &quot;foo&quot;</span><br><span class="line"></span><br><span class="line">\foo();     // 调用全局空间函数 &quot;foo&quot; </span><br><span class="line"></span><br><span class="line">my\foo();   // 调用定义在命名空间&quot;A\my&quot;中函数 &quot;foo&quot; </span><br><span class="line"></span><br><span class="line">F();        // 首先尝试调用定义在命名空间&quot;A&quot;中的函数 &quot;F&quot; </span><br><span class="line">            // 再尝试调用全局函数 &quot;F&quot;</span><br><span class="line"></span><br><span class="line">// 类引用</span><br><span class="line"></span><br><span class="line">new B();    // 创建命名空间 &quot;A&quot; 中定义的类 &quot;B&quot; 的一个对象</span><br><span class="line">            // 如果未找到，则尝试自动装载类 &quot;A\B&quot;</span><br><span class="line"></span><br><span class="line">new D();    // 使用导入规则，创建命名空间 &quot;B&quot; 中定义的类 &quot;D&quot; 的一个对象</span><br><span class="line">            // 如果未找到，则尝试自动装载类 &quot;B\D&quot;</span><br><span class="line"></span><br><span class="line">new F();    // 使用导入规则，创建命名空间 &quot;C&quot; 中定义的类 &quot;E&quot; 的一个对象</span><br><span class="line">            // 如果未找到，则尝试自动装载类 &quot;C\E&quot;</span><br><span class="line"></span><br><span class="line">new \B();   // 创建定义在全局空间中的类 &quot;B&quot; 的一个对象</span><br><span class="line">            // 如果未发现，则尝试自动装载类 &quot;B&quot;</span><br><span class="line"></span><br><span class="line">new \D();   // 创建定义在全局空间中的类 &quot;D&quot; 的一个对象</span><br><span class="line">            // 如果未发现，则尝试自动装载类 &quot;D&quot;</span><br><span class="line"></span><br><span class="line">new \F();   // 创建定义在全局空间中的类 &quot;F&quot; 的一个对象</span><br><span class="line">            // 如果未发现，则尝试自动装载类 &quot;F&quot;</span><br><span class="line"></span><br><span class="line">// 调用另一个命名空间中的静态方法或命名空间函数</span><br><span class="line"></span><br><span class="line">B\foo();    // 调用命名空间 &quot;A\B&quot; 中函数 &quot;foo&quot;</span><br><span class="line"></span><br><span class="line">B::foo();   // 调用命名空间 &quot;A&quot; 中定义的类 &quot;B&quot; 的 &quot;foo&quot; 方法</span><br><span class="line">            // 如果未找到类 &quot;A\B&quot; ，则尝试自动装载类 &quot;A\B&quot;</span><br><span class="line"></span><br><span class="line">D::foo();   // 使用导入规则，调用命名空间 &quot;B&quot; 中定义的类 &quot;D&quot; 的 &quot;foo&quot; 方法</span><br><span class="line">            // 如果类 &quot;B\D&quot; 未找到，则尝试自动装载类 &quot;B\D&quot;</span><br><span class="line"></span><br><span class="line">\B\foo();   // 调用命名空间 &quot;B&quot; 中的函数 &quot;foo&quot; </span><br><span class="line"></span><br><span class="line">\B::foo();  // 调用全局空间中的类 &quot;B&quot; 的 &quot;foo&quot; 方法</span><br><span class="line">            // 如果类 &quot;B&quot; 未找到，则尝试自动装载类 &quot;B&quot;</span><br><span class="line"></span><br><span class="line">// 当前命名空间中的静态方法或函数</span><br><span class="line"></span><br><span class="line">A\B::foo();   // 调用命名空间 &quot;A\A&quot; 中定义的类 &quot;B&quot; 的 &quot;foo&quot; 方法</span><br><span class="line">              // 如果类 &quot;A\A\B&quot; 未找到，则尝试自动装载类 &quot;A\A\B&quot;</span><br><span class="line"></span><br><span class="line">\A\B::foo();  // 调用命名空间 &quot;A&quot; 中定义的类 &quot;B&quot; 的 &quot;foo&quot; 方法</span><br><span class="line">              // 如果类 &quot;A\B&quot; 未找到，则尝试自动装载类 &quot;A\B&quot;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>名称解析遵循下列规则：</p>
+<ul>
+<li>对完全限定名称的函数，类和常量的调用在编译时解析。例如 new \A\B 解析为类 A\B。</li>
+<li>所有的非限定名称和限定名称（非完全限定名称）根据当前的导入规则在编译时进行转换。例如，如果命名空间 A\B\C 被导入为 C，那么对 C\D\e() 的调用就会被转换为 A\B\C\D\e()。</li>
+<li>在命名空间内部，所有的没有根据导入规则转换的限定名称均会在其前面加上当前的命名空间名称。例如，在命名空间 A\B 内部调用 C\D\e()，则 C\D\e() 会被转换为 A\B\C\D\e() 。</li>
+<li>非限定类名根据当前的导入规则在编译时转换（用全名代替短的导入名称）。例如，如果命名空间 A\B\C 导入为C，则 new C() 被转换为 new A\B\C() 。</li>
+<li>在命名空间内部（例如A\B），对非限定名称的函数调用是在运行时解析的。例如对函数 foo() 的调用是这样解析的：<ul>
+<li>在当前命名空间中查找名为 A\B\foo() 的函数</li>
+<li>尝试查找并调用 全局(global) 空间中的函数 foo()。</li>
+</ul>
+</li>
+<li><p>在命名空间（例如A\B）内部对非限定名称或限定名称类（非完全限定名称）的调用是在运行时解析的。下面是调用 new C() 及 new D\E() 的解析过程： new C()的解析:</p>
+<ul>
+<li>在当前命名空间中查找A\B\C类。</li>
+<li>尝试自动装载类A\B\C。</li>
+</ul>
+<p>new D\E()的解析:</p>
+<ul>
+<li>在类名称前面加上当前命名空间名称变成：A\B\D\E，然后查找该类。</li>
+<li>尝试自动装载类 A\B\D\E。<br>为了引用全局命名空间中的全局类，必须使用完全限定名称 new \C()。</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/01/30/PHP命名空间/" data-id="cjrj0dgl40042tgfv5nneeh8a" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/01/30/PHP面向对象/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">PHP面向对象</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/30/PHP命名空间/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/30/PHP命名空间/092712687.png)" alt="PHP命名空间" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/30/PHP命名空间/" class="title">PHP命名空间</a></p>
+                            <p class="item-date"><time datetime="2019-01-30T08:52:40.000Z" itemprop="datePublished">2019-01-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/30/PHP面向对象/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/30/PHP面向对象/e212.jpg)" alt="PHP面向对象" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/30/PHP面向对象/" class="title">PHP面向对象</a></p>
+                            <p class="item-date"><time datetime="2019-01-30T08:52:17.000Z" itemprop="datePublished">2019-01-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/30/简单认识一下PHP/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/30/简单认识一下PHP/66a1ca.png)" alt="简单认识一下PHP" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/30/简单认识一下PHP/" class="title">简单认识一下PHP</a></p>
+                            <p class="item-date"><time datetime="2019-01-30T02:01:45.000Z" itemprop="datePublished">2019-01-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/26/Node-js的第一个应用/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/26/Node-js的第一个应用/nodejs.jpg)" alt="Node.js的第一个应用" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/26/Node-js的第一个应用/" class="title">Node.js的第一个应用</a></p>
+                            <p class="item-date"><time datetime="2019-01-26T11:18:20.000Z" itemprop="datePublished">2019-01-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/25/前端模块化总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/25/前端模块化总结/e900d.png)" alt="前端模块化总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/25/前端模块化总结/" class="title">前端模块化总结</a></p>
+                            <p class="item-date"><time datetime="2019-01-25T06:54:36.000Z" itemprop="datePublished">2019-01-25</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 18.75px;">JavaScript</a> <a href="/tags/PHP/" style="font-size: 12.5px;">PHP</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/html/" style="font-size: 11.25px;">html</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 16.25px;">maven</a> <a href="/tags/node/" style="font-size: 11.25px;">node</a> <a href="/tags/orcal/" style="font-size: 13.75px;">orcal</a> <a href="/tags/python/" style="font-size: 13.75px;">python</a> <a href="/tags/冷知识/" style="font-size: 10px;">冷知识</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.25px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/01/30/PHP命名空间/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

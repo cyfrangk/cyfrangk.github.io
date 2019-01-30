@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>PHP面向对象 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="PHP">
+    
+    <meta name="description" content="在面向对象的程序设计（英语：Object-oriented programming，缩写：OOP）中，对象是一个由信息及对信息进行处理的描述所组成的整体，是对现实世界的抽象。在现实世界里我们所面对的事情都是对象，如计算机、电视机、自行车等。对象的主要三个特性：  对象的行为：可以对 对象施加那些操作，开灯，关灯就是行为。 对象的形态：当施加那些方法是对象如何响应，颜色，尺寸，外型。 对象的表示：对">
+<meta name="keywords" content="PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP面向对象">
+<meta property="og:url" content="http://yoursite.com/2019/01/30/PHP面向对象/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="在面向对象的程序设计（英语：Object-oriented programming，缩写：OOP）中，对象是一个由信息及对信息进行处理的描述所组成的整体，是对现实世界的抽象。在现实世界里我们所面对的事情都是对象，如计算机、电视机、自行车等。对象的主要三个特性：  对象的行为：可以对 对象施加那些操作，开灯，关灯就是行为。 对象的形态：当施加那些方法是对象如何响应，颜色，尺寸，外型。 对象的表示：对">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/01/30/PHP面向对象/e212.jpg">
+<meta property="og:updated_time" content="2019-01-30T10:00:24.744Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP面向对象">
+<meta name="twitter:description" content="在面向对象的程序设计（英语：Object-oriented programming，缩写：OOP）中，对象是一个由信息及对信息进行处理的描述所组成的整体，是对现实世界的抽象。在现实世界里我们所面对的事情都是对象，如计算机、电视机、自行车等。对象的主要三个特性：  对象的行为：可以对 对象施加那些操作，开灯，关灯就是行为。 对象的形态：当施加那些方法是对象如何响应，颜色，尺寸，外型。 对象的表示：对">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/30/PHP面向对象/e212.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-PHP面向对象" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        PHP面向对象
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/01/30/PHP面向对象/" class="article-date">
+            <time datetime="2019-01-30T08:52:17.000Z" itemprop="datePublished">2019-01-30</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/PHP/">PHP</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/2019/01/30/PHP面向对象/e212.jpg" alt=""><br>在面向对象的程序设计（英语：Object-oriented programming，缩写：OOP）中，对象是一个由信息及对信息进行处理的描述所组成的整体，是对现实世界的抽象。<br>在现实世界里我们所面对的事情都是对象，如计算机、电视机、自行车等。<br>对象的主要三个特性：</p>
+<ul>
+<li>对象的行为：可以对 对象施加那些操作，开灯，关灯就是行为。</li>
+<li>对象的形态：当施加那些方法是对象如何响应，颜色，尺寸，外型。</li>
+<li>对象的表示：对象的表示就相当于身份证，具体区分在相同的行为与状态下有什么不同。<br>比如 Animal(动物) 是一个抽象类，我们可以具体到一只狗跟一只羊，而狗跟羊就是具体的对象，他们有颜色属性，可以写，可以跑等行为状态。<br><img src="/2019/01/30/PHP面向对象/animals.png" alt=""><br>面向对象内容</li>
+<li>类 − 定义了一件事物的抽象特点。类的定义包含了数据的形式以及对数据的操作。</li>
+<li>对象 − 是类的实例。</li>
+<li>成员变量 − 定义在类内部的变量。该变量的值对外是不可见的，但是可以通过成员函数访问，在类被实例化为对象后，该变量即可称为对象的属性。</li>
+<li>成员函数 − 定义在类的内部，可用于访问对象的数据。</li>
+<li>继承 − 继承性是子类自动共享父类数据结构和方法的机制，这是类之间的一种关系。在定义和实现一个类的时候，可以在一个已经存在的类的基础之上来进行，把这个已经存在的类所定义的内容作为自己的内容，并加入若干新的内容。</li>
+<li>父类 − 一个类被其他类继承，可将该类称为父类，或基类，或超类。</li>
+<li>子类 − 一个类继承其他类称为子类，也可称为派生类。</li>
+<li>多态 − 多态性是指相同的操作或函数、过程可作用于多种类型的对象上并获得不同的结果。不同的对象，收到同一消息可以产生不同的结果，这种现象称为多态性。</li>
+<li>重载 − 简单说，就是函数或者方法有同样的名称，但是参数列表不相同的情形，这样的同名不同参数的函数或者方法之间，互相称之为重载函数或者方法。</li>
+<li>抽象性 − 抽象性是指将具有一致的数据结构（属性）和行为（操作）的对象抽象成类。一个类就是这样一种抽象，它反映了与应用有关的重要性质，而忽略其他一些无关内容。任何类的划分都是主观的，但必须与具体的应用有关。</li>
+<li>封装 − 封装是指将现实世界中存在的某个客体的属性与行为绑定在一起，并放置在一个逻辑单元内。</li>
+<li>构造函数 − 主要用来在创建对象时初始化对象， 即为对象成员变量赋初始值，总与new运算符一起使用在创建对象的语句中。</li>
+<li>析构函数 − 析构函数(destructor) 与构造函数相反，当对象结束其生命周期时（例如对象所在的函数已调用完毕），系统自动执行析构函数。析构函数往往用来做”清理善后” 的工作（例如在建立对象时用new开辟了一片内存空间，应在退出前在析构函数中用delete释放）。</li>
+</ul>
+<p><strong>面向对象</strong><br>引入例子 ：女娲 人身蛇尾 ， 用女娲造人引出类和实例 ： 女娲造人前先 思考 人的形象 然后再造人<br>所以 ：人的形象是抽象的，用来说明人的特点；而每一个人都是具体的，且符合人的形象</p>
+<p>类 ：所有对象共同点的一个抽象！（就是一个 制造说明书）<br>对象 ：就是根据说明书制造出来的具体对象<br>类中有什么？ 属性（比如人：身高，体重，姓名）<br>能干什么？功能（说活，吃饭）<br>用 变量 和 函数 分别模拟 属性 和 功能<br>面向对象中 ，方法即是函数 ； 属性即是变量 ，只是面相对象中一般说方法和属性</p>
+<p>new 类名()；//直接产生一个对象并返回该对象<br>$a = new 类名()； //那么a对象就包含 类中声明的所有属性（类似关联数组）</p>
+<p><img src="/2019/01/30/PHP面向对象/4037.png" alt=""><br><img src="/2019/01/30/PHP面向对象/6919.png" alt=""><br>要调用对应的属性值可以 $a <code>-&gt;</code> name (name不用$)；要调用对应的方法 $a <code>-&gt;</code> say()<br>面向对象oo（object oriented）oop加编程</p>
+<p>声明类的时候 ：<br>内存分配给类一个空间，，里面存放着类定义的属性和函数</p>
+<p>new对象的时候 ：<br>1、 申请内存，生成对象（属性集合）<br>2、 如果有构造函执行<br>3、 返回对象的地址<br><img src="/2019/01/30/PHP面向对象/4680.png" alt="内存分配图"><br>语法就是法律； 规范 就是 道德<br>(1)属性的初始化 不能是表达式 如 ： $a = 1+3 ;  java中是允许的<br>(2)同一个域内(比如一个类中)，函数不能重复定义（即是名字不能一样）<br>(3)在一个类里面，如果要调用系统同名的自定义函数，需要用$this，否则调用系统函数 ； 此外一个类里面 一个函数调用 不是他内部的变量或者它调用其他函数也要加 $this</p>
+<p><strong>构造函数 </strong>： __construct() , 注意前面是两个下划线 ； 当new对象（产生对象），调用 ； 构造函数不能被重载即是不能再有同名的</p>
+<p><strong>析构函数</strong> ：__destruct()在对象被销毁的时候调用的函数 。 </p>
+<p>如何销毁对象 ：<br>1、显式销毁，unset（），直接赋值为null或者其他值<br>2、执行完最后一行代码时自动销毁（如果之前已经销毁，则不再销毁）<br><img src="/2019/01/30/PHP面向对象/67761.png" alt=""><br>对变量指向销毁问题<br>$a = new People(); //创建一个对象（new People()），并把使用权给变量$a（$a是一个变量名，指向这个对象）<br>$a = $b = $c ;  //3个变量都指向内存中的同一个对象<br><img src="/2019/01/30/PHP面向对象/3877.png" alt=""><br>unset（$a）;//unset，即是销毁对象(object)，但有其他变量$b等仍然指向对象，那么该对象将不能被销毁，但是$a为null不再指向这个对象</p>
+<p><strong>this绑定</strong><br>当一个对象调用一个它对应类的方法时，该方法执行之前先完成一个绑定，即是用<br>$this绑定到调用此方法的对象（这样才能在方法内对这个对象的属性进行操纵），因为方法内如果想访问调用者（即是对象）的属性必须用$this；否则则理解为方法内部的一个局部变量<br><img src="/2019/01/30/PHP面向对象/0088.png" alt=""><br>Java中不一样，函数不需要this也能访问方法外的变量</p>
+<p><strong>封装</strong></p>
+<p>封装的概念 ： 通过修饰符 改变属性或者函数的访问权限 ，达到保护的作用。<br>光是封装起来是没意义的，还要供外部交互才行；所以通过一个开放的接口（即是一个函数）供外部操纵；内部的操作，不需要外部知道，从而隐藏内部的一些细节 。<br>如： 洗衣机，你只要点击启动程序的按钮就能洗衣服，不需要知道洗衣机内部怎么运行<br>权限修饰符 ：private protected public<br>private修饰的属性只能在其 类里面 才能被访问到。<br>protected 本类和子类能访问<br>private访问权限的bug ： 对象之间能够相互操作同一个类中的属性，导致一个对象能够修改另一个对象的属性。<br><img src="/2019/01/30/PHP面向对象/6576.png" alt=""><br>fatal error（致命错误）</p>
+<p><strong>封装 操作数据库的 类</strong></p>
+<p>类似把某个功能的一段代码放在一个类中 ； 类里面的方法相互调用<br>用面向对象的思想 对数据库操作 （mysql封装类）<br>比如把连接数据的操作封装到一个连接函数中</p>
+<p>连接数据库<br>发送 查询<br>对于select语句 返回查询数据数据<br>关闭mysql连接</p>
+<p><strong>继承</strong></p>
+<p>子类继承父类的属性和方法，再进一步拓展自己的属性和方法；父类的属性 和方法一般是一个归纳（所有对象都有的），提高代码的重新性</p>
+<p><strong>拥有问题 </strong>：子类继承父类，子类有父类所有的属性和方法，在子类里面能够操作父类中非private修饰的属性或者方法，但是父类中对于private修饰的属性或者方法子类无法操作（类外的范围限制）<br><img src="/2019/01/30/PHP面向对象/1868.png" alt=""><br><img src="/2019/01/30/PHP面向对象/6622.png" alt=""><br><strong>调用与覆盖问题 </strong>： 子类里面调用对应的属性时，子类没有覆盖父类中的属性或者方法，则调用父类中的属性或方法，否则只调用子类中的，无论传参数是否对。private的调用除外</p>
+<p><strong>注意</strong>继承父类之后，子类再声明与父类一样的属性，权限符只能越来越宽松或者一样 。 如果父类的属性有static，子类也必须有才能声明</p>
+<p><strong>★</strong>类内一般声明只属性和方法，实例化或者输出等语句要写在方法里或者类外，否则报错</p>
+<p>如果子类有和父类一样的方法，能使用parent：：方法名()指定调用父类的<br><img src="/2019/01/30/PHP面向对象/69825.png" alt=""><br><strong>构造函数</strong>是可以被继承的；如果子类中没有写构造函数，在实例化子类的时候就会调用父类的构造方法。如果子类重新写则覆盖且只调用子类的。<br>因此如果父类的构造函数是必须要调用，最好使用parent::__construct()调用一下（java不同，它会先调用父构造再调用子构造；php调用子构造）<br>比如 ：数据库类中 父类构造函数有连接数据库，如果子类写了其他的话构造函数，则连接失败 （Java不同，父子都调用）</p>
+<p>在类外对象名只能调用类中public修饰的属性，其他的属性可以通过方法来调用。一般不写则默认为public<br><img src="/2019/01/30/PHP面向对象/0790.png" alt=""><br><img src="/2019/01/30/PHP面向对象/2331.png" alt=""><br><strong>多态</strong><br>只抽象声明父类，具体的工作由子类对象完成<br>java出现多态是因为它是强类型语言（即是定义了类型不能随便改变），声明的类型 后 传送参数必须是该类型 。 声明参数时，声明为父类型，传参时，能够传子类型。以达到多态的效果。比如：<br>多颜色手电筒问题 ：声明手电筒，并接受玻璃的参数。然后玻璃有多种颜色，以达到不同效果。则为多态<br>php是弱类型语言，本身没有对类型没有检测，因此简直变态，后来5.3以后，引入了对于对象类型的参数检测。限制了灵活性达到多态<br><img src="/2019/01/30/PHP面向对象/3444.png" alt=""><br><img src="/2019/01/30/PHP面向对象/3053.png" alt=""><br><strong>static 静态属性</strong><br>一般当 某个属性或者方法 是所有对象固有的（即是不改变），则声明为静态属性，节省内存，随时类名调用；无论函数调用多少次,只初始化第一次.，如 static $a = 1;</p>
+<p>静态属性存在于类内存中，而不是对象的内存中。只要有类就能访问到，因此一个静态属性只有一个，改1全变；只能 类名：：属性名 访问<br><img src="/2019/01/30/PHP面向对象/9294.png" alt=""><br><strong>静态方法</strong></p>
+<p>普通方法和静态方法都存在 类内存 中 且只有一个<br>但是静态方法用类名调用，不用this绑定；普通方法需要有对象才能用this绑定调用<br>安装ecshop的时候出现strict standard错误提示，原因是版本高，代码书写语法有误，静态方法调用非静态方法时出现问题。</p>
+<p>非静态方法,是不能由类名静态调用的.但是 PHP中的面向对象检测的并不严格,<br>只要该方法没有$this,就会转化静态方法来调用.<br>但是,在PHP5.3的strict级别下,或者PHP5.4的默认级别<br>都已经对类名::非静态方法做了提示<br>则会提示:Strict Standards: Non-static method Human::eat() should not be called statically<br>不能静态的去调用非静态方法 ； 有static修饰的变量和函数不能出现$this</p>
+<p>isset（$this） 这个时候判断有没对象进行绑定；</p>
+<p>代码分析<br><img src="/2019/01/30/PHP面向对象/8639.png" alt=""><br><img src="/2019/01/30/PHP面向对象/3836.png" alt=""></p>
+<p>this就是指向当前对象实例的指针，不指向任何其他对象或类<br>self, parent的用法  （::(域运算符号)）<br>self:指向类本身，也就是self是不指向任何已经实例化的对象 ，self使用来指向类中的静态属性或者方法<br>self::$staticProperty<br>self::staticMothed;</p>
+<p>parent: 指向父类的指针，一般我们使用parent来调用父类的构造函数。</p>
+<p>在引入自身的静态属性/静态方法，以及父类的方法时,可以用到.<br>parent::$staticProperty<br>parent::Mothed;<br><img src="/2019/01/30/PHP面向对象/5072.png" alt=""><br>★应该选择this还是parent<br><img src="/2019/01/30/PHP面向对象/8070.png" alt=""><br><img src="/2019/01/30/PHP面向对象/7020.png" alt=""><br>总结使用<br>1: 修饰类的属性与方法为静态属性,静态方法<br>2: static::method(), 延迟绑定<br>3: 在函数/方法中,声明静态变量用</p>
+<p><strong>单例模式</strong><br>避免多人开发过程，实例化过多导致资源浪费， 限制只实例化一次的模式<br>构造方法不能执行则实例化失败<br>思路 ：<br>1、 保护或私有构造函数，房子外部实例化<br>2、 内部开发一个公共的静态方法，负责实例化<br>3、 类有一个静态属性存放对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class Single &#123;</span><br><span class="line">    //设置私有，保存实例状态</span><br><span class="line">    static protected $ins = NULL;</span><br><span class="line">    //设置为私有，限制类外实例化，若没有子类可去掉final</span><br><span class="line">    final protected function __construct() &#123;</span><br><span class="line">        echo &apos;实例化成功！&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">    //设置为静态方法，类外能调用，实例化</span><br><span class="line">    static public function getinstance() &#123;</span><br><span class="line">        //self代表当前类，判断是否实例化</span><br><span class="line">        if (self::$ins instanceof self) &#123;</span><br><span class="line">            return self::$ins;</span><br><span class="line">        &#125;</span><br><span class="line">        self::$ins = new self();</span><br><span class="line">        return self::$ins;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$s1 = Single::getinstance();</span><br><span class="line">$s2 = Single::getinstance();</span><br><span class="line"></span><br><span class="line">//子类继承父类若还要单例，要用final修饰父类构造方法，</span><br><span class="line">//阻止子类重写构造方法自己去new的问题</span><br><span class="line">class Single2 extends Single &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$s11 = Single2::getInstance();</span><br><span class="line">$s12 = Single2::getInstance();</span><br><span class="line"></span><br><span class="line">if ($s11 === $s12) &#123;</span><br><span class="line">    echo &quot;相等&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>final</strong><br>final 不能修饰属性<br>final 修饰方法，此方法能继承，不能被重写<br>final 修饰类,则此类 不能够被继承</p>
+<p><strong>魔术方法</strong><br>是指某些情况下,会自动调用的方法,称为魔术方法 ； 感觉一般都是那些权限不允许调用或者是不存在的属性 才会触发魔术方法<br>PHP面向对象中,提供了这几个魔术方法,<br>他们的特点 都是以双下划线<strong>开头的
+</strong>construct(), <strong>destruct(), </strong>call(), <strong>callStatic(), </strong>get(), <strong>set(), </strong>isset(), <strong>unset(), </strong>sleep(), <strong>wakeup(), </strong>toString(), <strong>invoke(), </strong>set_state() 和 __clone()</p>
+<p><strong>__clone()</strong>   :克隆方法,当对象被克隆时,将会自动调用<br><img src="/2019/01/30/PHP面向对象/9126.png" alt=""><br><strong>__get()</strong> ：当我们调用一个权限上不允许调用的属性，和不存在的属性时，<strong>get魔术方法会自动调用，并且自动传参，参数值是属性名。酱紫就能避免系统会直接报错,甚至fatal error,通过</strong>get()我们就能自定义用户访问时的处理行为。注意如果是数组形式的话那么这里的$p相当于键值（即是下标）<br><img src="/2019/01/30/PHP面向对象/6191.png" alt=""><br>流程:<br>$lily-&gt;age–无权–&gt;<strong>get(age);<br>$lily-&gt;friend–没有此属性–&gt;</strong>get(‘friend’);</p>
+<p><strong>__set()</strong>：当为无权操作的属性赋值时,或不存在的属性赋值时,<strong>set()自动调用，且自动传2个参数 属性 属性值<br><img src="/2019/01/30/PHP面向对象/1590.png" alt=""><br>**</strong>isset()**：当用isset()判断对象不可见的属性时(protected/private/不存在的属性)</p>
+<p>会引发 <strong>isset()来执行<br><img src="/2019/01/30/PHP面向对象/5894.png" alt=""><br><img src="/2019/01/30/PHP面向对象/5924.png" alt=""><br>isset($obj-&gt;xyz) 属性为真,能说明  类声明了一个xyz属性吗?<br>答:不能，因为isset($hua-&gt;tail)—-没有tail属性—-&gt;</strong>isset(‘tail’);-à 如果<strong>isset返回1则不能
+</strong>unset() : 当 用unset 销毁对象的不可见属性时,会引发 __unset();</p>
+<p>__call($a,$b) : 调用不可见(不存在或无权限)的方法时,自动调用；前参数是方法名，后是传参</p>
+<p><strong>callStatic($a,$b) ： 是调用不可见的静态方法时,自动调用.<br><img src="/2019/01/30/PHP面向对象/1877.png" alt="">
+</strong>call是调用不可见(不存在或无权限)的方法时,自动调用</p>
+<p>$lisi-&gt;say(1,2,3);—–没有say()方法—-&gt; <strong>call(‘say’,array(1,2,3))运行<br><img src="/2019/01/30/PHP面向对象/6448.png" alt="">
+</strong>autoload() : 如果调用某个不存在的类,在报错之前,系统会调用<strong>autoload($n)函数,并把”类名”自动传给</strong>autoload函数我们自然可以在__autoload里 加载需要的类!<br><img src="/2019/01/30/PHP面向对象/5081.png" alt=""><br><strong>魔术方法的应用</strong><br>TP中设置用户注册的做法： 把表单中接受到的信息，直接付给一个对象的属性，然后<br>对象 add()  用sql语句写到数据库中<br><strong>具体的思路</strong></p>
+<p>在一个类中设置一个空数组，利用__set()把传进来的值放到数组中，然后利用 add方法 与数据库交互 ； 酱紫避免了与其他同名属性的冲突<br>都是使用魔法方法来进行操作<br>$date = array() 设置一个空数组<br>implode() ：将数组按值进行分割<br>array_keys(array,value)  ：获得数组中键名并以数组的形式 ； 前者数组名必选 ， 后者数组值可选  ；  只选前者则返回所有键名 ； 两者选返回对应值得键名</p>
+<p><strong>重载与重写</strong><br><strong>重写/覆盖  override</strong>:子类重写了父类的同名方法。只要子类有该方法只调用子类的无论参数是否一致</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">//模仿重载的功能</span><br><span class="line">class Circle &#123;</span><br><span class="line">    public function area() &#123;</span><br><span class="line">        $a = func_get_args();</span><br><span class="line">        $num = count($a);</span><br><span class="line">        if ($num == 0) &#123;</span><br><span class="line">            echo &apos;传入参数&apos; . &quot;\n&quot;;</span><br><span class="line">        &#125; else if ($num == 1) &#123;</span><br><span class="line">            echo 3.14 * $a[0] . &quot;\n&quot;; //学会利用已有的条件进行分析</span><br><span class="line">            </span><br><span class="line">        &#125; else if ($num == 2) &#123;</span><br><span class="line">            echo $a[0] * $a[1] . &quot;\n&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$c = new Circle();</span><br><span class="line">$c-&gt;area();</span><br><span class="line">$c-&gt;area(3);</span><br><span class="line"></span><br><span class="line">class P &#123;</span><br><span class="line">    public function a() &#123;</span><br><span class="line">        echo &quot;nihao&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$b = new P();</span><br><span class="line">$b-&gt;a(2123, &apos;sdf&apos;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>重载 overload:</strong> 指存在多个同名方法,但参数类型/个数不同,传不同的参数,调用不同的方法。但是在PHP中,不允许存在多个同名方法.因此,不能够完成java,c++中的这种重载</p>
+<p>但是,PHP的灵活,能达到类似的效果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">    function __autoload($n)&#123;</span><br><span class="line">        require(&apos;./&apos; . $n . &apos;.php&apos;);</span><br><span class="line">        echo &quot;加载成功！&quot;;</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    $test = new autoload_class();</span><br><span class="line">    $test-&gt;say();</span><br><span class="line"> ?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>常量 （常量名全大写，不带$）</strong><br>普通常量 ：define(‘常量名’,常量值); 全局有效.无论是页面内,函数内,类内,都可以访问 ；</p>
+<p>类内常量 : 类常量 在类内用 const 声明即可；前面不用加修饰符,；且权限是public的,即外部也可以访问</p>
+<p>作用域在类内，类似于静态属性 ；又是常量,则不可改.</p>
+<p>其实就是”不可改变的静态属性”，即是能够 类名：：常量名 访问<br><img src="/2019/01/30/PHP面向对象/3831.png" alt=""><br><strong>魔术常量</strong><br>1:无法手动修改他的值,所以叫常量<br>2:但是值又是随环境变动的,所以叫魔术</p>
+<p><strong>FILE</strong>  返回当前文件的路径+文件名</p>
+<p>在框架开发或者是网站初始化脚本中,用来计算网站的根目录</p>
+<p><strong>DIR</strong> 返回当前的文件路径</p>
+<p><strong>LINE</strong>  返回当前的行号</p>
+<p>在框架中,可以用来在debug时,记录错误信息</p>
+<p><strong>CLASS</strong> 返回当前的类名</p>
+<p><strong>METHOD</strong> 返回当前的方法名<br><img src="/2019/01/30/PHP面向对象/2902.png" alt=""><br><strong>延迟绑定</strong><br>注意 ：static：：方法名  表示调用 对象类中的方法 或者属性<br>注意 一般书写的时候public等权限修饰符在static前，增加规范可读性<br><img src="/2019/01/30/PHP面向对象/7623.png" alt=""><br><strong>抽象</strong><br>抽象类 ：类前加 abstract 是抽象类，是抽象方法抽象类不能 new 来实例化，有抽象方法,则此类必是抽象类；抽象类，内未必有抽象方法<br>抽象方法 ：方法前加 abstract，抽象方法 不能有方法体，所以没有{} ； 而是直接();<br>子类 继承 抽象的父类 必须 重写父类的抽象方法！并且参数个数要一样<br>//利用面向对象思想实现不同语言首页欢迎！<br>//抽象类就是个模板，你们子类继承我的类和方法自己搞自己想要弄的东西<br>//比如我想要开发英语语言，只要增加一个子类，不用修改父类的东西<br>//所以面向对象是可插拔的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">//利用面向对象思想实现不同语言首页欢迎！</span><br><span class="line">//抽象类就是个模板，你们子类继承我的类和方法自己搞自己想要弄的东西</span><br><span class="line">//比如我想要开发英语语言，只要增加一个子类，不用修改父类的东西</span><br><span class="line">//所以面向对象是可插拔的</span><br><span class="line">abstract class Language &#123; //抽象方法</span><br><span class="line">    public abstract function wel();</span><br><span class="line">&#125;</span><br><span class="line">class China extends Language &#123;</span><br><span class="line">    public function wel() &#123;</span><br><span class="line">        echo &quot;欢迎！&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class English extends Language &#123;</span><br><span class="line">    public function wel($a) &#123;</span><br><span class="line">        echo &quot;Welcome!&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$language = &apos;China&apos;;</span><br><span class="line">$w = new $language(); //666</span><br><span class="line">$w-&gt;wel();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>说明 ： 抽象类就是一个模板，我不用担心同类的类不会做，反正你只要根据我的模板做就不会错。从而达到兼容多种不同的情况 和 避免代码大量的修改 和 代码的规范（方法一致）</p>
+<p>比如 ：</p>
+<p>公司网站要上线了，要选择什么数据库？ 先弄个mysql开发着，到时候有问题再换也行。那么换数据库,会不会以前的代码又得重写? 其实不用担心,用抽象类！开发者,开发时,就以db抽象类来开发。不管上线时,真正用什么数据库，我只需要再写一份如下类(右图)即可。所以业务逻辑层不用改，因为都实现的db抽象类。</p>
+<p><strong>接口</strong><br>（没有括号） interface 接口名 {  }</p>
+<p>类如果是一种事物/动物的抽象，那么 接口则是事物/动物的功能的抽象，即再把它们的功能各拆成小块自由组合成新的物种。<br>以人类为例, class Human 是人的草图而接口 是零件可以用多种零件组合出一种新特种来.<br>1、接口本身即是抽象的,内部声明的方法 默认也是抽象的.不用加 abstract<br>2、一个类可以一次性实现多个接口.语法用 implements 实现 (把我这几个功能实现了)<br>3、接口可继承另一个接口, 用extends ；注意实现时须把继承的接口的方<br>4、接口是一堆抽象方法的说明,不能加属性<br>5、接口就是供组装成类用的,封闭起来没有意义,因此方法只能是public<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">/*</span><br><span class="line">接口 就更加抽象了，比如一个社交网站，关于用户的处理是核心应用。</span><br><span class="line">登陆 退出 写信 看信 招呼 更换心情</span><br><span class="line">吃饭 骂人 捣乱 示爱 撩骚</span><br><span class="line"></span><br><span class="line">这么多的方法,都是用户的方法，可写一个user类,全包装起来</span><br><span class="line">但是，分析用户一次性使不了这么方法。于是分开多个类</span><br><span class="line"></span><br><span class="line">用户信息类:&#123;登陆,写信,看信,招呼,更换心情,退出&#125;</span><br><span class="line">用户娱乐类:&#123;登陆,骂人,捣乱,示爱,撩骚,退出&#125;</span><br><span class="line">*/</span><br><span class="line">interface UserBase &#123; //注意没括号</span><br><span class="line">    public function login($u, $p);</span><br><span class="line">    public function logout(); //注意是抽象方法</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">interface UserMsg &#123;</span><br><span class="line">    public function wirteMsg($to, $title, $content);</span><br><span class="line">    public function readMsg($from, $title);</span><br><span class="line">&#125;</span><br><span class="line">interface UserFun &#123;</span><br><span class="line">    public function spit($to);</span><br><span class="line">    public function showLove($to);</span><br><span class="line">&#125;</span><br><span class="line">/*</span><br><span class="line">作为调用者, 我不需要了解你的用户信息类,用户娱乐类,</span><br><span class="line">我就可以知道如何调用这两个类</span><br><span class="line"></span><br><span class="line">因为: 这两个类 都要实现 上述接口.</span><br><span class="line">通过这个接口,就可以规范开发.</span><br><span class="line"></span><br><span class="line">*/</span><br><span class="line">class User implements UserBase &#123;</span><br><span class="line">    public function login($u, $p) &#123;</span><br><span class="line">        echo &quot;用户登录&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    public function logout() &#123;</span><br><span class="line">        echo &quot;用户注销&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>包含类进来</strong><br>include/require能够包含某个php文件，但是不知道是否调用过；改进使用魔术方法<strong>aotoload($)
+</strong>autoload() : 如果调用某个不存在的类,在报错之前,系统会调用<strong>autoload($n)函数,并把”类名”自动传给</strong>autoload函数我们自然可以在__autoload里 加载需要的类! </p>
+<p>★自定义 自动加载方法</p>
+<p>通知系统,让系统知道–我自己写了一个自动加载方法,用这个spl_auto_register($n)<br><img src="/2019/01/30/PHP面向对象/1406.png" alt=""><br>★方法中能定义一个类，但是想要执行类里面的东西，必须先动态调用方法（直接方法名），有return也不关事<br><img src="/2019/01/30/PHP面向对象/7917.png" alt=""></p>
+<p><strong>异常</strong><br>讨论：如何判断mysql类连接是否成功？ 利用 在方法里面return？<br>实例化后返回一个对象，无法确定是否连接成功 。 return无法干扰，仍然是返回对象<br>解决这种问题，用异常类 Exception</p>
+<p>注意 @mysql_connect();  //@表示忽略此处输出的错误<br>关闭所有的错误报告 ： Error_reporting(0);<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">    &#123;</span><br><span class="line">        protected $conn = NULL;</span><br><span class="line"></span><br><span class="line">        public function __construct()</span><br><span class="line">        &#123;</span><br><span class="line">            $this-&gt;conn = mysql_connect(&apos;localhost&apos;,&apos;root&apos;,&apos;111&apos;);</span><br><span class="line"></span><br><span class="line">            if (!$this-&gt;conn) //如果连接失败了，抛出错误</span><br><span class="line">            &#123;</span><br><span class="line">            $e = new Exception(&apos;失败了！&apos;,9); // </span><br><span class="line">            throw $e;  //抛出异常</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   //若抛出异常，没有接受处理则会报错</span><br><span class="line">    try  // 可能出现错误的代码并尝试捕捉错误信息</span><br><span class="line">    &#123;</span><br><span class="line">        $my = new mysql();</span><br><span class="line">    &#125;catch(Exception $e) // 注意括号，处理错误</span><br><span class="line">    &#123;</span><br><span class="line">            echo $e-&gt;getMessage();</span><br><span class="line">           echo &apos;错误代码&apos;,$e-&gt;getCode();</span><br><span class="line">           echo &apos;错误文件&apos;,$e-&gt;getFile();</span><br><span class="line">           echo &apos;错误行&apos;,$e-&gt;getLine();//抛出错误的行</span><br><span class="line">    &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/01/30/PHP面向对象/" data-id="cjrj0dgqp004jtgfvhqdm2554" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/01/30/PHP命名空间/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            PHP命名空间
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/01/30/简单认识一下PHP/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">简单认识一下PHP</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/30/PHP命名空间/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/30/PHP命名空间/092712687.png)" alt="PHP命名空间" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/30/PHP命名空间/" class="title">PHP命名空间</a></p>
+                            <p class="item-date"><time datetime="2019-01-30T08:52:40.000Z" itemprop="datePublished">2019-01-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/30/PHP面向对象/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/30/PHP面向对象/e212.jpg)" alt="PHP面向对象" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/30/PHP面向对象/" class="title">PHP面向对象</a></p>
+                            <p class="item-date"><time datetime="2019-01-30T08:52:17.000Z" itemprop="datePublished">2019-01-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/30/简单认识一下PHP/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/30/简单认识一下PHP/66a1ca.png)" alt="简单认识一下PHP" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/30/简单认识一下PHP/" class="title">简单认识一下PHP</a></p>
+                            <p class="item-date"><time datetime="2019-01-30T02:01:45.000Z" itemprop="datePublished">2019-01-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/26/Node-js的第一个应用/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/26/Node-js的第一个应用/nodejs.jpg)" alt="Node.js的第一个应用" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/26/Node-js的第一个应用/" class="title">Node.js的第一个应用</a></p>
+                            <p class="item-date"><time datetime="2019-01-26T11:18:20.000Z" itemprop="datePublished">2019-01-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/25/前端模块化总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/25/前端模块化总结/e900d.png)" alt="前端模块化总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/25/前端模块化总结/" class="title">前端模块化总结</a></p>
+                            <p class="item-date"><time datetime="2019-01-25T06:54:36.000Z" itemprop="datePublished">2019-01-25</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 18.75px;">JavaScript</a> <a href="/tags/PHP/" style="font-size: 12.5px;">PHP</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/html/" style="font-size: 11.25px;">html</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 16.25px;">maven</a> <a href="/tags/node/" style="font-size: 11.25px;">node</a> <a href="/tags/orcal/" style="font-size: 13.75px;">orcal</a> <a href="/tags/python/" style="font-size: 13.75px;">python</a> <a href="/tags/冷知识/" style="font-size: 10px;">冷知识</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.25px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/01/30/PHP面向对象/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
