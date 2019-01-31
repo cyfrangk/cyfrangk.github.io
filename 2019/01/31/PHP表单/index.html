@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>PHP表单 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="PHP">
+    
+    <meta name="description" content="PHP 超全局变量 $_GET 和 $_POST 用于收集表单数据(form-data)。 PHP - 一个简单的 HTML 表单下面的例子显示了一个简单的 HTML 表单，它包含两个输入字段和一个提交按钮：实例1234567891011&amp;lt;html&amp;gt;&amp;lt;body&amp;gt;&amp;lt;form action=&amp;quot;welcome.php&amp;quot; method=&amp;quot;post">
+<meta name="keywords" content="PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP表单">
+<meta property="og:url" content="http://yoursite.com/2019/01/31/PHP表单/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="PHP 超全局变量 $_GET 和 $_POST 用于收集表单数据(form-data)。 PHP - 一个简单的 HTML 表单下面的例子显示了一个简单的 HTML 表单，它包含两个输入字段和一个提交按钮：实例1234567891011&amp;lt;html&amp;gt;&amp;lt;body&amp;gt;&amp;lt;form action=&amp;quot;welcome.php&amp;quot; method=&amp;quot;post">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/01/31/PHP表单/8f821.jpg">
+<meta property="og:updated_time" content="2019-01-31T06:42:31.212Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP表单">
+<meta name="twitter:description" content="PHP 超全局变量 $_GET 和 $_POST 用于收集表单数据(form-data)。 PHP - 一个简单的 HTML 表单下面的例子显示了一个简单的 HTML 表单，它包含两个输入字段和一个提交按钮：实例1234567891011&amp;lt;html&amp;gt;&amp;lt;body&amp;gt;&amp;lt;form action=&amp;quot;welcome.php&amp;quot; method=&amp;quot;post">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/31/PHP表单/8f821.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-PHP表单" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        PHP表单
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/01/31/PHP表单/" class="article-date">
+            <time datetime="2019-01-31T04:14:44.000Z" itemprop="datePublished">2019-01-31</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/PHP/">PHP</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>PHP 超全局变量 $_GET 和 $_POST 用于收集表单数据(form-data)。<br><img src="/2019/01/31/PHP表单/8f821.jpg" alt=""></p>
+<h2 id="PHP-一个简单的-HTML-表单"><a href="#PHP-一个简单的-HTML-表单" class="headerlink" title="PHP - 一个简单的 HTML 表单"></a>PHP - 一个简单的 HTML 表单</h2><p>下面的例子显示了一个简单的 HTML 表单，它包含两个输入字段和一个提交按钮：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;form action=&quot;welcome.php&quot; method=&quot;post&quot;&gt;</span><br><span class="line">Name: &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;&lt;br&gt;</span><br><span class="line">E-mail: &lt;input type=&quot;text&quot; name=&quot;email&quot;&gt;&lt;br&gt;</span><br><span class="line">&lt;input type=&quot;submit&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>当用户填写此表单并点击提交按钮后，表单数据会发送到名为 “welcome.php” 的 PHP 文件供处理。表单数据是通过 HTTP POST 方法发送的。<br>如需显示出被提交的数据，您可以简单地输出（echo）所有变量。”welcome.php” 文件是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">Welcome &lt;?php echo $_POST[&quot;name&quot;]; ?&gt;&lt;br&gt;</span><br><span class="line">Your email address is: &lt;?php echo $_POST[&quot;email&quot;]; ?&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<p>Welcome John<br>Your email address is <a href="mailto:john.doe@example.com" target="_blank" rel="noopener">john.doe@example.com</a></p>
+<p>使用 HTTP GET 方法也能得到相同的结果：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;form action=&quot;welcome_get.php&quot; method=&quot;get&quot;&gt;</span><br><span class="line">Name: &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;&lt;br&gt;</span><br><span class="line">E-mail: &lt;input type=&quot;text&quot; name=&quot;email&quot;&gt;&lt;br&gt;</span><br><span class="line">&lt;input type=&quot;submit&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>“welcome_get.php” 是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">Welcome &lt;?php echo $_GET[&quot;name&quot;]; ?&gt;&lt;br&gt;</span><br><span class="line">Your email address is: &lt;?php echo $_GET[&quot;email&quot;]; ?&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>上面的代码很简单。不过，最重要的内容被漏掉了。您需要对表单数据进行验证，以防止脚本出现漏洞。<br><strong>注意</strong>：在处理 PHP 表单时请关注安全！<br>本页未包含任何表单验证程序，它只向我们展示如何发送并接收表单数据。<br>不过稍后的章节会为您讲解如何提高 PHP 表单的安全性！对表单适当的安全验证对于抵御黑客攻击和垃圾邮件非常重要！</p>
+<p><strong>GET vs. POST</strong><br>GET 和 POST 都创建数组（例如，array( key =&gt; value, key2 =&gt; value2, key3 =&gt; value3, …)）。此数组包含键/值对，其中的键是表单控件的名称，而值是来自用户的输入数据。<br>GET 和 POST 被视作 $_GET 和 $_POST。它们是超全局变量，这意味着对它们的访问无需考虑作用域 - 无需任何特殊代码，您能够从任何函数、类或文件访问它们。<br>$_GET 是通过 URL 参数传递到当前脚本的变量数组。<br>$_POST 是通过 HTTP POST 传递到当前脚本的变量数组。</p>
+<p><strong>何时使用 GET？</strong><br>通过 GET 方法从表单发送的信息<strong>对任何人都是可见的</strong>（所有变量名和值都显示在 URL 中）。GET 对所发送信息的数量也有限制。限制在大于 2000 个字符。不过，由于变量显示在 URL 中，把页面添加到书签中也更为方便。<br>GET 可用于发送非敏感的数据。<br><strong>注释：</strong>绝不能使用 GET 来发送密码或其他敏感信息！</p>
+<p><strong>何时使用 POST？</strong><br>通过 POST 方法从表单发送的信息<strong>对其他人是不可见的</strong>（所有名称/值会被嵌入 HTTP 请求的主体中），并且对所发送信息的数量也<strong>无限制</strong>。<br>此外 POST 支持高阶功能，比如在向服务器上传文件时进行 multi-part 二进制输入。<br>不过，由于变量未显示在 URL 中，也就无法将页面添加到书签。<br><code>提示：开发者偏爱 POST 来发送表单数据。</code></p>
+<p><strong>升级一下表单内容</strong></p>
+<ul>
+<li><p>PHP 下拉菜单单选<br>以下实例我们设置了下拉菜单三个选项，表单使用 GET 方式获取数据，action 属性值为空表示提交到当前脚本，我们可以通过 select 的 name 属性获取下拉菜单的值：<br>php_form_select.php 文件代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$q = isset($_GET[&apos;q&apos;])? htmlspecialchars($_GET[&apos;q&apos;]) : &apos;&apos;;</span><br><span class="line">if($q) &#123;</span><br><span class="line">		if($q ==&apos;GOOGLE&apos;) &#123;</span><br><span class="line">                echo &apos;Google 搜索&lt;br&gt;http://www.google.com&apos;;</span><br><span class="line">        &#125; else if($q ==&apos;TAOBAO&apos;) &#123;</span><br><span class="line">                echo &apos;淘宝&lt;br&gt;http://www.taobao.com&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">&#125; else &#123;&#125;</span><br><span class="line">?&gt;</span><br><span class="line">//表单内容</span><br><span class="line">&lt;form action=&quot;php_form_select.php&quot; method=&quot;get&quot;&gt; </span><br><span class="line">    &lt;select name=&quot;q&quot;&gt;</span><br><span class="line">    &lt;option value=&quot;&quot;&gt;选择一个站点:&lt;/option&gt;</span><br><span class="line">    &lt;option value=&quot;GOOGLE&quot;&gt;Google&lt;/option&gt;</span><br><span class="line">    &lt;option value=&quot;TAOBAO&quot;&gt;Taobao&lt;/option&gt;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">    &lt;/form&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>PHP 下拉菜单多选<br>如果下拉菜单是多选的（ multiple=”multiple”），我们可以通过将设置 select name=”q[]” 以数组的方式获取，以下使用 POST 方式提交，代码如下所示：<br>php_form_select_mul.php 文件代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$q = isset($_POST[&apos;q&apos;])? $_POST[&apos;q&apos;] : &apos;&apos;;</span><br><span class="line">if(is_array($q)) &#123;</span><br><span class="line">    $sites = array(</span><br><span class="line">            &apos;BAIDU&apos; =&gt; &apos;百度: http://www.baidu.com&apos;,</span><br><span class="line">            &apos;GOOGLE&apos; =&gt; &apos;Google 搜索: http://www.google.com&apos;,</span><br><span class="line">            &apos;TAOBAO&apos; =&gt; &apos;淘宝: http://www.taobao.com&apos;,</span><br><span class="line">    );</span><br><span class="line">    foreach($q as $val) &#123;</span><br><span class="line">        // PHP_EOL 为常量，用于换行</span><br><span class="line">        echo $sites[$val] . PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line">      </span><br><span class="line">&#125; else &#123;&#125;</span><br><span class="line">?&gt;</span><br><span class="line">//表单内容</span><br><span class="line">&lt;form action=&quot;php_form_select_mul.php&quot; method=&quot;post&quot;&gt; </span><br><span class="line">    &lt;select multiple=&quot;multiple&quot; name=&quot;q[]&quot;&gt;</span><br><span class="line">    &lt;option value=&quot;&quot;&gt;选择一个站点:&lt;/option&gt;</span><br><span class="line">    &lt;option value=&quot;BAIDU&quot;&gt;Baidu&lt;/option&gt;</span><br><span class="line">    &lt;option value=&quot;GOOGLE&quot;&gt;Google&lt;/option&gt;</span><br><span class="line">    &lt;option value=&quot;TAOBAO&quot;&gt;Taobao&lt;/option&gt;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">    &lt;/form&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>单选按钮表单<br>PHP 单选按钮表单中 name 属性的值是一致的，value 值是不同的，代码如下所示：<br>php_form_radio.php 文件代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$q = isset($_GET[&apos;q&apos;])? htmlspecialchars($_GET[&apos;q&apos;]) : &apos;&apos;;</span><br><span class="line">if($q) &#123;</span><br><span class="line">        if($q ==&apos;RUNOOB&apos;) &#123;</span><br><span class="line">                echo &apos;菜鸟教程&lt;br&gt;http://www.runoob.com&apos;;</span><br><span class="line">        &#125; else if($q ==&apos;GOOGLE&apos;) &#123;</span><br><span class="line">                echo &apos;Google 搜索&lt;br&gt;http://www.google.com&apos;;</span><br><span class="line">        &#125; else if($q ==&apos;TAOBAO&apos;) &#123;</span><br><span class="line">                echo &apos;淘宝&lt;br&gt;http://www.taobao.com&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">&#125; else &#123;&#125;</span><br><span class="line">?&gt;</span><br><span class="line">//表单内容</span><br><span class="line">&lt;form action=&quot;php_form_radio.php&quot; method=&quot;get&quot;&gt; </span><br><span class="line">    &lt;input type=&quot;radio&quot; name=&quot;q&quot; value=&quot;RUNOOB&quot; /&gt;Runoob</span><br><span class="line">    &lt;input type=&quot;radio&quot; name=&quot;q&quot; value=&quot;GOOGLE&quot; /&gt;Google</span><br><span class="line">    &lt;input type=&quot;radio&quot; name=&quot;q&quot; value=&quot;TAOBAO&quot; /&gt;Taobao</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>checkbox 复选框<br>PHP checkbox 复选框可以选择多个值：<br>php_form_select_checkbox.php 文件代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$q = isset($_POST[&apos;q&apos;])? $_POST[&apos;q&apos;] : &apos;&apos;;</span><br><span class="line">if(is_array($q)) &#123;</span><br><span class="line">    $sites = array(</span><br><span class="line">            &apos;RUNOOB&apos; =&gt; &apos;菜鸟教程: http://www.runoob.com&apos;,</span><br><span class="line">            &apos;GOOGLE&apos; =&gt; &apos;Google 搜索: http://www.google.com&apos;,</span><br><span class="line">            &apos;TAOBAO&apos; =&gt; &apos;淘宝: http://www.taobao.com&apos;,</span><br><span class="line">    );</span><br><span class="line">    foreach($q as $val) &#123;</span><br><span class="line">        // PHP_EOL 为常量，用于换行</span><br><span class="line">        echo $sites[$val] . PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line">      </span><br><span class="line">&#125; else &#123;&#125;</span><br><span class="line">?&gt;</span><br><span class="line">//表单内容</span><br><span class="line">&lt;form action=&quot;php_form_select_checkbox.php&quot; method=&quot;post&quot;&gt; </span><br><span class="line">    &lt;input type=&quot;checkbox&quot; name=&quot;q[]&quot; value=&quot;RUNOOB&quot;&gt; Runoob&lt;br&gt; </span><br><span class="line">    &lt;input type=&quot;checkbox&quot; name=&quot;q[]&quot; value=&quot;GOOGLE&quot;&gt; Google&lt;br&gt; </span><br><span class="line">    &lt;input type=&quot;checkbox&quot; name=&quot;q[]&quot; value=&quot;TAOBAO&quot;&gt; Taobao&lt;br&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="PHP-表单验证"><a href="#PHP-表单验证" class="headerlink" title="PHP 表单验证"></a>PHP 表单验证</h2><p>提示：在处理 PHP 表单时请重视安全性！<br>我们应该尽可能的对用户的输入进行验证（通过客户端脚本）。浏览器验证速度更快，并且可以减轻服务器的压力。<br>如果用户输入需要插入数据库，您应该考虑使用服务器验证。在服务器验证表单的一种好的方式是，把表单的数据传给当前页面（异步提交的方式更好），而不是跳转到不同的页面。这样用户就可以在同一张表单页面得到错误信息。用户也就更容易发现错误了。<br>这些页面将展示如何安全地处理 PHP 表单。对 HTML 表单数据进行适当的验证对于防范黑客和垃圾邮件很重要！</p>
+<p>设置如下验证规则：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th>验证规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Name</td>
+<td>必需。必须包含字母和空格。</td>
+</tr>
+<tr>
+<td style="text-align:left">E-mail</td>
+<td>必需。必须包含有效的电子邮件地址（包含 @ 和 .）。</td>
+</tr>
+<tr>
+<td style="text-align:left">Website</td>
+<td>可选。如果选填，则必须包含有效的 URL。</td>
+</tr>
+<tr>
+<td style="text-align:left">Comment</td>
+<td>可选。多行输入字段（文本框）。</td>
+</tr>
+<tr>
+<td style="text-align:left">Gender</td>
+<td>必需。必须选择一项。</td>
+</tr>
+</tbody>
+</table>
+<p>首先我们看一下这个表单的纯 HTML 代码：<br><strong>文本字段</strong><br>name、email 和 website 属于文本输入元素，comment 字段是文本框。HTML 代码是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Name: &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;</span><br><span class="line">E-mail: &lt;input type=&quot;text&quot; name=&quot;email&quot;&gt;</span><br><span class="line">Website: &lt;input type=&quot;text&quot; name=&quot;website&quot;&gt;</span><br><span class="line">Comment: &lt;textarea name=&quot;comment&quot; rows=&quot;5&quot; cols=&quot;40&quot;&gt;&lt;/textarea&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>单选按钮</strong><br>gender 字段是单选按钮，HTML 代码是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Gender:</span><br><span class="line">&lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;female&quot;&gt;Female</span><br><span class="line">&lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;male&quot;&gt;Male</span><br></pre></td></tr></table></figure></p>
+<p><strong>表单元素</strong><br>表单的 HTML 代码是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form method=&quot;post&quot; action=&quot;&lt;?php echo htmlspecialchars($_SERVER[&quot;PHP_SELF&quot;]);?&gt;&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>当提交此表单时，通过 method=”post” 发送表单数据。</p>
+<p><strong>什么是 $_SERVER[“PHP_SELF”] 变量？</strong><br>$_SERVER[“PHP_SELF”] 是一种超全局变量，它返回当前执行脚本的文件名。<br>因此，$_SERVER[“PHP_SELF”] 将表单数据发送到页面本身，而不是跳转到另一张页面。这样，用户就能够在表单页面获得错误提示信息。</p>
+<p><strong>什么是 htmlspecialchars() 函数？</strong><br>htmlspecialchars() 函数把特殊字符转换为 HTML 实体。这意味着 <code>&lt;</code>和<code>&gt;</code>之类的 HTML 字符会被替换为 &lt; 和 &gt; 。这样可防止攻击者通过在表单中注入 HTML 或 JavaScript 代码（跨站点脚本攻击）对代码进行利用。<br>预定义的字符是:</p>
+<ul>
+<li>&amp; （和号） 成为 <code>&amp;amp</code>;</li>
+<li>“ （双引号） 成为 <code>&amp;quot</code>;</li>
+<li>‘ （单引号） 成为 <code>&amp;#039</code>;</li>
+<li>&lt; （小于） 成为 <code>&amp;lt</code>;</li>
+<li>> （大于） 成为 <code>&amp;gt</code>;</li>
+</ul>
+<p><strong>关于 PHP 表单安全性的重要提示</strong><br>$_SERVER[“PHP_SELF”] 变量能够被黑客利用！<br>当黑客使用跨网站脚本的HTTP链接来攻击时，$_SERVER[“PHP_SELF”]服务器变量也会被植入脚本。原因就是跨网站脚本是附在执行文件的路径后面的，因此$_SERVER[“PHP_SELF”]的字符串就会包含HTTP链接后面的JavaScript程序代码。<br>如果您的页面使用了 PHP_SELF，用户能够输入下划线然后执行跨站点脚本（XSS）。</p>
+<blockquote>
+<p>XSS又叫 CSS (Cross-Site Script) ,跨站脚本攻击。恶意攻击者往Web页面里插入恶意html代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行，从而达到恶意用户的特殊目的。</p>
+</blockquote>
+<p><code>提示：</code>跨站点脚本（Cross-site scripting，XSS）是一种计算机安全漏洞类型，常见于 Web 应用程序。XSS 能够使攻击者向其他用户浏览的网页中输入客户端脚本。<br>假设我们的一张名为 “test_form.php” 的页面中有如下表单：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form method=&quot;post&quot; action=&quot;&lt;?php echo $_SERVER[&quot;PHP_SELF&quot;];?&gt;&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>现在，如果用户进入的是地址栏中正常的 URL：”<a href="http://www.example.com/test_form.php&quot;，" target="_blank" rel="noopener">http://www.example.com/test_form.php&quot;，</a> 上面的代码会转换为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form method=&quot;post&quot; action=&quot;test_form.php&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>到目前，一切正常。</p>
+<p>不过，如果用户在地址栏中键入了如下 URL：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.example.com/test_form.php/%22%3E%3Cscript%3Ealert(&apos;hacked&apos;)%3C/script%3E</span><br></pre></td></tr></table></figure></p>
+<p>在这种情况下，上面的代码会转换为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form method=&quot;post&quot; action=&quot;test_form.php&quot;/&gt;&lt;script&gt;alert(&apos;hacked&apos;)&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这段代码加入了一段脚本和一个提示命令。并且当此页面加载后，就会执行 JavaScript 代码（用户会看到一个提示框）。这仅仅是一个关于 PHP_SELF 变量如何被利用的简单无害案例。<br>您应该意识到 <code>&lt;script&gt;</code>标签内能够添加任何 JavaScript 代码！**黑客能够把用户重定向到另一台服务器上的某个文件，该文件中的恶意代码能够更改全局变量或将表单提交到其他地址以保存用户数据，等等。</p>
+<p><strong>如果避免 $_SERVER[“PHP_SELF”] 被利用？</strong><br>通过使用 htmlspecialchars() 函数能够避免 $_SERVER[“PHP_SELF”] 被利用。<br>表单代码是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form method=&quot;post&quot; action=&quot;&lt;?php echo htmlspecialchars($_SERVER[&quot;PHP_SELF&quot;]);?&gt;&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>htmlspecialchars() 函数把特殊字符转换为 HTML 实体。现在，如果用户试图利用 PHP_SELF 变量，会导致如下输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form method=&quot;post&quot; action=&quot;test_form.php/&quot;&gt;&lt;script&gt;alert(&apos;hacked&apos;)&lt;/script&gt;&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>无法利用，没有危害！</p>
+<p><strong>通过 PHP 验证表单数据</strong><br>我们要做的第一件事是通过 PHP 的 htmlspecialchars() 函数传递所有变量。<br>在我们使用 htmlspecialchars() 函数后，如果用户试图在文本字段中提交以下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;location.href(&apos;http://www.hacked.com&apos;)&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>代码不会执行，因为会被保存为转义代码，就像这样：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;script&amp;gt;location.href(&apos;http://www.hacked.com&apos;)&amp;lt;/script&amp;gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>现在这条代码显示在页面上或 e-mail 中是安全的。<br>在用户提交该表单时，我们还要做两件事：<br>1.（通过 PHP trim() 函数）去除用户输入数据中不必要的字符（多余的空格、制表符、换行）<br>2.（通过 PHP stripslashes() 函数）删除用户输入数据中的反斜杠（<code>\</code>）<br>接下来我们创建一个检查函数（相比一遍遍地写代码，这样效率更好）。<br>我们把函数命名为 test_input()。<br>现在，我们能够通过 test_input() 函数检查每个 $_POST 变量，脚本是这样的：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// 定义变量并设置为空值</span><br><span class="line">$name = $email = $gender = $comment = $website = &quot;&quot;;</span><br><span class="line"></span><br><span class="line">if ($_SERVER[&quot;REQUEST_METHOD&quot;] == &quot;POST&quot;) &#123;</span><br><span class="line">  $name = test_input($_POST[&quot;name&quot;]);</span><br><span class="line">  $email = test_input($_POST[&quot;email&quot;]);</span><br><span class="line">  $website = test_input($_POST[&quot;website&quot;]);</span><br><span class="line">  $comment = test_input($_POST[&quot;comment&quot;]);</span><br><span class="line">  $gender = test_input($_POST[&quot;gender&quot;]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function test_input($data) &#123;</span><br><span class="line">  $data = trim($data);</span><br><span class="line">  $data = stripslashes($data);</span><br><span class="line">  $data = htmlspecialchars($data);</span><br><span class="line">  return $data;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>请注意在脚本开头，我们检查表单是否使用 $_SERVER[“REQUEST_METHOD”] 进行提交。如果 REQUEST_METHOD 是 POST，那么表单已被提交 - 并且应该对其进行验证。如果未提交，则跳过验证并显示一个空白表单。<br>不过，在上面的例子中，所有输入字段都是可选的。即使用户未输入任何数据，脚本也能正常工作。</p>
+<p><strong>表单验证 </strong></p>
+<ul>
+<li><p>必填字段<br>在下面的代码中我们增加了一些新变量：$nameErr、$emailErr、$genderErr 以及 $websiteErr。这些错误变量会保存被请求字段的错误消息。我们还为每个 $_POST 变量添加了一个 if else 语句。这条语句检查 $_POST 变量是否为空（通过 PHP empty() 函数）。如果为空，则错误消息会存储于不同的错误变量中。如果不为空，则通过 test_input() 函数发送用户输入数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// 定义变量并设置为空值</span><br><span class="line">$nameErr = $emailErr = $genderErr = $websiteErr = &quot;&quot;;</span><br><span class="line">$name = $email = $gender = $comment = $website = &quot;&quot;;</span><br><span class="line"></span><br><span class="line">if ($_SERVER[&quot;REQUEST_METHOD&quot;] == &quot;POST&quot;) &#123;</span><br><span class="line">  if (empty($_POST[&quot;name&quot;])) &#123;</span><br><span class="line">    $nameErr = &quot;Name is required&quot;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    $name = test_input($_POST[&quot;name&quot;]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (empty($_POST[&quot;email&quot;])) &#123;</span><br><span class="line">    $emailErr = &quot;Email is required&quot;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    $email = test_input($_POST[&quot;email&quot;]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (empty($_POST[&quot;website&quot;])) &#123;</span><br><span class="line">    $website = &quot;&quot;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    $website = test_input($_POST[&quot;website&quot;]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (empty($_POST[&quot;comment&quot;])) &#123;</span><br><span class="line">    $comment = &quot;&quot;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    $comment = test_input($_POST[&quot;comment&quot;]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (empty($_POST[&quot;gender&quot;])) &#123;</span><br><span class="line">    $genderErr = &quot;Gender is required&quot;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    $gender = test_input($_POST[&quot;gender&quot;]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示错误消息<br>在 HTML 表单中，我们在每个被请求字段后面增加了一点脚本。如果需要，会生成恰当的错误消息（如果用户未填写必填字段就试图提交表单）：</p>
+</li>
+</ul>
+<p>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;form method=&quot;post&quot; action=&quot;&lt;?php echo htmlspecialchars($_SERVER[&quot;PHP_SELF&quot;]);?&gt;&quot;&gt;</span><br><span class="line"></span><br><span class="line">Name: &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;</span><br><span class="line">&lt;span class=&quot;error&quot;&gt;* &lt;?php echo $nameErr;?&gt;&lt;/span&gt;</span><br><span class="line">&lt;br&gt;&lt;br&gt;</span><br><span class="line">E-mail:</span><br><span class="line">&lt;input type=&quot;text&quot; name=&quot;email&quot;&gt;</span><br><span class="line">&lt;span class=&quot;error&quot;&gt;* &lt;?php echo $emailErr;?&gt;&lt;/span&gt;</span><br><span class="line">&lt;br&gt;&lt;br&gt;</span><br><span class="line">Website:</span><br><span class="line">&lt;input type=&quot;text&quot; name=&quot;website&quot;&gt;</span><br><span class="line">&lt;span class=&quot;error&quot;&gt;&lt;?php echo $websiteErr;?&gt;&lt;/span&gt;</span><br><span class="line">&lt;br&gt;&lt;br&gt;</span><br><span class="line">&lt;label&gt;Comment: &lt;textarea name=&quot;comment&quot; rows=&quot;5&quot; cols=&quot;40&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">&lt;br&gt;&lt;br&gt;</span><br><span class="line">Gender:</span><br><span class="line">&lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;female&quot;&gt;Female</span><br><span class="line">&lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;male&quot;&gt;Male</span><br><span class="line">&lt;span class=&quot;error&quot;&gt;* &lt;?php echo $genderErr;?&gt;&lt;/span&gt;</span><br><span class="line">&lt;br&gt;&lt;br&gt;</span><br><span class="line">&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Submit&quot;&gt; </span><br><span class="line"></span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></p>
+<p>接下来是验证输入数据，即“Name 字段是否只包含字母和空格？”，以及“E-mail 字段是否包含有效的电子邮件地址语法？”，并且如果填写了 Website 字段，“这个字段是否包含了有效的 URL？”。</p>
+<ul>
+<li>验证名字<br>以下代码展示的简单方法检查 name 字段是否包含字母和空格。如果 name 字段无效，则存储一条错误消息：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$name = test_input($_POST[&quot;name&quot;]);</span><br><span class="line">if (!preg_match(&quot;/^[a-zA-Z ]*$/&quot;,$name)) &#123;</span><br><span class="line">  $nameErr = &quot;只允许字母和空格！&quot;; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>注释：</strong>preg_match() 函数检索字符串的模式，如果模式存在则返回 true，否则返回 false。</p>
+<ul>
+<li><p>验证 E-mail<br>以下代码展示的简单方法检查 e-mail 地址语法是否有效。如果无效则存储一条错误消息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$email = test_input($_POST[&quot;email&quot;]);</span><br><span class="line">if (!preg_match(&quot;/([\w\-]+\@[\w\-]+\.[\w\-]+)/&quot;,$email)) &#123;</span><br><span class="line">  $emailErr = &quot;无效的 email 格式！&quot;; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>验证 URL<br>以下代码展示的方法检查 URL 地址语法是否有效（这条正则表达式同时允许 URL 中的斜杠）。如果 URL 地址语法无效，则存储一条错误消息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$website = test_input($_POST[&quot;website&quot;]);</span><br><span class="line">if (!preg_match(&quot;/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&amp;@#\/%?=~_|!:,.;]*[-a-z0-9+&amp;@#\/%</span><br><span class="line">=~_|]/i&quot;,$website)) &#123;</span><br><span class="line">  $websiteErr = &quot;无效的 URL&quot;; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>合起来的脚本是这样的：</p>
+<p>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// 定义变量并设置为空值</span><br><span class="line">$nameErr = $emailErr = $genderErr = $websiteErr = &quot;&quot;;</span><br><span class="line">$name = $email = $gender = $comment = $website = &quot;&quot;;</span><br><span class="line"></span><br><span class="line">if ($_SERVER[&quot;REQUEST_METHOD&quot;] == &quot;POST&quot;) &#123;</span><br><span class="line">  if (empty($_POST[&quot;name&quot;])) &#123;</span><br><span class="line">    $nameErr = &quot;Name is required&quot;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    $name = test_input($_POST[&quot;name&quot;]);</span><br><span class="line">    // 检查名字是否包含字母和空格</span><br><span class="line">    if (!preg_match(&quot;/^[a-zA-Z ]*$/&quot;,$name)) &#123;</span><br><span class="line">      $nameErr = &quot;Only letters and white space allowed&quot;; </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (empty($_POST[&quot;email&quot;])) &#123;</span><br><span class="line">    $emailErr = &quot;Email is required&quot;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    $email = test_input($_POST[&quot;email&quot;]);</span><br><span class="line">    // 检查电邮地址语法是否有效</span><br><span class="line">    if (!preg_match(&quot;/([\w\-]+\@[\w\-]+\.[\w\-]+)/&quot;,$email)) &#123;</span><br><span class="line">      $emailErr = &quot;Invalid email format&quot;; </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (empty($_POST[&quot;website&quot;])) &#123;</span><br><span class="line">    $website = &quot;&quot;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    $website = test_input($_POST[&quot;website&quot;]);</span><br><span class="line">    // 检查 URL 地址语言是否有效（此正则表达式同样允许 URL 中的下划线）</span><br><span class="line">    if (!preg_match(&quot;/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&amp;@#\/%?=~_|!:,.;]*[-a-z0-9+&amp;@#\/%</span><br><span class="line">    =~_|]/i&quot;,$website)) &#123;</span><br><span class="line">      $websiteErr = &quot;Invalid URL&quot;; </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (empty($_POST[&quot;comment&quot;])) &#123;</span><br><span class="line">    $comment = &quot;&quot;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    $comment = test_input($_POST[&quot;comment&quot;]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (empty($_POST[&quot;gender&quot;])) &#123;</span><br><span class="line">    $genderErr = &quot;Gender is required&quot;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    $gender = test_input($_POST[&quot;gender&quot;]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>接下来向您讲解如何防止表单在用户提交表单后清空所有输入字段。</p>
+<ul>
+<li>保留表单中的值<br>如需在用户点击提交按钮后在输入字段中显示值，我们在以下输入字段的 value 属性中增加了一小段 PHP 脚本：name、email 以及 website。在 comment 文本框字段中，我们把脚本放到了<code>&lt;textarea&gt;</code>与<code>&lt;/textarea&gt;</code>之间。这些脚本输出 $name、$email、$website 和 $comment 变量的值。<br>然后，我们还需要显示选中了哪个单选按钮。对此，我们必须操作 checked 属性（而非单选按钮的 value 属性）：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Name: &lt;input type=&quot;text&quot; name=&quot;name&quot; value=&quot;&lt;?php echo $name;?&gt;&quot;&gt;</span><br><span class="line"></span><br><span class="line">E-mail: &lt;input type=&quot;text&quot; name=&quot;email&quot; value=&quot;&lt;?php echo $email;?&gt;&quot;&gt;</span><br><span class="line"></span><br><span class="line">Website: &lt;input type=&quot;text&quot; name=&quot;website&quot; value=&quot;&lt;?php echo $website;?&gt;&quot;&gt;</span><br><span class="line"></span><br><span class="line">Comment: &lt;textarea name=&quot;comment&quot; rows=&quot;5&quot; cols=&quot;40&quot;&gt;&lt;?php echo $comment;?&gt;&lt;/textarea&gt;</span><br><span class="line"></span><br><span class="line">Gender:</span><br><span class="line"></span><br><span class="line">&lt;input type=&quot;radio&quot; name=&quot;gender&quot;</span><br><span class="line">&lt;?php if (isset($gender) &amp;&amp; $gender==&quot;female&quot;) echo &quot;checked&quot;;?&gt;</span><br><span class="line">value=&quot;female&quot;&gt;Female</span><br><span class="line">&lt;input type=&quot;radio&quot; name=&quot;gender&quot;</span><br><span class="line">&lt;?php if (isset($gender) &amp;&amp; $gender==&quot;male&quot;) echo &quot;checked&quot;;?&gt;</span><br><span class="line">value=&quot;male&quot;&gt;Male</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>最终成品：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE HTML&gt; </span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.error &#123;color: #FF0000;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt; </span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">// 定义变量并设置为空值</span><br><span class="line">$nameErr = $emailErr = $genderErr = $websiteErr = &quot;&quot;;</span><br><span class="line">$name = $email = $gender = $comment = $website = &quot;&quot;;</span><br><span class="line"></span><br><span class="line">if ($_SERVER[&quot;REQUEST_METHOD&quot;] == &quot;POST&quot;) &#123;</span><br><span class="line">   if (empty($_POST[&quot;name&quot;])) &#123;</span><br><span class="line">     $nameErr = &quot;姓名是必填的&quot;;</span><br><span class="line">   &#125; else &#123;</span><br><span class="line">     $name = test_input($_POST[&quot;name&quot;]);</span><br><span class="line">     // 检查姓名是否包含字母和空白字符</span><br><span class="line">     if (!preg_match(&quot;/^[a-zA-Z ]*$/&quot;,$name)) &#123;</span><br><span class="line">       $nameErr = &quot;只允许字母和空格&quot;; </span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   if (empty($_POST[&quot;email&quot;])) &#123;</span><br><span class="line">     $emailErr = &quot;电邮是必填的&quot;;</span><br><span class="line">   &#125; else &#123;</span><br><span class="line">     $email = test_input($_POST[&quot;email&quot;]);</span><br><span class="line">     // 检查电子邮件地址语法是否有效</span><br><span class="line">     if (!preg_match(&quot;/([\w\-]+\@[\w\-]+\.[\w\-]+)/&quot;,$email)) &#123;</span><br><span class="line">       $emailErr = &quot;无效的 email 格式&quot;; </span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">     </span><br><span class="line">   if (empty($_POST[&quot;website&quot;])) &#123;</span><br><span class="line">     $website = &quot;&quot;;</span><br><span class="line">   &#125; else &#123;</span><br><span class="line">     $website = test_input($_POST[&quot;website&quot;]);</span><br><span class="line">     // 检查 URL 地址语法是否有效（正则表达式也允许 URL 中的斜杠）</span><br><span class="line">     if (!preg_match(&quot;/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&amp;@#\/%?=~_|!:,.;]*[-a-z0-9+&amp;@#\/%=~_|]/i&quot;,$website)) &#123;</span><br><span class="line">       $websiteErr = &quot;无效的 URL&quot;; </span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   if (empty($_POST[&quot;comment&quot;])) &#123;</span><br><span class="line">     $comment = &quot;&quot;;</span><br><span class="line">   &#125; else &#123;</span><br><span class="line">     $comment = test_input($_POST[&quot;comment&quot;]);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   if (empty($_POST[&quot;gender&quot;])) &#123;</span><br><span class="line">     $genderErr = &quot;性别是必选的&quot;;</span><br><span class="line">   &#125; else &#123;</span><br><span class="line">     $gender = test_input($_POST[&quot;gender&quot;]);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function test_input($data) &#123;</span><br><span class="line">   $data = trim($data);</span><br><span class="line">   $data = stripslashes($data);</span><br><span class="line">   $data = htmlspecialchars($data);</span><br><span class="line">   return $data;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;h2&gt;PHP 验证实例&lt;/h2&gt;</span><br><span class="line">&lt;p&gt;&lt;span class=&quot;error&quot;&gt;* 必需的字段&lt;/span&gt;&lt;/p&gt;</span><br><span class="line">&lt;form method=&quot;post&quot; action=&quot;&lt;?php echo htmlspecialchars($_SERVER[&quot;PHP_SELF&quot;]);?&gt;&quot;&gt; </span><br><span class="line">   姓名：&lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;</span><br><span class="line">   &lt;span class=&quot;error&quot;&gt;* &lt;?php echo $nameErr;?&gt;&lt;/span&gt;</span><br><span class="line">   &lt;br&gt;&lt;br&gt;</span><br><span class="line">   电邮：&lt;input type=&quot;text&quot; name=&quot;email&quot;&gt;</span><br><span class="line">   &lt;span class=&quot;error&quot;&gt;* &lt;?php echo $emailErr;?&gt;&lt;/span&gt;</span><br><span class="line">   &lt;br&gt;&lt;br&gt;</span><br><span class="line">   网址：&lt;input type=&quot;text&quot; name=&quot;website&quot;&gt;</span><br><span class="line">   &lt;span class=&quot;error&quot;&gt;&lt;?php echo $websiteErr;?&gt;&lt;/span&gt;</span><br><span class="line">   &lt;br&gt;&lt;br&gt;</span><br><span class="line">   评论：&lt;textarea name=&quot;comment&quot; rows=&quot;5&quot; cols=&quot;40&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">   &lt;br&gt;&lt;br&gt;</span><br><span class="line">   性别：</span><br><span class="line">   &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;female&quot;&gt;女性</span><br><span class="line">   &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;male&quot;&gt;男性</span><br><span class="line">   &lt;span class=&quot;error&quot;&gt;* &lt;?php echo $genderErr;?&gt;&lt;/span&gt;</span><br><span class="line">   &lt;br&gt;&lt;br&gt;</span><br><span class="line">   &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;提交&quot;&gt; </span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">echo &quot;&lt;h2&gt;您的输入：&lt;/h2&gt;&quot;;</span><br><span class="line">echo $name;</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $email;</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $website;</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $comment;</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $gender;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/01/31/PHP表单/43543.png" alt=""><br><strong>$_GET、$_POST 和 $_REQUEST 的区别？</strong></p>
+<ul>
+<li>$_GET 变量接受所有以 get 方式发送的请求，及浏览器地址栏中的 ? 之后的内容。</li>
+<li>$_POST 变量接受所有以 post 方式发送的请求，例如，一个 form 以 method=post 提交，提交后 php 会处理 post 过来的全部变量。</li>
+<li>$_REQUEST 支持两种方式发送过来的请求，即 post 和 get 它都可以接受，显示不显示要看传递方法，get 会显示在 url 中（有字符数限制），post 不会在 url 中显示，可以传递任意多的数据（只要服务器支持）。</li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/01/31/PHP表单/" data-id="cjrk8z9ot0042o8fv67f0i1i5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/01/30/PHP命名空间/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">PHP命名空间</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/31/PHP表单/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/31/PHP表单/8f821.jpg)" alt="PHP表单" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/31/PHP表单/" class="title">PHP表单</a></p>
+                            <p class="item-date"><time datetime="2019-01-31T04:14:44.000Z" itemprop="datePublished">2019-01-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/30/PHP命名空间/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/30/PHP命名空间/092712687.png)" alt="PHP命名空间" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/30/PHP命名空间/" class="title">PHP命名空间</a></p>
+                            <p class="item-date"><time datetime="2019-01-30T08:52:40.000Z" itemprop="datePublished">2019-01-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/30/PHP面向对象/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/30/PHP面向对象/e212.jpg)" alt="PHP面向对象" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/30/PHP面向对象/" class="title">PHP面向对象</a></p>
+                            <p class="item-date"><time datetime="2019-01-30T08:52:17.000Z" itemprop="datePublished">2019-01-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/30/简单认识一下PHP/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/30/简单认识一下PHP/66a1ca.png)" alt="简单认识一下PHP" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/30/简单认识一下PHP/" class="title">简单认识一下PHP</a></p>
+                            <p class="item-date"><time datetime="2019-01-30T02:01:45.000Z" itemprop="datePublished">2019-01-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/01/26/Node-js的第一个应用/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/26/Node-js的第一个应用/nodejs.jpg)" alt="Node.js的第一个应用" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/01/26/Node-js的第一个应用/" class="title">Node.js的第一个应用</a></p>
+                            <p class="item-date"><time datetime="2019-01-26T11:18:20.000Z" itemprop="datePublished">2019-01-26</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 18.57px;">JavaScript</a> <a href="/tags/PHP/" style="font-size: 12.86px;">PHP</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/html/" style="font-size: 11.43px;">html</a> <a href="/tags/java/" style="font-size: 17.14px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15.71px;">maven</a> <a href="/tags/node/" style="font-size: 11.43px;">node</a> <a href="/tags/orcal/" style="font-size: 12.86px;">orcal</a> <a href="/tags/python/" style="font-size: 12.86px;">python</a> <a href="/tags/冷知识/" style="font-size: 10px;">冷知识</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.43px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 14.29px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/01/31/PHP表单/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
