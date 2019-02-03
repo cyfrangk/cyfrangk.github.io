@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>PHP文件操作 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="PHP">
+    
+    <meta name="description" content="PHP 包含文件服务器端包含 (SSI) 用于创建可在多个页面重复使用的函数、页眉、页脚或元素。include （或 require）语句会获取指定文件中存在的所有文本/代码/标记，并复制到使用 include 语句的文件中。包含文件很有用，如果您需要在网站的多张页面上引用相同的 PHP、HTML 或文本的话。 PHP include 和 require 语句通过 include 或 requi">
+<meta name="keywords" content="PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP文件操作">
+<meta property="og:url" content="http://yoursite.com/2019/02/02/PHP文件操作/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="PHP 包含文件服务器端包含 (SSI) 用于创建可在多个页面重复使用的函数、页眉、页脚或元素。include （或 require）语句会获取指定文件中存在的所有文本/代码/标记，并复制到使用 include 语句的文件中。包含文件很有用，如果您需要在网站的多张页面上引用相同的 PHP、HTML 或文本的话。 PHP include 和 require 语句通过 include 或 requi">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/02/02/PHP文件操作/ca3e.jpg">
+<meta property="og:updated_time" content="2019-02-03T01:35:14.392Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP文件操作">
+<meta name="twitter:description" content="PHP 包含文件服务器端包含 (SSI) 用于创建可在多个页面重复使用的函数、页眉、页脚或元素。include （或 require）语句会获取指定文件中存在的所有文本/代码/标记，并复制到使用 include 语句的文件中。包含文件很有用，如果您需要在网站的多张页面上引用相同的 PHP、HTML 或文本的话。 PHP include 和 require 语句通过 include 或 requi">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/02/PHP文件操作/ca3e.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-PHP文件操作" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        PHP文件操作
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/02/02/PHP文件操作/" class="article-date">
+            <time datetime="2019-02-02T01:13:50.000Z" itemprop="datePublished">2019-02-02</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/PHP/">PHP</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/2019/02/02/PHP文件操作/ca3e.jpg" alt=""></p>
+<h2 id="PHP-包含文件"><a href="#PHP-包含文件" class="headerlink" title="PHP 包含文件"></a>PHP 包含文件</h2><p><strong>服务器端包含 (SSI) 用于创建可在多个页面重复使用的函数、页眉、页脚或元素。</strong><br>include （或 require）语句会获取指定文件中存在的所有文本/代码/标记，并复制到使用 include 语句的文件中。<br>包含文件很有用，如果您需要在网站的多张页面上引用相同的 PHP、HTML 或文本的话。</p>
+<p><strong>PHP include 和 require 语句</strong><br>通过 include 或 require 语句，可以将 PHP 文件的内容插入另一个 PHP 文件（在服务器执行它之前）。<br>include 和 require 语句用于在执行流中插入写在其他文件中的有用的代码。<br><code>include 和 require 语句是相同的，除了错误处理方面：</code></p>
+<ul>
+<li>require 会生成致命错误（E_COMPILE_ERROR）并停止脚本</li>
+<li>include 只生成警告（E_WARNING），并且脚本会继续<br>因此，如果您希望继续执行，并向用户输出结果，即使包含文件已丢失，那么请使用 include。否则，在框架、CMS 或者复杂的 PHP 应用程序编程中，请始终使用 require 向执行流引用关键文件。这有助于提高应用程序的安全性和完整性，在某个关键文件意外丢失的情况下。</li>
+</ul>
+<p>包含文件省去了大量的工作。这意味着您可以为所有页面创建标准页头、页脚或者菜单文件。然后，在页头需要更新时，您只需更新这个页头包含文件即可。</p>
+<p>语法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">include &apos;filename&apos;;</span><br><span class="line">或</span><br><span class="line">require &apos;filename&apos;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>PHP include 实例</strong></p>
+<p>例子 1<br>假设我们有一个名为 “footer.php” 的标准的页脚文件，就像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo &quot;&lt;p&gt;Copyright © 2006-&quot; . date(&quot;Y&quot;) . &quot; W3School.com.cn&lt;/p&gt;&quot;;</span><br><span class="line">?&gt;</span><br><span class="line">``</span><br></pre></td></tr></table></figure></p>
+<p>如需在一张页面中引用这个页脚文件，请使用 include 语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;欢迎访问我们的首页！&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;一段文本。&lt;/p&gt;</span><br><span class="line">&lt;p&gt;一段文本。&lt;/p&gt;</span><br><span class="line">&lt;?php include &apos;footer.php&apos;;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>例子 2</p>
+<p>假设我们有一个名为 “vars.php” 的文件，其中定义了一些变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$color=&apos;银色的&apos;;</span><br><span class="line">$car=&apos;奔驰轿车&apos;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后，如果我们引用这个 “vars.php” 文件，就可以在调用文件中使用这些变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;欢迎访问我的首页！&lt;/h1&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">include &apos;vars.php&apos;;</span><br><span class="line">echo &quot;我有一辆&quot; . $color . $car &quot;。&quot;;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>PHP include vs. require</strong><br>require 语句同样用于向 PHP 代码中引用文件。<br>不过，include 与 require 有一个巨大的差异：如果用 include 语句引用某个文件并且 PHP 无法找到它，脚本会继续执行：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;Welcome to my home page!&lt;/h1&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">include &apos;noFileExists.php&apos;;</span><br><span class="line">echo &quot;I have a $color $car.&quot;;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>如果我们使用 require 语句完成相同的案例，echo 语句不会继续执行，因为在 require 语句返回严重错误之后脚本就会终止执行：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;Welcome to my home page!&lt;/h1&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">require &apos;noFileExists.php&apos;;</span><br><span class="line">echo &quot;I have a $color $car.&quot;;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注释：</strong><br>请在此时使用 require：当文件被应用程序请求时。<br>请在此时使用 include：当文件不是必需的，且应用程序在文件未找到时应该继续运行时。</p>
+<p><strong>include 和 require 的区别</strong></p>
+<ul>
+<li>require 一般放在 PHP 文件的最前面，程序在执行前就会先导入要引用的文件；</li>
+<li>include 一般放在程序的流程控制中，当程序执行时碰到才会引用，简化程序的执行流程。</li>
+<li>require 引入的文件有错误时，执行会中断，并返回一个致命错误；</li>
+<li>include 引入的文件有错误时，会继续执行，并返回一个警告。</li>
+</ul>
+<h2 id="PHP-操作文件"><a href="#PHP-操作文件" class="headerlink" title="PHP 操作文件"></a>PHP 操作文件</h2><p>PHP 拥有的多种函数可供创建、读取、上传以及编辑文件。<br><strong>注意：</strong>请谨慎操作文件！<br>当您操作文件时必须非常小心。如果您操作失误，可能会造成非常严重的破坏。常见的错误是：</p>
+<ul>
+<li>编辑错误的文件</li>
+<li>被垃圾数据填满硬盘</li>
+<li>意外删除文件内容<br><strong>PHP readfile() 函数</strong><br>readfile() 函数读取文件，并把它写入输出缓冲。</li>
+</ul>
+<p>假设我们有一个名为 “webdictionary.txt” 的文本文件，存放在服务器上，就像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">AJAX = Asynchronous JavaScript and XML</span><br><span class="line">CSS = Cascading Style Sheets</span><br><span class="line">HTML = Hyper Text Markup Language</span><br><span class="line">PHP = PHP Hypertext Preprocessor</span><br><span class="line">SQL = Structured Query Language</span><br><span class="line">SVG = Scalable Vector Graphics</span><br><span class="line">XML = EXtensible Markup Language</span><br></pre></td></tr></table></figure></p>
+<p>读取此文件并写到输出流的 PHP 代码如下（如读取成功则 readfile() 函数返回字节数）：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo readfile(&quot;webdictionary.txt&quot;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>如果您想做的所有事情就是打开一个文件并读取器内容，那么 readfile() 函数很有用。<br><strong>PHP Open File - fopen()</strong></p>
+<blockquote>
+<p>打开文件的更好的方法是通过 fopen() 函数。此函数为您提供比 readfile() 函数更多的选项。</p>
+</blockquote>
+<p>fopen() 的第一个参数包含被打开的文件名，第二个参数规定打开文件的模式。如果 fopen() 函数未能打开指定的文件，下面的例子会生成一段消息：</p>
+<p>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$myfile = fopen(&quot;webdictionary.txt&quot;, &quot;r&quot;) or die(&quot;Unable to open file!&quot;);</span><br><span class="line">echo fread($myfile,filesize(&quot;webdictionary.txt&quot;));</span><br><span class="line">fclose($myfile);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><code>提示：</code>die()和exit()<br>die()和exit()函数都有终止线程的作用，是php断点调试需要使用的最主要的函数，它们也是php程序员使用非常频繁的函数。然而两者又有什么区别呢？在程序调试时需要注意什么问题呢？<br>die()函数一般与“or”一并使用，写作“or die()”，经常看到这样的语句：<br><code>$file = fopen($filename, &#39;r&#39;) or die(&quot;抱歉，无法打开: $filename&quot;)</code><br>or在这里是这样理解的，因为在PHP中并不区分数据类型，所以$file既可以是int也可以bool，所以这样的语句不会报错。但其处理过程可能有些朋友不大明白。其实在大多数的语言中， bool or bool这样的语句中，如果前一个值为真后一个值就不会再判断了。这里也是的，所以如果fopen函数执行正确的话，会返回一个大于0的int值（这其实就是”真”），后面的语句就不会执行了。如果fopen函数执行失败，就会返回false，那么就会判断后面的表达式是否为真了。结果执行了die()之后，不管返回什么，程序都已经停止执行了，并且显示指定的出错信息，也就达到了调试的目的。就这样。</p>
+<p>实际上，die和exit是等价的，都是用来终止当前脚本。<br>php手册对两者的解释如是说：<br>exit() 函数输出一条消息，并退出当前脚本。该函数是 die() 函数的别名。<br>die() 函数输出一条消息，并退出当前脚本。该函数是 exit() 函数的别名。<br>die是遇到错误才停止<br>exit是直接停止，并且不运行后续代码，exit()可以显示内容。<br>return就是纯粹的返回值了，但是也不会运行后续代码<br>exit（0）：正常运行程序并退出程序；<br>exit（1）：非正常运行导致退出程序；<br>return（）：返回函数，若在主函数中，则会退出函数并返回一值。</p>
+<p>文件会以如下模式之一打开：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>—–描述—–</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r</td>
+<td>打开文件为只读。文件指针在文件的开头开始。</td>
+</tr>
+<tr>
+<td>w</td>
+<td>打开文件为只写。删除文件的内容或创建一个新的文件，如果它不存在。文件指针在文件的开头开始。</td>
+</tr>
+<tr>
+<td>a</td>
+<td>打开文件为只写。文件中的现有数据会被保留。文件指针在文件结尾开始。创建新的文件，如果文件不存在。</td>
+</tr>
+<tr>
+<td>x</td>
+<td>创建新文件为只写。返回 FALSE 和错误，如果文件已存在。</td>
+</tr>
+<tr>
+<td>r+</td>
+<td>打开文件为读/写、文件指针在文件开头开始。</td>
+</tr>
+<tr>
+<td>w+</td>
+<td>打开文件为读/写。删除文件内容或创建新文件，如果它不存在。文件指针在文件开头开始。</td>
+</tr>
+<tr>
+<td>a+</td>
+<td>打开文件为读/写。文件中已有的数据会被保留。文件指针在文件结尾开始。创建新文件，如果它不存在。</td>
+</tr>
+<tr>
+<td>x+</td>
+<td>创建新文件为读/写。返回 FALSE 和错误，如果文件已存在。</td>
+</tr>
+</tbody>
+</table>
+<p>如果打开一个文件，文件名为中文，如果系统编程和当前文档编码不一致，会导致文件找不到无法打开，解决方法是用 iconv 函数编码转换成一致，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$fpath=iconv(&apos;UTF-8&apos;,&apos;GB2312&apos;,&quot;题库.csv&quot;);</span><br><span class="line">$file=fopen($fpath,&quot;r&quot;) or exit(&quot;无法打开文件!&quot;);</span><br><span class="line">//此处省略相关操作</span><br><span class="line">fclose($file);</span><br></pre></td></tr></table></figure></p>
+<p>用相对路径打不开子目录中的文件时，可用绝对路径打开，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$file=fopen(dirname(__FILE__).&apos;\\files\\tk.csv&apos;,&quot;r&quot;) or exit(&quot;无法打开文件!&quot;);   </span><br><span class="line">//此处省略相关操作</span><br><span class="line">fclose($file);</span><br></pre></td></tr></table></figure></p>
+<p><strong>PHP 读取文件 - fread()</strong><br>fread() 函数读取打开的文件。<br>fread() 的第一个参数包含待读取文件的文件名，第二个参数规定待读取的最大字节数。<br>如下 PHP 代码把 “webdictionary.txt” 文件读至结尾：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fread($myfile,filesize(&quot;webdictionary.txt&quot;));</span><br></pre></td></tr></table></figure></p>
+<p><strong>PHP 关闭文件 - fclose()</strong><br>fclose() 函数用于关闭打开的文件。<br><strong>注释：</strong>用完文件后把它们全部关闭是一个良好的编程习惯。您并不想打开的文件占用您的服务器资源。<br>fclose() 需要待关闭文件的名称（或者存有文件名的变量）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$myfile = fopen(&quot;webdictionary.txt&quot;, &quot;r&quot;);</span><br><span class="line">// some code to be executed....</span><br><span class="line">fclose($myfile);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>PHP 读取单行文件 - fgets()</strong><br>fgets() 函数用于从文件读取单行。<br>下例输出 “webdictionary.txt” 文件的首行：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$myfile = fopen(&quot;webdictionary.txt&quot;, &quot;r&quot;) or die(&quot;Unable to open file!&quot;);</span><br><span class="line">echo fgets($myfile);</span><br><span class="line">fclose($myfile);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注释：</strong>调用 fgets() 函数之后，文件指针会移动到下一行。</p>
+<p><strong>PHP 检查 End-Of-File - feof()</strong><br>feof() 函数检查是否已到达 “end-of-file” (EOF)。<br>feof() 对于遍历未知长度的数据很有用。<br>下例逐行读取 “webdictionary.txt” 文件，直到 end-of-file：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$myfile = fopen(&quot;webdictionary.txt&quot;, &quot;r&quot;) or die(&quot;Unable to open file!&quot;);</span><br><span class="line">// 输出单行直到 end-of-file</span><br><span class="line">while(!feof($myfile)) &#123;</span><br><span class="line">  echo fgets($myfile) . &quot;&lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">fclose($myfile);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>PHP 读取单字符 - fgetc()</strong><br>fgetc() 函数用于从文件中读取单个字符。<br>下例逐字符读取 “webdictionary.txt” 文件，直到 end-of-file：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$myfile = fopen(&quot;webdictionary.txt&quot;, &quot;r&quot;) or die(&quot;Unable to open file!&quot;);</span><br><span class="line">// 输出单字符直到 end-of-file</span><br><span class="line">while(!feof($myfile)) &#123;</span><br><span class="line">  echo fgetc($myfile);</span><br><span class="line">&#125;</span><br><span class="line">fclose($myfile);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注释：</strong>在调用 fgetc() 函数之后，文件指针会移动到下一个字符。</p>
+<p><strong>PHP 创建文件 - fopen()</strong><br>fopen() 函数也用于创建文件。也许有点混乱，但是在 PHP 中，创建文件所用的函数与打开文件的相同。<br>如果您用 fopen() 打开并不存在的文件，此函数会创建文件，假定文件被打开为写入（w）或增加（a）。<br>下面的例子创建名为 “testfile.txt” 的新文件。此文件将被创建于 PHP 代码所在的相同目录中：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$myfile = fopen(&quot;testfile.txt&quot;, &quot;w&quot;)</span><br></pre></td></tr></table></figure></p>
+<p><strong>PHP 文件权限</strong><br>如果您试图运行这段代码时发生错误，请检查您是否有向硬盘写入信息的 PHP 文件访问权限。</p>
+<p><strong>PHP 写入文件 - fwrite()</strong><br>fwrite() 函数用于写入文件。<br>fwrite() 的第一个参数包含要写入的文件的文件名，第二个参数是被写的字符串。<br>下面的例子把姓名写入名为 “newfile.txt” 的新文件中：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$myfile = fopen(&quot;newfile.txt&quot;, &quot;w&quot;) or die(&quot;Unable to open file!&quot;);</span><br><span class="line">$txt = &quot;Bill Gates\n&quot;;</span><br><span class="line">fwrite($myfile, $txt);</span><br><span class="line">$txt = &quot;Steve Jobs\n&quot;;</span><br><span class="line">fwrite($myfile, $txt);</span><br><span class="line">fclose($myfile);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>请注意，我们向文件 “newfile.txt” 写了两次。在每次我们向文件写入时，在我们发送的字符串 $txt 中，第一次包含 “Bill Gates”，第二次包含 “Steve Jobs”。在写入完成后，我们使用 fclose() 函数来关闭文件。</p>
+<p>如果我们打开 “newfile.txt” 文件，它应该是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Bill Gates</span><br><span class="line">Steve Jobs</span><br></pre></td></tr></table></figure></p>
+<p><strong>PHP 覆盖（Overwriting）</strong><br>如果现在 “newfile.txt” 包含了一些数据，我们可以展示在写入已有文件时发生的的事情。所有已存在的数据会被擦除并以一个新文件开始。<br>在下面的例子中，我们打开一个已存在的文件 “newfile.txt”，并向其中写入了一些新数据：<br>实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$myfile = fopen(&quot;newfile.txt&quot;, &quot;w&quot;) or die(&quot;Unable to open file!&quot;);</span><br><span class="line">$txt = &quot;Mickey Mouse\n&quot;;</span><br><span class="line">fwrite($myfile, $txt);</span><br><span class="line">$txt = &quot;Minnie Mouse\n&quot;;</span><br><span class="line">fwrite($myfile, $txt);</span><br><span class="line">fclose($myfile);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>如果现在我们打开这个 “newfile.txt” 文件，Bill 和 Steve 都已消失，只剩下我们刚写入的数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mickey Mouse</span><br><span class="line">Minnie Mouse</span><br></pre></td></tr></table></figure></p>
+<h2 id="PHP-文件上传"><a href="#PHP-文件上传" class="headerlink" title="PHP 文件上传"></a>PHP 文件上传</h2><p><strong>通过 PHP，可以把文件上传到服务器。</strong><br>本环节实例在 test 项目下完成，目录结构为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">test</span><br><span class="line">|-----upload             # 文件上传的目录</span><br><span class="line">|-----form.html          # 表单文件</span><br><span class="line">|-----upload_file.php    # php 上传代码</span><br></pre></td></tr></table></figure></p>
+<p><strong>创建一个文件上传表单</strong><br>允许用户从表单上传文件是非常有用的。<br>请看下面这个供上传文件的 HTML 表单：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;form action=&quot;upload_file.php&quot; method=&quot;post&quot;</span><br><span class="line">enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">&lt;label for=&quot;file&quot;&gt;文件名:&lt;/label&gt;</span><br><span class="line">&lt;input type=&quot;file&quot; name=&quot;file&quot; id=&quot;file&quot; /&gt; </span><br><span class="line">&lt;br /&gt;</span><br><span class="line">&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Submit&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>将以上代码保存到 form.html 文件中。<br>请留意如下有关此表单的信息：<br><code>&lt;form&gt;</code>标签的<strong>enctype</strong>属性规定了在提交表单时要使用哪种内容类型。在表单需要二进制数据时，比如文件内容，请使用 “multipart/form-data”。<br><code>&lt;input&gt;</code>标签的<strong>type=”file”</strong>属性规定了应该把输入作为文件来处理。举例来说，当在浏览器中预览时，会看到输入框旁边有一个浏览按钮。<br><strong>注释：</strong>允许用户上传文件是一个巨大的安全风险。请仅仅允许可信的用户执行文件上传操作。</p>
+<p><strong>创建上传脚本</strong><br>“upload_file.php” 文件含有供上传文件的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if ($_FILES[&quot;file&quot;][&quot;error&quot;] &gt; 0)</span><br><span class="line">  &#123;</span><br><span class="line">  echo &quot;Error: &quot; . $_FILES[&quot;file&quot;][&quot;error&quot;] . &quot;&lt;br /&gt;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">else</span><br><span class="line">  &#123;</span><br><span class="line">  echo &quot;上传文件名: &quot; . $_FILES[&quot;file&quot;][&quot;name&quot;] . &quot;&lt;br /&gt;&quot;;</span><br><span class="line">  echo &quot;文件类型: &quot; . $_FILES[&quot;file&quot;][&quot;type&quot;] . &quot;&lt;br /&gt;&quot;;</span><br><span class="line">  echo &quot;文件大小: &quot; . ($_FILES[&quot;file&quot;][&quot;size&quot;] / 1024) . &quot; Kb&lt;br /&gt;&quot;;</span><br><span class="line">  echo &quot;文件临时存储的位置Stored in: &quot; . $_FILES[&quot;file&quot;][&quot;tmp_name&quot;];</span><br><span class="line">  &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>通过使用 PHP 的全局数组 $_FILES，你可以从客户计算机向远程服务器上传文件。<br>第一个参数是表单的 input name，第二个下标可以是 “name”, “type”, “size”, “tmp_name” 或 “error”。就像这样：</p>
+<ul>
+<li>$_FILES[“file”][“name”] - 被上传文件的名称</li>
+<li>$_FILES[“file”][“type”] - 被上传文件的类型</li>
+<li>$_FILES[“file”][“size”] - 被上传文件的大小，以字节计</li>
+<li>$_FILES[“file”][“tmp_name”] - 存储在服务器的文件的临时副本的名称</li>
+<li>$_FILES[“file”][“error”] - 由文件上传导致的错误代码</li>
+</ul>
+<p>这是一种非常简单文件上传方式。基于安全方面的考虑，您应当增加有关什么用户有权上传文件的限制。</p>
+<p><strong>上传限制</strong><br>在这个脚本中，我们增加了对文件上传的限制。用户只能上传 .gif 或 .jpeg 文件，文件大小必须小于 20 kb：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// 允许上传的图片后缀</span><br><span class="line">$allowedExts = array(&quot;gif&quot;, &quot;jpeg&quot;, &quot;jpg&quot;, &quot;png&quot;);</span><br><span class="line">$temp = explode(&quot;.&quot;, $_FILES[&quot;file&quot;][&quot;name&quot;]);</span><br><span class="line">$extension = end($temp);        // 获取文件后缀名</span><br><span class="line">if ((($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/gif&quot;)</span><br><span class="line">|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/jpeg&quot;)</span><br><span class="line">|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/pjpeg&quot;))</span><br><span class="line">&amp;&amp; ($_FILES[&quot;file&quot;][&quot;size&quot;] &lt; 204800)    // 小于 200 kb</span><br><span class="line">  &#123;</span><br><span class="line">  if ($_FILES[&quot;file&quot;][&quot;error&quot;] &gt; 0)</span><br><span class="line">    &#123;</span><br><span class="line">    echo &quot;Error: &quot; . $_FILES[&quot;file&quot;][&quot;error&quot;] . &quot;&lt;br /&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">  else</span><br><span class="line">    &#123;</span><br><span class="line">    echo &quot;Upload: &quot; . $_FILES[&quot;file&quot;][&quot;name&quot;] . &quot;&lt;br /&gt;&quot;;</span><br><span class="line">    echo &quot;Type: &quot; . $_FILES[&quot;file&quot;][&quot;type&quot;] . &quot;&lt;br /&gt;&quot;;</span><br><span class="line">    echo &quot;Size: &quot; . ($_FILES[&quot;file&quot;][&quot;size&quot;] / 1024) . &quot; Kb&lt;br /&gt;&quot;;</span><br><span class="line">    echo &quot;Stored in: &quot; . $_FILES[&quot;file&quot;][&quot;tmp_name&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">else</span><br><span class="line">  &#123;</span><br><span class="line">  echo &quot;Invalid file&quot;;//非法的文件格式</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注释：</strong>对于 IE，识别 jpg 文件的类型必须是 pjpeg，对于 FireFox，必须是 jpeg。</p>
+<p><strong>保存被上传的文件</strong><br>上面的例子在服务器的 PHP 临时文件夹创建了一个被上传文件的临时副本。<br>这个临时的复制文件会在脚本结束时消失。要保存被上传的文件，我们需要把它拷贝到另外的位置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// 允许上传的图片后缀</span><br><span class="line">$allowedExts = array(&quot;gif&quot;, &quot;jpeg&quot;, &quot;jpg&quot;, &quot;png&quot;);</span><br><span class="line">$temp = explode(&quot;.&quot;, $_FILES[&quot;file&quot;][&quot;name&quot;]);</span><br><span class="line">echo $_FILES[&quot;file&quot;][&quot;size&quot;];</span><br><span class="line">$extension = end($temp);     // 获取文件后缀名</span><br><span class="line">if ((($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/gif&quot;)</span><br><span class="line">|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/jpeg&quot;)</span><br><span class="line">|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/pjpeg&quot;))</span><br><span class="line">&amp;&amp; ($_FILES[&quot;file&quot;][&quot;size&quot;] &lt;  204800)   // 小于 200 kb</span><br><span class="line">  &#123;</span><br><span class="line">  if ($_FILES[&quot;file&quot;][&quot;error&quot;] &gt; 0)</span><br><span class="line">    &#123;</span><br><span class="line">    echo &quot;Return Code: &quot; . $_FILES[&quot;file&quot;][&quot;error&quot;] . &quot;&lt;br /&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">  else</span><br><span class="line">    &#123;</span><br><span class="line">    echo &quot;Upload: &quot; . $_FILES[&quot;file&quot;][&quot;name&quot;] . &quot;&lt;br /&gt;&quot;;</span><br><span class="line">    echo &quot;Type: &quot; . $_FILES[&quot;file&quot;][&quot;type&quot;] . &quot;&lt;br /&gt;&quot;;</span><br><span class="line">    echo &quot;Size: &quot; . ($_FILES[&quot;file&quot;][&quot;size&quot;] / 1024) . &quot; Kb&lt;br /&gt;&quot;;</span><br><span class="line">    echo &quot;Temp file: &quot; . $_FILES[&quot;file&quot;][&quot;tmp_name&quot;] . &quot;&lt;br /&gt;&quot;;</span><br><span class="line">	// 判断当期目录下的 upload 目录是否存在该文件</span><br><span class="line">    // 如果没有 upload 目录，你需要创建它，upload 目录权限为 777</span><br><span class="line">    if (file_exists(&quot;upload/&quot; . $_FILES[&quot;file&quot;][&quot;name&quot;]))</span><br><span class="line">      &#123;</span><br><span class="line">      echo $_FILES[&quot;file&quot;][&quot;name&quot;] . &quot; already exists. &quot;;</span><br><span class="line">      &#125;</span><br><span class="line">    else</span><br><span class="line">      &#123;</span><br><span class="line">	  // 如果 upload 目录不存在该文件则将文件上传到 upload 目录下</span><br><span class="line">      move_uploaded_file($_FILES[&quot;file&quot;][&quot;tmp_name&quot;],</span><br><span class="line">      &quot;upload/&quot; . $_FILES[&quot;file&quot;][&quot;name&quot;]);</span><br><span class="line">      echo &quot;Stored in: &quot; . &quot;upload/&quot; . $_FILES[&quot;file&quot;][&quot;name&quot;];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">else</span><br><span class="line">  &#123;</span><br><span class="line">  echo &quot;Invalid file&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>上面的脚本检测了是否已存在此文件，如果不存在，则把文件拷贝到指定的文件夹。<br><strong>注释：</strong>这个例子把文件保存到了名为 “upload” 的新文件夹。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/02/02/PHP文件操作/" data-id="cjro8p0zl004ct4fvoo2810lq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/02/02/PHP日期操作/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            PHP日期操作
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/02/01/bootstrap-table表格导出/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">bootstrap-table表格导出</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/03/PHP技能升阶/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/03/PHP技能升阶/7fi6oy5ysf.jpeg)" alt="PHP技能升阶" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/03/PHP技能升阶/" class="title">PHP技能升阶</a></p>
+                            <p class="item-date"><time datetime="2019-02-03T01:24:14.000Z" itemprop="datePublished">2019-02-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/02/PHP日期操作/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/02/PHP日期操作/ae1a.jpg)" alt="PHP日期操作" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/02/PHP日期操作/" class="title">PHP日期操作</a></p>
+                            <p class="item-date"><time datetime="2019-02-02T01:17:12.000Z" itemprop="datePublished">2019-02-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/02/PHP文件操作/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/02/PHP文件操作/ca3e.jpg)" alt="PHP文件操作" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/02/PHP文件操作/" class="title">PHP文件操作</a></p>
+                            <p class="item-date"><time datetime="2019-02-02T01:13:50.000Z" itemprop="datePublished">2019-02-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/01/bootstrap-table表格导出/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/01/bootstrap-table表格导出/gp=0.jpg)" alt="bootstrap-table表格导出" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/01/bootstrap-table表格导出/" class="title">bootstrap-table表格导出</a></p>
+                            <p class="item-date"><time datetime="2019-02-01T06:53:22.000Z" itemprop="datePublished">2019-02-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/01/vue里面关于created和mounted的区别/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/01/vue里面关于created和mounted的区别/32402.jpg)" alt="vue里面关于created和mounted的区别" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/01/vue里面关于created和mounted的区别/" class="title">vue里面关于created和mounted的区别</a></p>
+                            <p class="item-date"><time datetime="2019-02-01T06:42:11.000Z" itemprop="datePublished">2019-02-01</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 18.89px;">JavaScript</a> <a href="/tags/PHP/" style="font-size: 15.56px;">PHP</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/html/" style="font-size: 12.22px;">html</a> <a href="/tags/java/" style="font-size: 17.78px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 16.67px;">maven</a> <a href="/tags/node/" style="font-size: 11.11px;">node</a> <a href="/tags/orcal/" style="font-size: 13.33px;">orcal</a> <a href="/tags/python/" style="font-size: 14.44px;">python</a> <a href="/tags/冷知识/" style="font-size: 11.11px;">冷知识</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.11px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15.56px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/02/02/PHP文件操作/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
