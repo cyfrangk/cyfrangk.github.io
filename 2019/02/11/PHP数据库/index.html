@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>PHP数据库 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="PHP">
+    
+    <meta name="description" content="MySQL 是跟 PHP 配套使用的最流行的开源数据库系统。MySQL 是什么？MySQL 是一种数据库。数据库定义了存储信息的结构。在数据库中，存在着一些表。类似 HTML 表格，数据库表含有行、列以及单元。  MySQL 是一种在 Web 上使用的数据库系统。 MySQL 是一种在服务器上运行的数据库系统。 MySQL 不管在小型还是大型应用程序中，都是理想的选择。 MySQL 是非常快速，可">
+<meta name="keywords" content="PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP数据库">
+<meta property="og:url" content="http://yoursite.com/2019/02/11/PHP数据库/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="MySQL 是跟 PHP 配套使用的最流行的开源数据库系统。MySQL 是什么？MySQL 是一种数据库。数据库定义了存储信息的结构。在数据库中，存在着一些表。类似 HTML 表格，数据库表含有行、列以及单元。  MySQL 是一种在 Web 上使用的数据库系统。 MySQL 是一种在服务器上运行的数据库系统。 MySQL 不管在小型还是大型应用程序中，都是理想的选择。 MySQL 是非常快速，可">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/02/11/PHP数据库/1588.jpg">
+<meta property="og:updated_time" content="2019-02-11T04:00:02.329Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP数据库">
+<meta name="twitter:description" content="MySQL 是跟 PHP 配套使用的最流行的开源数据库系统。MySQL 是什么？MySQL 是一种数据库。数据库定义了存储信息的结构。在数据库中，存在着一些表。类似 HTML 表格，数据库表含有行、列以及单元。  MySQL 是一种在 Web 上使用的数据库系统。 MySQL 是一种在服务器上运行的数据库系统。 MySQL 不管在小型还是大型应用程序中，都是理想的选择。 MySQL 是非常快速，可">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/11/PHP数据库/1588.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-PHP数据库" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        PHP数据库
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/02/11/PHP数据库/" class="article-date">
+            <time datetime="2019-02-11T01:04:32.000Z" itemprop="datePublished">2019-02-11</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/PHP/">PHP</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/2019/02/11/PHP数据库/1588.jpg" alt=""><br><strong>MySQL 是跟 PHP 配套使用的最流行的开源数据库系统。</strong><br><strong>MySQL 是什么？</strong><br>MySQL 是一种数据库。数据库定义了存储信息的结构。<br>在数据库中，存在着一些表。类似 HTML 表格，数据库表含有行、列以及单元。</p>
+<ul>
+<li>MySQL 是一种在 Web 上使用的数据库系统。</li>
+<li>MySQL 是一种在服务器上运行的数据库系统。</li>
+<li>MySQL 不管在小型还是大型应用程序中，都是理想的选择。</li>
+<li>MySQL 是非常快速，可靠，且易于使用的。</li>
+<li>MySQL 支持标准的 SQL。</li>
+<li>MySQL 在一些平台上编译。</li>
+<li>MySQL 是免费下载使用的。</li>
+<li>MySQL 是由 Oracle 公司开发、发布和支持的。</li>
+<li>MySQL 是以公司创始人 Monty Widenius’s daughter: My 命名的。</li>
+</ul>
+<p><code>mysql&gt; set names utf8;</code><br>语句 set names utf8;用于设定数据库编码，让中文可以正常显示。</p>
+<h2 id="PHP数据库连接mysql与mysqli的区别与用法"><a href="#PHP数据库连接mysql与mysqli的区别与用法" class="headerlink" title="PHP数据库连接mysql与mysqli的区别与用法"></a>PHP数据库连接mysql与mysqli的区别与用法</h2><p>一、mysql与mysqli的概念相关：<br>1、mysql与mysqli都是php方面的函数集，与mysql数据库关联不大。<br>2、在php5版本之前，一般是用php的mysql函数去驱动mysql数据库的，比如mysql_query()的函数，属于面向过程<br>3、在php5版本以后，增加了mysqli的函数功能，某种意义上讲，它是mysql系统函数的增强版，更稳定更高效更安全，与mysql_query()对应的有mysqli_query()，属于面向对象，用对象的方式操作驱动mysql数据库</p>
+<p>二、mysql与mysqli的区别：<br>1、mysql是非持继连接函数，mysql每次链接都会打开一个连接的进程。<br>2、mysqli是永远连接函数，mysqli多次运行mysqli将使用同一连接进程,从而减少了服务器的开销。mysqli封装了诸如事务等一些高级操作，同时封装了DB操作过程中的很多可用的方法。</p>
+<p>三、mysql与mysqli的用法：<br>１:mysql（过程方式）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$conn = mysql_connect(&apos;localhost&apos;, &apos;user&apos;, &apos;password&apos;);　//连接mysql数据库　　</span><br><span class="line">mysql_select_db(&apos;data_base&apos;); //选择数据库　　</span><br><span class="line">$result = mysql_query(&apos;select * from data_base&apos;);//第二个可选参数，指定打开的连接　　</span><br><span class="line">$row = mysql_fetch_row( $result ) ) //只取一行数据　　</span><br><span class="line">echo $row[0]; //输出第一个字段的值</span><br></pre></td></tr></table></figure></p>
+<p><strong>PS：</strong>mysqli以过程式的方式操作，有些函数必须指定资源，比如mysqli_query(资源标识,SQL语句),并且资源标识的参数是放在前面的，而mysql_query(SQL语句,’资源标识’)的资源标识是可选的，默认值是上一个打开的连接或资源。</p>
+<p>2、mysqli(对象方式)：　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$conn = new mysqli(&apos;localhost&apos;, &apos;user&apos;, &apos;password&apos;,&apos;data_base&apos;);　　//要使用new操作符，最后一个参数是直接指定数据库　　</span><br><span class="line">//假如构造时候不指定，那下一句需要$conn -&gt; select_db(&apos;data_base&apos;)实现　　</span><br><span class="line">$result = $conn -&gt; query( &apos;select * from data_base&apos; );　　</span><br><span class="line">$row = $result -&gt; fetch_row(); //取一行数据　　</span><br><span class="line">echo row[0]; //输出第一个字段的值</span><br></pre></td></tr></table></figure></p>
+<p>使用new mysqli(‘localhost’, usenamer’, ‘password’, ‘databasename’);会报错，提示如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fatal error: Class &apos;mysqli&apos; not found in ...</span><br></pre></td></tr></table></figure></p>
+<p>一般是mysqli是没有开启的，因为mysqli类不是默认开启的，win下要改php.ini,去掉php_mysqli.dll前的;,linux下要把mysqli编译进去。</p>
+<p>四、mysql_connect()与mysqli_connect()<br>1.使用mysqli，可以把数据库名称当作参数传给mysqli_connect()函数，也可以传递给mysqli的构造函数；<br>2.如果调用mysqli_query()或mysqli的对象查询query()方法，则连接标识是必需的。</p>
+<h2 id="PHP-连接-MySQL"><a href="#PHP-连接-MySQL" class="headerlink" title="PHP 连接 MySQL"></a>PHP 连接 MySQL</h2><p>PHP 5 及以上版本建议使用以下方式连接 MySQL :</p>
+<ul>
+<li>MySQLi extension (“i” 意为 improved)</li>
+<li>PDO (PHP Data Objects)</li>
+</ul>
+<p>在 PHP 早期版本中我们使用 MySQL 扩展。但该扩展在 2012 年开始不建议使用。</p>
+<p><strong>我是该用 MySQLi ，还是 PDO?</strong><br>如果你需要一个简短的回答，即 “你习惯哪个就用哪个”。<br>MySQLi 和 PDO 有它们自己的优势：<br>PDO 应用在 12 种不同数据库中， MySQLi 只针对 MySQL 数据库。<br>所以，如果你的项目需要在多种数据库中切换，建议使用 PDO ，这样你只需要修改连接字符串和部分查询语句即可。 使用 MySQLi, 如果不同数据库，你需要重新编写所有代码，包括查询。<br>两者都是面向对象, 但 MySQLi 还提供了 API 接口。<br>两者都支持预处理语句。 预处理语句可以防止 SQL 注入，对于 web 项目的安全性是非常重要的。</p>
+<p>注意： 当你创建一个新的数据库时，你必须为 mysqli 对象指定三个参数 (servername, username 和 password)。`</p>
+<ul>
+<li>servername    可选。规定要连接的服务器。默认是 “localhost:3306”。</li>
+<li>username    可选。规定登录所使用的用户名。默认值是拥有服务器进程的用户的名称。</li>
+<li>password    可选。规定登录所用的密码。默认是 “”。</li>
+</ul>
+<p>注释：虽然还存在其他的参数，但上面列出了最重要的参数。</p>
+<p>为了让 PHP 执行SQL语句，我们必须使用<code>mysql_query()</code>函数。此函数用于向 MySQL 连接发送查询或命令。</p>
+<p>在下面的例子中，我们创建了一个名为 “myDB” 的数据库：<br><strong>连接 MySQL</strong><br>在我们访问 MySQL 数据库前，我们需要先连接到数据库服务器：</p>
+<p>实例 (MySQLi - 面向对象)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$servername = &quot;localhost&quot;;</span><br><span class="line">$username = &quot;username&quot;;</span><br><span class="line">$password = &quot;password&quot;;</span><br><span class="line"> </span><br><span class="line">// 创建连接</span><br><span class="line">$conn = new mysqli($servername, $username, $password);</span><br><span class="line"> </span><br><span class="line">// 检测连接</span><br><span class="line">if ($conn-&gt;connect_error) &#123;</span><br><span class="line">    die(&quot;连接失败: &quot; . $conn-&gt;connect_error);</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">// 创建数据库</span><br><span class="line">$sql = &quot;CREATE DATABASE myDB&quot;;</span><br><span class="line">if ($conn-&gt;query($sql) === TRUE) &#123;</span><br><span class="line">    echo &quot;数据库创建成功&quot;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;Error creating database: &quot; . $conn-&gt;error;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//关闭连接 </span><br><span class="line">$conn-&gt;close();</span><br><span class="line">?&gt;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意在以上面向对象的实例中<code>$connect_error</code>是在 PHP 5.2.9 和 5.3.0 中添加的。如果你需要兼容更早版本 请使用以下代码替换:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 检测连接</span><br><span class="line">if (mysqli_connect_error()) &#123;</span><br><span class="line">    die(&quot;数据库连接失败: &quot; . mysqli_connect_error());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>实例 (MySQLi - 面向过程)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$servername = &quot;localhost&quot;;</span><br><span class="line">$username = &quot;username&quot;;</span><br><span class="line">$password = &quot;password&quot;;</span><br><span class="line"> </span><br><span class="line">// 创建连接</span><br><span class="line">$conn = mysqli_connect($servername, $username, $password);</span><br><span class="line"> </span><br><span class="line">// 检测连接</span><br><span class="line">if (!$conn) &#123;</span><br><span class="line">    die(&quot;Connection failed: &quot; . mysqli_connect_error());</span><br><span class="line">&#125;</span><br><span class="line">// 创建数据库</span><br><span class="line">$sql = &quot;CREATE DATABASE myDB&quot;;</span><br><span class="line">if (mysqli_query($conn, $sql)) &#123;</span><br><span class="line">    echo &quot;数据库创建成功&quot;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;Error creating database: &quot; . mysqli_error($conn);</span><br><span class="line">&#125;</span><br><span class="line">//关闭连接 </span><br><span class="line">mysqli_close($conn);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>实例 (PDO)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$servername = &quot;localhost&quot;;</span><br><span class="line">$username = &quot;username&quot;;</span><br><span class="line">$password = &quot;password&quot;;</span><br><span class="line"> </span><br><span class="line">try &#123;</span><br><span class="line">    $conn = new PDO(&quot;mysql:host=$servername;&quot;, $username, $password);</span><br><span class="line">    // 设置 PDO 错误模式为异常 </span><br><span class="line">    $conn-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); </span><br><span class="line">    $sql = &quot;CREATE DATABASE myDBPDO&quot;; </span><br><span class="line"></span><br><span class="line">    // 使用 exec() ，因为没有结果返回 </span><br><span class="line">    $conn-&gt;exec($sql); </span><br><span class="line"></span><br><span class="line">    echo &quot;数据库创建成功&lt;br&gt;&quot;; </span><br><span class="line">&#125;</span><br><span class="line">catch(PDOException $e)</span><br><span class="line">&#123;</span><br><span class="line">    echo $e-&gt;getMessage();</span><br><span class="line">&#125;</span><br><span class="line">//关闭连接 </span><br><span class="line">$conn = null;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意在以上 PDO 实例中我们已经指定了数据库 (myDB)。PDO 在连接过程需要设置数据库名。如果没有指定，则会抛出异常。<br><strong>提示：</strong>使用 PDO 的最大好处是在数据库查询过程出现问题时可以使用异常类来 处理问题。如果 try{ } 代码块出现异常，脚本会停止执行并会跳到第一个 catch(){ } 代码块执行代码。 在以上捕获的代码块中我们输出了 SQL 语句并生成错误信息。</p>
+</blockquote>
+<p><strong>数据库连接文件配置</strong><br>我们可以用一下办法来测试PHP的MySQL数据库的连接。<br>使用函数 parse_ini_file() 解析配置文件 config.ini 来获得数据库连接参数，然后使用 new 关键字对 mysqli 类进行实例化，最后使用函数 mysqli_connect_errno() 来判断是否成功连接上了 MySQL 数据库，实现该过程的代码如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">    //解析config.ini文件</span><br><span class="line">    $config = parse_ini_file(realpath(dirname(__FILE__) . &apos;/config/config.ini&apos;));</span><br><span class="line">    //对mysqli类进行实例化</span><br><span class="line">    $mysqli = new mysqli($config[&apos;host&apos;], $config[&apos;username&apos;], $config[&apos;password&apos;], $config[&apos;dbname&apos;]);   </span><br><span class="line">    if(mysqli_connect_errno())&#123;    //判断是否成功连接上MySQL数据库</span><br><span class="line">        throw new Exception(&apos;数据库连接错误！&apos;);  //如果连接错误，则抛出异常</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        echo &apos;数据库连接成功！&apos;;   //打印连接成功的提示</span><br><span class="line">    &#125;</span><br><span class="line">&#125;catch (Exception $e)&#123;        //捕获异常</span><br><span class="line">    echo $e-&gt;getMessage();    //打印异常信息</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们将在”myDB”数据库中创建一个名为 “MyGuests” 的表，有 5 个列： “id”, “firstname”, “lastname”, “email” 和 “reg_date”:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE MyGuests (</span><br><span class="line">    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,</span><br><span class="line">    firstname VARCHAR(30) NOT NULL,</span><br><span class="line">    lastname VARCHAR(30) NOT NULL,</span><br><span class="line">    email VARCHAR(50),</span><br><span class="line">    reg_date TIMESTAMP</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>上表中的注意事项:<br>数据类型指定列可以存储什么类型的数据。在设置了数据类型后，你可以为每个列指定其他选项的属性：</p>
+<ul>
+<li>NOT NULL - 每一行都必须含有值（不能为空），null 值是不允许的。</li>
+<li>DEFAULT value - 设置默认值</li>
+<li>UNSIGNED - 使用无符号数值类型，0 及正数</li>
+<li>AUTO INCREMENT - 设置 MySQL 字段的值在新增记录时每次自动增长 1</li>
+<li>PRIMARY KEY - 设置数据表中每条记录的唯一标识。 通常列的 PRIMARY KEY 设置为 ID 数值，与 AUTO_INCREMENT 一起使用。</li>
+</ul>
+<p>每个表都应该有一个主键(本列为 “id” 列)，主键必须包含唯一的值。</p>
+<p>实例 (MySQLi - 面向对象)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$servername = &quot;localhost&quot;;</span><br><span class="line">$username = &quot;username&quot;;</span><br><span class="line">$password = &quot;password&quot;;</span><br><span class="line">$dbname = &quot;myDB&quot;;//指定打开的数据库</span><br><span class="line"> </span><br><span class="line">// 创建连接</span><br><span class="line">$conn = new mysqli($servername, $username, $password, $dbname);</span><br><span class="line">// 检测连接</span><br><span class="line">if ($conn-&gt;connect_error) &#123;</span><br><span class="line">    die(&quot;连接失败: &quot; . $conn-&gt;connect_error);</span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line">// 使用 sql 创建数据表</span><br><span class="line">$sql = &quot;CREATE TABLE MyGuests (</span><br><span class="line">id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, </span><br><span class="line">firstname VARCHAR(30) NOT NULL,</span><br><span class="line">lastname VARCHAR(30) NOT NULL,</span><br><span class="line">email VARCHAR(50),</span><br><span class="line">reg_date TIMESTAMP</span><br><span class="line">)&quot;;</span><br><span class="line"> </span><br><span class="line">if ($conn-&gt;query($sql) === TRUE) &#123;</span><br><span class="line">    echo &quot;Table MyGuests created successfully&quot;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;创建数据表错误: &quot; . $conn-&gt;error;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$conn-&gt;close();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>实例 (MySQLi - 面向过程)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$servername = &quot;localhost&quot;;</span><br><span class="line">$username = &quot;username&quot;;</span><br><span class="line">$password = &quot;password&quot;;</span><br><span class="line">$dbname = &quot;myDB&quot;;//指定打开的数据库</span><br><span class="line"> </span><br><span class="line">// 创建连接</span><br><span class="line">$conn = mysqli_connect($servername, $username, $password, $dbname);</span><br><span class="line">// 检测连接</span><br><span class="line">if (!$conn) &#123;</span><br><span class="line">    die(&quot;连接失败: &quot; . mysqli_connect_error());</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">// 使用 sql 创建数据表</span><br><span class="line">$sql = &quot;CREATE TABLE MyGuests (</span><br><span class="line">id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, </span><br><span class="line">firstname VARCHAR(30) NOT NULL,</span><br><span class="line">lastname VARCHAR(30) NOT NULL,</span><br><span class="line">email VARCHAR(50),</span><br><span class="line">reg_date TIMESTAMP</span><br><span class="line">)&quot;;</span><br><span class="line"> </span><br><span class="line">if (mysqli_query($conn, $sql)) &#123;</span><br><span class="line">    echo &quot;数据表 MyGuests 创建成功&quot;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;创建数据表错误: &quot; . mysqli_error($conn);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">mysqli_close($conn);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>实例 (PDO)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$servername = &quot;localhost&quot;;</span><br><span class="line">$username = &quot;username&quot;;</span><br><span class="line">$password = &quot;password&quot;;</span><br><span class="line">$dbname = &quot;myDBPDO&quot;;//指定打开的数据库</span><br><span class="line"> </span><br><span class="line">try &#123;</span><br><span class="line">    $conn = new PDO(&quot;mysql:host=$servername;dbname=$dbname&quot;, $username, $password);</span><br><span class="line">    // 设置 PDO 错误模式，用于抛出异常</span><br><span class="line">    $conn-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);</span><br><span class="line"> </span><br><span class="line">    // 使用 sql 创建数据表</span><br><span class="line">    $sql = &quot;CREATE TABLE MyGuests (</span><br><span class="line">    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, </span><br><span class="line">    firstname VARCHAR(30) NOT NULL,</span><br><span class="line">    lastname VARCHAR(30) NOT NULL,</span><br><span class="line">    email VARCHAR(50),</span><br><span class="line">    reg_date TIMESTAMP</span><br><span class="line">    )&quot;;</span><br><span class="line"> </span><br><span class="line">    // 使用 exec() ，没有结果返回 </span><br><span class="line">    $conn-&gt;exec($sql);</span><br><span class="line">    echo &quot;数据表 MyGuests 创建成功&quot;;</span><br><span class="line">&#125;</span><br><span class="line">catch(PDOException $e)</span><br><span class="line">&#123;</span><br><span class="line">    echo $sql . &quot;&lt;br&gt;&quot; . $e-&gt;getMessage();</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$conn = null;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>在这里 dbname = $dbname 的等号两边却不可以存在空格,所以正确的写法应该是 dbname=$dbname：</p>
+</blockquote>
+<p><strong>PDO插入多条数据</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$servername = &quot;localhost&quot;;</span><br><span class="line">$username = &quot;username&quot;;</span><br><span class="line">$password = &quot;password&quot;;</span><br><span class="line">$dbname = &quot;myDBPDO&quot;;</span><br><span class="line"> </span><br><span class="line">try &#123;</span><br><span class="line">    $conn = new PDO(&quot;mysql:host=$servername;dbname=$dbname&quot;, $username, $password);</span><br><span class="line">    // set the PDO error mode to exception</span><br><span class="line">    $conn-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);</span><br><span class="line"> </span><br><span class="line">    // 开始事务</span><br><span class="line">    $conn-&gt;beginTransaction();</span><br><span class="line">    // SQL 语句</span><br><span class="line">    $conn-&gt;exec(&quot;INSERT INTO MyGuests (firstname, lastname, email) </span><br><span class="line">    VALUES (&apos;John&apos;, &apos;Doe&apos;, &apos;john@example.com&apos;)&quot;);</span><br><span class="line">    $conn-&gt;exec(&quot;INSERT INTO MyGuests (firstname, lastname, email) </span><br><span class="line">    VALUES (&apos;Mary&apos;, &apos;Moe&apos;, &apos;mary@example.com&apos;)&quot;);</span><br><span class="line">    $conn-&gt;exec(&quot;INSERT INTO MyGuests (firstname, lastname, email) </span><br><span class="line">    VALUES (&apos;Julie&apos;, &apos;Dooley&apos;, &apos;julie@example.com&apos;)&quot;);</span><br><span class="line"> </span><br><span class="line">    // 提交事务</span><br><span class="line">    $conn-&gt;commit();</span><br><span class="line">    echo &quot;新记录插入成功&quot;;</span><br><span class="line">&#125;</span><br><span class="line">catch(PDOException $e)</span><br><span class="line">&#123;</span><br><span class="line">    // 如果执行失败回滚</span><br><span class="line">    $conn-&gt;rollback();</span><br><span class="line">    echo $sql . &quot;&lt;br&gt;&quot; . $e-&gt;getMessage();</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$conn = null;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="PHP-MySQL-预处理语句"><a href="#PHP-MySQL-预处理语句" class="headerlink" title="PHP MySQL 预处理语句"></a>PHP MySQL 预处理语句</h2><p>预处理语句对于防止 MySQL 注入是非常有用的。</p>
+<p><strong>预处理语句及绑定参数</strong><br>预处理语句用于执行多个相同的 SQL 语句，并且执行效率更高。<br>预处理语句的工作原理如下：<br>1.预处理：创建 SQL 语句模板并发送到数据库。预留的值使用参数 “?” 标记 。例如：<br><code>INSERT INTO MyGuests (firstname, lastname, email) VALUES(?, ?, ?)</code></p>
+<p>2.数据库解析，编译，对SQL语句模板执行查询优化，并存储结果不输出。<br>3.执行：最后，将应用绑定的值传递给参数（”?” 标记），数据库执行语句。应用可以多次执行语句，如果参数的值不一样。</p>
+<p>相比于直接执行SQL语句，预处理语句有两个主要优点：</p>
+<ul>
+<li>预处理语句大大减少了分析时间，只做了一次查询（虽然语句多次执行）。</li>
+<li>绑定参数减少了服务器带宽，你只需要发送查询的参数，而不是整个语句。</li>
+<li>预处理语句针对SQL注入是非常有用的，因为参数值发送后使用不同的协议，保证了数据的合法性。</li>
+</ul>
+<p><strong>MySQLi 预处理语句</strong><br>以下实例在 MySQLi 中使用了预处理语句，并绑定了相应的参数:<br>实例 (MySQLi 使用预处理语句)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$servername = &quot;localhost&quot;;</span><br><span class="line">$username = &quot;username&quot;;</span><br><span class="line">$password = &quot;password&quot;;</span><br><span class="line">$dbname = &quot;myDB&quot;;</span><br><span class="line"> </span><br><span class="line">// 创建连接</span><br><span class="line">$conn = new mysqli($servername, $username, $password, $dbname);</span><br><span class="line"> </span><br><span class="line">// 检测连接</span><br><span class="line">if ($conn-&gt;connect_error) &#123;</span><br><span class="line">    die(&quot;连接失败: &quot; . $conn-&gt;connect_error);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">// 预处理及绑定</span><br><span class="line">$stmt = $conn-&gt;prepare(&quot;INSERT INTO MyGuests (firstname, lastname, email) VALUES (?, ?, ?)&quot;);</span><br><span class="line">$stmt-&gt;bind_param(&quot;sss&quot;, $firstname, $lastname, $email);</span><br><span class="line"> </span><br><span class="line">// 设置参数并执行</span><br><span class="line">$firstname = &quot;John&quot;;</span><br><span class="line">$lastname = &quot;Doe&quot;;</span><br><span class="line">$email = &quot;john@example.com&quot;;</span><br><span class="line">$stmt-&gt;execute();</span><br><span class="line"> </span><br><span class="line">$firstname = &quot;Mary&quot;;</span><br><span class="line">$lastname = &quot;Moe&quot;;</span><br><span class="line">$email = &quot;mary@example.com&quot;;</span><br><span class="line">$stmt-&gt;execute();</span><br><span class="line"> </span><br><span class="line">$firstname = &quot;Julie&quot;;</span><br><span class="line">$lastname = &quot;Dooley&quot;;</span><br><span class="line">$email = &quot;julie@example.com&quot;;</span><br><span class="line">$stmt-&gt;execute();</span><br><span class="line"> </span><br><span class="line">echo &quot;新记录插入成功&quot;;</span><br><span class="line"> </span><br><span class="line">$stmt-&gt;close();</span><br><span class="line">$conn-&gt;close();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>解析以下实例的每行代码:<br><code>&quot;INSERT INTO MyGuests (firstname, lastname, email) VALUES(?, ?, ?)&quot;</code></p>
+<p>在 SQL 语句中，我们使用了问号 (?)，在此我们可以将问号替换为整型，字符串，双精度浮点型和布尔值。<br>接下来，让我们来看下 bind_param() 函数：</p>
+<p><code>$stmt-&gt;bind_param(&quot;sss&quot;, $firstname, $lastname, $email);</code></p>
+<p>该函数绑定了 SQL 的参数，且告诉数据库参数的值。 “sss” 参数列处理其余参数的数据类型。s 字符告诉数据库该参数为字符串。</p>
+<p>参数有以下四种类型:</p>
+<ul>
+<li>i - integer（整型）</li>
+<li>d - double（双精度浮点型）</li>
+<li>s - string（字符串）</li>
+<li>b - BLOB（binary large object:二进制大对象）</li>
+</ul>
+<p>每个参数都需要指定类型。<br>通过告诉数据库参数的数据类型，可以降低 SQL 注入的风险。</p>
+<blockquote>
+<p>注意： 如果你想插入其他数据（用户输入），对数据的验证是非常重要的。</p>
+</blockquote>
+<p><strong>PDO 中的预处理语句</strong><br>以下实例我们在 PDO 中使用了预处理语句并绑定参数:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$servername = &quot;localhost&quot;;</span><br><span class="line">$username = &quot;username&quot;;</span><br><span class="line">$password = &quot;password&quot;;</span><br><span class="line">$dbname = &quot;myDBPDO&quot;;</span><br><span class="line"> </span><br><span class="line">try &#123;</span><br><span class="line">    $conn = new PDO(&quot;mysql:host=$servername;dbname=$dbname&quot;, $username, $password);</span><br><span class="line">    // 设置 PDO 错误模式为异常</span><br><span class="line">    $conn-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);</span><br><span class="line"> </span><br><span class="line">    // 预处理 SQL 并绑定参数</span><br><span class="line">    $stmt = $conn-&gt;prepare(&quot;INSERT INTO MyGuests (firstname, lastname, email) </span><br><span class="line">    VALUES (:firstname, :lastname, :email)&quot;);</span><br><span class="line">    $stmt-&gt;bindParam(&apos;:firstname&apos;, $firstname);</span><br><span class="line">    $stmt-&gt;bindParam(&apos;:lastname&apos;, $lastname);</span><br><span class="line">    $stmt-&gt;bindParam(&apos;:email&apos;, $email);</span><br><span class="line"> </span><br><span class="line">    // 插入行</span><br><span class="line">    $firstname = &quot;John&quot;;</span><br><span class="line">    $lastname = &quot;Doe&quot;;</span><br><span class="line">    $email = &quot;john@example.com&quot;;</span><br><span class="line">    $stmt-&gt;execute();</span><br><span class="line"> </span><br><span class="line">    // 插入其他行</span><br><span class="line">    $firstname = &quot;Mary&quot;;</span><br><span class="line">    $lastname = &quot;Moe&quot;;</span><br><span class="line">    $email = &quot;mary@example.com&quot;;</span><br><span class="line">    $stmt-&gt;execute();</span><br><span class="line"> </span><br><span class="line">    // 插入其他行</span><br><span class="line">    $firstname = &quot;Julie&quot;;</span><br><span class="line">    $lastname = &quot;Dooley&quot;;</span><br><span class="line">    $email = &quot;julie@example.com&quot;;</span><br><span class="line">    $stmt-&gt;execute();</span><br><span class="line"> </span><br><span class="line">    echo &quot;新记录插入成功&quot;;</span><br><span class="line">&#125;</span><br><span class="line">catch(PDOException $e)</span><br><span class="line">&#123;</span><br><span class="line">    echo &quot;Error: &quot; . $e-&gt;getMessage();</span><br><span class="line">&#125;</span><br><span class="line">$conn = null;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="PHP-MySQL-读取数据"><a href="#PHP-MySQL-读取数据" class="headerlink" title="PHP MySQL 读取数据"></a>PHP MySQL 读取数据</h2><p><strong>使用 MySQLi</strong><br>以下实例中我们从 myDB 数据库的 MyGuests 表读取了 id, firstname 和 lastname 列的数据并显示在页面上：<br>实例 (MySQLi - 面向对象)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$servername = &quot;localhost&quot;;</span><br><span class="line">$username = &quot;username&quot;;</span><br><span class="line">$password = &quot;password&quot;;</span><br><span class="line">$dbname = &quot;myDB&quot;;</span><br><span class="line"> </span><br><span class="line">// 创建连接</span><br><span class="line">$conn = new mysqli($servername, $username, $password, $dbname);</span><br><span class="line">// Check connection</span><br><span class="line">if ($conn-&gt;connect_error) &#123;</span><br><span class="line">    die(&quot;连接失败: &quot; . $conn-&gt;connect_error);</span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line">$sql = &quot;SELECT id, firstname, lastname FROM MyGuests&quot;;</span><br><span class="line">$result = $conn-&gt;query($sql);</span><br><span class="line"> </span><br><span class="line">if ($result-&gt;num_rows &gt; 0) &#123;</span><br><span class="line">    // 输出数据</span><br><span class="line">    while($row = $result-&gt;fetch_assoc()) &#123;</span><br><span class="line">        echo &quot;id: &quot; . $row[&quot;id&quot;]. &quot; - Name: &quot; . $row[&quot;firstname&quot;]. &quot; &quot; . $row[&quot;lastname&quot;]. &quot;&lt;br&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;0 结果&quot;;</span><br><span class="line">&#125;</span><br><span class="line">$conn-&gt;close();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>以上代码解析如下:<br>首先，我们设置了 SQL 语句从 MyGuests数据表中读取 id, firstname 和 lastname 三个字段。之后我们使用改 SQL 语句从数据库中取出结果集并赋给复制给变量 $result。<br>函数 num_rows() 判断返回的数据。<br>如果返回的是多条数据，函数 fetch_assoc() 将结合集放入到关联数组并循环输出。 while() 循环出结果集，并输出 id, firstname 和 lastname 三个字段值。<br>以下实例使用 MySQLi 面向过程的方式，效果类似以上代码:</p>
+<p>实例 (MySQLi - 面向过程)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$servername = &quot;localhost&quot;;</span><br><span class="line">$username = &quot;username&quot;;</span><br><span class="line">$password = &quot;password&quot;;</span><br><span class="line">$dbname = &quot;myDB&quot;;</span><br><span class="line"> </span><br><span class="line">// 创建连接</span><br><span class="line">$conn = mysqli_connect($servername, $username, $password, $dbname);</span><br><span class="line">// Check connection</span><br><span class="line">if (!$conn) &#123;</span><br><span class="line">    die(&quot;连接失败: &quot; . mysqli_connect_error());</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$sql = &quot;SELECT id, firstname, lastname FROM MyGuests&quot;;</span><br><span class="line">$result = mysqli_query($conn, $sql);</span><br><span class="line"> </span><br><span class="line">if (mysqli_num_rows($result) &gt; 0) &#123;</span><br><span class="line">    // 输出数据</span><br><span class="line">    while($row = mysqli_fetch_assoc($result)) &#123;</span><br><span class="line">        echo &quot;id: &quot; . $row[&quot;id&quot;]. &quot; - Name: &quot; . $row[&quot;firstname&quot;]. &quot; &quot; . $row[&quot;lastname&quot;]. &quot;&lt;br&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;0 结果&quot;;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">mysqli_close($conn);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>使用 PDO (+ 预处理)</strong><br>以下实例使用了预处理语句。</p>
+<p>选取了 MyGuests 表中的 id, firstname 和 lastname 字段，并放到 HTML 表格中：</p>
+<p>实例 (PDO)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo &quot;&lt;table style=&apos;border: solid 1px black;&apos;&gt;&quot;;</span><br><span class="line">echo &quot;&lt;tr&gt;&lt;th&gt;Id&lt;/th&gt;&lt;th&gt;Firstname&lt;/th&gt;&lt;th&gt;Lastname&lt;/th&gt;&lt;/tr&gt;&quot;;</span><br><span class="line"> </span><br><span class="line">class TableRows extends RecursiveIteratorIterator &#123;</span><br><span class="line">    function __construct($it) &#123; </span><br><span class="line">        parent::__construct($it, self::LEAVES_ONLY); </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    function current() &#123;</span><br><span class="line">        return &quot;&lt;td style=&apos;width:150px;border:1px solid black;&apos;&gt;&quot; . parent::current(). &quot;&lt;/td&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    function beginChildren() &#123; </span><br><span class="line">        echo &quot;&lt;tr&gt;&quot;; </span><br><span class="line">    &#125; </span><br><span class="line"> </span><br><span class="line">    function endChildren() &#123; </span><br><span class="line">        echo &quot;&lt;/tr&gt;&quot; . &quot;\n&quot;;</span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line">$servername = &quot;localhost&quot;;</span><br><span class="line">$username = &quot;username&quot;;</span><br><span class="line">$password = &quot;password&quot;;</span><br><span class="line">$dbname = &quot;myDBPDO&quot;;</span><br><span class="line"> </span><br><span class="line">try &#123;</span><br><span class="line">    $conn = new PDO(&quot;mysql:host=$servername;dbname=$dbname&quot;, $username, $password);</span><br><span class="line">    $conn-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);</span><br><span class="line">    $stmt = $conn-&gt;prepare(&quot;SELECT id, firstname, lastname FROM MyGuests&quot;); </span><br><span class="line">    $stmt-&gt;execute();</span><br><span class="line"> </span><br><span class="line">    // 设置结果集为关联数组</span><br><span class="line">    $result = $stmt-&gt;setFetchMode(PDO::FETCH_ASSOC); </span><br><span class="line">    foreach(new TableRows(new RecursiveArrayIterator($stmt-&gt;fetchAll())) as $k=&gt;$v) &#123; </span><br><span class="line">        echo $v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">catch(PDOException $e) &#123;</span><br><span class="line">    echo &quot;Error: &quot; . $e-&gt;getMessage();</span><br><span class="line">&#125;</span><br><span class="line">$conn = null;</span><br><span class="line">echo &quot;&lt;/table&gt;&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="网页操作以面相过程为例"><a href="#网页操作以面相过程为例" class="headerlink" title="网页操作以面相过程为例"></a>网页操作以面相过程为例</h2><p><strong>把来自表单的数据插入数据库</strong><br>现在，我们创建一个 HTML 表单，这个表单可把新记录插入 “Persons” 表。<br>这是这个 HTML 表单：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;form action=&quot;insert.php&quot; method=&quot;post&quot;&gt;</span><br><span class="line">Firstname: &lt;input type=&quot;text&quot; name=&quot;firstname&quot; /&gt;</span><br><span class="line">Lastname: &lt;input type=&quot;text&quot; name=&quot;lastname&quot; /&gt;</span><br><span class="line">Age: &lt;input type=&quot;text&quot; name=&quot;age&quot; /&gt;</span><br><span class="line">&lt;input type=&quot;submit&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>当用户点击上例中 HTML 表单中的提交按钮时，表单数据被发送到 “insert.php”。”insert.php” 文件连接数据库，并通过 $_POST 变量从表单取回值。然后，mysql_query() 函数执行 INSERT INTO 语句，一条新的记录会添加到数据库表中。<br>下面是 “insert.php” 页面的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// 创建连接</span><br><span class="line">$conn = mysqli_connect($servername, $username, $password, $dbname);</span><br><span class="line">// 检测连接</span><br><span class="line">if (!$conn) &#123;</span><br><span class="line">    die(&quot;Connection failed: &quot; . mysqli_connect_error());</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$sql=&quot;INSERT INTO Persons (FirstName, LastName, Age)VALUES</span><br><span class="line">(&apos;$_POST[firstname]&apos;,&apos;$_POST[lastname]&apos;,&apos;$_POST[age]&apos;)&quot;;</span><br><span class="line"> </span><br><span class="line">if (mysqli_query($conn, $sql)) &#123;</span><br><span class="line">    echo &quot;新记录插入成功&quot;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;Error: &quot; . $sql . &quot;&lt;br&gt;&quot; . mysqli_error($conn);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">mysqli_close($conn);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>在 HTML 表格中显示结果</strong><br>下面的例子选取的数据与上面的例子相同，但是将把数据显示在一个 HTML 表格中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// 创建连接</span><br><span class="line">$conn = mysqli_connect($servername, $username, $password, $dbname);</span><br><span class="line">// Check connection</span><br><span class="line">if (!$conn) &#123;</span><br><span class="line">    die(&quot;连接失败: &quot; . mysqli_connect_error());</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$sql = &quot;SELECT * FROM Persons&quot;;</span><br><span class="line">$result = mysqli_query($conn, $sql);</span><br><span class="line"></span><br><span class="line">echo &quot;&lt;table border=&apos;1&apos;&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;th&gt;Firstname&lt;/th&gt;</span><br><span class="line">&lt;th&gt;Lastname&lt;/th&gt;</span><br><span class="line">&lt;/tr&gt;&quot;;</span><br><span class="line"></span><br><span class="line">if (mysqli_num_rows($result) &gt; 0) &#123;</span><br><span class="line">    // 输出数据</span><br><span class="line">    while($row = mysqli_fetch_assoc($result)) &#123;//循环数据</span><br><span class="line">        echo &quot;&lt;tr&gt;&quot;;</span><br><span class="line">		echo &quot;&lt;td&gt;&quot; . $row[&apos;FirstName&apos;] . &quot;&lt;/td&gt;&quot;;</span><br><span class="line">		echo &quot;&lt;td&gt;&quot; . $row[&apos;LastName&apos;] . &quot;&lt;/td&gt;&quot;;</span><br><span class="line">		echo &quot;&lt;/tr&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">	echo &quot;&lt;/table&gt;&quot;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;0 结果&quot;;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">mysqli_close($conn);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>以上代码的输出：</p>
+<table>
+<thead>
+<tr>
+<th>Firstname</th>
+<th>Lastname</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Glenn</td>
+<td>Quagmire</td>
+</tr>
+<tr>
+<td>Peter</td>
+<td>Griffin</td>
+</tr>
+</tbody>
+</table>
+<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><p><strong>ODBC 是一种应用程序编程接口（Application Programming Interface，API），使我们有能力连接到某个数据源（比如一个 MS Access 数据库）。</strong></p>
+<p><strong>创建 ODBC 连接</strong><br>通过一个 ODBC 连接，您可以连接到您的网络中的任何计算机上的任何数据库，只要 ODBC 连接是可用的。<br>这是创建到达 MS Access 数据的 ODBC 连接的方法：<br>1.在控制面板中打开管理工具<br>2.双击其中的数据源 (ODBC) 图标<br>3.选择系统 DSN 选项卡<br>4.点击系统 DSN 选项卡中的“添加”按钮<br>5.选择 Microsoft Access Driver。点击完成。<br>6.在下一个界面，点击“选择”来定位数据库。<br>7.为这个数据库取一个数据源名 (DSN)。<br>8.点击确定。<br><strong>请注意</strong>，必须在您的网站所在的计算机上完成这个配置。如果您的计算机上正在运行 Internet 信息服务器 (IIS)，上面的指令会生效，但是假如您的网站位于远程服务器，您必须拥有对该服务器的物理访问权限，或者请您的主机提供商为您建立 DSN。</p>
+<p><strong>连接到 ODBC</strong><br>odbc_connect() 函数用于连接到 ODBC 数据源。该函数有四个参数：数据源名、用户名、密码以及可选的指针类型参数。<br>odbc_exec() 函数用于执行 SQL 语句。</p>
+<p>下面的例子创建了到达名为 northwind 的 DSN 的连接，没有用户名和密码。然后创建并执行一条 SQL 语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$conn=odbc_connect(&apos;northwind&apos;,&apos;&apos;,&apos;&apos;);</span><br><span class="line">$sql=&quot;SELECT * FROM customers&quot;; </span><br><span class="line">$rs=odbc_exec($conn,$sql);</span><br></pre></td></tr></table></figure></p>
+<p><strong>取回记录</strong><br>odbc_fetch_row() 函数用于从结果集中返回记录。如果能够返回行，则返回 true，否则返回 false。<br>该函数有两个参数：ODBC 结果标识符和可选的行号：<br><code>odbc_fetch_row($rs)</code></p>
+<p><strong>从记录中取回字段</strong><br>odbc_result() 函数用于从记录中读取字段。该函数有两个参数：ODBC 结果标识符和字段编号或名称。<br>下面的代码行从记录中返回第一个字段的值：<br><code>$compname=odbc_result($rs,1);</code></p>
+<p>The code line below returns the value of a field called “CompanyName”:</p>
+<p><code>$compname=odbc_result($rs,&quot;CompanyName&quot;);</code></p>
+<p><strong>关闭 ODBC 连接</strong><br>odbc_close()函数用于关闭 ODBC 连接。<br><code>odbc_close($conn);</code></p>
+<p><strong>ODBC 实例</strong><br>下面的例子展示了如何首先创建一个数据库连接，然后是结果集，然后在 HTML 表格中显示数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">$conn=odbc_connect(&apos;northwind&apos;,&apos;&apos;,&apos;&apos;);</span><br><span class="line">if (!$conn)</span><br><span class="line">&#123;</span><br><span class="line">    exit(&quot;连接失败: &quot; . $conn);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$sql=&quot;SELECT * FROM customers&quot;;</span><br><span class="line">$rs=odbc_exec($conn,$sql);</span><br><span class="line"></span><br><span class="line">if (!$rs)</span><br><span class="line">&#123;</span><br><span class="line">    exit(&quot;SQL 语句错误&quot;);</span><br><span class="line">&#125;</span><br><span class="line">echo &quot;&lt;table&gt;&lt;tr&gt;&quot;;</span><br><span class="line">echo &quot;&lt;th&gt;Companyname&lt;/th&gt;&quot;;</span><br><span class="line">echo &quot;&lt;th&gt;Contactname&lt;/th&gt;&lt;/tr&gt;&quot;;</span><br><span class="line"></span><br><span class="line">while (odbc_fetch_row($rs))</span><br><span class="line">&#123;</span><br><span class="line">    $compname=odbc_result($rs,&quot;CompanyName&quot;);</span><br><span class="line">    $conname=odbc_result($rs,&quot;ContactName&quot;);</span><br><span class="line">    echo &quot;&lt;tr&gt;&lt;td&gt;$compname&lt;/td&gt;&quot;;</span><br><span class="line">    echo &quot;&lt;td&gt;$conname&lt;/td&gt;&lt;/tr&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">odbc_close($conn);</span><br><span class="line">echo &quot;&lt;/table&gt;&quot;;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/02/11/PHP数据库/" data-id="cjrzswyqk004v3sfvkk700ri6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/02/03/PHP技能升阶/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">PHP技能升阶</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/11/PHP数据库/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/11/PHP数据库/1588.jpg)" alt="PHP数据库" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/11/PHP数据库/" class="title">PHP数据库</a></p>
+                            <p class="item-date"><time datetime="2019-02-11T01:04:32.000Z" itemprop="datePublished">2019-02-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/03/PHP技能升阶/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/03/PHP技能升阶/7fi6oy5ysf.jpeg)" alt="PHP技能升阶" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/03/PHP技能升阶/" class="title">PHP技能升阶</a></p>
+                            <p class="item-date"><time datetime="2019-02-03T01:24:14.000Z" itemprop="datePublished">2019-02-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/02/PHP日期操作/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/02/PHP日期操作/ae1a.jpg)" alt="PHP日期操作" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/02/PHP日期操作/" class="title">PHP日期操作</a></p>
+                            <p class="item-date"><time datetime="2019-02-02T01:17:12.000Z" itemprop="datePublished">2019-02-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/02/PHP文件操作/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/02/PHP文件操作/ca3e.jpg)" alt="PHP文件操作" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/02/PHP文件操作/" class="title">PHP文件操作</a></p>
+                            <p class="item-date"><time datetime="2019-02-02T01:13:50.000Z" itemprop="datePublished">2019-02-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/01/bootstrap-table表格导出/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/01/bootstrap-table表格导出/gp=0.jpg)" alt="bootstrap-table表格导出" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/01/bootstrap-table表格导出/" class="title">bootstrap-table表格导出</a></p>
+                            <p class="item-date"><time datetime="2019-02-01T06:53:22.000Z" itemprop="datePublished">2019-02-01</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 18.89px;">JavaScript</a> <a href="/tags/PHP/" style="font-size: 16.67px;">PHP</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/html/" style="font-size: 12.22px;">html</a> <a href="/tags/java/" style="font-size: 17.78px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 16.67px;">maven</a> <a href="/tags/node/" style="font-size: 11.11px;">node</a> <a href="/tags/orcal/" style="font-size: 13.33px;">orcal</a> <a href="/tags/python/" style="font-size: 14.44px;">python</a> <a href="/tags/冷知识/" style="font-size: 11.11px;">冷知识</a> <a href="/tags/心语/" style="font-size: 10px;">心语</a> <a href="/tags/技术/" style="font-size: 11.11px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15.56px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/02/11/PHP数据库/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
