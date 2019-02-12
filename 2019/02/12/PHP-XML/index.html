@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>PHP-XML | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="PHP">
+    
+    <meta name="description" content="什么是 XML？XML 用于描述数据，其焦点是数据是什么。XML 文件描述了数据的结构。在 XML 中，没有预定义的标签。您必须定义自己的标签。 如需读取和更新 - 创建并处理 - 一个 XML 文档，您需要 XML 解析器。有两种基本的 XML 解析器类型：  基于树的解析器：这种解析器把 XML 文档转换为树型结构。它分析整篇文档，并提供了 API 来访问树种的元素，例如文档对象模型 (DO">
+<meta name="keywords" content="PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP-XML">
+<meta property="og:url" content="http://yoursite.com/2019/02/12/PHP-XML/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="什么是 XML？XML 用于描述数据，其焦点是数据是什么。XML 文件描述了数据的结构。在 XML 中，没有预定义的标签。您必须定义自己的标签。 如需读取和更新 - 创建并处理 - 一个 XML 文档，您需要 XML 解析器。有两种基本的 XML 解析器类型：  基于树的解析器：这种解析器把 XML 文档转换为树型结构。它分析整篇文档，并提供了 API 来访问树种的元素，例如文档对象模型 (DO">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/02/12/PHP-XML/672d.jpg">
+<meta property="og:updated_time" content="2019-02-12T05:42:59.625Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP-XML">
+<meta name="twitter:description" content="什么是 XML？XML 用于描述数据，其焦点是数据是什么。XML 文件描述了数据的结构。在 XML 中，没有预定义的标签。您必须定义自己的标签。 如需读取和更新 - 创建并处理 - 一个 XML 文档，您需要 XML 解析器。有两种基本的 XML 解析器类型：  基于树的解析器：这种解析器把 XML 文档转换为树型结构。它分析整篇文档，并提供了 API 来访问树种的元素，例如文档对象模型 (DO">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/12/PHP-XML/672d.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-PHP-XML" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        PHP-XML
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/02/12/PHP-XML/" class="article-date">
+            <time datetime="2019-02-12T01:19:51.000Z" itemprop="datePublished">2019-02-12</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/PHP/">PHP</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/2019/02/12/PHP-XML/672d.jpg" alt=""></p>
+<p><strong>什么是 XML？</strong><br>XML 用于描述数据，其焦点是数据是什么。XML 文件描述了数据的结构。<br>在 XML 中，没有预定义的标签。您必须定义自己的标签。</p>
+<p>如需读取和更新 - 创建并处理 - 一个 XML 文档，您需要 XML 解析器。<br>有两种基本的 XML 解析器类型：</p>
+<ul>
+<li><strong>基于树的解析器：</strong>这种解析器把 XML 文档转换为树型结构。它分析整篇文档，并提供了 API 来访问树种的元素，例如文档对象模型 (DOM)。</li>
+<li><strong>基于事件的解析器：</strong>将 XML 文档视为一系列的事件。当某个具体的事件发生时，解析器会调用函数来处理。</li>
+</ul>
+<h2 id="Expat-解析器是基于事件的解析器。"><a href="#Expat-解析器是基于事件的解析器。" class="headerlink" title="Expat 解析器是基于事件的解析器。"></a>Expat 解析器是基于事件的解析器。</h2><p><strong>内建的 Expat 解析器使在 PHP 中处理 XML 文档成为可能。</strong></p>
+<p>基于事件的解析器集中在 XML 文档的内容，而不是它们的结果。正因如此，基于事件的解析器能够比基于树的解析器更快地访问数据。<br>请看下面的 XML 片段：<br><code>&lt;from&gt;John&lt;/from&gt;</code></p>
+<p>基于事件的解析器把上面的 XML 报告为一连串的三个事件：</p>
+<ul>
+<li>开始元素：from</li>
+<li>开始 CDATA 部分, 值：John</li>
+<li>关闭元素： from</li>
+</ul>
+<p>上面的 XML 范例包含了形式良好的 XML。不过这个例子是无效的 XML，因为没有与它关联的文档类型声明 (DTD)，也没有内嵌的 DTD。<br>不过，在使用 Expat 解析器时，这没有区别。Expat 是不检查有效性的解析器，忽略任何 DTD。<br>作为一款基于事件、非验证的 XML 解析器，Expat 快速且轻巧，十分适合 PHP 的 web 应用程序。<br><strong>注释：</strong>XML 文档必须形式良好，否则 Expat 会生成错误。</p>
+<p><strong>安装</strong><br>XML Expat 解析器是 PHP 核心的组成部分。无需安装就可以使用这些函数。</p>
+<p><strong>XML 文件</strong><br>将在我们的例子中使用下面的 XML 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span><br><span class="line">&lt;note&gt;</span><br><span class="line">&lt;to&gt;George&lt;/to&gt;</span><br><span class="line">&lt;from&gt;John&lt;/from&gt;</span><br><span class="line">&lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">&lt;body&gt;Don&apos;t forget the meeting!&lt;/body&gt;</span><br><span class="line">&lt;/note&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>初始化 XML 解析器</strong><br>我们要在 PHP 中初始化 XML 解析器，为不同的 XML 事件定义处理器，然后解析这个 XML 文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">//Initialize the XML parser</span><br><span class="line">$parser=xml_parser_create();</span><br><span class="line"></span><br><span class="line">//Function to use at the start of an element</span><br><span class="line">function start($parser,$element_name,$element_attrs)</span><br><span class="line">  &#123;</span><br><span class="line">  switch($element_name)</span><br><span class="line">    &#123;</span><br><span class="line">    case &quot;NOTE&quot;:</span><br><span class="line">    echo &quot;-- Note --&lt;br /&gt;&quot;;</span><br><span class="line">    break; </span><br><span class="line">    case &quot;TO&quot;:</span><br><span class="line">    echo &quot;To: &quot;;</span><br><span class="line">    break; </span><br><span class="line">    case &quot;FROM&quot;:</span><br><span class="line">    echo &quot;From: &quot;;</span><br><span class="line">    break; </span><br><span class="line">    case &quot;HEADING&quot;:</span><br><span class="line">    echo &quot;Heading: &quot;;</span><br><span class="line">    break; </span><br><span class="line">    case &quot;BODY&quot;:</span><br><span class="line">    echo &quot;Message: &quot;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">//Function to use at the end of an element</span><br><span class="line">function stop($parser,$element_name)</span><br><span class="line">  &#123;</span><br><span class="line">  echo &quot;&lt;br /&gt;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">//Function to use when finding character data</span><br><span class="line">function char($parser,$data)</span><br><span class="line">  &#123;</span><br><span class="line">  echo $data;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">//Specify element handler</span><br><span class="line">xml_set_element_handler($parser,&quot;start&quot;,&quot;stop&quot;);</span><br><span class="line"></span><br><span class="line">//Specify data handler</span><br><span class="line">xml_set_character_data_handler($parser,&quot;char&quot;);</span><br><span class="line"></span><br><span class="line">//Open XML file</span><br><span class="line">$fp=fopen(&quot;test.xml&quot;,&quot;r&quot;);</span><br><span class="line"></span><br><span class="line">//Read data</span><br><span class="line">while ($data=fread($fp,4096))</span><br><span class="line">  &#123;</span><br><span class="line">  xml_parse($parser,$data,feof($fp)) or </span><br><span class="line">  die (sprintf(&quot;XML Error: %s at line %d&quot;, </span><br><span class="line">  xml_error_string(xml_get_error_code($parser)),</span><br><span class="line">  xml_get_current_line_number($parser)));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">//Free the XML parser</span><br><span class="line">xml_parser_free($parser);</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>以上代码的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-- Note --</span><br><span class="line">To: George</span><br><span class="line">From: John</span><br><span class="line">Heading: Reminder</span><br><span class="line">Message: Don&apos;t forget the meeting!</span><br></pre></td></tr></table></figure></p>
+<p><strong>工作原理解释：</strong></p>
+<ul>
+<li>通过 xml_parser_create() 函数初始化 XML 解析器</li>
+<li>创建配合不同事件处理程序的的函数</li>
+<li>添加 xml_set_element_handler() 函数来定义，当解析器遇到开始和结束标签时执行哪个函数</li>
+<li>添加 xml_set_character_data_handler() 函数来定义，当解析器遇到字符数据时执行哪个函数</li>
+<li>通过 xml_parse() 函数来解析文件 “test.xml”</li>
+<li>万一有错误的话，添加 xml_error_string() 函数把 XML 错误转换为文本说明</li>
+<li>调用 xml_parser_free() 函数来释放分配给 xml_parser_create() 函数的内存</li>
+</ul>
+<h2 id="DOM-解析器是基于树的解析器。"><a href="#DOM-解析器是基于树的解析器。" class="headerlink" title="DOM 解析器是基于树的解析器。"></a>DOM 解析器是基于树的解析器。</h2><p><strong>内建的 DOM 解析器使在 PHP 中处理 XML 文档成为可能。</strong></p>
+<p><strong>什么是 DOM？</strong><br>W3C DOM 提供了针对 HTML 和 XML 文档的标准对象集，以及用于访问和操作这些文档的标准接口。</p>
+<p>W3C DOM 被分为不同的部分 (Core, XML 和 HTML) 和不同的级别 (DOM Level 1/2/3)：</p>
+<ul>
+<li>Core DOM - 为任何结构化文档定义标准的对象集</li>
+<li>XML DOM - 为 XML 文档定义标准的对象集</li>
+<li>HTML DOM - 为 HTML 文档定义标准的对象集</li>
+</ul>
+<p>请看下面的 XML 文档片段：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span><br><span class="line">&lt;from&gt;John&lt;/from&gt;</span><br></pre></td></tr></table></figure></p>
+<p>XML DOM 把 XML 视为一个树形结构：</p>
+<ul>
+<li>Level 1: XML 文档</li>
+<li>Level 2: 根元素: <from></from></li>
+<li>Level 3: 文本元素: “John”</li>
+</ul>
+<p><strong>安装</strong><br>DOM XML 解析器函数是 PHP 核心的组成部分。无需安装就可以使用这些函数。</p>
+<p><strong>XML 文件</strong><br>将在我们的例子中使用下面的 XML 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span><br><span class="line">&lt;note&gt;</span><br><span class="line">&lt;to&gt;George&lt;/to&gt;</span><br><span class="line">&lt;from&gt;John&lt;/from&gt;</span><br><span class="line">&lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">&lt;body&gt;Don&apos;t forget the meeting!&lt;/body&gt;</span><br><span class="line">&lt;/note&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>加载和输出 XML</strong><br>我们需要初始化 XML 解析器，加载 XML，并把它输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$xmlDoc = new DOMDocument();</span><br><span class="line">$xmlDoc-&gt;load(&quot;note.xml&quot;);</span><br><span class="line"></span><br><span class="line">print $xmlDoc-&gt;saveXML();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>以上代码的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">George John Reminder Don&apos;t forget the meeting!</span><br></pre></td></tr></table></figure></p>
+<p>假如您在浏览器窗口中查看源代码，会看到下面这些 HTML：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span><br><span class="line">&lt;note&gt;</span><br><span class="line">&lt;to&gt;George&lt;/to&gt;</span><br><span class="line">&lt;from&gt;John&lt;/from&gt;</span><br><span class="line">&lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">&lt;body&gt;Don&apos;t forget the meeting!&lt;/body&gt;</span><br><span class="line">&lt;/note&gt;</span><br></pre></td></tr></table></figure></p>
+<p>上面的例子创建了一个 DOMDocument-Object，并把 “note.xml” 中的 XML 载入这个文档对象中。</p>
+<p>saveXML() 函数把内部 XML 文档放入一个字符串，这样我们就可以输出它。</p>
+<p><strong>循环 XML</strong><br>我们要初始化 XML 解析器，加载 XML，并循环 <note> 元素的所有元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$xmlDoc = new DOMDocument();</span><br><span class="line">$xmlDoc-&gt;load(&quot;note.xml&quot;);</span><br><span class="line"></span><br><span class="line">$x = $xmlDoc-&gt;documentElement;</span><br><span class="line">foreach ($x-&gt;childNodes AS $item)</span><br><span class="line">  &#123;</span><br><span class="line">  print $item-&gt;nodeName . &quot; = &quot; . $item-&gt;nodeValue . &quot;&lt;br /&gt;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></note></p>
+<p>以上代码的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#text = </span><br><span class="line">to = George</span><br><span class="line">#text = </span><br><span class="line">from = John</span><br><span class="line">#text = </span><br><span class="line">heading = Reminder</span><br><span class="line">#text = </span><br><span class="line">body = Don&apos;t forget the meeting!</span><br><span class="line">#text =</span><br></pre></td></tr></table></figure></p>
+<p>在上面的例子中，您看到了每个元素之间存在空的文本节点。<br>当 XML 生成时，它通常会在节点之间包含空白。XML DOM 解析器把它们当作普通的元素，如果您不注意它们，有时会产生问题。</p>
+<h2 id="SimpleXML"><a href="#SimpleXML" class="headerlink" title="SimpleXML"></a>SimpleXML</h2><p><strong>SimpleXML 处理最普通的 XML 任务，其余的任务则交由其它扩展。</strong></p>
+<p><strong>什么是 SimpleXML？</strong><br>SimpleXML 是 PHP 5 中的新特性。<br>在了解 XML 文档 layout 的情况下，它是一种取得元素属性和文本的便利途径。<br>与 DOM 或 Expat 解析器相比，SimpleXML 仅仅用几行代码就可以从元素中读取文本数据。<br>SimpleXML 可把 XML 文档转换为对象，比如：</p>
+<ul>
+<li>元素 - 被转换为 SimpleXMLElement 对象的单一属性。当同一级别上存在多个元素时，它们会被置于数组中。</li>
+<li>属性 - 通过使用关联数组进行访问，其中的下标对应属性名称。</li>
+<li>元素数据 - 来自元素的文本数据被转换为字符串。如果一个元素拥有多个文本节点，则按照它们被找到的顺序进行排列。</li>
+</ul>
+<p>当执行类似下列的基础任务时，SimpleXML 使用起来非常快捷：</p>
+<ul>
+<li>读取/提取 XML 文件/字符串的数据</li>
+<li>编辑文本节点或属性</li>
+</ul>
+<p>不过，在处理高级 XML 时，比如命名空间，最好使用 Expat 解析器或 XML DOM。</p>
+<p><strong>安装</strong><br>从 PHP 5.0 开始，SimpleXML 函数是 PHP 核心的组成部分。无需安装就可以使用这些函数。</p>
+<p><strong>使用 SimpleXML</strong><br>下面是 XML 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span><br><span class="line">&lt;note&gt;</span><br><span class="line">&lt;to&gt;George&lt;/to&gt;</span><br><span class="line">&lt;from&gt;John&lt;/from&gt;</span><br><span class="line">&lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">&lt;body&gt;Don&apos;t forget the meeting!&lt;/body&gt;</span><br><span class="line">&lt;/note&gt;</span><br></pre></td></tr></table></figure></p>
+<p>例1：我们打算从上面的 XML 文件输出元素的名称和数据。</p>
+<p>这是需要做的事情：<br>1.加载 XML 文件<br>2.取得第一个元素的名称<br>3.使用 children() 函数创建在每个子节点上触发的循环<br>4.输出每个子节点的元素名称和数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$xml = simplexml_load_file(&quot;test.xml&quot;);</span><br><span class="line">echo $xml-&gt;getName() . &quot;&lt;br /&gt;&quot;;</span><br><span class="line">foreach($xml-&gt;children() as $child)</span><br><span class="line">  &#123;</span><br><span class="line">  echo $child-&gt;getName() . &quot;: &quot; . $child . &quot;&lt;br /&gt;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>以上代码的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">note</span><br><span class="line">to: George</span><br><span class="line">from: John</span><br><span class="line">heading: Reminder</span><br><span class="line">body: Don&apos;t forget the meeting!</span><br></pre></td></tr></table></figure></p>
+<p>例2：输出 XML 文件中每个元素的数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$xml=simplexml_load_file(&quot;note.xml&quot;);</span><br><span class="line">echo $xml-&gt;to . &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $xml-&gt;from . &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $xml-&gt;heading . &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $xml-&gt;body;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>以上代码将输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">George</span><br><span class="line">John</span><br><span class="line">Reminder</span><br><span class="line">Don&apos;t forget me this meeting!</span><br></pre></td></tr></table></figure></p>
+<p>例3：输出 $xml 变量（是 SimpleXMLElement 对象）的键和元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$xml=simplexml_load_file(&quot;note.xml&quot;);</span><br><span class="line">print_r($xml);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>以上代码将输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SimpleXMLElement Object ( [to] =&gt; George [from] =&gt; John [heading] =&gt; Reminder [body] =&gt; Don&apos;t forget me this meeting! )</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/02/12/PHP-XML/" data-id="cjs16qgpu003dsgfv45n4sjw6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/02/12/PHP和AJAX/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            PHP和AJAX
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/02/11/Python中的-init-和-new/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Python中的__init__和__new__</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/PHP-Ajax跨域问题最佳解决方案/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/12/PHP-Ajax跨域问题最佳解决方案/p=0.jpg)" alt="PHP-Ajax跨域问题最佳解决方案" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/12/PHP-Ajax跨域问题最佳解决方案/" class="title">PHP-Ajax跨域问题最佳解决方案</a></p>
+                            <p class="item-date"><time datetime="2019-02-12T02:57:31.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/PHP和AJAX/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/12/PHP和AJAX/31627.png)" alt="PHP和AJAX" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/12/PHP和AJAX/" class="title">PHP和AJAX</a></p>
+                            <p class="item-date"><time datetime="2019-02-12T02:27:54.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/PHP-XML/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/12/PHP-XML/672d.jpg)" alt="PHP-XML" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/12/PHP-XML/" class="title">PHP-XML</a></p>
+                            <p class="item-date"><time datetime="2019-02-12T01:19:51.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/11/Python中的-init-和-new/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/11/Python中的-init-和-new/=0.jpg)" alt="Python中的__init__和__new__" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/11/Python中的-init-和-new/" class="title">Python中的__init__和__new__</a></p>
+                            <p class="item-date"><time datetime="2019-02-11T13:40:54.000Z" itemprop="datePublished">2019-02-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/11/Python类中super-和-init-的关系/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/11/Python类中super-和-init-的关系/1798b.png)" alt="Python类中super()和__init__()的关系" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/11/Python类中super-和-init-的关系/" class="title">Python类中super()和__init__()的关系</a></p>
+                            <p class="item-date"><time datetime="2019-02-11T12:29:48.000Z" itemprop="datePublished">2019-02-11</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 18.75px;">JavaScript</a> <a href="/tags/PHP/" style="font-size: 17.5px;">PHP</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/html/" style="font-size: 12.5px;">html</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 16.25px;">maven</a> <a href="/tags/node/" style="font-size: 11.25px;">node</a> <a href="/tags/orcal/" style="font-size: 13.75px;">orcal</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/冷知识/" style="font-size: 11.25px;">冷知识</a> <a href="/tags/心语/" style="font-size: 12.5px;">心语</a> <a href="/tags/技术/" style="font-size: 12.5px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/02/12/PHP-XML/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

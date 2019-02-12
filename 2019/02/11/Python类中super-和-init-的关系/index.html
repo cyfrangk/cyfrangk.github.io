@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Python类中super()和__init__()的关系 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="python">
+    
+    <meta name="description" content="1、单继承时super()和__init__()实现的功能是类似的12345678910111213141516171819class Base(object):    def __init__(self):        print &amp;apos;Base create&amp;apos;class childA(Base):    def __init__(self):        print &amp;ap">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python类中super()和__init__()的关系">
+<meta property="og:url" content="http://yoursite.com/2019/02/11/Python类中super-和-init-的关系/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="1、单继承时super()和__init__()实现的功能是类似的12345678910111213141516171819class Base(object):    def __init__(self):        print &amp;apos;Base create&amp;apos;class childA(Base):    def __init__(self):        print &amp;ap">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/02/11/Python类中super-和-init-的关系/1798b.png">
+<meta property="og:updated_time" content="2019-02-12T05:57:21.672Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python类中super()和__init__()的关系">
+<meta name="twitter:description" content="1、单继承时super()和__init__()实现的功能是类似的12345678910111213141516171819class Base(object):    def __init__(self):        print &amp;apos;Base create&amp;apos;class childA(Base):    def __init__(self):        print &amp;ap">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/11/Python类中super-和-init-的关系/1798b.png">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-Python类中super-和-init-的关系" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Python类中super()和__init__()的关系
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/02/11/Python类中super-和-init-的关系/" class="article-date">
+            <time datetime="2019-02-11T12:29:48.000Z" itemprop="datePublished">2019-02-11</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/python/">python</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/2019/02/11/Python类中super-和-init-的关系/1798b.png" alt=""><br>1、<strong>单继承时super()和<code>__init__()</code>实现的功能是类似的</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Base(object):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        print &apos;Base create&apos;</span><br><span class="line"></span><br><span class="line">class childA(Base):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        print &apos;creat A &apos;,</span><br><span class="line">        Base.__init__(self)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class childB(Base):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        print &apos;creat B &apos;,</span><br><span class="line">        super(childB, self).__init__()</span><br><span class="line"></span><br><span class="line">base = Base()</span><br><span class="line"></span><br><span class="line">a = childA()</span><br><span class="line">b = childB()</span><br></pre></td></tr></table></figure></p>
+<p>输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Base create</span><br><span class="line">creat A  Base create</span><br><span class="line">creat B  Base create</span><br></pre></td></tr></table></figure></p>
+<p>使用super()继承时不用显式引用基类。</p>
+<p>2、<strong>super()只能用于新式类中</strong><br>把基类改为旧式类，即不继承任何基类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Base():</span><br><span class="line">    def __init__(self):</span><br><span class="line">        print &apos;Base create&apos;</span><br></pre></td></tr></table></figure></p>
+<p>执行时，在初始化b时就会报错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    super(childB, self).__init__()</span><br><span class="line">TypeError: must be type, not classobj</span><br></pre></td></tr></table></figure></p>
+<p>3、<strong>super不是父类，而是继承顺序的下一个类</strong><br>在多重继承时会涉及继承顺序，super（）相当于返回继承顺序的下一个类，而不是父类，类似于这样的功能：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def super(class_name, self):</span><br><span class="line">    mro = self.__class__.mro()</span><br><span class="line">    return mro[mro.index(class_name) + 1]</span><br><span class="line">    mro()用来获得类的继承顺序。</span><br></pre></td></tr></table></figure></p>
+<p>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Base(object):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        print &apos;Base create&apos;</span><br><span class="line"></span><br><span class="line">class childA(Base):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        print &apos;enter A &apos;</span><br><span class="line">        # Base.__init__(self)</span><br><span class="line">        super(childA, self).__init__()</span><br><span class="line">        print &apos;leave A&apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class childB(Base):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        print &apos;enter B &apos;</span><br><span class="line">        # Base.__init__(self)</span><br><span class="line">        super(childB, self).__init__()</span><br><span class="line">        print &apos;leave B&apos;</span><br><span class="line"></span><br><span class="line">class childC(childA, childB):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">c = childC()</span><br><span class="line">print c.__class__.__mro__</span><br></pre></td></tr></table></figure></p>
+<p>输入结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">enter A </span><br><span class="line">enter B </span><br><span class="line">Base create</span><br><span class="line">leave B</span><br><span class="line">leave A</span><br><span class="line">(&lt;class &apos;__main__.childC&apos;&gt;, &lt;class &apos;__main__.childA&apos;&gt;, &lt;class &apos;__main__.childB&apos;&gt;, &lt;class &apos;__main__.Base&apos;&gt;, &lt;type &apos;object&apos;&gt;)</span><br></pre></td></tr></table></figure></p>
+<p>supder和父类没有关联，因此执行顺序是A —&gt; B—&gt;—&gt;Base<br>执行过程相当于：初始化childC()时，先会去调用childA的构造方法中的 super(childA, self).<code>__init__()</code>， super(childA, self)返回当前类的继承顺序中childA后的一个类childB；然后再执行childB().<strong>init()</strong>,这样顺序执行下去。<br>在多重继承里，如果把childA()中的 super(childA, self).<code>__init__()</code> 换成Base.<strong>init</strong>(self)，在执行时，继承childA后就会直接跳到Base类里，而略过了childB：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">enter A </span><br><span class="line">Base create</span><br><span class="line">leave A</span><br><span class="line">(&lt;class &apos;__main__.childC&apos;&gt;, &lt;class &apos;__main__.childA&apos;&gt;, &lt;class &apos;__main__.childB&apos;&gt;, &lt;class &apos;__main__.Base&apos;&gt;, &lt;type &apos;object&apos;&gt;)</span><br></pre></td></tr></table></figure>
+<p>从super()方法可以看出，super（）的第一个参数可以是继承链中任意一个类的名字，<br>如果是本身就会依次继承下一个类；<br>如果是继承链里之前的类便会无限递归下去；<br>如果是继承链里之后的类便会忽略继承链汇总本身和传入类之间的类；<br>比如将childA()中的super改为：super(childC, self).<code>__init__()</code>，程序就会无限递归下去。<br>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">  File &quot;C:/Users/Administrator/Desktop/crawler/learn.py&quot;, line 10, in __init__</span><br><span class="line">    super(childC, self).__init__()</span><br><span class="line">  File &quot;C:/Users/Administrator/Desktop/crawler/learn.py&quot;, line 10, in __init__</span><br><span class="line">    super(childC, self).__init__()</span><br><span class="line">  File &quot;C:/Users/Administrator/Desktop/crawler/learn.py&quot;, line 10, in __init__</span><br><span class="line">    super(childC, self).__init__()</span><br><span class="line">  File &quot;C:/Users/Administrator/Desktop/crawler/learn.py&quot;, line 10, in __init__</span><br><span class="line">    super(childC, self).__init__()</span><br><span class="line">  File &quot;C:/Users/Administrator/Desktop/crawler/learn.py&quot;, line 10, in __init__</span><br><span class="line">    super(childC, self).__init__()</span><br><span class="line">  File &quot;C:/Users/Administrator/Desktop/crawler/learn.py&quot;, line 10, in __init__</span><br><span class="line">    super(childC, self).__init__()</span><br><span class="line">  File &quot;C:/Users/Administrator/Desktop/crawler/learn.py&quot;, line 10, in __init__</span><br><span class="line">    super(childC, self).__init__()</span><br><span class="line">  File &quot;C:/Users/Administrator/Desktop/crawler/learn.py&quot;, line 10, in __init__</span><br><span class="line">    super(childC, self).__init__()</span><br><span class="line">  File &quot;C:/Users/Administrator/Desktop/crawler/learn.py&quot;, line 10, in __init__</span><br><span class="line">    super(childC, self).__init__()</span><br><span class="line">  File &quot;C:/Users/Administrator/Desktop/crawler/learn.py&quot;, line 10, in __init__</span><br><span class="line">    super(childC, self).__init__()</span><br><span class="line">  File &quot;C:/Users/Administrator/Desktop/crawler/learn.py&quot;, line 10, in __init__</span><br><span class="line">    super(childC, self).__init__()</span><br><span class="line">  File &quot;C:/Users/Administrator/Desktop/crawler/learn.py&quot;, line 10, in __init__</span><br><span class="line">    super(childC, self).__init__()</span><br><span class="line">  File &quot;C:/Users/Administrator/Desktop/crawler/learn.py&quot;, line 10, in __init__</span><br><span class="line">    super(childC, self).__init__()</span><br><span class="line">RuntimeError: maximum recursion depth exceeded while calling a Python object</span><br></pre></td></tr></table></figure>
+<p>4、<strong>super()可以避免重复调用</strong><br>如果childA基础Base, childB继承childA和Base，如果childB需要调用Base的<code>__init__()</code>方法时，就会导致<code>__init__()</code>被执行两次：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Base(object):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        print &apos;Base create&apos;</span><br><span class="line"></span><br><span class="line">class childA(Base):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        print &apos;enter A &apos;</span><br><span class="line">        Base.__init__(self)</span><br><span class="line">        print &apos;leave A&apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class childB(childA, Base):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        childA.__init__(self)</span><br><span class="line">        Base.__init__(self)</span><br><span class="line"></span><br><span class="line">b = childB()</span><br></pre></td></tr></table></figure></p>
+<p>Base的<code>__init__()</code>方法被执行了两次</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">enter A </span><br><span class="line">Base create</span><br><span class="line">leave A</span><br><span class="line">Base create</span><br></pre></td></tr></table></figure>
+<p>使用super()是可避免重复调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Base(object):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        print &apos;Base create&apos;</span><br><span class="line"></span><br><span class="line">class childA(Base):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        print &apos;enter A &apos;</span><br><span class="line">        super(childA, self).__init__()</span><br><span class="line">        print &apos;leave A&apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class childB(childA, Base):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        super(childB, self).__init__()</span><br><span class="line"></span><br><span class="line">b = childB()</span><br><span class="line">print b.__class__.mro()</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">enter A </span><br><span class="line">Base create</span><br><span class="line">leave A</span><br><span class="line">[&lt;class &apos;__main__.childB&apos;&gt;, &lt;class &apos;__main__.childA&apos;&gt;, &lt;class &apos;__main__.Base&apos;&gt;, &lt;type &apos;object&apos;&gt;]</span><br></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/02/11/Python类中super-和-init-的关系/" data-id="cjs16qgn6000rsgfvqpmr1gng" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/02/11/Python中的-init-和-new/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Python中的__init__和__new__
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/02/11/PHP数据库/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">PHP数据库</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/PHP-Ajax跨域问题最佳解决方案/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/12/PHP-Ajax跨域问题最佳解决方案/p=0.jpg)" alt="PHP-Ajax跨域问题最佳解决方案" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/12/PHP-Ajax跨域问题最佳解决方案/" class="title">PHP-Ajax跨域问题最佳解决方案</a></p>
+                            <p class="item-date"><time datetime="2019-02-12T02:57:31.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/PHP和AJAX/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/12/PHP和AJAX/31627.png)" alt="PHP和AJAX" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/12/PHP和AJAX/" class="title">PHP和AJAX</a></p>
+                            <p class="item-date"><time datetime="2019-02-12T02:27:54.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/PHP-XML/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/12/PHP-XML/672d.jpg)" alt="PHP-XML" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/12/PHP-XML/" class="title">PHP-XML</a></p>
+                            <p class="item-date"><time datetime="2019-02-12T01:19:51.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/11/Python中的-init-和-new/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/11/Python中的-init-和-new/=0.jpg)" alt="Python中的__init__和__new__" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/11/Python中的-init-和-new/" class="title">Python中的__init__和__new__</a></p>
+                            <p class="item-date"><time datetime="2019-02-11T13:40:54.000Z" itemprop="datePublished">2019-02-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/11/Python类中super-和-init-的关系/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/11/Python类中super-和-init-的关系/1798b.png)" alt="Python类中super()和__init__()的关系" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/11/Python类中super-和-init-的关系/" class="title">Python类中super()和__init__()的关系</a></p>
+                            <p class="item-date"><time datetime="2019-02-11T12:29:48.000Z" itemprop="datePublished">2019-02-11</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 18.75px;">JavaScript</a> <a href="/tags/PHP/" style="font-size: 17.5px;">PHP</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/html/" style="font-size: 12.5px;">html</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 16.25px;">maven</a> <a href="/tags/node/" style="font-size: 11.25px;">node</a> <a href="/tags/orcal/" style="font-size: 13.75px;">orcal</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/冷知识/" style="font-size: 11.25px;">冷知识</a> <a href="/tags/心语/" style="font-size: 12.5px;">心语</a> <a href="/tags/技术/" style="font-size: 12.5px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/02/11/Python类中super-和-init-的关系/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
