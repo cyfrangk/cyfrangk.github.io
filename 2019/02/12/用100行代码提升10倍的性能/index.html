@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>用100行代码提升10倍的性能 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="数据结构与算法">
+    
+    <meta name="description" content="提出问题从一个我常用的面试题，也是真实需求开始聊起： 你需要在前端展示 5000 条甚至更多的数据，每一条数据的数据结构是一个对象，里面有格式各样的属性。每个属性的值又可以是基本类型，对象，甚至数组。这里的对象或者数组内部的元素又可以继续包含对象或者数组并且允许无限嵌套下去。比如123456789101112&amp;#123;  &amp;quot;name&amp;quot;: &amp;#123;    &amp;quot;fir">
+<meta name="keywords" content="数据结构与算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用100行代码提升10倍的性能">
+<meta property="og:url" content="http://yoursite.com/2019/02/12/用100行代码提升10倍的性能/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="提出问题从一个我常用的面试题，也是真实需求开始聊起： 你需要在前端展示 5000 条甚至更多的数据，每一条数据的数据结构是一个对象，里面有格式各样的属性。每个属性的值又可以是基本类型，对象，甚至数组。这里的对象或者数组内部的元素又可以继续包含对象或者数组并且允许无限嵌套下去。比如123456789101112&amp;#123;  &amp;quot;name&amp;quot;: &amp;#123;    &amp;quot;fir">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/02/12/用100行代码提升10倍的性能/651e0.png">
+<meta property="og:updated_time" content="2019-02-12T12:48:08.037Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用100行代码提升10倍的性能">
+<meta name="twitter:description" content="提出问题从一个我常用的面试题，也是真实需求开始聊起： 你需要在前端展示 5000 条甚至更多的数据，每一条数据的数据结构是一个对象，里面有格式各样的属性。每个属性的值又可以是基本类型，对象，甚至数组。这里的对象或者数组内部的元素又可以继续包含对象或者数组并且允许无限嵌套下去。比如123456789101112&amp;#123;  &amp;quot;name&amp;quot;: &amp;#123;    &amp;quot;fir">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/12/用100行代码提升10倍的性能/651e0.png">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-用100行代码提升10倍的性能" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        用100行代码提升10倍的性能
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/02/12/用100行代码提升10倍的性能/" class="article-date">
+            <time datetime="2019-02-12T12:38:54.000Z" itemprop="datePublished">2019-02-12</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/数据结构与算法/">数据结构与算法</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="提出问题"><a href="#提出问题" class="headerlink" title="提出问题"></a>提出问题</h2><p>从一个我常用的面试题，也是真实需求开始聊起：</p>
+<p>你需要在前端展示 5000 条甚至更多的数据，每一条数据的数据结构是一个对象，里面有格式各样的属性。每个属性的值又可以是基本类型，对象，甚至数组。这里的对象或者数组内部的元素又可以继续包含对象或者数组并且允许无限嵌套下去。比如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &#123;</span><br><span class="line">    &quot;firstName&quot;: &quot;yi&quot;,</span><br><span class="line">    &quot;lastName&quot;: &quot;li&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;age&quot;: 23,</span><br><span class="line">  &quot;roles&quot;: [&apos;developer&apos;, &apos;admin&apos;],</span><br><span class="line">  &quot;projects&quot;: [&#123;</span><br><span class="line">    &quot;name&quot;: &quot;demo&quot;,</span><br><span class="line">    &quot;repo&quot;: &quot;&quot;</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>页面上提供一个搜索框，用户通过输入搜索的内容可以找到包含这个内容的数据。注意，只要任意数据对象的任意属性值 (比如在上面的数据结构中，只要 name, age, roles 任何一个属性的值)包含这个关键词即可。如果属性值是数组或者对象，那么数组的元素或者对象的值继续对输入内容进行匹配检测，并递归的检测下去，只要有命中，便算该数据匹配</p>
+<p>如何设计这个功能，让搜索功能尽可能的快？</p>
+<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><p>如果你稍有程序员的敏感度，此时你的脑海里应该有两个念头：</p>
+<ul>
+<li>遍历以及深度优先遍历是最直接的方式</li>
+<li>如果要求够快的话遍历我就输了<br>的确，遍历是最简单但也是最慢的。所以通常的优化方法之一是通过空间换取时间；而另一个方法……稍后再引出。</li>
+</ul>
+<p>这里我们尝试通过建立字典树（Trie）来优化搜索。</p>
+<p>如果你还不了解什么是字典树，下面做简单的介绍：假设我们有一个简单的对象，键值的对应关系如下：<br><img src="/2019/02/12/用100行代码提升10倍的性能/651e0.png" alt=""><br>我们根据「键」的字母出现顺次构建出一棵树出来，叶子节点值即有可能是某个「键」的值<br><img src="/2019/02/12/用100行代码提升10倍的性能/80d4e.png" alt=""><br>那么此时无论用户想访问任何属性的值，只要从树的根节点出发，依据属性字母出现的顺序访问树的叶子节点，即可得到该属性的值。比如当我们想访问tea时：<br><img src="/2019/02/12/用100行代码提升10倍的性能/b4afb.png" alt=""><br>但是在我们需要解决的场景中，我们不需要关心「属性」，我们只关心「值」是否匹配上搜索的内容。所以我们只需要对「值」建立字典树。</p>
+<p>假设有以下的对象值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const o = &#123;</span><br><span class="line">  message: &apos;ack&apos;</span><br><span class="line">  fruit: &apos;apple&apos;,</span><br><span class="line">  unit: &apos;an&apos;,</span><br><span class="line">  name: &apos;anna&apos;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>建立的树状结构如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">root--a</span><br><span class="line">      |--c</span><br><span class="line">         |--k</span><br><span class="line">      |--p</span><br><span class="line">         |--p</span><br><span class="line">            |--l</span><br><span class="line">               |--e    </span><br><span class="line">      |--n</span><br><span class="line">         |--n</span><br><span class="line">            |--a</span><br></pre></td></tr></table></figure></p>
+<p>当用户搜索 apple 时，从a开始访问，至最后访问到字母 e 时，若在树中有对应的节点，表示命中；当用户搜索 aha 时，在访问 h 时就已经无法在树中找到对应的节点了，表示该对象不符合搜索条件</p>
+<p>但实际工作中我们会有非常多个对象值，多个对象值之间可能有重复的值，所以匹配时，我们要把所有可能的匹配结果都返回。比如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    id: 1,</span><br><span class="line">    message: &apos;ack&apos;</span><br><span class="line">    fruit: &apos;apple&apos;,</span><br><span class="line">    unit: &apos;an&apos;,</span><br><span class="line">    name: &apos;anna&apos;,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    id: 2,</span><br><span class="line">    message: &apos;ack&apos;</span><br><span class="line">    fruit: &apos;banana&apos;,</span><br><span class="line">    unit: &apos;an&apos;,</span><br><span class="line">    name: &apos;lee&apos;,</span><br><span class="line">  &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>上面两个对象有相同的值 ack 和 an，所以在树上的叶子节点中我们还要添加对象的 id 辨识信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">root--a</span><br><span class="line">      |--c</span><br><span class="line">         |--k (ids: [1,2])</span><br><span class="line">      |--p</span><br><span class="line">         |--p</span><br><span class="line">            |--l</span><br><span class="line">               |--e (ids: [1])</span><br><span class="line">      |--n (ids: [1, 2])</span><br><span class="line">         |--n</span><br><span class="line">            |--a (ids: [1])</span><br></pre></td></tr></table></figure></p>
+<p>这样当用户搜索 an 时，我们能返回所有的匹配项</p>
+<p>OK，有了思路之后我们开始实现代码。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p><strong>假数据</strong><br>首先要解决的一个问题是如果快速的伪造 5000 条数据？这里我们使用 <a href="https://randomuser.me/api/开源" target="_blank" rel="noopener">https://randomuser.me/api/开源</a> API。为了简单起见，我们让它只返回 gender, email, phone, cell, nat基本数据类型的值，而不返回嵌套结构（对象和数组）。注意这里只是为了便于代码展示和理解，略去了复杂的结构，也就避免了复杂的代码。加入复杂结构之后代码其实也没有大的变化，只是增加了遍历的逻辑和递归逻辑而已。</p>
+<p>请求 <a href="https://randomuser.me/api/?results=5000&amp;inc=gender,email,phone,cell,nat" target="_blank" rel="noopener">https://randomuser.me/api/?results=5000&amp;inc=gender,email,phone,cell,nat</a> 结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;results&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;gender&quot;: &quot;male&quot;,</span><br><span class="line">      &quot;email&quot;: &quot;enzo.dumont@example.com&quot;,</span><br><span class="line">      &quot;phone&quot;: &quot;02-65-13-26-00&quot;,</span><br><span class="line">      &quot;cell&quot;: &quot;06-09-02-19-99&quot;,</span><br><span class="line">      &quot;nat&quot;: &quot;FR&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;gender&quot;: &quot;male&quot;,</span><br><span class="line">      &quot;email&quot;: &quot;gerald.omahony@example.com&quot;,</span><br><span class="line">      &quot;phone&quot;: &quot;011-376-3811&quot;,</span><br><span class="line">      &quot;cell&quot;: &quot;081-697-1414&quot;,</span><br><span class="line">      &quot;nat&quot;: &quot;IE&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    //...</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>叶子节点数据结构</strong><br>根据思路中的描述，数据结构描述如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Leaf &#123;</span><br><span class="line">  constructor(id = &quot;&quot;, value = &quot;&quot;) &#123;</span><br><span class="line">    this.ids = id ? [id] : [];</span><br><span class="line">    this.value = value;</span><br><span class="line">    this.children = &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  share(id) &#123;</span><br><span class="line">    this.ids.push(id);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>share方法用于向该叶子节点添加多个相同的匹配的id</p>
+<p><strong>帮助函数</strong><br>在编码的过程中我们需要一些帮助函数，比如:</p>
+<ul>
+<li>isEmptyObject: 判断是否是空对象</li>
+<li>distinct: 移除一个数组中的重复元素</li>
+</ul>
+<p>这两个函数可以借用lodash类库实现，即使手动实现起来也很简单，这里就不赘述了</p>
+<p>另一个重要的方法是normalize，我更习惯将normalize翻译为「扁平化」(而不是「标准化」)，因为这样更形象。该方法用于将一个数组里的对象拆分为 id 与对象的映射关系。</p>
+<p>比如将<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    id: 1,</span><br><span class="line">    message: &apos;ack&apos;</span><br><span class="line">    fruit: &apos;apple&apos;,</span><br><span class="line">    unit: &apos;an&apos;,</span><br><span class="line">    name: &apos;anna&apos;,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    id: 2,</span><br><span class="line">    message: &apos;ack&apos;</span><br><span class="line">    fruit: &apos;banana&apos;,</span><br><span class="line">    unit: &apos;an&apos;,</span><br><span class="line">    name: &apos;lee&apos;,</span><br><span class="line">  &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>扁平化之后为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &apos;1&apos;: &#123;</span><br><span class="line">    id: 1,</span><br><span class="line">    message: &apos;ack&apos;</span><br><span class="line">    fruit: &apos;apple&apos;,</span><br><span class="line">    unit: &apos;an&apos;,</span><br><span class="line">    name: &apos;anna&apos;,</span><br><span class="line">  &#125;,</span><br><span class="line">  &apos;2&apos;: &#123;</span><br><span class="line">    id: 2,</span><br><span class="line">    message: &apos;ack&apos;</span><br><span class="line">    fruit: &apos;banana&apos;,</span><br><span class="line">    unit: &apos;an&apos;,</span><br><span class="line">    name: &apos;lee&apos;,   </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>之所以要这么做是为了当检索结果返回一个 id 数组时：[1, 2, 3]，我们只需要遍历一边返回结果就能通过 id 在扁平化的 Map 里立即找到对应的数据。否则还要不停的遍历原始数据数组找到对应的数据.</p>
+<p>因为 randomuser.me 返回的信息中不包含 id 信息，所以我们暂时用 email 信息作为唯一标示。normalize 的实现如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function normalize(identify, data) &#123;</span><br><span class="line">  const id2Value = &#123;&#125;;</span><br><span class="line">  data.forEach(item =&gt; &#123;</span><br><span class="line">    const idValue = item[identify];</span><br><span class="line">    id2Value[idValue] = item;</span><br><span class="line">  &#125;);</span><br><span class="line">  return id2Value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>构建一棵树</strong><br>这部分代码就没有什么秘密了，完全是按照递算法归构建一颗树了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">fetch(&quot;https://randomuser.me/api/?results=5000&amp;inc=gender,email,phone,cell,nat&quot;)</span><br><span class="line">  .then(response =&gt; &#123;</span><br><span class="line">    return response.json();</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(data =&gt; &#123;</span><br><span class="line">    const &#123; results &#125; = data;</span><br><span class="line">    const root = new Leaf();</span><br><span class="line">    const identifyKey = &quot;email&quot;;</span><br><span class="line"></span><br><span class="line">    results.forEach(item =&gt; &#123;</span><br><span class="line">      const identifyValue = item[identifyKey];</span><br><span class="line">      Object.values(item).forEach(itemValue =&gt; &#123;</span><br><span class="line">        // 注意这里会把 Number 和 Boolean 类型也字符串化</span><br><span class="line">        const stringifiedValue = String(itemValue);</span><br><span class="line">        let tempRoot = root;</span><br><span class="line">        const arraiedStringifiedValue = Array.from(stringifiedValue);</span><br><span class="line">        arraiedStringifiedValue.forEach((character, characterIndex) =&gt; &#123;</span><br><span class="line">          const reachEnd =</span><br><span class="line">            characterIndex === arraiedStringifiedValue.length - 1;</span><br><span class="line">          if (!tempRoot.children[character]) &#123;</span><br><span class="line">            tempRoot.children[character] = new Leaf(</span><br><span class="line">              reachEnd ? identifyValue : &quot;&quot;,</span><br><span class="line">              character</span><br><span class="line">            );</span><br><span class="line">            tempRoot = tempRoot.children[character];</span><br><span class="line">          &#125; else &#123;</span><br><span class="line">            if (reachEnd) &#123;</span><br><span class="line">              tempRoot.children[character].share(identifyValue);</span><br><span class="line">            &#125;</span><br><span class="line">            tempRoot = tempRoot.children[character];</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>模糊搜索</strong><br>搜索部分代码也没有什么秘密，按图索骥而已：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function searchBlurry(root, keyword, userMap) &#123;</span><br><span class="line">  const keywordArr = Array.from(String(keyword));</span><br><span class="line">  let tempRoot = root;</span><br><span class="line">  let result = [];</span><br><span class="line"></span><br><span class="line">  for (let i = 0; i &lt; keywordArr.length; i++) &#123;</span><br><span class="line">    const character = keywordArr[i];</span><br><span class="line">    if (!tempRoot.children[character]) &#123;</span><br><span class="line">      break;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      tempRoot = tempRoot.children[character];</span><br><span class="line">    &#125;</span><br><span class="line">    if (keywordArr.length - 1 === i) &#123;</span><br><span class="line">      result = [</span><br><span class="line">        ...tempRoot.ids,</span><br><span class="line">        ...collectChildrenInsideIds(tempRoot.children)</span><br><span class="line">      ];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return distinct(result).map(id =&gt; &#123;</span><br><span class="line">    return userMap[id];</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意这里有一个collectChildrenInsideIds方法，这个方法用于收集该叶子节点下所有的子节点的 id。这么做是因为当前操作模糊匹配，当你搜索a时，apple, anna, ack 都算匹配。</p>
+<p><strong>常规搜索办法以及字典树的缺陷</strong><br>为了对比效率，并且为了测试搜索结果的正确性，我们仍然需要编写一个常规的遍历的搜索方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function regularSearch(searchKeyword) &#123;</span><br><span class="line">  const regularSearchResults = [];</span><br><span class="line">  results.forEach(item =&gt; &#123;</span><br><span class="line">    for (const key in item) &#123;</span><br><span class="line">      const value = item[key];</span><br><span class="line">      if (String(value).startsWith(searchKeyword)) &#123;</span><br><span class="line">        regularSearchResults.push(item);</span><br><span class="line">        break;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  return regularSearchResults</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意在测试对象值是否匹配搜索词时，我们使用了startsWith，而不是indexOf，这是因为字典树的缺陷在于只能匹配以搜索词开头的词！比如当你搜索a时，只能匹配apple、anna而不能匹配banana。为了便于对比，我们不得不使用startsWith</p>
+<p><strong>性能的对比</strong><br>性能的对比结果是很有意思的：</p>
+<ul>
+<li>当数据量较小时，查找效率不会有大的差异</li>
+<li>当数据量较大时，比如 5000 条的情况下，当你的搜索词非常短小，比如a，那么字典树的查找效率会比遍历搜索低，也就是反而花费的时间长；当搜索词变得具体时，比如ali，字典树的查找效率会比遍历搜索高</li>
+</ul>
+<p>效率反而低的问题不难想到是为什么：当你搜索词简单时，访问的叶子节点会少，所以只能扫描children收集子节点的所有的可能 id，这步操作中遍历的过程占用了大部分时间</p>
+<p>但是我们仍然需要满足这部分的查询需求，所以我们要针对这个场景做一些优化</p>
+<p><strong>优化简短搜索的场景</strong><br>我们回想一下简单搜索的场景，性能的瓶颈主要在于我们需要遍历叶子节点下的所有子节点。好办，鉴于树构建完之后不会再发生变化，那么我们只需要提前计算好每个叶子节点的所以子 id 就好了，这就是文章开头说的第二类优化方案，即预计算。</p>
+<p>我编写了一个新的方法，用于递归的给每个叶子节点添加它所有子节点的 id:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function decorateWithChildrenIds(root) &#123;</span><br><span class="line">  const &#123; children &#125; = root;</span><br><span class="line">  root.childrenIds = collectChildrenInsideIds(root.children);</span><br><span class="line">  for (const character in children) &#123;</span><br><span class="line">    const characterLeaf = children[character];</span><br><span class="line">    characterLeaf.childrenIds = collectChildrenInsideIds(</span><br><span class="line">      characterLeaf.children</span><br><span class="line">    );</span><br><span class="line">    decorateWithChildrenIds(characterLeaf);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>那么在构建完树之后，用这个方法把所有叶子节点「装饰」一遍就好了</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>在通过预计算之后，在 5000 条数据的情况下，无论是短搜索还是长搜索，字典树的查找效率基本是在 1ms 左右，而常规的遍历查找则处于 10ms 左右，的确是十倍的提升。但是这个提升的代价是建立在牺牲空间，以及提前花费了时间计算的情况下。相信如果数据结构变得更复杂，效率提升会更明显</p>
+<p>本文源代码的地址是 (<a href="https://github.com/hh54188/search-trie-tree)[https://github.com/hh54188/search-trie-tree]" target="_blank" rel="noopener">https://github.com/hh54188/search-trie-tree)[https://github.com/hh54188/search-trie-tree]</a></p>
+<p>最后留下一个问题给大家：当需要搜寻的数据量变大时，比如 1000 时，偶尔会出现字典树搜索结果和遍历搜索结果不一致的情况，而当数据量变得更大时，比如 5000 条，那么这个「问题」会稳定出现。这个问题算不上 bug，但是问题出在哪呢 ？</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/02/12/用100行代码提升10倍的性能/" data-id="cjs1s5405004pjwfv1wm47zhk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/02/12/Linux内核到底长啥样/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Linux内核到底长啥样
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/02/12/25个最基本的JavaScript面试问题及答案/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">25个最基本的JavaScript面试问题及答案</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/Linux内核到底长啥样/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/12/Linux内核到底长啥样/01.jpg)" alt="Linux内核到底长啥样" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/12/Linux内核到底长啥样/" class="title">Linux内核到底长啥样</a></p>
+                            <p class="item-date"><time datetime="2019-02-12T12:56:03.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/用100行代码提升10倍的性能/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/12/用100行代码提升10倍的性能/651e0.png)" alt="用100行代码提升10倍的性能" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/12/用100行代码提升10倍的性能/" class="title">用100行代码提升10倍的性能</a></p>
+                            <p class="item-date"><time datetime="2019-02-12T12:38:54.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/25个最基本的JavaScript面试问题及答案/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/12/25个最基本的JavaScript面试问题及答案/68423.JPEG)" alt="25个最基本的JavaScript面试问题及答案" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/12/25个最基本的JavaScript面试问题及答案/" class="title">25个最基本的JavaScript面试问题及答案</a></p>
+                            <p class="item-date"><time datetime="2019-02-12T10:51:29.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/想和Java程序员谈一谈/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/12/想和Java程序员谈一谈/aa.jpg)" alt="想和Java程序员谈一谈" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/12/想和Java程序员谈一谈/" class="title">想和Java程序员谈一谈</a></p>
+                            <p class="item-date"><time datetime="2019-02-12T09:58:31.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/IP/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/12/IP/2808.png)" alt="IP" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/12/IP/" class="title">IP</a></p>
+                            <p class="item-date"><time datetime="2019-02-12T09:25:48.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 18.89px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 16.67px;">PHP</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/html/" style="font-size: 12.22px;">html</a> <a href="/tags/java/" style="font-size: 17.78px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15.56px;">maven</a> <a href="/tags/node/" style="font-size: 11.11px;">node</a> <a href="/tags/orcal/" style="font-size: 13.33px;">orcal</a> <a href="/tags/python/" style="font-size: 14.44px;">python</a> <a href="/tags/冷知识/" style="font-size: 12.22px;">冷知识</a> <a href="/tags/心语/" style="font-size: 12.22px;">心语</a> <a href="/tags/技术/" style="font-size: 12.22px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15.56px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/02/12/用100行代码提升10倍的性能/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
