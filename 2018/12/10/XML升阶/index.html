@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>XML升阶 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="XML">
+    
+    <meta name="description" content="XML 命名空间XML 命名空间提供避免元素命名冲突的方法。 命名冲突在 XML 中，元素名称是由开发者定义的，当两个不同的文档使用相同的元素名时，就会发生命名冲突。这个 XML 携带 HTML 表格的信息：123456&amp;lt;table&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;Apples&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;Bananas&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;">
+<meta name="keywords" content="XML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XML升阶">
+<meta property="og:url" content="http://yoursite.com/2018/12/10/XML升阶/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="XML 命名空间XML 命名空间提供避免元素命名冲突的方法。 命名冲突在 XML 中，元素名称是由开发者定义的，当两个不同的文档使用相同的元素名时，就会发生命名冲突。这个 XML 携带 HTML 表格的信息：123456&amp;lt;table&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;Apples&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;Bananas&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/12/10/XML升阶/timg.jpg">
+<meta property="og:updated_time" content="2019-02-15T12:52:44.281Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="XML升阶">
+<meta name="twitter:description" content="XML 命名空间XML 命名空间提供避免元素命名冲突的方法。 命名冲突在 XML 中，元素名称是由开发者定义的，当两个不同的文档使用相同的元素名时，就会发生命名冲突。这个 XML 携带 HTML 表格的信息：123456&amp;lt;table&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;Apples&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;Bananas&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/10/XML升阶/timg.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-XML升阶" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        XML升阶
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/12/10/XML升阶/" class="article-date">
+            <time datetime="2018-12-10T08:03:24.000Z" itemprop="datePublished">2018-12-10</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/XML/">XML</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/2018/12/10/XML升阶/timg.jpg" alt=""></p>
+<h2 id="XML-命名空间"><a href="#XML-命名空间" class="headerlink" title="XML 命名空间"></a>XML 命名空间</h2><p><code>XML 命名空间提供避免元素命名冲突的方法。</code></p>
+<p><strong>命名冲突</strong><br>在 XML 中，元素名称是由开发者定义的，当两个不同的文档使用相同的元素名时，就会发生命名冲突。<br>这个 XML 携带 HTML 表格的信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;td&gt;Apples&lt;/td&gt;</span><br><span class="line">&lt;td&gt;Bananas&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这个 XML 文档携带有关桌子的信息（一件家具）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">&lt;name&gt;African Coffee Table&lt;/name&gt;</span><br><span class="line">&lt;width&gt;80&lt;/width&gt;</span><br><span class="line">&lt;length&gt;120&lt;/length&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure></p>
+<p>假如这两个 XML 文档被一起使用，由于两个文档都包含带有不同内容和定义的<code>&lt;table&gt;</code>元素，就会发生命名冲突。<br>XML 解析器无法确定如何处理这类冲突。</p>
+<p><strong>使用前缀来避免命名冲突</strong><br>在 XML 中的命名冲突可以通过使用名称前缀从而容易地避免。<br>该 XML 携带某个 HTML 表格和某件家具的信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;h:table&gt;</span><br><span class="line">&lt;h:tr&gt;</span><br><span class="line">&lt;h:td&gt;Apples&lt;/h:td&gt;</span><br><span class="line">&lt;h:td&gt;Bananas&lt;/h:td&gt;</span><br><span class="line">&lt;/h:tr&gt;</span><br><span class="line">&lt;/h:table&gt;</span><br><span class="line"></span><br><span class="line">&lt;f:table&gt;</span><br><span class="line">&lt;f:name&gt;African Coffee Table&lt;/f:name&gt;</span><br><span class="line">&lt;f:width&gt;80&lt;/f:width&gt;</span><br><span class="line">&lt;f:length&gt;120&lt;/f:length&gt;</span><br><span class="line">&lt;/f:table&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在上面的实例中，不会有冲突，因为两个<code>&lt;table&gt;</code>元素有不同的名称。</p>
+<p><strong>XML 命名空间 - xmlns 属性</strong><br>当在 XML 中使用前缀时，一个<strong>所谓的</strong>用于前缀的命名空间必须被定义。<br>命名空间是在元素的开始标签的<code>xmlns</code>属性中定义的。<br>命名空间声明的语法如下。xmlns:前缀=”URI”。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;root&gt;</span><br><span class="line"></span><br><span class="line">&lt;h:table xmlns:h=&quot;http://www.w3.org/TR/html4/&quot;&gt;</span><br><span class="line">&lt;h:tr&gt;</span><br><span class="line">&lt;h:td&gt;Apples&lt;/h:td&gt;</span><br><span class="line">&lt;h:td&gt;Bananas&lt;/h:td&gt;</span><br><span class="line">&lt;/h:tr&gt;</span><br><span class="line">&lt;/h:table&gt;</span><br><span class="line"></span><br><span class="line">&lt;f:table xmlns:f=&quot;http://www.w3cschool.cc/furniture&quot;&gt;</span><br><span class="line">&lt;f:name&gt;African Coffee Table&lt;/f:name&gt;</span><br><span class="line">&lt;f:width&gt;80&lt;/f:width&gt;</span><br><span class="line">&lt;f:length&gt;120&lt;/f:length&gt;</span><br><span class="line">&lt;/f:table&gt;</span><br><span class="line"></span><br><span class="line">&lt;/root&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在上面的实例中，<code>&lt;table&gt;</code>标签的 xmlns 属性定义了 h: 和 f: 前缀的合格命名空间。<br>当命名空间被定义在元素的开始标签中时，所有带有相同前缀的子元素都会与同一个命名空间相关联。<br>命名空间，可以在他们被使用的元素中或者在 XML 根元素中声明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;root xmlns:h=&quot;http://www.w3.org/TR/html4/&quot;</span><br><span class="line">xmlns:f=&quot;http://www.w3cschool.cc/furniture&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;h:table&gt;</span><br><span class="line">&lt;h:tr&gt;</span><br><span class="line">&lt;h:td&gt;Apples&lt;/h:td&gt;</span><br><span class="line">&lt;h:td&gt;Bananas&lt;/h:td&gt;</span><br><span class="line">&lt;/h:tr&gt;</span><br><span class="line">&lt;/h:table&gt;</span><br><span class="line"></span><br><span class="line">&lt;f:table&gt;</span><br><span class="line">&lt;f:name&gt;African Coffee Table&lt;/f:name&gt;</span><br><span class="line">&lt;f:width&gt;80&lt;/f:width&gt;</span><br><span class="line">&lt;f:length&gt;120&lt;/f:length&gt;</span><br><span class="line">&lt;/f:table&gt;</span><br><span class="line"></span><br><span class="line">&lt;/root&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注释：</strong>命名空间 URI 不会被解析器用于查找信息。<br>其目的是赋予命名空间一个惟一的名称。不过，很多公司常常会作为指针来使用命名空间指向实际存在的网页，这个网页包含关于命名空间的信息。<br>请访问 <a href="http://www.w3.org/TR/html4/。" target="_blank" rel="noopener">http://www.w3.org/TR/html4/。</a></p>
+<p><strong>统一资源标识符（URI，全称 Uniform Resource Identifier）</strong><br><code>统一资源标识符（URI）</code>是一串可以标识因特网资源的字符。<br>最常用的 URI 是用来标识因特网域名地址的<code>统一资源定位器（URL）</code>。另一个不那么常用的 URI 是<code>统一资源命名（URN）</code>。<br>在我们的实例中，我们仅使用 URL。</p>
+<p><strong>默认的命名空间</strong><br>为元素定义默认的命名空间可以让我们省去在所有的子元素中使用前缀的工作。它的语法如下：<br><code>xmlns=&quot;namespaceURI&quot;</code><br>这个 XML 携带 HTML 表格的信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;table xmlns=&quot;http://www.w3.org/TR/html4/&quot;&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;td&gt;Apples&lt;/td&gt;</span><br><span class="line">&lt;td&gt;Bananas&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这个XML携带有关一件家具的信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;table xmlns=&quot;http://www.w3schools.com/furniture&quot;&gt;</span><br><span class="line">&lt;name&gt;African Coffee Table&lt;/name&gt;</span><br><span class="line">&lt;width&gt;80&lt;/width&gt;</span><br><span class="line">&lt;length&gt;120&lt;/length&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>实际使用中的命名空间</strong><br>XSLT 是一种用于把 XML 文档转换为其他格式的 XML 语言，比如 HTML。<br>在下面的 XSLT 文档中，您可以看到，大多数的标签是 HTML 标签。<br>非 HTML 的标签都有前缀 xsl，并由此命名空间标识：xmlns:xsl=”<a href="http://www.w3.org/1999/XSL/Transform&quot;：" target="_blank" rel="noopener">http://www.w3.org/1999/XSL/Transform&quot;：</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;xsl:stylesheet version=&quot;1.0&quot;</span><br><span class="line">xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;xsl:template match=&quot;/&quot;&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h2&gt;My CD Collection&lt;/h2&gt;</span><br><span class="line">&lt;table border=&quot;1&quot;&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;th align=&quot;left&quot;&gt;Title&lt;/th&gt;</span><br><span class="line">&lt;th align=&quot;left&quot;&gt;Artist&lt;/th&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;xsl:for-each select=&quot;catalog/cd&quot;&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;td&gt;&lt;xsl:value-of select=&quot;title&quot;/&gt;&lt;/td&gt;</span><br><span class="line">&lt;td&gt;&lt;xsl:value-of select=&quot;artist&quot;/&gt;&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;/xsl:for-each&gt;</span><br><span class="line">&lt;/table&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">&lt;/xsl:template&gt;</span><br><span class="line"></span><br><span class="line">&lt;/xsl:stylesheet&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="XML-CDATA"><a href="#XML-CDATA" class="headerlink" title="XML CDATA"></a>XML CDATA</h2><p>XML 文档中的所有文本均会被解析器解析，有些文本并不希望解析。<br>·只有 CDATA 区段中的文本会被解析器忽略。·</p>
+<p><strong>PCDATA - 被解析的字符数据</strong><br>XML 解析器通常会解析 XML 文档中所有的文本。<br>当某个 XML 元素被解析时，其标签之间的文本也会被解析：<br><code>&lt;message&gt;This text is also parsed&lt;/message&gt;</code><br>解析器之所以这么做是因为 XML 元素可包含其他元素，就像这个实例中，其中的 <name> 元素包含着另外的两个元素（first 和 last）：<br><code>&lt;name&gt;&lt;first&gt;Bill&lt;/first&gt;&lt;last&gt;Gates&lt;/last&gt;&lt;/name&gt;</code><br>而解析器会把它分解为像这样的子元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;name&gt;</span><br><span class="line">&lt;first&gt;Bill&lt;/first&gt;</span><br><span class="line">&lt;last&gt;Gates&lt;/last&gt;</span><br><span class="line">&lt;/name&gt;</span><br></pre></td></tr></table></figure></name></p>
+<p><code>解析字符数据（PCDATA）是 XML 解析器解析的文本数据使用的一个术语。</code></p>
+<p><strong>CDATA - （未解析）字符数据</strong><br>术语 CDATA 是不应该由 XML 解析器解析的文本数据。<br>像<code>&quot;&lt;&quot;</code>和<code>&quot;&amp;&quot;</code>字符在 <strong>XML 元素</strong>中都是非法的。</p>
+<p><code>&quot;&lt;&quot;</code>会产生错误，因为解析器会把该字符解释为<strong>新元素</strong>的开始。<br><code>&quot;&amp;&quot;</code>会产生错误，因为解析器会把该字符解释为<strong>字符实体</strong>的开始。</p>
+<p>某些文本，比如 JavaScript 代码，包含大量<code>&quot;&lt;&quot;</code>或<code>&quot;&amp;&quot;</code>字符。为了避免错误，可以将脚本代码定义为 CDATA。</p>
+<p>CDATA 部分中的所有内容都会被解析器忽略。<br>CDATA 部分由<code>&quot;&lt;![CDATA[&quot; 开始，由 &quot;]]&gt;&quot;</code>结束：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">&lt;![CDATA[</span><br><span class="line">function matchwo(a,b)</span><br><span class="line">&#123;</span><br><span class="line">if (a &lt; b &amp;&amp; a &lt; 0) then</span><br><span class="line">&#123;</span><br><span class="line">return 1;</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">]]&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在上面的实例中，解析器会忽略 CDATA 部分中的所有内容。</p>
+<p><strong>关于 CDATA 部分的注释：</strong><br>CDATA 部分不能包含字符串 “]]&gt;”。也<strong>不允许嵌套</strong>的 CDATA 部分。<br>标记 CDATA 部分结尾的 “]]&gt;” <strong>不能</strong>包含空格或换行。</p>
+<h2 id="XML-编码"><a href="#XML-编码" class="headerlink" title="XML 编码"></a>XML 编码</h2><p>XML 文档可以包含非 ASCII 字符，比如挪威语 æ ø å，或者法语 ê è é。<br>为了避免错误，需要规定 XML 编码，或者将 XML 文件存为 Unicode。<br><strong>XML 编码错误</strong><br>如果您载入一个 XML 文档，您可以得到两个不同的错误，表示编码问题：</p>
+<ul>
+<li>在文本内容中发现无效字符。<br>如果您的 XML 中包含非 ASCII 字符，且文件保存为没有指定编码的单字节 ANSI（或 ASCII），您会得到一个错误。</li>
+<li>将当前编码切换为不被支持的指定编码<br>如果您的 XML 文件保存为带有指定的单字节编码（WINDOWS-1252、ISO-8859-1、UTF-8）的双字节 Unicode（或 UTF-16），您会得到一个错误。<br>如果您的 XML 文件保存为带有指定的双字节编码（UTF-16）的单字节 ANSI（或 ASCII），您也会得到一个错误。</li>
+</ul>
+<p>另外，在于xml头指定了使用utf8来解释这个文档内容，但是当我使用编辑器编辑这个文档的时候，输入的中文却不是utf8编码(而是ANSI编码)，这样也会出错。</p>
+<h2 id="服务器上的-XML"><a href="#服务器上的-XML" class="headerlink" title="服务器上的 XML"></a>服务器上的 XML</h2><p>XML 文件是类似 HTML 文件的纯文本文件。<br>XML 能够通过标准的 Web 服务器轻松地存储和生成。</p>
+<p><strong>在服务器上存储 XML 文件</strong><br>XML 文件在 Internet 服务器上进行存储的方式与 HTML 文件完全相同。<br>启动 Windows 记事本，并写入以下行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span><br><span class="line">&lt;note&gt;</span><br><span class="line">&lt;from&gt;Jani&lt;/from&gt;</span><br><span class="line">&lt;to&gt;Tove&lt;/to&gt;</span><br><span class="line">&lt;message&gt;Remember me this weekend&lt;/message&gt;</span><br><span class="line">&lt;/note&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后用适当的文件名，比如 “note.xml”，在 Web 服务器上保存这个文件。</p>
+<p><strong>通过 ASP 生成 XML</strong><br>XML 可在不安装任何 XML 软件的情况下在服务器端生成。<br>如需从服务器生成 XML 响应 - 只需简单地编写以下代码并在 Web 服务器上把它保存为一个 ASP 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">response.ContentType=&quot;text/xml&quot;</span><br><span class="line">response.Write(&quot;&lt;?xml version=&apos;1.0&apos; encoding=&apos;ISO-8859-1&apos;?&gt;&quot;)</span><br><span class="line">response.Write(&quot;&lt;note&gt;&quot;)</span><br><span class="line">response.Write(&quot;&lt;from&gt;Jani&lt;/from&gt;&quot;)</span><br><span class="line">response.Write(&quot;&lt;to&gt;Tove&lt;/to&gt;&quot;)</span><br><span class="line">response.Write(&quot;&lt;message&gt;Remember me this weekend&lt;/message&gt;&quot;)</span><br><span class="line">response.Write(&quot;&lt;/note&gt;&quot;)</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure></p>
+<p>请注意，此响应的内容类型必须设置为<code>&quot;text/xml&quot;</code>。</p>
+<p><strong>通过 PHP 生成 XML</strong><br>如需使用 PHP 从服务器上生成 XML 响应，请使用下面的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">header(&quot;Content-type: text/xml&quot;);</span><br><span class="line">echo &quot;&lt;?xml version=&apos;1.0&apos; encoding=&apos;ISO-8859-1&apos;?&gt;&quot;;</span><br><span class="line">echo &quot;&lt;note&gt;&quot;;</span><br><span class="line">echo &quot;&lt;from&gt;Jani&lt;/from&gt;&quot;;</span><br><span class="line">echo &quot;&lt;to&gt;Tove&lt;/to&gt;&quot;;</span><br><span class="line">echo &quot;&lt;message&gt;Remember me this weekend&lt;/message&gt;&quot;;</span><br><span class="line">echo &quot;&lt;/note&gt;&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>请注意，响应头部的内容类型必须设置为<code>&quot;text/xml&quot;</code>。</p>
+<p><strong>从数据库生成 XML</strong><br>XML 可在不安装任何 XML 软件的情况下从数据库生成。<br>如需从服务器生成 XML 数据库响应，只需简单地编写以下代码，并把它在 Web 服务器上保存为 ASP 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">response.ContentType = &quot;text/xml&quot;</span><br><span class="line">set conn=Server.CreateObject(&quot;ADODB.Connection&quot;)</span><br><span class="line">conn.provider=&quot;Microsoft.Jet.OLEDB.4.0;&quot;</span><br><span class="line">conn.open server.mappath(&quot;/db/database.mdb&quot;)</span><br><span class="line"></span><br><span class="line">sql=&quot;select fname,lname from tblGuestBook&quot;</span><br><span class="line">set rs=Conn.Execute(sql)</span><br><span class="line"></span><br><span class="line">response.write(&quot;&lt;?xml version=&apos;1.0&apos; encoding=&apos;ISO-8859-1&apos;?&gt;&quot;)</span><br><span class="line">response.write(&quot;&lt;guestbook&gt;&quot;)</span><br><span class="line">while (not rs.EOF)</span><br><span class="line">response.write(&quot;&lt;guest&gt;&quot;)</span><br><span class="line">response.write(&quot;&lt;fname&gt;&quot; &amp; rs(&quot;fname&quot;) &amp; &quot;&lt;/fname&gt;&quot;)</span><br><span class="line">response.write(&quot;&lt;lname&gt;&quot; &amp; rs(&quot;lname&quot;) &amp; &quot;&lt;/lname&gt;&quot;)</span><br><span class="line">response.write(&quot;&lt;/guest&gt;&quot;)</span><br><span class="line">rs.MoveNext()</span><br><span class="line">wend</span><br><span class="line"></span><br><span class="line">rs.close()</span><br><span class="line">conn.close()</span><br><span class="line">response.write(&quot;&lt;/guestbook&gt;&quot;)</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure></p>
+<p>上面的实例使用了带有 ADO 的 ASP。</p>
+<p><strong>在服务器上通过 XSLT 转换 XML</strong><br>下面的 ASP 代码在服务器上把 XML 文件转换为 XHTML：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">&apos;Load XML</span><br><span class="line">set xml = Server.CreateObject(&quot;Microsoft.XMLDOM&quot;)</span><br><span class="line">xml.async = false</span><br><span class="line">xml.load(Server.MapPath(&quot;simple.xml&quot;))</span><br><span class="line"></span><br><span class="line">&apos;Load XSL</span><br><span class="line">set xsl = Server.CreateObject(&quot;Microsoft.XMLDOM&quot;)</span><br><span class="line">xsl.async = false</span><br><span class="line">xsl.load(Server.MapPath(&quot;simple.xsl&quot;))</span><br><span class="line"></span><br><span class="line">&apos;Transform file</span><br><span class="line">Response.Write(xml.transformNode(xsl))</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure></p>
+<p>实例解释</p>
+<ul>
+<li>第一个代码块创建微软 XML 解析器的实例（XMLDOM），并把 XML 文件载入内存。</li>
+<li>第二个代码块创建解析器的另一个实例，并把 XSL 文件载入内存。</li>
+<li>最后一个代码使用 XSL 文档来转换 XML 文档，并把结果以 XHTML 发送到您的浏览器。</li>
+</ul>
+<p><strong>通过 ASP 把 XML 保存为文件</strong><br>这个 ASP 实例会创建一个简单的 XML 文档，并把该文档保存到服务器上：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">text=&quot;&lt;note&gt;&quot;</span><br><span class="line">text=text &amp; &quot;&lt;to&gt;Tove&lt;/to&gt;&quot;</span><br><span class="line">text=text &amp; &quot;&lt;from&gt;Jani&lt;/from&gt;&quot;</span><br><span class="line">text=text &amp; &quot;&lt;heading&gt;Reminder&lt;/heading&gt;&quot;</span><br><span class="line">text=text &amp; &quot;&lt;body&gt;Don&apos;t forget me this weekend!&lt;/body&gt;&quot;</span><br><span class="line">text=text &amp; &quot;&lt;/note&gt;&quot;</span><br><span class="line"></span><br><span class="line">set xmlDoc=Server.CreateObject(&quot;Microsoft.XMLDOM&quot;)</span><br><span class="line">xmlDoc.async=false</span><br><span class="line">xmlDoc.loadXML(text)</span><br><span class="line"></span><br><span class="line">xmlDoc.Save(&quot;test.xml&quot;)</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="XML-DOM-高级"><a href="#XML-DOM-高级" class="headerlink" title="XML DOM 高级"></a>XML DOM 高级</h2><p><strong>获取元素的值</strong><br>下面的实例中使用的 XML 文件：<a href="https://github.com/cyfrangk/myrepository/blob/master/books.xml" target="_blank" rel="noopener">books.xml</a>。<br>下面的实例检索第一个<code>&lt;title&gt;</code>元素的文本值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">txt=xmlDoc.getElementsByTagName(&quot;title&quot;)[0].childNodes[0].nodeValue;</span><br></pre></td></tr></table></figure></p>
+<p><strong>获取属性的值</strong><br>下面的实例检索第一个<code>&lt;title&gt;</code>元素的 “lang” 属性的文本值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">txt=xmlDoc.getElementsByTagName(&quot;title&quot;)[0].getAttribute(&quot;lang&quot;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>改变元素的值</strong><br>下面的实例改变第一个<code>&lt;title&gt;</code>元素的文本值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x=xmlDoc.getElementsByTagName(&quot;title&quot;)[0].childNodes[0];</span><br><span class="line">x.nodeValue=&quot;Easy Cooking&quot;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>创建新的属性</strong><br>XML DOM 的 setAttribute() 方法可用于改变现有的属性值，或创建一个新的属性。<br>下面的实例创建了一个新的属性（edition=”first”），然后把它添加到每一个<code>&lt;book&gt;</code>元素中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x=xmlDoc.getElementsByTagName(&quot;book&quot;);</span><br><span class="line"></span><br><span class="line">for(i=0;i&lt;x.length;i++)</span><br><span class="line">&#123;</span><br><span class="line">x[i].setAttribute(&quot;edition&quot;,&quot;first&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>创建元素</strong><br>XML DOM 的 createElement() 方法创建一个新的元素节点。<br>XML DOM 的 createTextNode() 方法创建一个新的文本节点。<br>XML DOM 的 appendChild() 方法向节点添加子节点（在最后一个子节点之后）。<br>如需创建带有文本内容的新元素，需要同时创建元一个新的元素节点和一个新的文本节点，然后把他追加到现有的节点。<br>下面的实例创建了一个新的元素（<code>&lt;edition&gt;</code>），带有如下文本：First，然后把它添加到第一个<code>&lt;book&gt;</code>元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">newel=xmlDoc.createElement(&quot;edition&quot;);</span><br><span class="line">newtext=xmlDoc.createTextNode(&quot;First&quot;);</span><br><span class="line">newel.appendChild(newtext);</span><br><span class="line"></span><br><span class="line">x=xmlDoc.getElementsByTagName(&quot;book&quot;);</span><br><span class="line">x[0].appendChild(newel);</span><br></pre></td></tr></table></figure></p>
+<p>实例解释:</p>
+<ul>
+<li>创建一个<code>&lt;edition&gt;</code>元素</li>
+<li>创建值为 “First” 的文本节点</li>
+<li>把这个文本节点追加到新的<code>&lt;edition&gt;</code>元素</li>
+<li>把<code>&lt;edition&gt;</code>元素追加到第一个<code>&lt;book&gt;</code>元素</li>
+</ul>
+<p><strong>删除元素</strong><br>下面的实例删除第一个<code>&lt;book&gt;</code>元素的第一个节点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x=xmlDoc.getElementsByTagName(&quot;book&quot;)[0];</span><br><span class="line">x.removeChild(x.childNodes[0]);</span><br></pre></td></tr></table></figure></p>
+<p><strong>注释：</strong>上面实例的结果可能会根据所用的浏览器而不同。Firefox 把新行字符当作空的文本节点，而 Internet Explorer 不是这样。</p>
+<h2 id="XML-注意事项"><a href="#XML-注意事项" class="headerlink" title="XML 注意事项"></a>XML 注意事项</h2><p>这里列出了您在使用 XML 时应该尽量避免使用的技术。</p>
+<p><strong>Internet Explorer - XML 数据岛</strong><br><code>它是什么？XML 数据岛是嵌入到 HTML 页面中的 XML 数据。</code>为什么要避免使用它？<code>XML 数据岛只在 Internet Explorer 浏览器中有效。</code>用什么代替它`您应当在 HTML 中使用 JavaScript 和 XML DOM 来解析并显示 XML。</p>
+<p><strong>XML 数据岛实例</strong><br>本例使用 XML 文档 “<a href="https://github.com/cyfrangk/myrepository/blob/master/cd_catalog.xml" target="_blank" rel="noopener">cd_catalog.xml</a>“。<br>把 XML 文档绑定到 HTML 文档中的一个 <xml> 标签。id 属性定义数据岛的标识符，而 src 属性指向 XML 文件：<br>本实例只适用于 IE 浏览器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;xml id=&quot;cdcat&quot; src=&quot;cd_catalog.xml&quot;&gt;&lt;/xml&gt;</span><br><span class="line"></span><br><span class="line">&lt;table border=&quot;1&quot; datasrc=&quot;#cdcat&quot;&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;td&gt;&lt;span datafld=&quot;ARTIST&quot;&gt;&lt;/span&gt;&lt;/td&gt;</span><br><span class="line">&lt;td&gt;&lt;span datafld=&quot;TITLE&quot;&gt;&lt;/span&gt;&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;/table&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></xml></p>
+<p><code>&lt;table&gt;</code>标签的 datasrc 属性把 HTML 表格绑定到 XML 数据岛。<br><code>&lt;span&gt;</code>标签允许 datafld 属性引用要显示的 XML 元素。在这个实例中，要引用的是 “ARTIST” 和 “TITLE”。当读取 XML 时，会为每个<code>&lt;CD&gt;</code>元素创建相应的表格行。</p>
+<p><strong>Internet Explorer - 行为</strong><br><code>它是什么？</code>Internet Explorer 5 引入了行为。行为是通过使用 CSS 样式向 XML （或 HTML ）元素添加行为的一种方法。<br><code>为什么要避免使用它？</code>只有 Internet Explorer 支持 behavior 属性。<br><code>使用什么代替它？</code>使用 JavaScript 和 XML DOM（或 HTML DOM）来代替它。</p>
+<p>实例 1 - 鼠标悬停突出<br>下面的 HTML 文件中的<code>&lt;style&gt;</code>元素为<code>&lt;h1&gt;</code>元素定义了一个行为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">h1 &#123; behavior: url(behave.htc) &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;Mouse over me!!!&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>下面显示的是 XML 文档 “behave.htc”（该文件包含了一段 JavaScript 和针对元素的事件句柄）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;attach for=&quot;element&quot; event=&quot;onmouseover&quot; handler=&quot;hig_lite&quot; /&gt;</span><br><span class="line">&lt;attach for=&quot;element&quot; event=&quot;onmouseout&quot; handler=&quot;low_lite&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">function hig_lite()</span><br><span class="line">&#123;</span><br><span class="line">element.style.color=&apos;red&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function low_lite()</span><br><span class="line">&#123;</span><br><span class="line">element.style.color=&apos;blue&apos;;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>实例 2 - 打字机模拟<br>下面的 HTML 文件中的<code>&lt;style&gt;</code>元素为 id 为 “typing” 的元素定义了一个行为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">#typing</span><br><span class="line">&#123;</span><br><span class="line">behavior:url(typing.htc);</span><br><span class="line">font-family:&apos;courier new&apos;;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;span id=&quot;typing&quot; speed=&quot;100&quot;&gt;IE5 introduced DHTML behaviors.</span><br><span class="line">Behaviors are a way to add DHTML functionality to HTML elements</span><br><span class="line">with the ease of CSS.&lt;br /&gt;&lt;br /&gt;How do behaviors work?&lt;br /&gt;</span><br><span class="line">By using XML we can link behaviors to any element in a web page</span><br><span class="line">and manipulate that element.&lt;/p&gt;v &lt;/span&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>下面显示的是 XML 文档 “typing.htc”：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;attach for=&quot;window&quot; event=&quot;onload&quot; handler=&quot;beginTyping&quot; /&gt;</span><br><span class="line">&lt;method name=&quot;type&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">var i,text1,text2,textLength,t;</span><br><span class="line"></span><br><span class="line">function beginTyping()</span><br><span class="line">&#123;</span><br><span class="line">i=0;</span><br><span class="line">text1=element.innerText;</span><br><span class="line">textLength=text1.length;</span><br><span class="line">element.innerText=&quot;&quot;;</span><br><span class="line">text2=&quot;&quot;;</span><br><span class="line">t=window.setInterval(element.id+&quot;.type()&quot;,speed);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function type()</span><br><span class="line">&#123;</span><br><span class="line">text2=text2+text1.substring(i,i+1);</span><br><span class="line">element.innerText=text2;</span><br><span class="line">i=i+1;</span><br><span class="line">if (i==textLength)</span><br><span class="line">&#123;</span><br><span class="line">clearInterval(t);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="XML-相关技术"><a href="#XML-相关技术" class="headerlink" title="XML 相关技术"></a>XML 相关技术</h2><p>下面是一个 XML 技术的列表。</p>
+<p><a href="http://baijiahao.baidu.com/s?id=1603955409440056203&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">XHTML (可扩展 HTML)</a><br>更严格更纯净的基于 XML 的 HTML 版本。</p>
+<p><a href="https://docs.microsoft.com/zh-cn/dotnet/standard/data/xml/xml-document-object-model-dom" target="_blank" rel="noopener">XML DOM (XML 文档对象模型)</a><br>访问和操作 XML 的标准文档模型。</p>
+<p><a href="https://blog.csdn.net/zhongguowangzhan/article/details/78551754" target="_blank" rel="noopener">XSL (可扩展样式表语言)</a>XSL 包含三个部分：</p>
+<ul>
+<li>XSLT (XSL 转换) - 把 XML 转换为其他格式，比如 HTML</li>
+<li>XSL-FO (XSL 格式化对象)- 用于格式化 XML 文档的语言</li>
+<li>XPath - 用于导航 XML 文档的语言</li>
+</ul>
+<p><a href="http://blog.sina.com.cn/s/blog_4bc91ab40100majy.html" target="_blank" rel="noopener">XQuery (XML 查询语言)</a><br>基于 XML 的用于查询 XML 数据的语言。</p>
+<p><a href="https://blog.csdn.net/u011479875/article/details/49637893" target="_blank" rel="noopener">DTD (文档类型定义)</a><br>用于定义 XML 文档中的合法元素的标准。</p>
+<p><a href="https://docs.microsoft.com/zh-cn/previous-versions/ms256235(v=vs.120" target="_blank" rel="noopener">XSD (XML 架构)</a>)<br>基于 XML 的 DTD 替代物。</p>
+<p><a href="http://www.cnblogs.com/tuantuan/archive/2006/04/28/387872.html" target="_blank" rel="noopener">XLink (XML 链接语言)</a><br>在 XML 文档中创建超级链接的语言。</p>
+<p><a href="http://www.docin.com/p-306032604.html" target="_blank" rel="noopener">XPointer (XML 指针语言)</a><br>允许 XLink 超级链接指向 XML 文档中更多具体的部分。</p>
+<p><a href="https://www.cnblogs.com/alexxs/p/5783811.html" target="_blank" rel="noopener">SOAP (简单对象访问协议)</a><br>允许应用程序在 HTTP 之上交换信息的基于 XML 的协议。</p>
+<p><a href="https://www.cnblogs.com/jiyukai/p/9249046.html" target="_blank" rel="noopener">WSDL (Web 服务描述语言)</a><br>用于描述网络服务的基于 XML 的语言。</p>
+<p><a href="http://www.ruanyifeng.com/blog/2008/02/rdf.html" target="_blank" rel="noopener">RDF (资源描述框架)</a><br>用于描述网络资源的基于 XML 的语言。</p>
+<p><a href="https://baijiahao.baidu.com/s?id=1591103963123733512&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">RSS (真正简易聚合)</a><br>聚合新闻以及类新闻站点内容的格式。</p>
+<p><a href="https://www.w3cplus.com/svg/svg-basics.html" target="_blank" rel="noopener">SVG (可伸缩矢量图形)</a><br>定义 XML 格式的图形。</p>
+<h2 id="现实生活中的-XML"><a href="#现实生活中的-XML" class="headerlink" title="现实生活中的 XML"></a>现实生活中的 XML</h2><p>如何使用 XML 来交换信息的一些实例。</p>
+<p><strong>实例：XML 新闻</strong><br><code>XMLNews 是用于交换新闻和其他信息的规范。</code></p>
+<p>对新闻的供求双方来说，通过使用这种标准，可以使各种类型的新闻信息通过不同软硬件以及编程语言进行的制作、接收和存档更加容易：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span><br><span class="line">&lt;nitf&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;Colombia Earthquake&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;headline&gt;</span><br><span class="line">&lt;hl1&gt;143 Dead in Colombia Earthquake&lt;/hl1&gt;</span><br><span class="line">&lt;/headline&gt;</span><br><span class="line">&lt;byline&gt;</span><br><span class="line">&lt;bytag&gt;By Jared Kotler, Associated Press Writer&lt;/bytag&gt;</span><br><span class="line">&lt;/byline&gt;</span><br><span class="line">&lt;dateline&gt;</span><br><span class="line">&lt;location&gt;Bogota, Colombia&lt;/location&gt;</span><br><span class="line">&lt;date&gt;Monday January 25 1999 7:28 ET&lt;/date&gt;</span><br><span class="line">&lt;/dateline&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/nitf&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>实例：XML 气象服务</strong><br>XML 国家气象服务案例，来自 NOAA（National Oceanic and Atmospheric Administration）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;</span><br><span class="line">&lt;current_observation&gt;</span><br><span class="line"></span><br><span class="line">&lt;credit&gt;NOAA&apos;s National Weather Service&lt;/credit&gt;</span><br><span class="line">&lt;credit_URL&gt;http://weather.gov/&lt;/credit_URL&gt;</span><br><span class="line"></span><br><span class="line">&lt;image&gt;</span><br><span class="line">&lt;url&gt;http://weather.gov/images/xml_logo.gif&lt;/url&gt;</span><br><span class="line">&lt;title&gt;NOAA&apos;s National Weather Service&lt;/title&gt;</span><br><span class="line">&lt;link&gt;http://weather.gov&lt;/link&gt;</span><br><span class="line">&lt;/image&gt;</span><br><span class="line"></span><br><span class="line">&lt;location&gt;New York/John F. Kennedy Intl Airport, NY&lt;/location&gt;</span><br><span class="line">&lt;station_id&gt;KJFK&lt;/station_id&gt;</span><br><span class="line">&lt;latitude&gt;40.66&lt;/latitude&gt;</span><br><span class="line">&lt;longitude&gt;-73.78&lt;/longitude&gt;</span><br><span class="line">&lt;observation_time_rfc822&gt;Mon, 11 Feb 2008 06:51:00 -0500 EST</span><br><span class="line">&lt;/observation_time_rfc822&gt;</span><br><span class="line"></span><br><span class="line">&lt;weather&gt;A Few Clouds&lt;/weather&gt;</span><br><span class="line">&lt;temp_f&gt;11&lt;/temp_f&gt;</span><br><span class="line">&lt;temp_c&gt;-12&lt;/temp_c&gt;</span><br><span class="line">&lt;relative_humidity&gt;36&lt;/relative_humidity&gt;</span><br><span class="line">&lt;wind_dir&gt;West&lt;/wind_dir&gt;</span><br><span class="line">&lt;wind_degrees&gt;280&lt;/wind_degrees&gt;</span><br><span class="line">&lt;wind_mph&gt;18.4&lt;/wind_mph&gt;</span><br><span class="line">&lt;wind_gust_mph&gt;29&lt;/wind_gust_mph&gt;</span><br><span class="line">&lt;pressure_mb&gt;1023.6&lt;/pressure_mb&gt;</span><br><span class="line">&lt;pressure_in&gt;30.23&lt;/pressure_in&gt;</span><br><span class="line">&lt;dewpoint_f&gt;-11&lt;/dewpoint_f&gt;</span><br><span class="line">&lt;dewpoint_c&gt;-24&lt;/dewpoint_c&gt;</span><br><span class="line">&lt;windchill_f&gt;-7&lt;/windchill_f&gt;</span><br><span class="line">&lt;windchill_c&gt;-22&lt;/windchill_c&gt;</span><br><span class="line">&lt;visibility_mi&gt;10.00&lt;/visibility_mi&gt;</span><br><span class="line"></span><br><span class="line">&lt;icon_url_base&gt;http://weather.gov/weather/images/fcicons/&lt;/icon_url_base&gt;</span><br><span class="line">&lt;icon_url_name&gt;nfew.jpg&lt;/icon_url_name&gt;</span><br><span class="line">&lt;disclaimer_url&gt;http://weather.gov/disclaimer.html&lt;/disclaimer_url&gt;</span><br><span class="line">&lt;copyright_url&gt;http://weather.gov/disclaimer.html&lt;/copyright_url&gt;</span><br><span class="line"></span><br><span class="line">&lt;/current_observation&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="XML-编辑器"><a href="#XML-编辑器" class="headerlink" title="XML 编辑器"></a>XML 编辑器</h2><p>专业的 XML 编辑器会帮助您编写无错的 XML 文档，根据某种 DTD 或者 schema 来验证 XML，以及强制您创建合法的 XML 结构。<br>XML 编辑器应该能够：</p>
+<ul>
+<li>为开始标签自动添加结束标签</li>
+<li>强制您编写合法的 XML</li>
+<li>根据某种 DTD 来验证 XML</li>
+<li>根据某种 Schema 来验证 XML</li>
+<li>对您的 XML 语法进行代码的颜色化</li>
+</ul>
+<h2 id="XML-E4X"><a href="#XML-E4X" class="headerlink" title="XML - E4X"></a>XML - E4X</h2><p><strong>E4X 是一个 ECMAScript（JavaScript）标准</strong><br>ECMAScript 是 JavaScript 的正式名称。ECMA-262（JavaScript 1.3）是在 1999 年 12 月标准化的。<br>E4X 是 JavaScript 的扩展，增加了对 XML 的直接支持。ECMA-357（E4X）是在 2004 年 6 月标准化的。<br>ECMA 组织（成立于 1961 年），是专门用于信息和通信技术（ICT）和消费电子（CE）的标准化。 ECMA 制定的标准为：</p>
+<ul>
+<li>JavaScript</li>
+<li>C# 语言</li>
+<li>国际字符集</li>
+<li>光盘</li>
+<li>磁带</li>
+<li>数据压缩</li>
+<li>数据通信</li>
+<li>等等…</li>
+</ul>
+<p><strong>没有使用 E4X</strong><br>下面的实例是一个跨浏览器的实例，实例加载一个现有的 XML 文档（”note.xml”）到 XML 解析器，并显示消息说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var xmlDoc;</span><br><span class="line">//code for Internet Explorer</span><br><span class="line">if (window.ActiveXObject)</span><br><span class="line">&#123;</span><br><span class="line">xmlDoc = new ActiveXObject(&quot;Microsoft.XMLDOM&quot;);</span><br><span class="line">xmlDoc.async=false;</span><br><span class="line">xmlDoc.load(&quot;note.xml&quot;);</span><br><span class="line">displaymessage();</span><br><span class="line">&#125;</span><br><span class="line">// code for Mozilla, Firefox, etc.</span><br><span class="line">else (document.implementation &amp;&amp; document.implementation.createDocument)</span><br><span class="line">&#123;</span><br><span class="line">xmlDoc= document.implementation.createDocument(&quot;&quot;,&quot;&quot;,null);</span><br><span class="line">xmlDoc.load(&quot;note.xml&quot;);</span><br><span class="line">xmlDoc.onload=displaymessage;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function displaymessage()</span><br><span class="line">&#123;</span><br><span class="line">document.write(xmlDoc.getElementsByTagName(&quot;body&quot;)[0].firstChild.nodeValue);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>使用 E4X</strong><br>下面的实例是上面的实例相同，但是使用了 E4X：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var xmlDoc=new XML();</span><br><span class="line">xmlDoc.load(&quot;note.xml&quot;);</span><br><span class="line">document.write(xmlDoc.body);</span><br></pre></td></tr></table></figure></p>
+<p>简单多了，是不是？</p>
+<p><strong>浏览器支持</strong><br>Firefox 是目前<code>唯一</code>对 E4X 的支持比较好的浏览器。<br>目前还没有支持 E4X 的有 Opera、Chrome 或 Safari。<br>到目前为止，没有迹象显示在 Internet Explorer 中对 E4X 的支持。</p>
+<p><strong>E4X 的未来</strong><br>E4X 没有得到广泛的支持。也许它提供的实用功能太少，尚未被其他的解决方案涉及：</p>
+<ul>
+<li>对于完整的 XML 处理，您还需要学习 XML DOM 和 XPath</li>
+<li>对于访问 XMLHttpRequests，JSON 是首选的格式。</li>
+<li>对于简单的文档处理，JQuery 选择更容易。</li>
+</ul>
+<h2 id="XML-总结"><a href="#XML-总结" class="headerlink" title="XML 总结"></a>XML 总结</h2><p>XML 可用于交换、共享和存储数据。<br>XML 文档形成 树状结构，在”根”和”叶子”的分支机构开始的。<br>XML 有非常简单的 语法规则。带有正确语法的 XML 是”形式良好”的。有效的 XML 是针对 DTD 进行验证的。<br>XSLT 用于把 XML 转换为其他格式，比如 HTML。<br>所有现代的浏览器有一个内建的 XML 解析器，可读取和操作 XML。<br>DOM（Document Object Model）定义了一个访问 XML 的标准方式。<br>XMLHttpRequest 对象提供了一个网页加载后与服务器进行通信的方式。<br>XML 命名空间提供了一种避免元素命名冲突的方法。<br>CDATA 区域内的文本会被解析器忽略。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/12/10/XML升阶/" data-id="cjs61rdiz0058h8fv18jxuyle" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/12/13/Maven引入外部依赖/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Maven的依赖
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/12/09/XML简介/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">XML简介</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/Linux内核到底长啥样/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/12/Linux内核到底长啥样/01.jpg)" alt="Linux内核到底长啥样" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/12/Linux内核到底长啥样/" class="title">Linux内核到底长啥样</a></p>
+                            <p class="item-date"><time datetime="2019-02-12T12:56:03.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/用100行代码提升10倍的性能/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/12/用100行代码提升10倍的性能/651e0.png)" alt="用100行代码提升10倍的性能" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/12/用100行代码提升10倍的性能/" class="title">用100行代码提升10倍的性能</a></p>
+                            <p class="item-date"><time datetime="2019-02-12T12:38:54.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/25个最基本的JavaScript面试问题及答案/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/12/25个最基本的JavaScript面试问题及答案/68423.JPEG)" alt="25个最基本的JavaScript面试问题及答案" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/12/25个最基本的JavaScript面试问题及答案/" class="title">25个最基本的JavaScript面试问题及答案</a></p>
+                            <p class="item-date"><time datetime="2019-02-12T10:51:29.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/IP/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/12/IP/2808.png)" alt="IP" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/12/IP/" class="title">IP</a></p>
+                            <p class="item-date"><time datetime="2019-02-12T09:25:48.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/PHP-Ajax跨域问题最佳解决方案/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/12/PHP-Ajax跨域问题最佳解决方案/p=0.jpg)" alt="PHP-Ajax跨域问题最佳解决方案" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/12/PHP-Ajax跨域问题最佳解决方案/" class="title">PHP-Ajax跨域问题最佳解决方案</a></p>
+                            <p class="item-date"><time datetime="2019-02-12T02:57:31.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 18.89px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 16.67px;">PHP</a> <a href="/tags/XML/" style="font-size: 11.11px;">XML</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/html/" style="font-size: 12.22px;">html</a> <a href="/tags/java/" style="font-size: 17.78px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15.56px;">maven</a> <a href="/tags/node/" style="font-size: 11.11px;">node</a> <a href="/tags/orcal/" style="font-size: 13.33px;">orcal</a> <a href="/tags/python/" style="font-size: 14.44px;">python</a> <a href="/tags/冷知识/" style="font-size: 12.22px;">冷知识</a> <a href="/tags/心语/" style="font-size: 12.22px;">心语</a> <a href="/tags/技术/" style="font-size: 12.22px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15.56px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/12/10/XML升阶/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
