@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>JS-严格模式使用详解 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JavaScript">
+    
+    <meta name="description" content="一、基本介绍1，什么是严格模式?顾名思义，严格模式模式就是使得 Javascript 在更严格的条件下运行。比如：  如果在语法检测时发现语法问题，则整个代码块失效，并导致一个语法异常。 如果在运行期出现了违反严格模式的代码，则抛出执行异常。  2，使用严格模式的好处  消除 Javascript 语法的一些不合理、不严谨之处，减少一些怪异行为; 消除代码运行的一些不安全之处，保证代码运行的安全">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS-严格模式使用详解">
+<meta property="og:url" content="http://yoursite.com/2019/03/02/JS-严格模式使用详解/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="一、基本介绍1，什么是严格模式?顾名思义，严格模式模式就是使得 Javascript 在更严格的条件下运行。比如：  如果在语法检测时发现语法问题，则整个代码块失效，并导致一个语法异常。 如果在运行期出现了违反严格模式的代码，则抛出执行异常。  2，使用严格模式的好处  消除 Javascript 语法的一些不合理、不严谨之处，减少一些怪异行为; 消除代码运行的一些不安全之处，保证代码运行的安全">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/03/02/JS-严格模式使用详解/01.jpg">
+<meta property="og:updated_time" content="2019-03-02T13:26:21.688Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS-严格模式使用详解">
+<meta name="twitter:description" content="一、基本介绍1，什么是严格模式?顾名思义，严格模式模式就是使得 Javascript 在更严格的条件下运行。比如：  如果在语法检测时发现语法问题，则整个代码块失效，并导致一个语法异常。 如果在运行期出现了违反严格模式的代码，则抛出执行异常。  2，使用严格模式的好处  消除 Javascript 语法的一些不合理、不严谨之处，减少一些怪异行为; 消除代码运行的一些不安全之处，保证代码运行的安全">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/02/JS-严格模式使用详解/01.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-JS-严格模式使用详解" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        JS-严格模式使用详解
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/03/02/JS-严格模式使用详解/" class="article-date">
+            <time datetime="2019-03-02T09:51:21.000Z" itemprop="datePublished">2019-03-02</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/2019/03/02/JS-严格模式使用详解/01.jpg" alt=""></p>
+<h2 id="一、基本介绍"><a href="#一、基本介绍" class="headerlink" title="一、基本介绍"></a>一、基本介绍</h2><p><strong>1，什么是严格模式?</strong><br>顾名思义，严格模式模式就是使得 Javascript 在更严格的条件下运行。比如：</p>
+<ul>
+<li>如果在语法检测时发现语法问题，则整个代码块失效，并导致一个语法异常。</li>
+<li>如果在运行期出现了违反严格模式的代码，则抛出执行异常。</li>
+</ul>
+<p><strong>2，使用严格模式的好处</strong></p>
+<ul>
+<li>消除 Javascript 语法的一些不合理、不严谨之处，减少一些怪异行为;</li>
+<li>消除代码运行的一些不安全之处，保证代码运行的安全；</li>
+<li>提高编译器效率，增加运行速度；</li>
+<li>为未来新版本的 Javascript 做好铺垫。</li>
+</ul>
+<p><strong>3，浏览器支持情况</strong></p>
+<ul>
+<li>Internet Explorer 10 + （IE6,7,8,9 均不支持严格模式）</li>
+<li>Firefox 4+ </li>
+<li>Chrome 13+</li>
+<li>Safari 5.1+</li>
+<li>Opera 12+</li>
+</ul>
+<h2 id="二、如何开启严格模式"><a href="#二、如何开启严格模式" class="headerlink" title="二、如何开启严格模式"></a>二、如何开启严格模式</h2><p>我们在如下位置加入 “use strict”;（也可以用单引号）便可以开启相应代码块中的严格模式：</p>
+<p>（1）在全局代码的开始处加入。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  &quot;use strict&quot;;</span><br><span class="line">  console.log(&quot;这是严格模式。&quot;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>（2）在函数声明代码开始处加入。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function strict()&#123;</span><br><span class="line">  &quot;use strict&quot;;</span><br><span class="line">  return &quot;这是严格模式。&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>（3）在 eval 代码开始处加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval(&apos;&quot;use strict&quot;;/*局部严格模式*/&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>（4）在 new Function() 所传入的 body 参数块开始加入。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var doAdd = new Function(&quot;iNum&quot;, &quot;&apos;use strict&apos;;alert(iNum + 20)&quot;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="三、严格模式对语法和行为的限制"><a href="#三、严格模式对语法和行为的限制" class="headerlink" title="三、严格模式对语法和行为的限制"></a>三、严格模式对语法和行为的限制</h2><p><strong>1，变量必须声明才能使用</strong><br>（1）变量<code>a</code>缺少<code>var</code>语句做声明，因此报错。<br><img src="/2019/03/02/JS-严格模式使用详解/1.PNG" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line">a=1;</span><br></pre></td></tr></table></figure></p>
+<p>（2）变量 b 未声明，因此报错。<br><img src="/2019/03/02/JS-严格模式使用详解/2.PNG" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line">var a=b=1;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2，闭包内的 this 不指向 Global 对象</strong><br>比如下面代码，严格模式 alert 弹出的就是 undefined：<br><img src="/2019/03/02/JS-严格模式使用详解/3.PNG" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line">(function()&#123;</span><br><span class="line">  alert(this); //输出undefined</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+<p><strong>3，函数形参不能重复声明</strong><br><img src="/2019/03/02/JS-严格模式使用详解/4.PNG" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line">function func(a,a)&#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>4，eval 拥有类似闭包的作用域<br>虽然同名，但 eval 内的变量不会影响到外部变量。<br><img src="/2019/03/02/JS-严格模式使用详解/5.PNG" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line"> </span><br><span class="line">var a=1,b=1;</span><br><span class="line">eval(&quot;var a=2&quot;);</span><br><span class="line">window.eval(&quot;var b=2&quot;);</span><br><span class="line"> </span><br><span class="line">console.log(&quot;a：&quot; + a);  //1</span><br><span class="line">console.log(&quot;b：&quot; + b);  //2</span><br></pre></td></tr></table></figure></p>
+<p><strong>5，增加一些保留字（不能作为变量名）</strong><br>（1）ECMAscript 第五版本身已规定一些保留字：class, enum, export, extends, import, super<br>（2）各大浏览器还自行增加的 const 保留字。<br>（3）严格模式新增了一些保留字：implements, interface, let, package, private, protected, public, static, yield。<br><img src="/2019/03/02/JS-严格模式使用详解/6.PNG" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line">var implements = &quot;hangge.com&quot;</span><br></pre></td></tr></table></figure></p>
+<p><strong>6，不允许对 arguments 其赋值</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line"> </span><br><span class="line">arguments++; // 语法错误</span><br><span class="line">var obj = &#123; set p(arguments) &#123; &#125; &#125;; // 语法错误</span><br><span class="line">try &#123; &#125; catch (arguments) &#123; &#125; // 语法错误</span><br><span class="line">function arguments() &#123; &#125; // 语法错误</span><br><span class="line">var f = new Function(&quot;arguments&quot;, &quot;&apos;use strict&apos;; return 17;&quot;); // 语法错误</span><br></pre></td></tr></table></figure></p>
+<p><strong>7，arguments 不再追踪参数的变化</strong><br>（1）正常模式<br><img src="/2019/03/02/JS-严格模式使用详解/7.PNG" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function f(a) &#123;</span><br><span class="line">  a = 2;</span><br><span class="line">  return [a, arguments[0]];</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">f(1);</span><br></pre></td></tr></table></figure></p>
+<p>（2）严格模式<br><img src="/2019/03/02/JS-严格模式使用详解/8.PNG" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line"> </span><br><span class="line">function f(a) &#123;</span><br><span class="line">  a = 2;</span><br><span class="line">  return [a, arguments[0]];</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">f(1);</span><br></pre></td></tr></table></figure></p>
+<p><strong>8，无法使用 arguments.callee</strong><br>这意味着，我们无法在匿名函数内部调用自身了。<br><img src="/2019/03/02/JS-严格模式使用详解/9.PNG" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line">var f = function() &#123;</span><br><span class="line">  return arguments.callee;</span><br><span class="line">&#125;;</span><br><span class="line">f(); // 报错</span><br></pre></td></tr></table></figure></p>
+<p><strong>9，无法使用 caller</strong><br>我们无法通过 caller 获取到调用当前函数的函数的引用。<br><img src="/2019/03/02/JS-严格模式使用详解/10.PNG" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line"> </span><br><span class="line">function a()&#123;</span><br><span class="line">    alert(a.caller); // 报错</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">function b() &#123;</span><br><span class="line">    a();</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">b();</span><br></pre></td></tr></table></figure></p>
+<p><strong>10，无法使用 with 语句</strong><br><img src="/2019/03/02/JS-严格模式使用详解/11.PNG" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line"> </span><br><span class="line">with(&#123;&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>11，一些原来在普通模式下的无效操作会变成错误</strong><br>（1）比如无法删除 var 声明的变量。<br><img src="/2019/03/02/JS-严格模式使用详解/12.PNG" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line">var a = 1;</span><br><span class="line">delete a;</span><br></pre></td></tr></table></figure></p>
+<p>（2）给只读属性赋值也会报错。<br><img src="/2019/03/02/JS-严格模式使用详解/13.PNG" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line">var o = &#123;get a()&#123;&#125;&#125;;</span><br><span class="line">o.a = 1;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/03/02/JS-严格模式使用详解/" data-id="cjsrihyzk0000oofvkqx3zl6f" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/02/18/orcal之awr报告生成与分析/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">orcal之awr报告生成与分析</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/03/02/JS-严格模式使用详解/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/03/02/JS-严格模式使用详解/01.jpg)" alt="JS-严格模式使用详解" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/03/02/JS-严格模式使用详解/" class="title">JS-严格模式使用详解</a></p>
+                            <p class="item-date"><time datetime="2019-03-02T09:51:21.000Z" itemprop="datePublished">2019-03-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/18/orcal之awr报告生成与分析/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/18/orcal之awr报告生成与分析/3922.jpg)" alt="orcal之awr报告生成与分析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/18/orcal之awr报告生成与分析/" class="title">orcal之awr报告生成与分析</a></p>
+                            <p class="item-date"><time datetime="2019-02-18T10:56:14.000Z" itemprop="datePublished">2019-02-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/Linux内核到底长啥样/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/12/Linux内核到底长啥样/01.jpg)" alt="Linux内核到底长啥样" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/12/Linux内核到底长啥样/" class="title">Linux内核到底长啥样</a></p>
+                            <p class="item-date"><time datetime="2019-02-12T12:56:03.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/用100行代码提升10倍的性能/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/12/用100行代码提升10倍的性能/651e0.png)" alt="用100行代码提升10倍的性能" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/12/用100行代码提升10倍的性能/" class="title">用100行代码提升10倍的性能</a></p>
+                            <p class="item-date"><time datetime="2019-02-12T12:38:54.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/25个最基本的JavaScript面试问题及答案/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/02/12/25个最基本的JavaScript面试问题及答案/68423.JPEG)" alt="25个最基本的JavaScript面试问题及答案" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/02/12/25个最基本的JavaScript面试问题及答案/" class="title">25个最基本的JavaScript面试问题及答案</a></p>
+                            <p class="item-date"><time datetime="2019-02-12T10:51:29.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 18.89px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 16.67px;">PHP</a> <a href="/tags/XML/" style="font-size: 11.11px;">XML</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/html/" style="font-size: 12.22px;">html</a> <a href="/tags/java/" style="font-size: 17.78px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15.56px;">maven</a> <a href="/tags/node/" style="font-size: 11.11px;">node</a> <a href="/tags/orcal/" style="font-size: 13.33px;">orcal</a> <a href="/tags/python/" style="font-size: 14.44px;">python</a> <a href="/tags/冷知识/" style="font-size: 12.22px;">冷知识</a> <a href="/tags/心语/" style="font-size: 12.22px;">心语</a> <a href="/tags/技术/" style="font-size: 12.22px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15.56px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/03/02/JS-严格模式使用详解/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
