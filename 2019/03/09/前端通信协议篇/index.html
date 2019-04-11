@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>前端通信协议篇 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="html">
+    
+    <meta name="description" content="粗略介绍几种协议 首先需要DNS服务器将这个URL的服务器IP找到，使用的应用层协议是DNS协议，传输层是UDP协议；然后得到了IP地址后就通过http协议去访问该服务器，传输层用的是TCP协议，要下载原始文件用的应用层协议是FTP，传输层用的是TCP协议。  TCP/IP协议是一个协议簇。里面包括很多协议的。UDP只是其中的一个。之所以命名为TCP/IP协议，因为TCP,IP协议是两个很重要的协">
+<meta name="keywords" content="html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端通信协议篇">
+<meta property="og:url" content="http://yoursite.com/2019/03/09/前端通信协议篇/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="粗略介绍几种协议 首先需要DNS服务器将这个URL的服务器IP找到，使用的应用层协议是DNS协议，传输层是UDP协议；然后得到了IP地址后就通过http协议去访问该服务器，传输层用的是TCP协议，要下载原始文件用的应用层协议是FTP，传输层用的是TCP协议。  TCP/IP协议是一个协议簇。里面包括很多协议的。UDP只是其中的一个。之所以命名为TCP/IP协议，因为TCP,IP协议是两个很重要的协">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/03/09/前端通信协议篇/492142.jpg">
+<meta property="og:updated_time" content="2019-04-10T13:27:44.501Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端通信协议篇">
+<meta name="twitter:description" content="粗略介绍几种协议 首先需要DNS服务器将这个URL的服务器IP找到，使用的应用层协议是DNS协议，传输层是UDP协议；然后得到了IP地址后就通过http协议去访问该服务器，传输层用的是TCP协议，要下载原始文件用的应用层协议是FTP，传输层用的是TCP协议。  TCP/IP协议是一个协议簇。里面包括很多协议的。UDP只是其中的一个。之所以命名为TCP/IP协议，因为TCP,IP协议是两个很重要的协">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/09/前端通信协议篇/492142.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-前端通信协议篇" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        前端通信协议篇
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/03/09/前端通信协议篇/" class="article-date">
+            <time datetime="2019-03-09T07:48:40.000Z" itemprop="datePublished">2019-03-09</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/html/">html</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="粗略介绍几种协议"><a href="#粗略介绍几种协议" class="headerlink" title="粗略介绍几种协议"></a>粗略介绍几种协议</h2><blockquote>
+<p>首先需要DNS服务器将这个URL的服务器IP找到，使用的应用层协议是DNS协议，传输层是UDP协议；然后得到了IP地址后就通过http协议去访问该服务器，传输层用的是TCP协议，要下载原始文件用的应用层协议是FTP，传输层用的是TCP协议。</p>
+</blockquote>
+<p><strong>TCP/IP协议是一个协议簇。里面包括很多协议的。UDP只是其中的一个。之所以命名为TCP/IP协议，因为TCP,IP协议是两个很重要的协议，就用他两命名了。</strong></p>
+<ul>
+<li>TCP<br>TCP是面向连接的通信协议，通过三次握手建立连接，通讯完成时要拆除连接，由于TCP是面向连接的所以只能用于端到端的通讯。<br>TCP提供的是一种可靠的数据流服务，采用“带重传的肯定确认”技术来实现传输的可靠性。TCP还采用一种称为“滑动窗口”的方式进行流量控制，所谓窗口实际表示接收能力，用以限制发送方的发送速度。<br>如果IP数据包中有已经封好的TCP数据包，那么IP将把它们向‘上’传送到TCP层。TCP将包排序并进行错误检查，同时实现虚电路间的连接。TCP数据包中包括序号和确认，所以未按照顺序收到的包可以被排序，而损坏的包可以被重传。<br>TCP将它的信息送到更高层的应用程序，例如Telnet的服务程序和客户程序。应用程序轮流将信息送回TCP层，TCP层便将它们向下传送到IP层，设备驱动程序和物理介质，最后到接收方。<br>面向连接的服务（例如Telnet、FTP、rlogin、X Windows和SMTP）需要高度的可靠性，所以它们使用了TCP。DNS在某些情况下使用TCP（发送和接收域名数据库），但使用UDP传送有关单个主机的信息。</li>
+<li>IP<br>IP层接收由更低层（网络接口层例如以太网设备驱动程序）发来的数据包，并把该数据包发送到更高层—TCP或UDP层；相反，IP层也把从TCP或UDP层接收来的数据包传送到更低层。IP数据包是不可靠的，因为IP并没有做任何事情来确认数据包是否按顺序发送的或者有没有被破坏，IP数据包中含有发送它的主机的地址（源地址）和接收它的主机的地址（目的地址）。<br>高层的TCP和UDP服务在接收数据包时，通常假设包中的源地址是有效的。也可以这样说，IP地址形成了许多服务的认证基础，这些服务相信数据包是从一个有效的主机发送来的。IP确认包含一个选项，叫作IP source routing，可以用来指定一条源地址和目的地址之间的直接路径。对于一些TCP和UDP的服务来说，使用了该选项的IP包好像是从路径上的最后一个系统传递过来的，而不是来自于它的真实地点。这个选项是为了测试而存在的，说明了它可以被用来欺骗系统来进行平常是被禁止的连接。那么，许多依靠IP源地址做确认的服务将产生问题并且会被非法入侵。</li>
+</ul>
+<p>tcp和udp都是传输协议，主要区别是tcp协议连接需要3次握手，断开需要四次握手，是通过流来传输的，就是确定连接后，一直发送信息，传完后断开。udp不需要进行连接，直接把信息封装成多个报文，直接发送。所以udp的速度更快写，但是不保证数据的完整性和数据顺序，（这个是可以在实现时通过验证手段来手动确定完整性）。</p>
+<p>TCP与UDP的区别：</p>
+<p>1.基于连接与无连接；<br>2.对系统资源的要求（TCP较多，UDP少）；<br>3.UDP程序结构较简单；<br>4.流模式与数据报模式 ；<br>5.TCP保证数据正确性，UDP可能丢包，TCP保证数据顺序，UDP不保证。</p>
+<p>http协议是建立在TCP协议之上的一种应用，是Web联网的基础，最显著的特点是客户端发送的每次请求都需要服务器回送响应，在请求结束后，会主动释放连接。从建立连接到关闭连接的过程称为“一次连接”。</p>
+<p>socket并不是一种协议，是在程序员层面上对TCP/IP协议的封装和应用。其实是一个调用接口，方便程序员使用TCP/IP协议栈而已。程序员通过socket来使用tcp/ip协议。但是socket并不是一定要使用tcp/ip协议，Socket编程接口在设计的时候，就希望也能适应其他的网络协议。</p>
+<p>rpc是一种通过网络从远程计算机程序上请求服务，而不需要了解底层网络技术的协议。</p>
+<p>SOAP是一个基于XML的协议交换消息，可以使用HTTP来传输这些信息。事实上HTTP是SOAP消息的最常见的传输工具。soap将信息进行XML的序列化后，再用http协议的方式再打包进行传送，传送的方式还是tcp或者udp。做个比喻就好理解了。tcp 和 udp 都是公路，暂且把tcp认为是一般公路，udp高速公路，soap和http就都是汽车，那么soap和http都可以在tcp和udp上跑。说soap可以通过http来传送，实际就是说soap是小轿车，http是装轿车的卡车，把soap的信息装到http里面，然后再运输，当然走的道路还是tcp或udp。说soap可以通过http协议来传输，这句话不太准确，比较准确第说法是：soap信息可以通过http协议包装后通过tcp或udp传输。</p>
+<p>初学情况下只要了解http协议和调用http协议，java使用httpClient，还有socket编程就好了。RPC我也了解的不多。</p>
+<h2 id="详细介绍一下http协议与soap协议"><a href="#详细介绍一下http协议与soap协议" class="headerlink" title="详细介绍一下http协议与soap协议"></a>详细介绍一下http协议与soap协议</h2><p><code>http基于文本，soap基于XML</code><br><img src="/2019/03/09/前端通信协议篇/492142.jpg" alt=""><br>HTTP只负责把数据传送过去，不会管这个数据是XML、HTML、图片、文本文件或者别的什么。而SOAP协议则定义了怎么把一个对象变成XML文本，在远程如何调用等，怎么能够混为一谈。   </p>
+<p>这样说两种协议：<br>HTTP就是邮局的协议，他们规定了你的信封要怎么写，要贴多少邮票等。。。。<br>SOAP就是你们之间交流的协议，负责把你所需要表达的意思写在信纸上，同时也负责让对方能够看得懂你的信。</p>
+<p>Web service一般就是用SOAP协议通过HTTP来调用它，其实他就是一个WSDL文档，客户都可以阅读WSDL文档来用这个Web service。客户根据WSDL描述文档，会生成一个SOAP请求消息。Web service都是放在Web服务器 (如IIS) 后面的，客户生成的SOAP请求会被嵌入在一个HTTP POST请求中，发送到Web服务器来。Web服务器再把这些请求转发给Web service请求处理器。请求处理器的作用在于，解析收到的SOAP请求，调用Web service，然后再生成相应的SOAP应答。Web服务器得到SOAP应答后，会再通过HTTP应答的方式把它送回到客户端。</p>
+<p>webService协议主要包括两个方面：传输协议和数据表示，关于传输协议可以是http或其他，数据表示也可以是键值对、xml或其他，只不过现在通用的是http+soap，当然其他的也可以，不知道这样理解对不对？</p>
+<p>SOAP简单的理解，就是这样的一个开放协议SOAP=RPC+HTTP+XML：采用HTTP作为底层通讯协议；RPC作为一致性的调用途径，ＸＭＬ作为数据传送的格式，允许服务提供者和服务客户经过防火墙在INTERNET进行通讯交互。</p>
+<p>Soap</p>
+<p>定义:<br>SOAP 是一种轻量级协议，用于在分散型、分布式环境中交换结构化信息。 SOAP 利用 XML 技术定义一种可扩展的消息处理框架，它提供了一种可通过多种底层协议进行交换的消息结构。 这种框架的设计思想是要独立于任何一种特定的编程模型和其他特定实现的语义。<br>特性:<br>这个定义确实体现了 SOAP 现在的主旨。 SOAP 定义了一种方法以便将 XML 消息从 A 点传送到 B 点。 为此，它提供了一种基于 XML 且具有以下特性的消息处理框架：<br>1) 可扩展，<br>2) 可通过多种底层网络协议使用<br>3) 独立于编程模型。<br> 以下将分别详细讨论这三种特性。<br> 1:SOAP 可扩展性是关键所在。 在这个缩写词还代表某些含义时，”S” 意味着“简单”。 如果我们从 Web 中学到了一样东西，那就是，简单性总是比效率和纯技术更重要，因而互操作性成败的关键，就在于必须绝对要求简单性。 简单性仍然是 SOAP 的主要设计目标之一，这一点的例证就是 SOAP 缺少分布式系统的很多特性（如安全性、路由和可靠性等）。 SOAP 定义了一种通信框架，允许以分层扩展的形式随着时间推移而加入这些特性。 Microsoft、IBM 和其他软件厂商正在积极开发一个 SOAP 扩展的通用套件，该套件将加入大多数开发人员期待的特性。 这一计划被称为全局 XML Web 服务结构 (GXA)Microsoft 已经发布了针对若干 GXA 规范的一个参考实现，并将其命名为 Web Services Enhancements 1.0 SP1 for Microsoft .NET (WSE)。 </p>
+<p>2:SOAP 可在任何传输协议（诸如 TCP、HTTP、SMTP，甚至是 MSMQ）上使用（参见图 1）。 然而，为了保持互操作性，需要定义一些标准协议绑定以便草拟用于每种环境的规则。 SOAP 规范提供了一种用于定义任意协议绑定的灵活框架，并且由于 HTTP 的使用极为广泛，它现已为 HTTP 提供了一种显式绑定。</p>
+<p>3:SOAP 允许任何编程模型，并且不依赖于 RPC。 大多数开发人员立刻将 SOAP 与对分布式对象进行的 RPC 调用等效起来（因为 SOAP 最初就是关于“访问对象”的），但实际上，基本的 SOAP 模型更接近于传统的消息处理系统，如 MSMQ。 SOAP 定义了一种模型以便处理个别的单向消息。 你可以将多条消息组合成一条整体的消息交换。 图 1 说明了一种简单的单向消息，其中发送方不会收到响应。 但是，接收方可以向发送方发回一条响应（参见图 2）。 SOAP 允许使用任何数量的消息交换模式 (MEP)，请求/响应只是其中一种。 其他示例包括要求/响应（与请求/响应相对）、通知和长期运行的点对点对话等。</p>
+<p>开发人员经常将请求/响应与 RPC 混为一谈，而实际上二者之间的差别很大。 RPC 使用请求/响应，但请求/响应不一定就是 RPC。 RPC 是 一种允许开发人员进行方法调用的编程模型。 RPC 需要将方法签名转换成 SOAP 消息。 鉴于 RPC 的广泛应用，SOAP 草拟了一项协议，以便将 RPC 用于 SOAP。</p>
+<p>具备这三种主要特性，SOAP 消息处理框架就促进了在异构环境中交换 XML 消息，而在这类环境中，互操作性长久以来都是极大的挑战。</p>
+<p>HTTP</p>
+<p>HTTP-GET<br>定义:<br>HTTP-GET是超文本传输协议的一种,依靠唯一的URI把数据传输.</p>
+<p>特点:<br>。将数据添加到URL<br>。利用一个问号（”?”）代表URL地址的结尾与数据的开端。<br>。每一个数据的元素以 名称/值 (name/value)　的形式出现(以&amp;分割)。<br>。利用一个分号(“;”)来区分多个数据元素。 </p>
+<p>HTTP-POST<br>定义:<br>HTTP-POST是超文本传输协议的一种,依靠用户发送的数据头获取数据.</p>
+<p>特点:<br>。将数据包括在HTTP主体中。<br>。同样的，数据的元素以 名称/值 (name/value)　的形式出现(以&amp;分割)。<br>。但是每一个数据元素分别占用主体的一行</p>
+<p>1、简单快速：客户向服务器请求服务时，只需传送请求方法和路径。请求方法常用的有GET、HEAD、POST。每种方法规定了客户与服务器联系的类型不同。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快。<br>2、灵活：HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type加以标记。<br>3、无连接：无连接的含义是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。<br>4.无状态：HTTP协议是无状态协议。无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的应答就较快。<br>5、支持B/S及C/S模式。</p>
+<p>HTTP和SOAP</p>
+<p>HTTP的优势(参考资料):<br>。 能够非常容易的创建正确的HTTP-GET 和 HTTP-POST消息，当面向的客户是不能使用SOAP的客户时，HTTP-GET 和 HTTP-POST是最好的选择。</p>
+<p>。响应HTTP-GET 和 HTTP-POST的消息，并不需要复杂的XML处理。响应之中包括了XML，但它有一个简单的框架并能够轻易的利用一般的技术处理响应。这些特点使HTTP-GET 和 HTTP-POST对于不支持XML的平台来说，变的异常的有用。 </p>
+<p>。HTTP-GET 和 HTTP-POST消息比起SOAP消息来说，更为简单。这有利于提高整体的性能。</p>
+<p>缺点(参考资料):<br>。不能够利用HTML调用XML Web Service中的以复杂数据类型为参数的方法。 </p>
+<p>。你可以调用XML Web Service中返回值为复杂数据类型的方法，但是响应将仅包括复杂数据类型中各个区域中的名字/值，并且返回的值并没有结构可言。你必须手动的将数据解压缩到WSDL文件。 </p>
+<p>。在HTTP中，你不能使用reference进行参数的传输。 </p>
+<p>。使用HTTP与XML Web Service进行交流，不是一个agreed-to工业标准技术。虽然HTTP会在ASP.NET Web Application中与XML Web Service正常工作，但不保证它在其它的环境下正常工作。 </p>
+<p>注意事项:</p>
+<p> Cookie是依赖于Http传输协议的,如果说Soap可以读取Http产生的Cookie的话这是不可能的,Soap只能每次发送Cookie的库,获取才可以处理.</p>
+<p>  Soap相比HTtp协议较慢,如果不是非常有必要,不要其传输大数据块.</p>
+<p>  soap必定是符合W3C的XML文件,在C#中,发送的HttpWebRequest中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Stream stm = req.GetRequestStream();</span><br><span class="line">doc.Save(stm);</span><br></pre></td></tr></table></figure></p>
+<p>即可实现发送,如果需要获取:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WebResponse resp = req.GetResponse();</span><br><span class="line">stm = resp.GetResponseStream();</span><br><span class="line">StreamReader r = new StreamReader(stm);</span><br></pre></td></tr></table></figure></p>
+<p> 发送一个Soap,在Web编程中,都是依靠于HTTP-POST的方式,Php中发送一个POST请求如下函数:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">function httpPostRequest($host, $path, $arrPostvars, $port=80, $referer=&quot;&quot;)&#123; </span><br><span class="line">  $arrEncodedPairs = array(); </span><br><span class="line">  $res = &quot;&quot;; </span><br><span class="line">  foreach ($arrPostvars as $var =&gt; $value) </span><br><span class="line">      $arrEncodedPairs[] = rawurlencode($var).&quot;=&quot;.rawurlencode($value); </span><br><span class="line">  $postData = implode(&quot;&amp;&quot;, $arrEncodedPairs); </span><br><span class="line">  $request = &quot;POST $path HTTP/1.1\n&quot;. </span><br><span class="line">  &quot;Host: $host\n&quot;. </span><br><span class="line">  (($referer)  &quot;Referer: $referer\n&quot; : &quot;&quot;). </span><br><span class="line">  &quot;Content-type: application/x-www-form-urlencoded\n&quot;. </span><br><span class="line">  &quot;Content-length: &quot;.strlen($postData).&quot;\n&quot;. </span><br><span class="line">  &quot;Connection: close\n\n&quot;. </span><br><span class="line">  $postData.&quot;\n&quot;; </span><br><span class="line">  if ($fp = fsockopen($host, $port)) &#123; </span><br><span class="line">    if (fputs($fp, $request))&#123; </span><br><span class="line">      while(! feof($fp))&#123; </span><br><span class="line">       $res .= fgets($fp, 128); </span><br><span class="line">      &#125; </span><br><span class="line">      fclose($fp); </span><br><span class="line">      return $res; </span><br><span class="line">    &#125; </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>使用的时候:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo(httpPostRequest(&apos;s&apos;,&apos;/myps/webs.asmx/IsLogin&apos;,array(&quot;Input&quot;=&gt;&quot;my Input&quot;),81));</span><br></pre></td></tr></table></figure></p>
+<p>  Http是无状态的协议,比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">private string MyName;</span><br><span class="line">[WebMethod]</span><br><span class="line">public void SetMyName(string Input)&#123;</span><br><span class="line">  this.MyName=Input;</span><br><span class="line">&#125;</span><br><span class="line">[WebMethod]</span><br><span class="line">public string GetMyName()&#123;</span><br><span class="line"> return  this.MyName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果你使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Ws_App.SetMyName(&quot;cookies&quot;);</span><br><span class="line">returnint.Text = Ws_App.GetMyName();</span><br></pre></td></tr></table></figure></p>
+<p>这是不能获取值的.可以参考:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[WebMethod (EnableSession=true,MessageName=&quot;SetSession&quot;)]</span><br><span class="line">public void SetSession(string Input)&#123;</span><br><span class="line"> Context.Session[&quot;oop&quot;]=Input;</span><br><span class="line">&#125;</span><br><span class="line">[WebMethod (EnableSession=true,Description =&quot;GetSession&quot;,MessageName=&quot;GetSession&quot;)]</span><br><span class="line">public string GetSession()&#123;</span><br><span class="line"> return Context.Session[&quot;oop&quot;].ToString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  要熟练掌握Web服务,以上知识必须理情.</p>
+<p>http 与soap关系<br>http:是一个客户端和服务器端请求和应答的标准（TCP）。http协议其目的是为了提供一种发布和接收htttp页面的方法</p>
+<p>一http协议的客户端与服务器的交互：由HTTP客户端发起一个请求，建立一个到服务器指定端口（默认是80端口）的TCP连接。HTTP服务器则在那个端口监听客户端发送过来的请求。一旦收到请求，服务器（向客户端）发回一个状态行，比如”HTTP/1.1 200 OK”，和（响应的）消息，消息的消息体可能是请求的文件、错误消息、或者其它一些信息。</p>
+<p>soap 协议：它描述了一种在分散或分布式的环境中如何交换信息的轻量级协议。soap在http协议的基础上，一个基于XML的协议。</p>
+<p>不同：都是底层的通信协议，请求包的格式不同而已，soap包是XML格式,http纯文本格式。</p>
+<p>关系：SOAP是个通信协议， SOAP在HTTP协议的基础上，把编写成XML的REQUEST参数, 放在HTTP BODY上提交个WEB SERVICE服务器(SERVLET，ASP什么的) 处理完成后，结果也写成XML作为RESPONSE送回用户端， 为了使用户端和WEB SERVICE可以相互对应，可以使用WSDL作为这种通信方式的描述文件，利用WSDL工具可以自动生成WS和用户端的框架文件，SOAP具备把复杂对象序列化捆绑到XML里去的能力。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/03/09/前端通信协议篇/" data-id="cjubx4aw50068k0fv5bb0ccut" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/03/09/Http-Header里的Content-Type/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Http_Header里的Content-Type
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/03/09/WebService之WSDL文件讲解/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">WebService之WSDL文件讲解</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/10/使用elementUI实现将图片上传到本地/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/04/10/使用elementUI实现将图片上传到本地/871601713.png)" alt="使用elementUI实现将图片上传到本地" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/10/使用elementUI实现将图片上传到本地/" class="title">使用elementUI实现将图片上传到本地</a></p>
+                            <p class="item-date"><time datetime="2019-04-10T13:36:19.000Z" itemprop="datePublished">2019-04-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/09/datagrid使用方法（重要）/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/04/09/datagrid使用方法（重要）/621293.png)" alt="datagrid使用方法（重要）" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/09/datagrid使用方法（重要）/" class="title">datagrid使用方法（重要）</a></p>
+                            <p class="item-date"><time datetime="2019-04-09T05:12:53.000Z" itemprop="datePublished">2019-04-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/03/25/Bootstrap-Table-数据绑定/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/03/25/Bootstrap-Table-数据绑定/timg.gif)" alt="Bootstrap Table 数据绑定" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/03/25/Bootstrap-Table-数据绑定/" class="title">Bootstrap Table 数据绑定</a></p>
+                            <p class="item-date"><time datetime="2019-03-25T13:13:00.000Z" itemprop="datePublished">2019-03-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/03/25/dialog实现弹出div添加数据/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/03/25/dialog实现弹出div添加数据/11111.jpg)" alt="dialog实现弹出div添加数据" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/03/25/dialog实现弹出div添加数据/" class="title">dialog实现弹出div添加数据</a></p>
+                            <p class="item-date"><time datetime="2019-03-25T12:28:41.000Z" itemprop="datePublished">2019-03-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/03/25/table合并单元格colspan和rowspan/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/03/25/table合并单元格colspan和rowspan/42.png)" alt="table合并单元格colspan和rowspan" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/03/25/table合并单元格colspan和rowspan/" class="title">table合并单元格colspan和rowspan</a></p>
+                            <p class="item-date"><time datetime="2019-03-25T12:01:00.000Z" itemprop="datePublished">2019-03-25</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 18.89px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 16.67px;">PHP</a> <a href="/tags/XML/" style="font-size: 11.11px;">XML</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/html/" style="font-size: 16.67px;">html</a> <a href="/tags/java/" style="font-size: 17.78px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15.56px;">maven</a> <a href="/tags/node/" style="font-size: 11.11px;">node</a> <a href="/tags/orcal/" style="font-size: 13.33px;">orcal</a> <a href="/tags/python/" style="font-size: 14.44px;">python</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 12.22px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/心语/" style="font-size: 12.22px;">心语</a> <a href="/tags/技术/" style="font-size: 12.22px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15.56px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/03/09/前端通信协议篇/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

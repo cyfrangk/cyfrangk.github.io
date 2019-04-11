@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>前端通信须知 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="html">
+    
+    <meta name="description" content="一，什么是同源策略及其限制 概念：同源策略限制从一个源加载的文档或脚本如何与来自另一个源的资源进行交互。这是一个用于隔离潜在恶意文件的关键安全机制。 什么是源：协议、域名与端口。这三者任何一个不一样的话，就算是跨域。 什么是限制：不是一个源的文档，没有权限去操作另一个源的文档。   Cookie、LocalStorage 和 IndexDB无法读取。Dom无法获得Ajax请求不能发送  常见跨域场">
+<meta name="keywords" content="html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端通信须知">
+<meta property="og:url" content="http://yoursite.com/2019/03/12/前端通信须知/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="一，什么是同源策略及其限制 概念：同源策略限制从一个源加载的文档或脚本如何与来自另一个源的资源进行交互。这是一个用于隔离潜在恶意文件的关键安全机制。 什么是源：协议、域名与端口。这三者任何一个不一样的话，就算是跨域。 什么是限制：不是一个源的文档，没有权限去操作另一个源的文档。   Cookie、LocalStorage 和 IndexDB无法读取。Dom无法获得Ajax请求不能发送  常见跨域场">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/03/12/前端通信须知/d7ee7.webp">
+<meta property="og:updated_time" content="2019-04-11T00:40:42.269Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端通信须知">
+<meta name="twitter:description" content="一，什么是同源策略及其限制 概念：同源策略限制从一个源加载的文档或脚本如何与来自另一个源的资源进行交互。这是一个用于隔离潜在恶意文件的关键安全机制。 什么是源：协议、域名与端口。这三者任何一个不一样的话，就算是跨域。 什么是限制：不是一个源的文档，没有权限去操作另一个源的文档。   Cookie、LocalStorage 和 IndexDB无法读取。Dom无法获得Ajax请求不能发送  常见跨域场">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/12/前端通信须知/d7ee7.webp">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-前端通信须知" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        前端通信须知
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/03/12/前端通信须知/" class="article-date">
+            <time datetime="2019-03-12T06:15:07.000Z" itemprop="datePublished">2019-03-12</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/html/">html</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="一，什么是同源策略及其限制"><a href="#一，什么是同源策略及其限制" class="headerlink" title="一，什么是同源策略及其限制"></a>一，什么是同源策略及其限制</h2><ul>
+<li>概念：同源策略限制从一个源加载的文档或脚本如何与来自另一个源的资源进行交互。这是一个用于隔离潜在恶意文件的关键安全机制。</li>
+<li>什么是源：协议、域名与端口。这三者任何一个不一样的话，就算是跨域。</li>
+<li>什么是限制：不是一个源的文档，没有权限去操作另一个源的文档。</li>
+</ul>
+<blockquote>
+<p>Cookie、LocalStorage 和 IndexDB无法读取。<br>Dom无法获得<br>Ajax请求不能发送</p>
+</blockquote>
+<p>常见跨域场景<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">URL                                      说明                    是否允许通信</span><br><span class="line">http://www.domain.com/a.js</span><br><span class="line">http://www.domain.com/b.js         同一域名，不同文件或路径           允许</span><br><span class="line">http://www.domain.com/lab/c.js</span><br><span class="line"></span><br><span class="line">http://www.domain.com:8000/a.js</span><br><span class="line">http://www.domain.com/b.js         同一域名，不同端口                不允许</span><br><span class="line"> </span><br><span class="line">http://www.domain.com/a.js</span><br><span class="line">https://www.domain.com/b.js        同一域名，不同协议                不允许</span><br><span class="line"> </span><br><span class="line">http://www.domain.com/a.js</span><br><span class="line">http://192.168.4.12/b.js           域名和域名对应相同ip              不允许</span><br><span class="line"> </span><br><span class="line">http://www.domain.com/a.js</span><br><span class="line">http://x.domain.com/b.js           主域相同，子域不同                不允许</span><br><span class="line">http://domain.com/c.js</span><br><span class="line"> </span><br><span class="line">http://www.domain1.com/a.js</span><br><span class="line">http://www.domain2.com/b.js        不同域名                         不允许</span><br></pre></td></tr></table></figure></p>
+<h2 id="二，前端端如何通信"><a href="#二，前端端如何通信" class="headerlink" title="二，前端端如何通信"></a>二，前端端如何通信</h2><blockquote>
+<p>Ajax<br>WebSocket(不受同源策略限制)<br>CORS</p>
+</blockquote>
+<p>三，如何创建ajax</p>
+<blockquote>
+<p>XMLHttpRequest对象的工作流程<br>兼容性处理：IE下面的兼容性处理<br>事件的触发条件：事件的触发动作<br>事件的触发顺序：每个事件的触发顺序</p>
+</blockquote>
+<p>下面是个简单的实现ajax的例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;ajax&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;myDiv&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">        function ajax(url,method)&#123;</span><br><span class="line">            var xmlhttp;  </span><br><span class="line">            if (window.XMLHttpRequest)&#123;// 兼容 IE7+, Firefox, Chrome, Opera, Safari  </span><br><span class="line">                xmlhttp=new XMLHttpRequest();  </span><br><span class="line">            &#125;  </span><br><span class="line">            else&#123;// 兼容 IE6, IE5  </span><br><span class="line">                xmlhttp=newActiveXObject(&quot;Microsoft.XMLHTTP&quot;);  </span><br><span class="line">            &#125; </span><br><span class="line"></span><br><span class="line">            xmlhttp.open(method,url,true);  </span><br><span class="line">            xmlhttp.send();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            xmlhttp.onreadystatechange=function()&#123;  </span><br><span class="line">                if(xmlhttp.readyState==4 &amp;&amp;xmlhttp.status==200)&#123;  </span><br><span class="line">                    document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ajax(&quot; http://www.easy-mock.com/mock/59ba1ac1e0dc663341a981b5/demo/list&quot;,&apos;get&apos;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意一：<code>xmlhttp.readyState：</code>一共有5中请求状态，从0 到 4 发生变化。</strong></p>
+<blockquote>
+<p>0: 请求未初始化<br>1: 服务器连接已建立<br>2: 请求已接收<br>3: 请求处理中<br>4: 请求已完成，且响应已就绪</p>
+</blockquote>
+<p><strong>注意二：<code>xmlhttp.status</code>：响应状态码。这个也是面试比较爱问的，这个必须知道4个以上，比较常见的有：</strong></p>
+<blockquote>
+<p>200 “OK”<br>403 （禁止） 服务器拒绝请求。<br>404 （未找到） 服务器找不到请求的网页。<br>408 （请求超时） 服务器等候请求时发生超时。<br>500 （服务器内部错误） 服务器遇到错误，无法完成请求。</p>
+</blockquote>
+<p><strong>注意三：<code>xmlhttp.open</code>：方法<code>open</code> 的参数要牢记，很多面试官爱问这样的细节</strong></p>
+<blockquote>
+<p>method：请求的类型；GET 或 POST<br>url：文件在服务器上的位置<br>async：true（异步）或 false（同步）</p>
+</blockquote>
+<p><strong>注意四：<code>post</code>请求一定要设置请求头的格式内容</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(&quot;POST&quot;,&quot;ajax_test.html&quot;,true);  </span><br><span class="line">xmlhttp.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);  </span><br><span class="line">xmlhttp.send(&quot;fname=Henry&amp;lname=Ford&quot;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意五：服务器响应处理</strong></p>
+<blockquote>
+<p>responseText 获得字符串形式的响应数据。<br>responseXML 获得XML 形式的响应数据。</p>
+</blockquote>
+<p>知识介绍 : <a href="https://juejin.im/post/58c883ecb123db005311861a" target="_blank" rel="noopener">Ajax详细介绍</a></p>
+<h2 id="四，跨域通信的几种方式"><a href="#四，跨域通信的几种方式" class="headerlink" title="四，跨域通信的几种方式"></a>四，跨域通信的几种方式</h2><p><strong>JSONP</strong><br>通常为了减轻web服务器的负载，我们把js、css，img等静态资源分离到另一台独立域名的服务器上，在html页面中再通过相应的标签从不同域名下加载静态资源，而被浏览器允许，基于此原理，我们可以通过动态创建script，再请求一个带参网址实现跨域通信。</p>
+<ul>
+<li><p>js原生实现方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">var script = document.createElement(&apos;script&apos;);</span><br><span class="line">script.type = &apos;text/javascript&apos;;</span><br><span class="line"></span><br><span class="line">script.src = &apos;https://api.asilu.com/geo/&amp;callback=jsonp&apos;;//这个是获取当前经纬度的接口</span><br><span class="line">document.head.appendChild(script);//创建并添加script标签到&lt;head&gt;下</span><br><span class="line"></span><br><span class="line">// 回调执行函数</span><br><span class="line">function jsonp(res) &#123;</span><br><span class="line">    console.log(res);//打印jsonp返回的信息</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>jq的Ajax实现方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        url: &apos;https://api.asilu.com/geo/&apos;,</span><br><span class="line">        type: &apos;get&apos;,</span><br><span class="line">        dataType: &apos;jsonp&apos;,  // 请求方式为jsonp</span><br><span class="line">        success:function(ret)&#123;</span><br><span class="line">            console.log(ret);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>优点：</strong>它不像XMLHttpRequest对象实现的Ajax请求那样受到同源策略的限制；它的兼容性更好，在更加古老的浏览器中都可以运行，不需要XMLHttpRequest或ActiveX的支持；并且在请求完毕后可以通过调用callback的方式回传结果。<br><strong>缺点：</strong>它只支持GET请求；安全问题(请求代码中可能存在安全隐患)；</p>
+<p><strong>Hash</strong><br>hash改变，但是其的域名不改变。可以利用iframe。例子 ==&gt; a与b跨域相互通信，通过中间页c来实现。 三个页面，不同域之间利用iframe的location.hash传值，相同域之间直接js访问来通信。</p>
+<p><strong>postMessage :</strong><br><code>postMessage</code>是HTML5 <code>XMLHttpRequest Level 2</code>中的API，且是为数不多可以跨域操作的window属性之一，它可用于解决以下方面的问题</p>
+<blockquote>
+<ul>
+<li>页面和其打开的新窗口的数据传递</li>
+<li>多窗口之间消息传递</li>
+<li>页面与嵌套的iframe消息传递</li>
+<li>上面三个场景的跨域数据传递</li>
+</ul>
+</blockquote>
+<p>在这里你需要通过集成管理工具配置两个不同的域，fjw.me下的b页面，demo.me下面的a页面。(如下图)<br><img src="/2019/03/12/前端通信须知/d7ee7.webp" alt="image"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//A.HTML</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;b.html&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;b.html&lt;/h1&gt;</span><br><span class="line">    &lt;iframe id=&quot;iframe&quot; src=&quot;http://fjw.me/&quot;&gt;&lt;/iframe&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">        var iframe = document.getElementById(&apos;iframe&apos;);</span><br><span class="line"></span><br><span class="line">        iframe.onload = function() &#123;</span><br><span class="line">            var data = &#123;</span><br><span class="line">                name: &apos;aym&apos;</span><br><span class="line">            &#125;;</span><br><span class="line">            // 向fjw.me传送跨域数据,通过postMessage发送数据</span><br><span class="line">            iframe.contentWindow.postMessage(JSON.stringify(data), &apos;http://fjw.me/index.html&apos;);</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        // 接受fjw.me返回数据</span><br><span class="line">        window.addEventListener(&apos;message&apos;, function(e) &#123;</span><br><span class="line">            alert(&apos;data from domain2 ---&gt; &apos; + e.data);</span><br><span class="line">        &#125;, false);</span><br><span class="line">    &lt;/script&gt;   </span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//B.html</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;index&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div&gt;123456&lt;/div&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">        // 接收demo.me的数据</span><br><span class="line">        window.addEventListener(&apos;message&apos;, function(e) &#123;</span><br><span class="line">            alert(&apos;data from domain1 ---&gt; &apos; + e.data);</span><br><span class="line"></span><br><span class="line">            var data = JSON.parse(e.data);</span><br><span class="line"></span><br><span class="line">            if (data) &#123;</span><br><span class="line">                data.number = 16;</span><br><span class="line">                // 处理后再发回demo.me</span><br><span class="line">                window.parent.postMessage(JSON.stringify(data), &apos;http://demo.me/b.html&apos;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, false);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>结果如图：<br><img src="/2019/03/12/前端通信须知/aee3.webp" alt="image"><br><img src="/2019/03/12/前端通信须知/b1287d.webp" alt="image"></p>
+<p><strong>WebSocket:</strong></p>
+<p>WebSocket protocol是HTML5一种新的协议。它实现了浏览器与服务器全双工通信，同时允许跨域通讯，是server push技术的一种很好的实现。<br>原生WebSocket API使用起来不太方便，我们使用Socket.io，它很好地封装了webSocket接口，提供了更简单、灵活的接口，也对不支持webSocket的浏览器提供了向下兼容。<br>例子如下，本例子是参考官方的一个简易聊天室，地址是<a href="http://socket.io/get-started/chat/,目录结构如下图所示。" target="_blank" rel="noopener">http://socket.io/get-started/chat/,目录结构如下图所示。</a><br><img src="/2019/03/12/前端通信须知/21667.webp" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//服务器的后台node.js</span><br><span class="line">var app = require(&apos;express&apos;)();</span><br><span class="line">var http = require(&apos;http&apos;).Server(app);</span><br><span class="line">var io = require(&apos;socket.io&apos;)(http);</span><br><span class="line">var port = process.env.PORT || 3000;</span><br><span class="line"></span><br><span class="line">app.get(&apos;/&apos;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &apos;/index.html&apos;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&apos;connection&apos;, function(socket)&#123;</span><br><span class="line">  socket.on(&apos;chat message&apos;, function(msg)&#123;</span><br><span class="line">    io.emit(&apos;chat message&apos;, msg);</span><br><span class="line">  &#125;); //监听socket是否连接，如果连接的话，就发送数据，chat-message</span><br><span class="line">  socket.on(&apos;disconnect&apos;, function()&#123;</span><br><span class="line">    console.log(&apos;user disconnected&apos;);</span><br><span class="line">  &#125;); //监听socket是否断开，断开时执行相应的方法</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(port, function()&#123;</span><br><span class="line">  console.log(&apos;listening on *:&apos; + port);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">//前端客户端</span><br><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">      #messages &#123; margin-bottom: 40px &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;ul id=&quot;messages&quot;&gt;&lt;/ul&gt;</span><br><span class="line">    &lt;form action=&quot;&quot;&gt;</span><br><span class="line">      &lt;input id=&quot;m&quot; autocomplete=&quot;off&quot; /&gt;&lt;button&gt;Send&lt;/button&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">    &lt;script src=&quot;https://cdn.socket.io/socket.io-1.2.0.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;https://code.jquery.com/jquery-1.11.1.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      $(function () &#123;</span><br><span class="line">        var socket = io();//建立一个socket</span><br><span class="line">        $(&apos;form&apos;).submit(function()&#123;</span><br><span class="line">          socket.emit(&apos;chat message&apos;, $(&apos;#m&apos;).val());//发送socket到服务器。</span><br><span class="line">          $(&apos;#m&apos;).val(&apos;&apos;);</span><br><span class="line">          return false;</span><br><span class="line">        &#125;);</span><br><span class="line">        socket.on(&apos;chat message&apos;, function(msg)&#123;</span><br><span class="line">          $(&apos;#messages&apos;).append($(&apos;&lt;li&gt;&apos;).text(msg));</span><br><span class="line">          window.scrollTo(0, document.body.scrollHeight);</span><br><span class="line">          //接受服务器传回来的数据，新建一个li标签</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>具体效果如下图所示，可以在两个浏览器之间通信。<br><img src="/2019/03/12/前端通信须知/d949b.webp" alt="image"></p>
+<h2 id="5，CORS"><a href="#5，CORS" class="headerlink" title="5，CORS:"></a>5，CORS:</h2><p>普通跨域请求：只服务端设置<code>Access-Control-Allow-Origin</code>即可，前端无须设置，若要带cookie请求：前后端都需要设置。参考阮一峰老师的这一篇CORS的文章<br>文章的地址：<a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">跨域资源共享 CORS 详解</a></p>
+<p><strong>5.1, CORS的通信过程</strong><br>整个CORS通信过程，都是浏览器自动完成，不需要用户参与。对于开发者来说，CORS通信与同源的AJAX通信没有差别，代码完全一样。浏览器一旦发现AJAX请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，但用户不会有感觉。<br><strong>5,2, CORS的浏览器限制</strong><br>目前，所有浏览器都支持该功能，IE浏览器不能低于IE10<br><strong>5.3, 具体流程</strong><br>第一步：浏览器直接发出CORS请求。具体来说，就是在头信息之中，增加一个Origin字段。<br>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET /cors HTTP/1.1</span><br><span class="line">Origin: http://api.bob.com</span><br><span class="line">Host: api.alice.com</span><br><span class="line">Accept-Language: en-US</span><br><span class="line">Connection: keep-alive</span><br><span class="line">User-Agent: Mozilla/5.0...</span><br></pre></td></tr></table></figure></p>
+<p>上面的头信息中，<code>Origin</code>字段用来说明，本次请求来自哪个源（协议 + 域名 + 端口）。服务器根据这个值，决定是否同意这次请求。<br>如果<code>Origin</code>指定的域名在许可范围内，服务器返回的响应，会多出几个头信息字段。如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Origin: http://api.bob.com</span><br><span class="line">Access-Control-Allow-Credentials: true</span><br><span class="line">Access-Control-Expose-Headers: FooBar</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br></pre></td></tr></table></figure></p>
+<p>意思分别是：</p>
+<ul>
+<li>5.3.1,Access-Control-Allow-Origin<br>该字段是必须的。它的值要么是请求时<code>Origin</code>字段的值，要么是一个<code>*</code>，表示接受任意域名的请求。</li>
+<li>5.3.2,Access-Control-Allow-Credentials<br>该字段可选。它的值是一个布尔值，表示是否允许发送<code>Cookie</code>。默认情况下，Cookie不包括在<code>CORS</code>请求之中。设为<code>true</code>，即表示服务器明确许可，Cookie可以包含在请求中，一起发给服务器。这个值也只能设为true，如果服务器不要浏览器发送Cookie，删除该字段即可。</li>
+<li>5.3.3,Access-Control-Expose-Headers<br>该字段可选。<code>CORS</code>请求时，<code>XMLHttpRequest</code>对象的<code>getResponseHeader()</code>方法只能拿到6个基本字段：<code>Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma</code>。如果想拿到其他字段，就必须在<code>Access-Control-Expose-Headers</code>里面指定。上面的例子指定，<code>getResponseHeader(&#39;FooBar&#39;)</code>可以返回<code>FooBar</code>字段的值。<br>还有我们说到上面说到，<code>CORS</code>请求默认<strong>不</strong>发送<code>Cookie</code>和<code>HTTP</code>认证信息。如果要把Cookie发到服务器，一方面要服务器同意，指定Access-Control-Allow-Credentials字段。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Credentials: true</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>前端也要设置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest();</span><br><span class="line">xhr.withCredentials = true;//这个要开起来</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>5.4, 优点<br>CORS与JSONP相比，无疑更为先进、方便和可靠。</li>
+</ul>
+<blockquote>
+<p>JSONP只能实现GET请求，而CORS支持所有类型的HTTP请求。<br>使用CORS，开发者可以使用普通的XMLHttpRequest发起请求和获得数据，比起JSONP有更好的错误处理。<br>JSONP主要被老的浏览器支持，它们往往不支持CORS，而绝大多数现代浏览器都已经支持了CORS）。</p>
+</blockquote>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/03/12/前端通信须知/" data-id="cjubx4aqx004tk0fvis5ectr8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/03/25/table合并单元格colspan和rowspan/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            table合并单元格colspan和rowspan
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/03/09/Http-Header里的Content-Type/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Http_Header里的Content-Type</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/10/使用elementUI实现将图片上传到本地/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/04/10/使用elementUI实现将图片上传到本地/871601713.png)" alt="使用elementUI实现将图片上传到本地" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/10/使用elementUI实现将图片上传到本地/" class="title">使用elementUI实现将图片上传到本地</a></p>
+                            <p class="item-date"><time datetime="2019-04-10T13:36:19.000Z" itemprop="datePublished">2019-04-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/09/datagrid使用方法（重要）/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/04/09/datagrid使用方法（重要）/621293.png)" alt="datagrid使用方法（重要）" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/09/datagrid使用方法（重要）/" class="title">datagrid使用方法（重要）</a></p>
+                            <p class="item-date"><time datetime="2019-04-09T05:12:53.000Z" itemprop="datePublished">2019-04-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/03/25/Bootstrap-Table-数据绑定/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/03/25/Bootstrap-Table-数据绑定/timg.gif)" alt="Bootstrap Table 数据绑定" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/03/25/Bootstrap-Table-数据绑定/" class="title">Bootstrap Table 数据绑定</a></p>
+                            <p class="item-date"><time datetime="2019-03-25T13:13:00.000Z" itemprop="datePublished">2019-03-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/03/25/dialog实现弹出div添加数据/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/03/25/dialog实现弹出div添加数据/11111.jpg)" alt="dialog实现弹出div添加数据" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/03/25/dialog实现弹出div添加数据/" class="title">dialog实现弹出div添加数据</a></p>
+                            <p class="item-date"><time datetime="2019-03-25T12:28:41.000Z" itemprop="datePublished">2019-03-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/03/25/table合并单元格colspan和rowspan/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/03/25/table合并单元格colspan和rowspan/42.png)" alt="table合并单元格colspan和rowspan" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/03/25/table合并单元格colspan和rowspan/" class="title">table合并单元格colspan和rowspan</a></p>
+                            <p class="item-date"><time datetime="2019-03-25T12:01:00.000Z" itemprop="datePublished">2019-03-25</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 18.89px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 16.67px;">PHP</a> <a href="/tags/XML/" style="font-size: 11.11px;">XML</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/html/" style="font-size: 16.67px;">html</a> <a href="/tags/java/" style="font-size: 17.78px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15.56px;">maven</a> <a href="/tags/node/" style="font-size: 11.11px;">node</a> <a href="/tags/orcal/" style="font-size: 13.33px;">orcal</a> <a href="/tags/python/" style="font-size: 14.44px;">python</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 12.22px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/心语/" style="font-size: 12.22px;">心语</a> <a href="/tags/技术/" style="font-size: 12.22px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15.56px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/03/12/前端通信须知/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

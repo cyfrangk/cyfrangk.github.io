@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Http_Header里的Content-Type | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="html">
+    
+    <meta name="description" content="HTTP/1.1 协议规定的 HTTP 请求方法有OPTIONS（在前端中常用于 cors跨域验证,返回服务器对特定资源支持的http方法，用来向服务器发送‘*’的请求来测试服务器的功能性）、GET( 对应 restful api 查询资源, 用于客户端从服务端取数据 )、HEAD( 可以用于http请求的时间什么，或者判断是否存在判断文件大小等)、POST(对应 restful api中的增加资">
+<meta name="keywords" content="html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Http_Header里的Content-Type">
+<meta property="og:url" content="http://yoursite.com/2019/03/09/Http-Header里的Content-Type/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="HTTP/1.1 协议规定的 HTTP 请求方法有OPTIONS（在前端中常用于 cors跨域验证,返回服务器对特定资源支持的http方法，用来向服务器发送‘*’的请求来测试服务器的功能性）、GET( 对应 restful api 查询资源, 用于客户端从服务端取数据 )、HEAD( 可以用于http请求的时间什么，或者判断是否存在判断文件大小等)、POST(对应 restful api中的增加资">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/03/09/Http-Header里的Content-Type/1019.png">
+<meta property="og:updated_time" content="2019-03-12T06:00:10.401Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Http_Header里的Content-Type">
+<meta name="twitter:description" content="HTTP/1.1 协议规定的 HTTP 请求方法有OPTIONS（在前端中常用于 cors跨域验证,返回服务器对特定资源支持的http方法，用来向服务器发送‘*’的请求来测试服务器的功能性）、GET( 对应 restful api 查询资源, 用于客户端从服务端取数据 )、HEAD( 可以用于http请求的时间什么，或者判断是否存在判断文件大小等)、POST(对应 restful api中的增加资">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/09/Http-Header里的Content-Type/1019.png">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-Http-Header里的Content-Type" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Http_Header里的Content-Type
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/03/09/Http-Header里的Content-Type/" class="article-date">
+            <time datetime="2019-03-09T08:53:49.000Z" itemprop="datePublished">2019-03-09</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/html/">html</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>HTTP/1.1 协议规定的 HTTP 请求方法有<br><code>OPTIONS</code>（在前端中常用于 cors跨域验证,返回服务器对特定资源支持的http方法，用来向服务器发送‘*’的请求来测试服务器的功能性）、<br><code>GET</code>( 对应 restful api 查询资源, 用于客户端从服务端取数据 )、<br><code>HEAD</code>( 可以用于http请求的时间什么，或者判断是否存在判断文件大小等)、<br><code>POST</code>(对应 restful api中的增加资源, 用于客户端传数据到服务端)、<br><code>PUT</code>(对应 restful api中的更新资源)、<br><code>DELETE</code>（ 对应 restful api中的删除资源 )、<br>TRACE(回显服务器收到的请求，主要用于测试或诊断)、<br>CONNECT(http1.1中预留给能够将连接改为管道方式的代理服务器) 这几种。<br>其中后边两个仅限特殊情况，本文主要讨论 POST 提交数据的几种方式。</p>
+<p><img src="/2019/03/09/Http-Header里的Content-Type/1019.png" alt=""><br>我们知道，HTTP 协议是以 ASCII 码传输，建立在 TCP/IP 协议之上的应用层规范。规范把 HTTP 请求分为三个部分：状态行、请求头、消息主体。类似于下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;method&gt; &lt;request-url&gt; &lt;version&gt;</span><br><span class="line">&lt;headers&gt;</span><br><span class="line">&lt;entity-body&gt;&lt;/entity-body&gt;&lt;/headers&gt;&lt;/version&gt;&lt;/request-url&gt;&lt;/method&gt;</span><br></pre></td></tr></table></figure></p>
+<p><code>协议规定 POST 提交的数据必须放在消息主体（entity-body）中</code>，但协议并没有规定数据必须使用什么编码方式。实际上，开发者完全可以自己决定消息主体的格式，只要最后发送的 HTTP 请求满足上面的格式就可以。</p>
+<p>但是，数据发送出去，还要服务端解析成功才有意义。一般服务端语言如 php、python 等，以及它们的 framework，都内置了自动解析常见数据格式的功能。服务端通常是根据请求头（headers）中的 Content-Type 字段来获知请求中的消息主体是用何种方式编码，再对主体进行解析。所以说到 POST 提交数据方案，包含了 Content-Type 和消息主体编码方式两部分。下面就正式开始介绍它们。</p>
+<p><strong>Content-Type</strong><br>  MediaType，即是Internet Media Type，互联网媒体类型；也叫做MIME类型，在Http协议消息头中，使用Content-Type来表示具体请求中的媒体类型信息。</p>
+<ol>
+<li>类型格式：type/subtype(;parameter)? type</li>
+<li>主类型，任意的字符串，如text，如果是<em>号代表所有；<br>3.subtype 子类型，任意的字符串，如html，如果是</em>号代表所有；<br>4.parameter 可选，一些参数，如Accept请求头的q参数， Content-Type的 charset参数。</li>
+</ol>
+<p>之前一直分不清楚post请求里Content-Type方式，如<code>application/x-www-form-urlencoded</code>、<code>multipart/form-data</code>。<br><strong>简介</strong><br>Http Header里的Content-Type一般有这三种：</p>
+<ul>
+<li><code>application/x-www-form-urlencoded</code>：数据被编码为名称/值对。这是标准的编码格式。</li>
+<li><code>multipart/form-data</code>： 数据被编码为一条消息，页上的每个控件对应消息中的一个部分。</li>
+<li><code>text/plain</code>： 数据以纯文本形式(text/json/xml/html)进行编码，其中不含任何控件或格式字符。postman软件里标的是RAW。</li>
+</ul>
+<p>对于post请求，协议要求数据必须放到消息主体中进行传输（有别于get请求将数据附在url之后，即放入协议头中传输），那么问题来了，消息主体中的数据以什么数据格式传输呢？这就要发挥enctype的声明作用了</p>
+<p>form的<code>enctype</code>属性为编码方式，常用有两种：<code>application/x-www-form-urlencoded</code>和<code>multipart/form-data</code>，默认为<code>application/x-www-form-urlencoded</code>。<br>当action为get时候，浏览器用<code>x-www-form-urlencoded</code>的编码方式把form数据转换成一个字串（name1=value1&amp;name2=value2…），然后把这个字串追加到url后面，用<code>?</code>分割，加载这个新的url。<br>当action为post时候，浏览器把form数据封装到http body中，然后发送到server。 如果没有<code>type=file</code>的控件，用默认的application/x-www-form-urlencoded就可以了。 但是如果有<code>type=file</code>的话，就要用到multipart/form-data了。<br>当action为post且Content-Type类型是<code>multipart/form-data</code>，浏览器会把整个表单以控件为单位分割，并为每个部分加上Content-Disposition(form-data或者file),Content-Type(默认为text/plain),name(控件<code>name</code>)等信息，并加上分割符(boundary)。</p>
+<h2 id="四种常见的-POST-提交数据方式对应的content-type取值"><a href="#四种常见的-POST-提交数据方式对应的content-type取值" class="headerlink" title="四种常见的 POST 提交数据方式对应的content-type取值"></a>四种常见的 POST 提交数据方式对应的content-type取值</h2><p><strong>application/x-www-form-urlencoded </strong>(默认，正常的提交方式)</p>
+<p>这应该是最常见的 POST 提交数据的方式了。浏览器的原生 form 表单，如果不设置<code>enctype</code>属性，那么最终就会以 application/x-www-form-urlencoded 方式提交数据。请求类似于下面这样（无关的请求头在本文中都省略掉了）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST http://www.example.com HTTP/1.1 </span><br><span class="line">Content-Type: application/x-www-form-urlencoded;charset=utf-8 </span><br><span class="line"></span><br><span class="line">title=test&amp;sub%5B%5D=1&amp;sub%5B%5D=2&amp;sub%5B%5D=3</span><br></pre></td></tr></table></figure></p>
+<p>首先，Content-Type 被指定为 application/x-www-form-urlencoded；其次，提交的数据按照 key1=val1&amp;key2=val2 的方式进行编码，key 和 val 都进行了 URL 转码。大部分服务端语言都对这种方式有很好的支持。例如 PHP 中，$_POST[‘title’] 可以获取到 title 的值，$_POST[‘sub’] 可以得到 sub 数组。<br>很多时候，我们用 Ajax 提交数据时，也是使用这种方式。例如<a href="http://jquery.com/" target="_blank" rel="noopener">JQuery</a>和<a href="http://www.qwrap.com/" target="_blank" rel="noopener">QWrap</a>的 Ajax，Content-Type 默认值都是「application/x-www-form-urlencoded;charset=utf-8」。 </p>
+<p><strong>multipart/form-data </strong>(有上传文件时常用这种)</p>
+<p>这又是一个常见的 POST 数据提交的方式。我们使用表单上传文件时，<strong>必须</strong>让 form 的<code>enctyped</code>等于这个值。直接来看一个请求示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;/&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;text&quot; name=&quot;description&quot; value=&quot;some text&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;file&quot; name=&quot;myFile&quot;&gt;</span><br><span class="line">  &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></p>
+<p>请求头看起来像这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">POST http://www.example.com HTTP/1.1 </span><br><span class="line">Content-Type:multipart/form-data; boundary=----WebKitFormBoundaryrGKCBY7qhFd3TrwA </span><br><span class="line"></span><br><span class="line">------WebKitFormBoundaryrGKCBY7qhFd3TrwA </span><br><span class="line">Content-Disposition: form-data; name=&quot;text&quot; </span><br><span class="line"></span><br><span class="line">title </span><br><span class="line">------WebKitFormBoundaryrGKCBY7qhFd3TrwA </span><br><span class="line">Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;chrome.png&quot; </span><br><span class="line">Content-Type: image/png </span><br><span class="line"></span><br><span class="line">PNG ... content of chrome.png ... </span><br><span class="line">------WebKitFormBoundaryrGKCBY7qhFd3TrwA--</span><br></pre></td></tr></table></figure>
+<p>这个例子稍微复杂点。首先生成了一个 boundary 用于分割不同的字段，为了避免与正文内容重复，boundary 很长很复杂。然后 Content-Type 里指明了数据是以 mutipart/form-data 来编码，本次请求的 boundary 是什么内容。消息主体里按照字段个数又分为多个结构类似的部分，每部分都是以 –boundary 开始，紧接着内容描述信息，然后是回车，最后是字段具体内容（文本或二进制）。如果传输的是文件，还要包含文件名和文件类型信息。消息主体最后以 –boundary– 标示结束。关于 mutipart/form-data 的详细定义，请前往<a href="https://www.ietf.org/" target="_blank" rel="noopener">rfc1867</a>查看。 </p>
+<p>这种方式一般用来上传文件，各大服务端语言对它也有着良好的支持。 </p>
+<p>上面提到的这两种 POST 数据的方式，都是浏览器原生支持的，而且现阶段原生 form 表单也只支持这两种方式。但是随着越来越多的 Web 站点，尤其是 WebApp，全部使用 Ajax 进行数据交互之后，我们完全可以定义新的数据提交方式，给开发带来更多便利。 </p>
+<p><strong>application/json</strong> (ajax常用这种格式)</p>
+<p>application/json 这个 Content-Type 作为响应头大家肯定不陌生。实际上，现在越来越多的人把它作为请求头，用来告诉服务端消息主体是序列化后的 JSON 字符串。由于 JSON 规范的流行，除了低版本 IE 之外的各大浏览器都原生支持 JSON.stringify，服务端语言也都有处理 JSON 的函数，使用 JSON 不会遇上什么麻烦。 </p>
+<p>JSON 格式支持比键值对复杂得多的结构化数据，这一点也很有用。记得我几年前做一个项目时，需要提交的数据层次非常深，我就是把数据 JSON 序列化之后来提交的。不过当时我是把 JSON 字符串作为 val，仍然放在键值对里，以 x-www-form-urlencoded 方式提交。 </p>
+<p>Google 的 AngularJS 中的 Ajax 功能，默认就是提交 JSON 字符串。例如下面这段代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var data = &#123;&apos;title&apos;:&apos;test&apos;, &apos;sub&apos; : [1,2,3]&#125;; </span><br><span class="line">$http.post(url, data).success(function(result) &#123; </span><br><span class="line">    ... </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>最终发送的请求是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">POST http://www.example.com HTTP/1.1 </span><br><span class="line">Content-Type: application/json;charset=utf-8 </span><br><span class="line"></span><br><span class="line">&#123;&quot;title&quot;:&quot;test&quot;,&quot;sub&quot;:[1,2,3]&#125;</span><br><span class="line">``` </span><br><span class="line">这种方案，可以方便的提交复杂的结构化数据，特别适合`RESTful`的接口。各大抓包工具如 Chrome 自带的开发者工具、Firebug、Fiddler，都会以树形结构展示 JSON 数据，非常友好。但也有些服务端语言还没有支持这种方式，例如 php 就无法通过 $_POST 对象从上面的请求中获得内容。这时候，需要自己动手处理下：在请求头中 Content-Type 为 application/json 时，从 php://input 里获得原始输入流，再 json_decode 成对象。一些 php 框架已经开始这么做了。 </span><br><span class="line"></span><br><span class="line">当然 AngularJS 也可以配置为使用 x-www-form-urlencoded 方式提交数据。如有需要，可以参考这篇文章。 </span><br><span class="line"></span><br><span class="line">**text/xml** </span><br><span class="line"></span><br><span class="line"> XML-RPC（XML Remote Procedure Call）。它是一种使用 HTTP 作为传输协议，XML 作为编码方式的远程调用规范。典型的 XML-RPC 请求是这样的：</span><br></pre></td></tr></table></figure></p>
+<p>POST <a href="http://www.example.com" target="_blank" rel="noopener">http://www.example.com</a> HTTP/1.1<br>Content-Type: text/xml </p>
+<!--?xml version="1.0"?--> 
+<p><methodcall><br>    <methodname>examples.getStateName</methodname><br>    <params><br>        <param><br>            <value><i4>41</i4></value> </params></methodcall></p>
+<pre><code>&lt;/params&gt; 
+</code></pre><p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">XML-RPC 协议简单、功能够用，各种语言的实现都有。它的使用也很广泛，如 WordPress 的 XML-RPC Api，搜索引擎的 ping 服务等等。JavaScript 中，也有现成的库支持以这种方式进行数据交互，能很好的支持已有的 XML-RPC 服务。不过，我个人觉得 XML 结构还是过于臃肿，一般场景用 JSON 会更灵活方便。 </span><br><span class="line"></span><br><span class="line">![](Http-Header里的Content-Type/47c79.png)</span><br><span class="line">## Spring MVC中关于关于Content-Type类型信息的使用</span><br><span class="line"></span><br><span class="line">    首先我们来看看RequestMapping中的Class定义：</span><br></pre></td></tr></table></figure></p>
+<p>@Target({ElementType.METHOD, ElementType.TYPE})<br>@Retention(RetentionPolicy.RUNTIME)<br>@Documented<br>@Mapping<br>public @interface RequestMapping {<br>      String[] value() default {};<br>      RequestMethod[] method() default {};<br>      String[] params() default {};<br>      String[] headers() default {};<br>      String[] consumes() default {};<br>      String[] produces() default {};<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+ value:  指定请求的实际地址， 比如 /action/info之类。</span><br><span class="line">+ method：  指定请求的method类型， GET、POST、PUT、DELETE等</span><br><span class="line">+ consumes： 指定处理请求的提交内容类型（Content-Type），例如application/json, text/html;</span><br><span class="line">+ produces:    指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回</span><br><span class="line">+ params： 指定request中必须包含某些参数值是，才让该方法处理</span><br><span class="line">+ headers： 指定request中必须包含某些指定的header值，才能让该方法处理请求</span><br><span class="line">其中，consumes， produces使用content-typ信息进行过滤信息；headers中可以使用content-type进行过滤和判断。</span><br><span class="line"></span><br><span class="line">## 使用示例</span><br><span class="line">  1 headers</span><br></pre></td></tr></table></figure></p>
+<p>  @RequestMapping(value = “/test”, method = RequestMethod.GET, headers=”Referer=<a href="http://www.ifeng.com/&quot;" target="_blank" rel="noopener">http://www.ifeng.com/&quot;</a>)<br>  public void testHeaders(@PathVariable String ownerId, @PathVariable String petId) {<br>    // implementation omitted<br>  }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  这里的Headers里面可以匹配所有Header里面可以出现的信息，不局限在Referer信息。</span><br><span class="line">  示例2</span><br></pre></td></tr></table></figure></p>
+<p>@RequestMapping(value = “/response/ContentType”, headers = “Accept=application/json”)<br>public void response2(HttpServletResponse response) throws IOException {<br>    //表示响应的内容区数据的媒体类型为json格式，且编码为utf-8(客户端应该以utf-8解码)<br>    response.setContentType(“application/json;charset=utf-8”);<br>    //写出响应体内容<br>    String jsonData = “{\”username\”:\”zhang\”, \”password\”:\”123\”}”;<br>    response.getWriter().write(jsonData);<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">服务器根据请求头“Accept=application/json”生产json数据。</span><br><span class="line">当你有如下Accept头，将遵守如下规则进行应用：</span><br><span class="line">①Accept：text/html,application/xml,application/json</span><br><span class="line">      将按照如下顺序进行produces的匹配 ①text/html ②application/xml ③application/json</span><br><span class="line">②Accept：application/xml;q=0.5,application/json;q=0.9,text/html</span><br><span class="line">      将按照如下顺序进行produces的匹配 ①text/html ②application/json ③application/xml</span><br><span class="line">      参数为媒体类型的质量因子，越大则优先权越高(从0到1)</span><br><span class="line">③Accept：*/*,text/*,text/html</span><br><span class="line">      将按照如下顺序进行produces的匹配 ①text/html ②text/* ③*/*</span><br><span class="line"></span><br><span class="line">2 params的示例</span><br></pre></td></tr></table></figure></p>
+<p>  @RequestMapping(value = “/test/{userId}”, method = RequestMethod.GET, params=”myParam=myValue”)<br>  public void findUser(@PathVariable String userId) {<br>    // implementation omitted<br>  }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  仅处理请求中包含了名为“myParam”，值为“myValue”的请求，起到了一个过滤的作用。</span><br><span class="line">3 consumes/produces</span><br></pre></td></tr></table></figure></p>
+<pre><code>@Controller  
+@RequestMapping(value = &quot;/users&quot;, method = RequestMethod.POST, consumes=&quot;application/json&quot;, produces=&quot;application/json&quot;)  
+@ResponseBody
+public List&lt;User&gt; addUser(@RequestBody User userl) {      
+    // implementation omitted  
+    return List&lt;User&gt; users;
+}
+</code></pre><p><code>`</code><br>  方法仅处理request Content-Type为“application/json”类型的请求. produces标识==&gt;处理request请求中Accept头中包含了”application/json”的请求，同时暗示了返回的内容类型为application/json;</p>
+<ol start="4">
+<li>总结<br> 基于@RequestMapping标注的内容介绍了主要的使用方法，其中,headers, consumes,produces,都是使用Content-Type中使用的各种媒体格式内容，可以基于这个格式内容来进行访问的控制和过滤。</li>
+</ol>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/03/09/Http-Header里的Content-Type/" data-id="cjubx4am70032k0fvjdnx9va2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/03/12/前端通信须知/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            前端通信须知
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/03/09/前端通信协议篇/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">前端通信协议篇</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/10/使用elementUI实现将图片上传到本地/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/04/10/使用elementUI实现将图片上传到本地/871601713.png)" alt="使用elementUI实现将图片上传到本地" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/10/使用elementUI实现将图片上传到本地/" class="title">使用elementUI实现将图片上传到本地</a></p>
+                            <p class="item-date"><time datetime="2019-04-10T13:36:19.000Z" itemprop="datePublished">2019-04-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/09/datagrid使用方法（重要）/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/04/09/datagrid使用方法（重要）/621293.png)" alt="datagrid使用方法（重要）" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/09/datagrid使用方法（重要）/" class="title">datagrid使用方法（重要）</a></p>
+                            <p class="item-date"><time datetime="2019-04-09T05:12:53.000Z" itemprop="datePublished">2019-04-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/03/25/Bootstrap-Table-数据绑定/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/03/25/Bootstrap-Table-数据绑定/timg.gif)" alt="Bootstrap Table 数据绑定" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/03/25/Bootstrap-Table-数据绑定/" class="title">Bootstrap Table 数据绑定</a></p>
+                            <p class="item-date"><time datetime="2019-03-25T13:13:00.000Z" itemprop="datePublished">2019-03-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/03/25/dialog实现弹出div添加数据/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/03/25/dialog实现弹出div添加数据/11111.jpg)" alt="dialog实现弹出div添加数据" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/03/25/dialog实现弹出div添加数据/" class="title">dialog实现弹出div添加数据</a></p>
+                            <p class="item-date"><time datetime="2019-03-25T12:28:41.000Z" itemprop="datePublished">2019-03-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/03/25/table合并单元格colspan和rowspan/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/03/25/table合并单元格colspan和rowspan/42.png)" alt="table合并单元格colspan和rowspan" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/03/25/table合并单元格colspan和rowspan/" class="title">table合并单元格colspan和rowspan</a></p>
+                            <p class="item-date"><time datetime="2019-03-25T12:01:00.000Z" itemprop="datePublished">2019-03-25</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 18.89px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 16.67px;">PHP</a> <a href="/tags/XML/" style="font-size: 11.11px;">XML</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/html/" style="font-size: 16.67px;">html</a> <a href="/tags/java/" style="font-size: 17.78px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15.56px;">maven</a> <a href="/tags/node/" style="font-size: 11.11px;">node</a> <a href="/tags/orcal/" style="font-size: 13.33px;">orcal</a> <a href="/tags/python/" style="font-size: 14.44px;">python</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 12.22px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/心语/" style="font-size: 12.22px;">心语</a> <a href="/tags/技术/" style="font-size: 12.22px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15.56px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/03/09/Http-Header里的Content-Type/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

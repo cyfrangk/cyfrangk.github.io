@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>datagrid使用方法（重要） | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="html">
+    
+    <meta name="description" content="1、将静态HTML渲染为datagrid样式12345678910111213141516171819202122&amp;lt;!-- 方式一：将静态HTML渲染为datagrid样式 --&amp;gt;	&amp;lt;table class=&amp;quot;easyui-datagrid&amp;quot;&amp;gt;		&amp;lt;thead&amp;gt;			&amp;lt;tr&amp;gt;				&amp;lt;th data-options=&amp;quo">
+<meta name="keywords" content="html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="datagrid使用方法（重要）">
+<meta property="og:url" content="http://yoursite.com/2019/04/09/datagrid使用方法（重要）/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="1、将静态HTML渲染为datagrid样式12345678910111213141516171819202122&amp;lt;!-- 方式一：将静态HTML渲染为datagrid样式 --&amp;gt;	&amp;lt;table class=&amp;quot;easyui-datagrid&amp;quot;&amp;gt;		&amp;lt;thead&amp;gt;			&amp;lt;tr&amp;gt;				&amp;lt;th data-options=&amp;quo">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/04/09/datagrid使用方法（重要）/621293.png">
+<meta property="og:updated_time" content="2019-04-09T05:33:17.787Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="datagrid使用方法（重要）">
+<meta name="twitter:description" content="1、将静态HTML渲染为datagrid样式12345678910111213141516171819202122&amp;lt;!-- 方式一：将静态HTML渲染为datagrid样式 --&amp;gt;	&amp;lt;table class=&amp;quot;easyui-datagrid&amp;quot;&amp;gt;		&amp;lt;thead&amp;gt;			&amp;lt;tr&amp;gt;				&amp;lt;th data-options=&amp;quo">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/09/datagrid使用方法（重要）/621293.png">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-datagrid使用方法（重要）" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        datagrid使用方法（重要）
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/04/09/datagrid使用方法（重要）/" class="article-date">
+            <time datetime="2019-04-09T05:12:53.000Z" itemprop="datePublished">2019-04-09</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/html/">html</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="1、将静态HTML渲染为datagrid样式"><a href="#1、将静态HTML渲染为datagrid样式" class="headerlink" title="1、将静态HTML渲染为datagrid样式"></a>1、将静态HTML渲染为datagrid样式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 方式一：将静态HTML渲染为datagrid样式 --&gt;</span><br><span class="line">	&lt;table class=&quot;easyui-datagrid&quot;&gt;</span><br><span class="line">		&lt;thead&gt;</span><br><span class="line">			&lt;tr&gt;</span><br><span class="line">				&lt;th data-options=&quot;field:&apos;id&apos;&quot;&gt;编号&lt;/th&gt;</span><br><span class="line">				&lt;th data-options=&quot;field:&apos;name&apos;&quot;&gt;姓名&lt;/th&gt;</span><br><span class="line">				&lt;th data-options=&quot;field:&apos;age&apos;&quot;&gt;年龄&lt;/th&gt;</span><br><span class="line">			&lt;/tr&gt;</span><br><span class="line">		&lt;/thead&gt;</span><br><span class="line">		&lt;tbody&gt;</span><br><span class="line">			&lt;tr&gt;</span><br><span class="line">				&lt;td&gt;001&lt;/td&gt;</span><br><span class="line">				&lt;td&gt;小明&lt;/td&gt;</span><br><span class="line">				&lt;td&gt;90&lt;/td&gt;</span><br><span class="line">			&lt;/tr&gt;</span><br><span class="line">			&lt;tr&gt;</span><br><span class="line">				&lt;td&gt;002&lt;/td&gt;</span><br><span class="line">				&lt;td&gt;老王&lt;/td&gt;</span><br><span class="line">				&lt;td&gt;3&lt;/td&gt;</span><br><span class="line">			&lt;/tr&gt;</span><br><span class="line">		&lt;/tbody&gt;</span><br><span class="line">	&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="2、发送ajax请求获取json数据创建datagrid"><a href="#2、发送ajax请求获取json数据创建datagrid" class="headerlink" title="2、发送ajax请求获取json数据创建datagrid"></a>2、发送ajax请求获取json数据创建datagrid</h2><pre><code>提供json文件
+![](datagrid使用方法（重要）/27568.png)
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 方式二：发送ajax请求获取json数据创建datagrid --&gt;</span><br><span class="line">	&lt;table data-options=&quot;url:&apos;$&#123;pageContext.request.contextPath &#125;/json/datagrid_data.json&apos;&quot; </span><br><span class="line">			class=&quot;easyui-datagrid&quot;&gt;</span><br><span class="line">		&lt;thead&gt;</span><br><span class="line">			&lt;tr&gt;</span><br><span class="line">				&lt;th data-options=&quot;field:&apos;id&apos;&quot;&gt;编号&lt;/th&gt;</span><br><span class="line">				&lt;th data-options=&quot;field:&apos;name&apos;&quot;&gt;姓名&lt;/th&gt;</span><br><span class="line">				&lt;th data-options=&quot;field:&apos;age&apos;&quot;&gt;年龄&lt;/th&gt;</span><br><span class="line">			&lt;/tr&gt;</span><br><span class="line">		&lt;/thead&gt;</span><br><span class="line">	&lt;/table&gt;</span><br><span class="line">```	</span><br><span class="line">	![](datagrid使用方法（重要）/04779.png)</span><br><span class="line">## 3、使用easyUI提供的API创建datagrid（掌握）</span><br><span class="line">```    </span><br><span class="line">&lt;!-- 方式三：使用easyUI提供的API创建datagrid --&gt;</span><br><span class="line">	&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">		$(function()&#123;</span><br><span class="line">			//页面加载完成后，创建数据表格datagrid</span><br><span class="line">			$(&quot;#mytable&quot;).datagrid(&#123;</span><br><span class="line">				//定义标题行所有的列</span><br><span class="line">				columns:[[</span><br><span class="line">				          &#123;title:&apos;编号&apos;,field:&apos;id&apos;,checkbox:true&#125;,</span><br><span class="line">				          &#123;title:&apos;姓名&apos;,field:&apos;name&apos;&#125;,</span><br><span class="line">				          &#123;title:&apos;年龄&apos;,field:&apos;age&apos;&#125;,</span><br><span class="line">				          &#123;title:&apos;地址&apos;,field:&apos;address&apos;&#125;</span><br><span class="line">				          ]],</span><br><span class="line">				//指定数据表格发送ajax请求的地址</span><br><span class="line">				url:&apos;$&#123;pageContext.request.contextPath &#125;/json/datagrid_data.json&apos;,</span><br><span class="line">				rownumbers:true,</span><br><span class="line">				singleSelect:true,</span><br><span class="line">				//定义工具栏</span><br><span class="line">				toolbar:[</span><br><span class="line">				         &#123;text:&apos;添加&apos;,iconCls:&apos;icon-add&apos;,</span><br><span class="line">				        	 //为按钮绑定单击事件</span><br><span class="line">				        	 handler:function()&#123;</span><br><span class="line">				        	 	alert(&apos;add...&apos;);</span><br><span class="line">				         	 &#125;</span><br><span class="line">				         &#125;,</span><br><span class="line">				         &#123;text:&apos;删除&apos;,iconCls:&apos;icon-remove&apos;&#125;,</span><br><span class="line">				         &#123;text:&apos;修改&apos;,iconCls:&apos;icon-edit&apos;&#125;,</span><br><span class="line">				         &#123;text:&apos;查询&apos;,iconCls:&apos;icon-search&apos;&#125;</span><br><span class="line">				         ],</span><br><span class="line">				//显示分页条</span><br><span class="line">				pagination:true</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">	&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>如果数据表格中使用了分页条，要求服务端响应的json变为：</strong><br>    <img src="/2019/04/09/datagrid使用方法（重要）/621293.png" alt=""><br><strong>请求</strong><br>    <img src="/2019/04/09/datagrid使用方法（重要）/653860.png" alt=""><br><strong>响应：</strong><br>    <img src="/2019/04/09/datagrid使用方法（重要）/719949.png" alt=""></p>
+<h2 id="4、案例："><a href="#4、案例：" class="headerlink" title="4、案例："></a>4、案例：</h2><p>取派员分页查询<br>    （1）页面调整<br>         修改页面中datagrid的URL地址<br>    <img src="/2019/04/09/datagrid使用方法（重要）/938252.png" alt=""><br>    <img src="/2019/04/09/datagrid使用方法（重要）/0951718.png" alt=""><br>    （2）服务端实现<br>        包装PageBean工具类<br>        分装分页相关属性<br>    <img src="/2019/04/09/datagrid使用方法（重要）/22845.png" alt=""><br>    <strong>在BaseDao中扩展通用分页查询方法</strong><br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 通用分页查询方法</span><br><span class="line"> */</span><br><span class="line">public void pageQuery(PageBean pageBean) &#123;</span><br><span class="line">	int currentPage = pageBean.getCurrentPage();</span><br><span class="line">	int pageSize = pageBean.getPageSize();</span><br><span class="line">	DetachedCriteria detachedCriteria = pageBean.getDetachedCriteria();</span><br><span class="line">	</span><br><span class="line">	//查询total---总数据量</span><br><span class="line">	detachedCriteria.setProjection(Projections.rowCount());//指定hibernate框架发出sql的形式----》select count(*) from bc_staff;</span><br><span class="line">	List&lt;Long&gt; countList = (List&lt;Long&gt;) this.getHibernateTemplate().findByCriteria(detachedCriteria);</span><br><span class="line">	Long count = countList.get(0);</span><br><span class="line">	pageBean.setTotal(count.intValue());</span><br><span class="line">	</span><br><span class="line">	//查询rows---当前页需要展示的数据集合</span><br></pre></td></tr></table></figure></p>
+<pre><code>（3）detachedCriteria.setProjection(null);//指定hibernate框架发出sql的形式----》select * from bc_staff
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int firstResult = (currentPage - 1) * pageSize;</span><br><span class="line">	int maxResults = pageSize;</span><br><span class="line">	List rows = this.getHibernateTemplate().findByCriteria(detachedCriteria, firstResult, maxResults);</span><br><span class="line">	pageBean.setRows(rows);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+**在StaffAction中提供分页查询方法**
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//属性驱动，接收页面提交的分页参数</span><br><span class="line">private int page;</span><br><span class="line">private int rows;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 分页查询方法</span><br><span class="line"> * @throws IOException </span><br><span class="line"> */</span><br><span class="line">public String pageQuery() throws IOException&#123;</span><br><span class="line">	PageBean pageBean = new PageBean();</span><br><span class="line">	pageBean.setCurrentPage(page);</span><br><span class="line">	pageBean.setPageSize(rows);</span><br><span class="line">	//创建离线提交查询对象</span><br><span class="line">	DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Staff.class);</span><br><span class="line">	pageBean.setDetachedCriteria(detachedCriteria);</span><br><span class="line">	staffService.pageQuery(pageBean);</span><br><span class="line">	</span><br><span class="line">	//使用json-lib将PageBean对象转为json，通过输出流写回页面中</span><br><span class="line">	//JSONObject---将单一对象转为json</span><br><span class="line">	//JSONArray----将数组或者集合对象转为json</span><br><span class="line">	JsonConfig jsonConfig = new JsonConfig();</span><br><span class="line">	//指定哪些属性不需要转json</span><br><span class="line">	jsonConfig.setExcludes(new String[]&#123;&quot;currentPage&quot;,&quot;detachedCriteria&quot;,&quot;pageSize&quot;&#125;);</span><br><span class="line">	String json = JSONObject.fromObject(pageBean,jsonConfig).toString();</span><br><span class="line">	ServletActionContext.getResponse().setContentType(&quot;text/json;charset=utf-8&quot;);</span><br><span class="line">	ServletActionContext.getResponse().getWriter().print(json);</span><br><span class="line">	return NONE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p>取派员的批量删除<br>    在取派员表中存在一个删除标识位deltag，1表示已删除，0表示未删除<br>    （1）页面调整<br>    <img src="/2019/04/09/datagrid使用方法（重要）/546720.png" alt=""><br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">	//修改删除按钮绑定的事件：</span><br><span class="line">function doDelete()&#123;</span><br><span class="line">		//获取数据表格中所有选中的行，返回数组对象</span><br><span class="line">		var rows = $(&quot;#grid&quot;).datagrid(&quot;getSelections&quot;);</span><br><span class="line">		if(rows.length == 0)&#123;</span><br><span class="line">			//没有选中记录，弹出提示</span><br><span class="line">			$.messager.alert(&quot;提示信息&quot;,&quot;请选择需要删除的取派员！&quot;,&quot;warning&quot;);</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			//选中了取派员,弹出确认框</span><br><span class="line">			$.messager.confirm(&quot;删除确认&quot;,&quot;你确定要删除选中的取派员吗？&quot;,function(r)&#123;</span><br><span class="line">				if(r)&#123;</span><br><span class="line">					</span><br><span class="line">					var array = new Array();</span><br><span class="line">					//确定,发送请求</span><br><span class="line">					//获取所有选中的取派员的id</span><br><span class="line">					for(var i=0;i&lt;rows.length;i++)&#123;</span><br><span class="line">						var staff = rows[i];//json对象</span><br><span class="line">						var id = staff.id;</span><br><span class="line">						array.push(id);</span><br><span class="line">					&#125;</span><br><span class="line">					var ids = array.join(&quot;,&quot;);//1,2,3,4,5</span><br><span class="line">					location.href = &quot;staffAction_deleteBatch.action?ids=&quot;+ids;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<pre><code>（2）服务端实现
+    第一步：在StaffAction中创建deleteBatch批量删除方法
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">	//属性驱动，接收页面提交的ids参数</span><br><span class="line">		private String ids;</span><br><span class="line">		/**</span><br><span class="line">		 * 取派员批量删除</span><br><span class="line">		 */</span><br><span class="line">		public String deleteBatch()&#123;</span><br><span class="line">			staffService.deleteBatch(ids);</span><br><span class="line">			return LIST;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    第二步：在Ｓｅｒｖｉｃｅ中提供批量删除方法
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">	/**</span><br><span class="line">	 * 取派员批量删除</span><br><span class="line">	 * 逻辑删除，将deltag改为1</span><br><span class="line">	 */</span><br><span class="line">public void deleteBatch(String ids) &#123;//1,2,3,4</span><br><span class="line">	if(StringUtils.isNotBlank(ids))&#123;</span><br><span class="line">		String[] staffIds = ids.split(&quot;,&quot;);</span><br><span class="line">		for (String id : staffIds) &#123;</span><br><span class="line">			staffDao.executeUpdate(&quot;staff.delete&quot;, id);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    第三步：在Staff.hbm.xml中提供HQL语句，用于逻辑删除取派员
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 取派员逻辑删除 --&gt;</span><br><span class="line">	&lt;query name=&quot;staff.delete&quot;&gt;</span><br><span class="line">	UPDATE Staff SET deltag = &apos;1&apos; WHERE id = ?</span><br><span class="line">&lt;/query&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>取派员修改功能<br>    （1）页面调整<br>    第一步：为数据表格绑定双击事件<br>    <img src="/2019/04/09/datagrid使用方法（重要）/48461.png" alt=""><br>    <img src="/2019/04/09/datagrid使用方法（重要）/2048461.png" alt=""><br>    第二步：复制页面中添加取派员窗口，获得修改取派员窗口<br>    <img src="/2019/04/09/datagrid使用方法（重要）/111526.png" alt=""><br>    第三步：定义function<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//数据表格绑定的双击行事件对应的函数</span><br><span class="line">function doDblClickRow(rowIndex, rowData)&#123;</span><br><span class="line">	//打开修改取派员窗口</span><br><span class="line">	$(&apos;#editStaffWindow&apos;).window(&quot;open&quot;);</span><br><span class="line">	//使用form表单对象的load方法回显数据</span><br><span class="line">	$(&quot;#editStaffForm&quot;).form(&quot;load&quot;,rowData);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<pre><code>（2）服务端实现    
+在StaffAction中创建edit方法，修改取派员信息
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 修改取派员信息</span><br><span class="line"> */</span><br><span class="line">public String edit()&#123;</span><br><span class="line">	//显查询数据库，根据id查询原始数据</span><br><span class="line">	Staff staff = staffService.findById(model.getId());</span><br><span class="line">	//使用页面提交的数据进行覆盖</span><br><span class="line">	staff.setName(model.getName());</span><br><span class="line">	staff.setTelephone(model.getTelephone());</span><br><span class="line">	staff.setHaspda(model.getHaspda());</span><br><span class="line">	staff.setStandard(model.getStandard());</span><br><span class="line">	staff.setStation(model.getStation());</span><br><span class="line">	staffService.update(staff);</span><br><span class="line">	return LIST;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/04/09/datagrid使用方法（重要）/" data-id="cjubx4ajc001gk0fv27vps2xh" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/04/10/使用elementUI实现将图片上传到本地/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            使用elementUI实现将图片上传到本地
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/03/25/Bootstrap-Table-数据绑定/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Bootstrap Table 数据绑定</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/10/使用elementUI实现将图片上传到本地/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/04/10/使用elementUI实现将图片上传到本地/871601713.png)" alt="使用elementUI实现将图片上传到本地" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/10/使用elementUI实现将图片上传到本地/" class="title">使用elementUI实现将图片上传到本地</a></p>
+                            <p class="item-date"><time datetime="2019-04-10T13:36:19.000Z" itemprop="datePublished">2019-04-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/09/datagrid使用方法（重要）/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/04/09/datagrid使用方法（重要）/621293.png)" alt="datagrid使用方法（重要）" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/09/datagrid使用方法（重要）/" class="title">datagrid使用方法（重要）</a></p>
+                            <p class="item-date"><time datetime="2019-04-09T05:12:53.000Z" itemprop="datePublished">2019-04-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/03/25/Bootstrap-Table-数据绑定/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/03/25/Bootstrap-Table-数据绑定/timg.gif)" alt="Bootstrap Table 数据绑定" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/03/25/Bootstrap-Table-数据绑定/" class="title">Bootstrap Table 数据绑定</a></p>
+                            <p class="item-date"><time datetime="2019-03-25T13:13:00.000Z" itemprop="datePublished">2019-03-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/03/25/dialog实现弹出div添加数据/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/03/25/dialog实现弹出div添加数据/11111.jpg)" alt="dialog实现弹出div添加数据" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/03/25/dialog实现弹出div添加数据/" class="title">dialog实现弹出div添加数据</a></p>
+                            <p class="item-date"><time datetime="2019-03-25T12:28:41.000Z" itemprop="datePublished">2019-03-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/03/25/table合并单元格colspan和rowspan/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/03/25/table合并单元格colspan和rowspan/42.png)" alt="table合并单元格colspan和rowspan" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/03/25/table合并单元格colspan和rowspan/" class="title">table合并单元格colspan和rowspan</a></p>
+                            <p class="item-date"><time datetime="2019-03-25T12:01:00.000Z" itemprop="datePublished">2019-03-25</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 18.89px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 16.67px;">PHP</a> <a href="/tags/XML/" style="font-size: 11.11px;">XML</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/html/" style="font-size: 16.67px;">html</a> <a href="/tags/java/" style="font-size: 17.78px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15.56px;">maven</a> <a href="/tags/node/" style="font-size: 11.11px;">node</a> <a href="/tags/orcal/" style="font-size: 13.33px;">orcal</a> <a href="/tags/python/" style="font-size: 14.44px;">python</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 12.22px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/心语/" style="font-size: 12.22px;">心语</a> <a href="/tags/技术/" style="font-size: 12.22px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15.56px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/04/09/datagrid使用方法（重要）/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

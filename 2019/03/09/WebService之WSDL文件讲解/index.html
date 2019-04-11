@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>WebService之WSDL文件讲解 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="html">
+    
+    <meta name="description" content="在开发的时候，特别是和第三方有接口的时候，会走的是SOAP协议，然后用户给你一个WSDL文件，说按照上面的进行适配，嘿嘿，这个时候，要是你以前没有开发过，肯定会傻眼，那如果你想学习的话，就认真的看下面的讲解咯： 一、WSDL概述   WebServices Description Language (WSDL Web服务语言)是一个用于精确描述Web Service的文档格式。    WebSer">
+<meta name="keywords" content="html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebService之WSDL文件讲解">
+<meta property="og:url" content="http://yoursite.com/2019/03/09/WebService之WSDL文件讲解/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="在开发的时候，特别是和第三方有接口的时候，会走的是SOAP协议，然后用户给你一个WSDL文件，说按照上面的进行适配，嘿嘿，这个时候，要是你以前没有开发过，肯定会傻眼，那如果你想学习的话，就认真的看下面的讲解咯： 一、WSDL概述   WebServices Description Language (WSDL Web服务语言)是一个用于精确描述Web Service的文档格式。    WebSer">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/03/09/WebService之WSDL文件讲解/2259.png">
+<meta property="og:updated_time" content="2019-04-11T01:15:03.843Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WebService之WSDL文件讲解">
+<meta name="twitter:description" content="在开发的时候，特别是和第三方有接口的时候，会走的是SOAP协议，然后用户给你一个WSDL文件，说按照上面的进行适配，嘿嘿，这个时候，要是你以前没有开发过，肯定会傻眼，那如果你想学习的话，就认真的看下面的讲解咯： 一、WSDL概述   WebServices Description Language (WSDL Web服务语言)是一个用于精确描述Web Service的文档格式。    WebSer">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/09/WebService之WSDL文件讲解/2259.png">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-WebService之WSDL文件讲解" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        WebService之WSDL文件讲解
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/03/09/WebService之WSDL文件讲解/" class="article-date">
+            <time datetime="2019-03-09T07:32:05.000Z" itemprop="datePublished">2019-03-09</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/html/">html</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>在开发的时候，特别是和第三方有接口的时候，会走的是SOAP协议，然后用户给你一个WSDL文件，说按照上面的进行适配，嘿嘿，这个时候，要是你以前没有开发过，肯定会傻眼，那如果你想学习的话，就认真的看下面的讲解咯：</p>
+<h2 id="一、WSDL概述"><a href="#一、WSDL概述" class="headerlink" title="一、WSDL概述"></a>一、WSDL概述</h2><p>   WebServices Description Language (WSDL Web服务语言)是一个用于精确描述Web Service的文档格式。<br>    WebService描述语言(WSDL)向这种WebService的提供商和用户推出了方便的协调工作的方法，使我们能更容易的获得SOAP的种种好处。几家公司的铁道并在一起不算什么难事，他们所需遵循的只是两轨间的标准距离。对Web Service来说，这要复杂得多。我们必须先制定出指定接口的标准格式。 曾经有人说SOAP并不真需要什么接口描述语言。如果SOAP是交流纯内容的标准，那就需要一种语言来描述内容。SOAP消息确实带有某些类型信息，因此SOAP允许动态的决定类型。但不知道一个函数的函数名、参数的个数和各自类型，怎么可能去调用这个函数呢？没有WSDL，我可以从必备文档中确定调用语法，或者检查消息。随便何种方法，都必须有人参与，这个过程可能会有错。而使用了WSDL，我就可以通过这种跨平台和跨语言的方法使Web Service代理的产生自动化。就像COM和CORBA的IDL文件，WSDL文件由客户和服务器约定。</p>
+<pre><code>注意由于WSDL设计成可以绑定除SOAP以外的其他协议，这里我们主要关注WSDL在HTTP上和SOAP的关系。同样，由于SOAP目前主要用来调用远程的过程和函数，WSDL支持SOAP传输的文档规范。
+
+作为一个Web服务调用者，通过网络唯一能看到的就是这个web服务的WSDL，根据一个web服务的wsdl，调用者可以判断出这个web服务都有哪些函数接口，每个函数的参数是什么，返回值是什么。有了这些，才能够构造SOAP报文来调用该Web服务的某个函数接口。
+</code></pre><p>   WSDL非常适合于用作代码生成器，它能够读取WSDL文档，并且可以为访问Web服务生成一个程序化的接口，大多数软件供应商和主要的标准机构（包括 W3C、WS-I和OASIS）都支持WSDL。例如：JAX-RPC provider（例如：BEA Weblogic）通过API用WSDL生成相应的占位程序；IBM WebSphere、Microsoft.NET以及Apache Axis都有自己的工具生成相关的代码。</p>
+<pre><code>WSDL是一个用于精确描述Web服务的文档，WSDL文档是一个遵循WSDL-XML模式的XML文档。WSDL 文档将Web服务定义为服务访问点或端口的集合。在 WSDL 中，由于服务访问点和消息的抽象定义已从具体的服务部署或数据格式绑定中分离出来，因此可以对抽象定义进行再次使用。消息，指对交换数据的抽象描述；而端口类型，指操作的抽象集合。用于特定端口类型的具体协议和数据格式规范构成了可以再次使用的绑定。将Web访问地址与可再次使用的绑定相关联，可以定义一个端口，而端口的集合则定义为服务。 
+</code></pre><h2 id="二-WSDL元素"><a href="#二-WSDL元素" class="headerlink" title="二 WSDL元素"></a>二 WSDL元素</h2><p>wsdl元素是基于XML语法描述了与服务进行交互的基本元素<br> 一个WSDL文档通常包含8个重要的元素，即definitions、types、import、message、portType、operation、binding、service元素。这些元素嵌套在definitions元素中，definitions是WSDL文档的根元素。<br> WSDL文档外层结构图示：<br> <img src="/2019/03/09/WebService之WSDL文件讲解/2259.png" alt=""><br>Types(消息类型):数据类型定义的容器，它使用某种类型系统（如 XSD）。数据单元的xml样式定义，形成了服务所用消息的构建块。<br>Message(消息)：通信数据的抽象类型化定义，它由一个或者多个part组成<br>Part：消息参数<br>Opretation(操作)：对服务所支持的操作进行抽象描述，当操作被调用时，操作被定义为两个endpoint之间的消息传递。WSDL定义了四种操作：</p>
+<ul>
+<li>单向（one-way）：端点接受信息；</li>
+<li>请求-响应（request-response）：端点接受消息，然后发送相关消息；</li>
+<li>要求-响应（solicit-response）：端点发送消息，然后接受相关消息；</li>
+<li>通知（notification）：端点发送消息。</li>
+</ul>
+<p>Port Type （端口类型）：特定端口类型的具体协议和数据格式规范。它由一个或者多个服务逻辑接口的Operation元素的集合。<br>Binding：特定端口类型的具体协议和数据格式规范，一个endpoint的实际数据格式说明，一个binding元素定义如何将一个抽象消息映射到一个具体数据格式。该元素指明诸如参数顺序，返回值等信息。<br>Port ：定义为绑定和网络地址组合的单个端点。通过binding和物理地址定义的endpoint，这个元素将所有抽象定义聚集在一起。<br>Service：相关port元素的集合，包括其关联的接口、操作、消息等。这些元素被库藏，用户组织endpoint定义。</p>
+<h2 id="三．WSDL的基本结构详解"><a href="#三．WSDL的基本结构详解" class="headerlink" title="三．WSDL的基本结构详解"></a>三．WSDL的基本结构详解</h2><p>下面通过一份wsdl文档，来详细解读WSDL结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"> &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;wsdl:definitions</span><br><span class="line">    targetNamespace=&quot;http://com.liuxiang.xfireDemo/HelloService&quot;</span><br><span class="line">    xmlns:tns=&quot;http://com.liuxiang.xfireDemo/HelloService&quot;</span><br><span class="line">    xmlns:wsdlsoap=&quot;http://schemas.xmlsoap.org/wsdl/soap/&quot;</span><br><span class="line">    xmlns:soap12=&quot;http://www.w3.org/2003/05/soap-envelope&quot;</span><br><span class="line">    xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;</span><br><span class="line">    xmlns:soapenc11=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot;</span><br><span class="line">    xmlns:soapenc12=&quot;http://www.w3.org/2003/05/soap-encoding&quot;</span><br><span class="line">    xmlns:soap11=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;</span><br><span class="line">    xmlns:wsdl=&quot;http://schemas.xmlsoap.org/wsdl/&quot;&gt;</span><br><span class="line">    &lt;wsdl:types&gt;</span><br><span class="line">        &lt;xsd:schema xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;</span><br><span class="line">            attributeFormDefault=&quot;qualified&quot; elementFormDefault=&quot;qualified&quot;</span><br><span class="line">            targetNamespace=&quot;http://com.liuxiang.xfireDemo/HelloService&quot;&gt;</span><br><span class="line">            &lt;xsd:element name=&quot;sayHello&quot;&gt;</span><br><span class="line">                &lt;xsd:complexType&gt;</span><br><span class="line">                    &lt;xsd:sequence&gt;</span><br><span class="line">                        &lt;xsd:element maxOccurs=&quot;1&quot; minOccurs=&quot;1&quot;</span><br><span class="line">                            name=&quot;name&quot; nillable=&quot;true&quot; type=&quot;xsd:string&quot; /&gt;</span><br><span class="line">                    &lt;/xsd:sequence&gt;</span><br><span class="line">                &lt;/xsd:complexType&gt;</span><br><span class="line">            &lt;/xsd:element&gt;</span><br><span class="line">            &lt;xsd:element name=&quot;sayHelloResponse&quot;&gt;</span><br><span class="line">                &lt;xsd:complexType&gt;</span><br><span class="line">                    &lt;xsd:sequence&gt;</span><br><span class="line">                        &lt;xsd:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot;</span><br><span class="line">                            name=&quot;return&quot; nillable=&quot;true&quot; type=&quot;xsd:string&quot; /&gt;</span><br><span class="line">                    &lt;/xsd:sequence&gt;</span><br><span class="line">                &lt;/xsd:complexType&gt;</span><br><span class="line">            &lt;/xsd:element&gt;</span><br><span class="line">        &lt;/xsd:schema&gt;</span><br><span class="line">    &lt;/wsdl:types&gt;</span><br><span class="line">    &lt;wsdl:message name=&quot;sayHelloResponse&quot;&gt;</span><br><span class="line">        &lt;wsdl:part name=&quot;parameters&quot; element=&quot;tns:sayHelloResponse&quot; /&gt;</span><br><span class="line">    &lt;/wsdl:message&gt;</span><br><span class="line">    &lt;wsdl:message name=&quot;sayHelloRequest&quot;&gt;</span><br><span class="line">        &lt;wsdl:part name=&quot;parameters&quot; element=&quot;tns:sayHello&quot; /&gt;</span><br><span class="line">    &lt;/wsdl:message&gt;</span><br><span class="line">    &lt;wsdl:portType name=&quot;HelloServicePortType&quot;&gt;</span><br><span class="line">        &lt;wsdl:operation name=&quot;sayHello&quot;&gt;</span><br><span class="line">            &lt;wsdl:input name=&quot;sayHelloRequest&quot;</span><br><span class="line">                message=&quot;tns:sayHelloRequest&quot; /&gt;</span><br><span class="line">            &lt;wsdl:output name=&quot;sayHelloResponse&quot;</span><br><span class="line">                message=&quot;tns:sayHelloResponse&quot; /&gt;</span><br><span class="line">        &lt;/wsdl:operation&gt;</span><br><span class="line">    &lt;/wsdl:portType&gt;</span><br><span class="line">    &lt;wsdl:binding name=&quot;HelloServiceHttpBinding&quot;</span><br><span class="line">        type=&quot;tns:HelloServicePortType&quot;&gt;</span><br><span class="line">        &lt;wsdlsoap:binding style=&quot;document&quot;</span><br><span class="line">            transport=&quot;http://schemas.xmlsoap.org/soap/http&quot; /&gt;</span><br><span class="line">        &lt;wsdl:operation name=&quot;sayHello&quot;&gt;</span><br><span class="line">            &lt;wsdlsoap:operation soapAction=&quot;&quot; /&gt;</span><br><span class="line">            &lt;wsdl:input name=&quot;sayHelloRequest&quot;&gt;</span><br><span class="line">                &lt;wsdlsoap:body use=&quot;literal&quot; /&gt;</span><br><span class="line">            &lt;/wsdl:input&gt;</span><br><span class="line">            &lt;wsdl:output name=&quot;sayHelloResponse&quot;&gt;</span><br><span class="line">                &lt;wsdlsoap:body use=&quot;literal&quot; /&gt;</span><br><span class="line">            &lt;/wsdl:output&gt;</span><br><span class="line">        &lt;/wsdl:operation&gt;</span><br><span class="line">    &lt;/wsdl:binding&gt;</span><br><span class="line">    &lt;wsdl:service name=&quot;HelloService&quot;&gt;</span><br><span class="line">        &lt;wsdl:port name=&quot;HelloServiceHttpPort&quot;</span><br><span class="line">            binding=&quot;tns:HelloServiceHttpBinding&quot;&gt;</span><br><span class="line">            &lt;wsdlsoap:address</span><br><span class="line">                location=&quot;http://localhost:8080/xfire/services/HelloService&quot; /&gt;</span><br><span class="line">        &lt;/wsdl:port&gt;</span><br><span class="line">    &lt;/wsdl:service&gt;</span><br><span class="line">&lt;/wsdl:definitions&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>definitions元素</strong><br>    所有的WSDL文档的根元素均是definitions元素。该元素封装了整个文档，同时通过其name提供了一个WSDL文档。除了提供一个命名空间（targetNamespace）外，该元素没有其他作用，故不作详细描述。</p>
+<p><strong>types元素</strong><br> WSDL采用了W3C XML模式内置类型作为其基本类型系统。types元素用作一个容器，用于定义XML模式内置类型中没有描述的各种数据类型（不太明白：XML模式内置类型中没有描述的各种数据类型）。当声明消息部分的有效时，消息定义使用了在types元素中定义的数据类型和元素。在本文的WSDL文档中的types定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;wsdl:types&gt;</span><br><span class="line">        &lt;xsd:schema xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;</span><br><span class="line">            attributeFormDefault=&quot;qualified&quot; elementFormDefault=&quot;qualified&quot;</span><br><span class="line">            targetNamespace=&quot;http://com.liuxiang.xfireDemo/HelloService&quot;&gt;</span><br><span class="line">            &lt;xsd:element name=&quot;sayHello&quot;&gt;</span><br><span class="line">                &lt;xsd:complexType&gt;</span><br><span class="line">                    &lt;xsd:sequence&gt;</span><br><span class="line">                        &lt;xsd:element maxOccurs=&quot;1&quot; minOccurs=&quot;1&quot;</span><br><span class="line">                            name=&quot;name&quot; nillable=&quot;true&quot; type=&quot;xsd:string&quot; /&gt;</span><br><span class="line">                    &lt;/xsd:sequence&gt;</span><br><span class="line">                &lt;/xsd:complexType&gt;</span><br><span class="line">            &lt;/xsd:element&gt;</span><br><span class="line">            &lt;xsd:element name=&quot;sayHelloResponse&quot;&gt;</span><br><span class="line">                &lt;xsd:complexType&gt;</span><br><span class="line">                    &lt;xsd:sequence&gt;</span><br><span class="line">                          &lt;xsd:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot;</span><br><span class="line">                            name=&quot;return&quot; nillable=&quot;true&quot; type=&quot;xsd:string&quot; /&gt;</span><br><span class="line">                    &lt;/xsd:sequence&gt;</span><br><span class="line">                &lt;/xsd:complexType&gt;</span><br><span class="line">            &lt;/xsd:element&gt;</span><br><span class="line">        &lt;/xsd:schema&gt;</span><br><span class="line">    &lt;/wsdl:types&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>上面是数据定义部分，该部分定义了两个元素，一个是sayHello，一个是sayHelloResponse： 
+sayHello：定义了一个复杂类型，仅仅包含一个简单的字符串，将来用来描述操作的参入传入部分； 
+sayHelloResponse：定义了一个复杂类型，仅仅包含一个简单的字符串，将来用来描述操作的返回值； 
+这里sayHelloResponse是和sayHello相关的，sayHello相对于一个方法，里面的： type=”xsd:string”，name=”name”，是确定传入name的参数是String类型的，而sayHelloResponse中的 name=”return” type=”xsd:string” 是确定方法sayHello（String name）返回的类型是String类型的。
+</code></pre><p><strong>import元素</strong><br>       import元素使得可以在当前的WSDL文档中使用其他WSDL文档中指定的命名空间中的定义元素。本例子中没有使用import元素。通常在用户希望模块化WSDL文档的时候，该功能是非常有效果的。<br>import的格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;wsdl:import namespace=&quot;http://xxx.xxx.xxx/xxx/xxx&quot; location=&quot;http://xxx.xxx.xxx/xxx/xxx.wsdl&quot;/&gt;`</span><br></pre></td></tr></table></figure></p>
+<p>必须有namespace属性和location属性：<br>1.namespace属性：值必须与正导入的WSDL文档中声明的targetNamespace相匹配；<br>2.location属性：必须指向一个实际的WSDL文档，并且该文档不能为空。</p>
+<p><strong>message元素</strong><br>       message元素描述了Web服务使用消息的有效负载。message元素可以描述输出或者接受消息的有效负载；还可以描述SOAP文件头和错误detail元素的内容。定义message元素的方式取决于使用RPC样式还是文档样式的消息传递。在本文中的message元素的定义，本文档使用了采用文档样式的消息传递：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;sdl:message name=&quot;sayHelloResponse&quot;&gt;</span><br><span class="line">        &lt;wsdl:part name=&quot;parameters&quot; element=&quot;tns:sayHelloResponse&quot; /&gt;</span><br><span class="line">    &lt;/wsdl:message&gt;</span><br><span class="line">    &lt;wsdl:message name=&quot;sayHelloRequest&quot;&gt;</span><br><span class="line">        &lt;wsdl:part name=&quot;parameters&quot; element=&quot;tns:sayHello&quot; /&gt;</span><br><span class="line">    &lt;/wsdl:message&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>该部分是消息格式的抽象定义：定义了两个消息sayHelloResponse和sayHelloRequest：
+</code></pre><ul>
+<li>1.sayHelloRequest：<br>sayHello操作的请求消息格式，由一个消息片断组成，名字为parameters,元素是我们前面定义的types中的元素；</li>
+<li>2.sayHelloResponse：<br>sayHello操作的响应消息格式，由一个消息片断组成，名字为parameters,元素是我们前面定义的types中的元素；</li>
+</ul>
+<p>如果采用RPC样式的消息传递，只需要将文档中的element元素修改为type即可（？？）。</p>
+<p><strong>portType元素</strong><br>       portType元素定义了Web服务的抽象接口。该接口有点类似Java的接口，都是定义了一个抽象类型和方法，没有定义实现。在WSDL中，portType元素是由binding和service元素来实现的，这两个元素用来说明Web服务实现使用的Internet协议、编码方案以及Internet地址。<br>一个portType中可以定义多个operation，一个operation可以看作是一个方法，本文中WSDL文档的定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;wsdl:portType name=&quot;HelloServicePortType&quot;&gt;</span><br><span class="line">      &lt;wsdl:operation name=&quot;sayHello&quot;&gt;</span><br><span class="line">          &lt;wsdl:input name=&quot;sayHelloRequest&quot;</span><br><span class="line">              message=&quot;tns:sayHelloRequest&quot; /&gt;</span><br><span class="line">          &lt;wsdl:output name=&quot;sayHelloResponse&quot;</span><br><span class="line">              message=&quot;tns:sayHelloResponse&quot; /&gt;</span><br><span class="line">      &lt;/wsdl:operation&gt;</span><br><span class="line">  &lt;/wsdl:portType&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>portType定义了服务的调用模式的类型，这里包含一个操作sayHello方法，同时包含input和output表明该操作是一个请求／响应模式，请求消息是前面定义的sayHelloRequest，响应消息是前面定义的sayHelloResponse。input表示传递到Web服务的有效负载，output消息表示传递给客户的有效负载。 
+这里相当于抽象类中定义了一个抽象方法sayHello，而方法参数的定义和返回值的定义都是在types中设置的，方法名又是在message中定义有的。
+</code></pre><p><strong>binding</strong><br>       binding元素将一个抽象portType映射到一组具体协议(SOAO和HTTP)、消息传递样式、编码样式。通常binding元素与协议专有的元素和在一起使用，本文中的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;wsdl:binding name=&quot;HelloServiceHttpBinding&quot;</span><br><span class="line">     type=&quot;tns:HelloServicePortType&quot;&gt;</span><br><span class="line">     &lt;wsdlsoap:binding style=&quot;document&quot;</span><br><span class="line">         transport=&quot;http://schemas.xmlsoap.org/soap/http&quot; /&gt;</span><br><span class="line">     &lt;wsdl:operation name=&quot;sayHello&quot;&gt;</span><br><span class="line">         &lt;wsdlsoap:operation soapAction=&quot;&quot; /&gt;</span><br><span class="line">         &lt;wsdl:input name=&quot;sayHelloRequest&quot;&gt;</span><br><span class="line">             &lt;wsdlsoap:body use=&quot;literal&quot; /&gt;</span><br><span class="line">         &lt;/wsdl:input&gt;</span><br><span class="line">         &lt;wsdl:output name=&quot;sayHelloResponse&quot;&gt;</span><br><span class="line">             &lt;wsdlsoap:body use=&quot;literal&quot; /&gt;</span><br><span class="line">         &lt;/wsdl:output&gt;</span><br><span class="line">     &lt;/wsdl:operation&gt;</span><br><span class="line"> &lt;/wsdl:binding&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>这部分将服务访问点的抽象定义与SOAP、HTTP绑定，描述如何通过SOAP/HTTP来访问按照前面描述的访问入口点类型部署的访问入口。 
+</code></pre><p>其中规定了在具体SOAP调用时，应当使用的soapAction是”xxx”，这个Action在WebService代码调用中是很重要的。具体的使用需要参考特定协议定义的元素。</p>
+<p><strong>service元素和port元素</strong><br>       service元素包含一个或者多个port元素，其中每个port元素表示一个不同的Web服务。port元素将URL赋给一个特定的binding，甚至可以使两个或者多个port元素将不同的URL赋值给相同的binding。文档中的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;wsdl:service name=&quot;HelloService&quot;&gt;</span><br><span class="line">    &lt;wsdl:port name=&quot;HelloServiceHttpPort&quot;</span><br><span class="line">        binding=&quot;tns:HelloServiceHttpBinding&quot;&gt;</span><br><span class="line">        &lt;wsdlsoap:address</span><br><span class="line">            location=&quot;http://localhost:8080/xfire/services/HelloService&quot; /&gt;</span><br><span class="line">    &lt;/wsdl:port&gt;</span><br><span class="line">&lt;/wsdl:service&gt;</span><br></pre></td></tr></table></figure></p>
+<pre><code>对于这个WSDL文档的学习，第一次看是感觉非常陌生的，而且里面元素又多，学习的话先是要了解外层结构代表的意义和作用，然后理解里面的元素的意义和作用，有些元素作用不大，有些元素又是很关联的，有些元素是比较重要的。 
+</code></pre><p><strong>WSDL图解：</strong><br><img src="/2019/03/09/WebService之WSDL文件讲解/48892.png" alt=""><br><img src="/2019/03/09/WebService之WSDL文件讲解/1901517.png" alt=""></p>
+<h2 id="四-如何写一个WebService，生成WSDL地址"><a href="#四-如何写一个WebService，生成WSDL地址" class="headerlink" title="四 如何写一个WebService，生成WSDL地址"></a>四 如何写一个WebService，生成WSDL地址</h2><p>1 建立一个普通的web项目，如：Trans<br>前面的话：当两个人碰面，产生了好感，如果需要得到双方的信息，双方交流必不可少，应用程序也是如此。各个应用程序之间的交流就需要WebService来作为相互交流的桥梁。<br>项目目的：程序A调用程序B中的方法C<br>1&gt; 建立一个项目名为Trans<br>① 建立一个方法，e.g. com.shu.function.Function类：　　　　　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@WebService</span><br><span class="line">public class Function &#123;</span><br><span class="line">    //该方法就是要暴露给其他应用程序调用的方法</span><br><span class="line">    public String transWords(String words) &#123;</span><br><span class="line">        String res = &quot;&quot;;</span><br><span class="line">        for(char ch :words.toCharArray())&#123;</span><br><span class="line">            res+=&quot;\t&quot;+ch+&quot;\t&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Endpoint.publish(&quot;http://localhost:9001/Service/Function&quot;, new Function());</span><br><span class="line">        System.out.println(&quot;Publish Success&quot;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>② 执行程序，控制台打印出”Publish Success”,说明消息发布成功。需确认点：a 需要jdk1.6+，b 端口未被占用。在浏览器输入：</p>
+<p><code>http://localhost:9001/Service/Function?wsdl</code>即可看到详细信息</p>
+<p>③此时即可使用soapUI进行测试，界面如下<br><img src="/2019/03/09/WebService之WSDL文件讲解/480687.png" alt=""></p>
+<h2 id="五-实际项目构建"><a href="#五-实际项目构建" class="headerlink" title="五 实际项目构建"></a>五 实际项目构建</h2><p><a href="https://blog.csdn.net/sunroyi666/article/details/51917991" target="_blank" rel="noopener">WSDL WebService的创建和使用实例</a>   </p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/03/09/WebService之WSDL文件讲解/" data-id="cjubx4av4005yk0fvlc86kyxc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/03/09/前端通信协议篇/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            前端通信协议篇
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/03/07/WebServices简介/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">WebServices简介</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/10/使用elementUI实现将图片上传到本地/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/04/10/使用elementUI实现将图片上传到本地/871601713.png)" alt="使用elementUI实现将图片上传到本地" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/10/使用elementUI实现将图片上传到本地/" class="title">使用elementUI实现将图片上传到本地</a></p>
+                            <p class="item-date"><time datetime="2019-04-10T13:36:19.000Z" itemprop="datePublished">2019-04-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/09/datagrid使用方法（重要）/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/04/09/datagrid使用方法（重要）/621293.png)" alt="datagrid使用方法（重要）" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/09/datagrid使用方法（重要）/" class="title">datagrid使用方法（重要）</a></p>
+                            <p class="item-date"><time datetime="2019-04-09T05:12:53.000Z" itemprop="datePublished">2019-04-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/03/25/Bootstrap-Table-数据绑定/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/03/25/Bootstrap-Table-数据绑定/timg.gif)" alt="Bootstrap Table 数据绑定" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/03/25/Bootstrap-Table-数据绑定/" class="title">Bootstrap Table 数据绑定</a></p>
+                            <p class="item-date"><time datetime="2019-03-25T13:13:00.000Z" itemprop="datePublished">2019-03-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/03/25/dialog实现弹出div添加数据/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/03/25/dialog实现弹出div添加数据/11111.jpg)" alt="dialog实现弹出div添加数据" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/03/25/dialog实现弹出div添加数据/" class="title">dialog实现弹出div添加数据</a></p>
+                            <p class="item-date"><time datetime="2019-03-25T12:28:41.000Z" itemprop="datePublished">2019-03-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/03/25/table合并单元格colspan和rowspan/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/03/25/table合并单元格colspan和rowspan/42.png)" alt="table合并单元格colspan和rowspan" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/03/25/table合并单元格colspan和rowspan/" class="title">table合并单元格colspan和rowspan</a></p>
+                            <p class="item-date"><time datetime="2019-03-25T12:01:00.000Z" itemprop="datePublished">2019-03-25</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JavaScript/" style="font-size: 18.89px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 16.67px;">PHP</a> <a href="/tags/XML/" style="font-size: 11.11px;">XML</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/html/" style="font-size: 16.67px;">html</a> <a href="/tags/java/" style="font-size: 17.78px;">java</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15.56px;">maven</a> <a href="/tags/node/" style="font-size: 11.11px;">node</a> <a href="/tags/orcal/" style="font-size: 13.33px;">orcal</a> <a href="/tags/python/" style="font-size: 14.44px;">python</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 12.22px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/心语/" style="font-size: 12.22px;">心语</a> <a href="/tags/技术/" style="font-size: 12.22px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15.56px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/03/09/WebService之WSDL文件讲解/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
