@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>JSP中include指令 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Java">
+    
+    <meta name="description" content="1.为什么要使用？　　使用include指令可以方便的把在多个页面中要重复显示的内容抽取出来，大大的减少代码的重复量，方便我们对重复内容的维护    include指令分为：静态include指令和动态include指令 2.使用静态include指令引入页面　　说明：　　　　在JSP中插入一个或多个包含文件或代码的文件（jsp,html,inc,txt），把文件插入后与原来的JSP文件合并成一个">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSP中include指令">
+<meta property="og:url" content="http://yoursite.com/2019/05/12/JSP中include指令/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="1.为什么要使用？　　使用include指令可以方便的把在多个页面中要重复显示的内容抽取出来，大大的减少代码的重复量，方便我们对重复内容的维护    include指令分为：静态include指令和动态include指令 2.使用静态include指令引入页面　　说明：　　　　在JSP中插入一个或多个包含文件或代码的文件（jsp,html,inc,txt），把文件插入后与原来的JSP文件合并成一个">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/JSP中include指令/8866.png">
+<meta property="og:updated_time" content="2019-05-12T11:06:57.589Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSP中include指令">
+<meta name="twitter:description" content="1.为什么要使用？　　使用include指令可以方便的把在多个页面中要重复显示的内容抽取出来，大大的减少代码的重复量，方便我们对重复内容的维护    include指令分为：静态include指令和动态include指令 2.使用静态include指令引入页面　　说明：　　　　在JSP中插入一个或多个包含文件或代码的文件（jsp,html,inc,txt），把文件插入后与原来的JSP文件合并成一个">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/12/JSP中include指令/8866.png">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-JSP中include指令" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        JSP中include指令
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/05/12/JSP中include指令/" class="article-date">
+            <time datetime="2019-05-12T10:52:42.000Z" itemprop="datePublished">2019-05-12</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Java/">Java</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><strong>1.为什么要使用？</strong><br>　　使用include指令可以方便的把在多个页面中要重复显示的内容抽取出来，大大的减少代码的重复量，方便我们对重复内容的维护<br>    include指令分为：<code>静态include指令和动态include指令</code></p>
+<p><strong>2.使用静态include指令引入页面</strong><br>　　说明：<br>　　　　在JSP中插入一个或多个包含文件或代码的文件（jsp,html,inc,txt），把文件插入后与原来的JSP文件合并成一个新的JSP页面<br>　　语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　　　&lt;%@ include file=&quot;从页面文件地址&quot; %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>　　解说：<br>　　　　该指令只有一个属性：file，指定被包含的文件地址，一般使用相对路径，并且不支持任何表达式（小脚本、EL表达式）<br>　　举例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@include file=&quot;../../common/patient_baseInfo.jsp&quot;%&gt;</span><br></pre></td></tr></table></figure></p>
+<p>　　注意：<br>　　1.1 当从页面的内容发生变化时，主页面和从页面（所有页面）都会被重新编译，即他们是一个整体；<br>　　　　　　反之，主页面内容发生更改（手动修改jsp页面而不是通过js控制改变页面内容）时，所有页面也都会被重新编译，即牵一发而动全身，<br>　　　　　　从这个角度而言，跟主页面和从页面的内容在同一页面上没有不同；<br>　　1.2 主页面和从页面上声明的Java变量或方法必须具有唯一性；<br>　　　　　　jsp会被转化成Java文件，使用静态include指令，多个jsp（从页面）会先合并到主jsp页面上，然后再转换成Java文件，<br>　　　　　　如果合并后的页面上有2个及以上相同的变量名或完全一样的方法，这种错误如果在编辑时没有报错，但在将jsp文件转化成Java文件时，仍会报错。<br>　　1.3 这种方式在引入从页面时，不能够传参数给从页面；</p>
+<p><strong>3.使用动态include指令引入页面</strong><br>　　说明：<br>　　　　 在JSP中引用一个或多个包含文件或代码的文件（jsp,html,inc,txt），从页面内容和主页面仍然具有很强的独立性<br>　　语法：<br>　　　　a.不传参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:include page=&quot;&lt;%=request.getParameter(&quot;path&quot;) %&gt;|path|$&#123;param.path &#125;&quot; flush=&quot;true|false&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>　　　　b.传递参数　　　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:include page=&quot;&lt;%=request.getParameter(&quot;path&quot;) %&gt;|path|$&#123;param.path &#125;&quot; flush=&quot;true|false&quot;&gt;</span><br><span class="line">　　　&lt;jsp:param value=&quot;参数内容&quot; name=&quot;参数名称&quot;/&gt;</span><br><span class="line">　　　...可以向包含页面传递多个参数</span><br><span class="line">&lt;/jsp:include&gt;</span><br></pre></td></tr></table></figure></p>
+<p>　　解说：<br>　　　　a.page属性的值可以是死值（具体页面），也可以是小脚本、EL表达式（动态页面）；<br>　　　　b.flush属性表示设置是否在缓冲区满了就将内容输出。可选值有true和false，默认值为true。<br>　　举例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 引入患者医嘱信息页面并传参 --&gt;</span><br><span class="line">&lt;jsp:include page=&quot;../../common/patient_yzInfo.jsp&quot;&gt;</span><br><span class="line">    &lt;jsp:param value=&quot;zhuYuan&quot; name=&quot;treatmentType&quot;/&gt;</span><br><span class="line">&lt;/jsp:include&gt;</span><br></pre></td></tr></table></figure></p>
+<p>　　注意：<br>　　　　2.1 当主页面或从页面内容发生变化时，其他页面不需要重新编译；<br>　　　　　　使用动态include指令，主页面和被引入的从页面都会被独立编译，编译成Java文件后，当主页所在的class文件被一行行执行遇到该标识时，<br>　　　　　　程序会将请求转发到被包含的页面，并将执行结果输出到浏览器中，然后返回主页面继续执行后面的代码，相当于东拼西凑而形成的页面<br>　　　　2.2 主页面和从页面上声明的Java变量或方法可以一样；<br>　　　　　　由于每个文件是单独编译的，所以在被包含文件和包含文件中重名的变量和方法是不相冲突的。<br>　　　　2.3 这种方式在引入从页面时，可以向从页面传递一个或多个参数。<br>　　　　　　主页向从其中一个页面传递的参数，只有该从页面能获取到该参数，即：从页面之间的参数不共享</p>
+<p><strong>4.图例</strong><br>　　4.1 主页面里分别用了两种不同的方式引入对应的页面<br>　　　　使用动态include指令引入<code>patient_baseInfo.jsp</code><br>        <img src="/2019/05/12/JSP中include指令/8866.png" alt=""><br>        使用静态include指令引入patient_bcInfo.jsp<br>        <img src="/2019/05/12/JSP中include指令/141.png" alt=""><br>        common目录中包含这两个文件<br>        <img src="/2019/05/12/JSP中include指令/197208.png" alt=""><br>    4.2 访问主页面时，产生的编译文件<br>        <img src="/2019/05/12/JSP中include指令/787493.png" alt=""><br>        使用动态include指令，页面编译结果：<br>        <img src="/2019/05/12/JSP中include指令/001014.png" alt=""><br>        使用静态include指令，页面编译结果：<br>        <img src="/2019/05/12/JSP中include指令/752514.png" alt=""><br><strong>5.其他注意事项</strong><br>　　不管是一开始就合并成一个页面的还是最后才拼装成的页面，就最终结果而言，它们都在同一个页面上（即主页面），所以：<br>　　5.1 页面的id要保持唯一性，当主页面与从页面分离时，容易忽略这一点；<br>　　5.2 尽量不要在从页面设置隐藏域，不便于发现，能提取到主页面的就放到主页面，便于维护；<br>　　5.3 由于一个页面对应js只能使用一个<code>window.onload=function(){}</code>函数，所以强制要求，<br>　　　　主页面的js文件使用<code>window.onload=function(){}</code>函数，其他从页面的js文件使用<code>$(function(){})</code><br>　　5.4 从页面想要引用的js文件在哪个地方声明引用合适？<br>　　推荐位置：从页面想要引用的js文件，放到主页面来引用，放到最后一个include下面<br>　　举例：<br>　　　　如果从页面间共用一个js文件，显然，在每个从页面上引用一次不是明智之举，该js文件会被加在多次；<br>　　　　如果从页面引用的js文件各不相同，从页面上可以直接引用js文件；<br>　　　　如果从页面想要在主页面加载完毕后执行一些操作，要声明引用的位置，必须是在主页面的body闭合标签上面；<br>　　　　。。。</p>
+<p><strong>6.常被抽出来的代码</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot;%&gt;</span><br><span class="line">&lt;%@ taglib prefix=&quot;fmt&quot; uri=&quot;http://java.sun.com/jsp/jstl/fmt&quot;%&gt;</span><br><span class="line">&lt;%@ taglib prefix=&quot;fn&quot; uri=&quot;http://java.sun.com/jsp/jstl/functions&quot;%&gt;</span><br><span class="line">&lt;fmt:requestEncoding value=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;var baseUrl=&quot;&lt;%=request.getContextPath()%&gt;&quot;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>7.引用路径问题</strong>　<br>　　在eclipse开发工具下，如果引入的文件路径”<code>../</code>“不小心多加了几个，没有问题，页面不会报错，<br>　　而且在Tomcat下发布可以正常访问到该页面，但是在webLogic下就可能会出现问题了：找不到该页面<br>        <img src="/2019/05/12/JSP中include指令/840107.png" alt=""><br>    原因：<br>    　　在Tomcat下，项目的根路径名称为twrs,即项目该项目外面没有父文件夹，所以就算你多加几个../，依然能够找到该文件；<br>    　　但是，在webLogic下发布程序时，twrs的上级目录是data，所以这个时候就去data或data的上级目录下去找这个文件，当然找不到；<br>    　　所以，马虎不得，该是几个”../“，就写几个。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/05/12/JSP中include指令/" data-id="cjvktyb0t000344fvagky8yf0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/05/06/Chrome使用自定义协议打开本地程序/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Chrome使用自定义协议打开本地程序</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/12/JSP中include指令/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/05/12/JSP中include指令/8866.png)" alt="JSP中include指令" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/12/JSP中include指令/" class="title">JSP中include指令</a></p>
+                            <p class="item-date"><time datetime="2019-05-12T10:52:42.000Z" itemprop="datePublished">2019-05-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/06/Chrome使用自定义协议打开本地程序/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/05/06/Chrome使用自定义协议打开本地程序/8550.jpg)" alt="Chrome使用自定义协议打开本地程序" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/06/Chrome使用自定义协议打开本地程序/" class="title">Chrome使用自定义协议打开本地程序</a></p>
+                            <p class="item-date"><time datetime="2019-05-06T07:02:07.000Z" itemprop="datePublished">2019-05-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/27/有关ActiveXObject的兼容性问题（浏览器的特有属性）/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/04/27/有关ActiveXObject的兼容性问题（浏览器的特有属性）/867-1.png)" alt="有关ActiveXObject的兼容性问题（浏览器的特有属性）" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/27/有关ActiveXObject的兼容性问题（浏览器的特有属性）/" class="title">有关ActiveXObject的兼容性问题（浏览器的特有属性）</a></p>
+                            <p class="item-date"><time datetime="2019-04-27T09:56:23.000Z" itemprop="datePublished">2019-04-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/26/如何用jQuery获得select的值/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/04/26/如何用jQuery获得select的值/056.png)" alt="如何用jQuery获得select的值" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/26/如何用jQuery获得select的值/" class="title">如何用jQuery获得select的值</a></p>
+                            <p class="item-date"><time datetime="2019-04-26T03:23:16.000Z" itemprop="datePublished">2019-04-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/22/request可以得到哪些请求值/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/04/22/request可以得到哪些请求值/26&amp;gp=0.jpg)" alt="request可以得到哪些请求值" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/04/22/request可以得到哪些请求值/" class="title">request可以得到哪些请求值</a></p>
+                            <p class="item-date"><time datetime="2019-04-22T08:31:14.000Z" itemprop="datePublished">2019-04-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h/">h</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Java/" style="font-size: 11px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 16px;">PHP</a> <a href="/tags/XML/" style="font-size: 11px;">XML</a> <a href="/tags/git/" style="font-size: 11px;">git</a> <a href="/tags/h/" style="font-size: 10px;">h</a> <a href="/tags/html/" style="font-size: 18px;">html</a> <a href="/tags/java/" style="font-size: 17px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/node/" style="font-size: 11px;">node</a> <a href="/tags/orcal/" style="font-size: 13px;">orcal</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 12px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/心语/" style="font-size: 12px;">心语</a> <a href="/tags/技术/" style="font-size: 12px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/05/12/JSP中include指令/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
