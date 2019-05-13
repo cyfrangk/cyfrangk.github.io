@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>JSP编译指令和动作标签 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Java">
+    
+    <meta name="description" content="编译指令主要用来提供整个JSP 网页相关的信息，并且用来设定JSP网页的相关属性，例如：网页的编码方式、语法、信息等。起始符号为“&amp;lt;%@”，终止符号为“%&amp;gt;”，中间部分就是一些指令和一连串的属性设定。JSP有3个编译指令：page、include和taglib。动作标签又称为动作元素、动作指令，也可以理解为JSP自带的标准标签库。动作标签利用XML语法格式的标记来控制JSP服务器的行为">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSP编译指令和动作标签">
+<meta property="og:url" content="http://yoursite.com/2019/05/13/JSP编译指令和动作标签/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="编译指令主要用来提供整个JSP 网页相关的信息，并且用来设定JSP网页的相关属性，例如：网页的编码方式、语法、信息等。起始符号为“&amp;lt;%@”，终止符号为“%&amp;gt;”，中间部分就是一些指令和一连串的属性设定。JSP有3个编译指令：page、include和taglib。动作标签又称为动作元素、动作指令，也可以理解为JSP自带的标准标签库。动作标签利用XML语法格式的标记来控制JSP服务器的行为">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/05/13/JSP编译指令和动作标签/210724.png">
+<meta property="og:updated_time" content="2019-05-13T14:28:46.338Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSP编译指令和动作标签">
+<meta name="twitter:description" content="编译指令主要用来提供整个JSP 网页相关的信息，并且用来设定JSP网页的相关属性，例如：网页的编码方式、语法、信息等。起始符号为“&amp;lt;%@”，终止符号为“%&amp;gt;”，中间部分就是一些指令和一连串的属性设定。JSP有3个编译指令：page、include和taglib。动作标签又称为动作元素、动作指令，也可以理解为JSP自带的标准标签库。动作标签利用XML语法格式的标记来控制JSP服务器的行为">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/13/JSP编译指令和动作标签/210724.png">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-JSP编译指令和动作标签" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        JSP编译指令和动作标签
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/05/13/JSP编译指令和动作标签/" class="article-date">
+            <time datetime="2019-05-13T13:00:21.000Z" itemprop="datePublished">2019-05-13</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Java/">Java</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>编译指令主要用来提供整个JSP 网页相关的信息，并且用来设定JSP网页的相关属性，例如：网页的编码方式、语法、信息等。起始符号为“&lt;%@”，终止符号为“%&gt;”，中间部分就是一些指令和一连串的属性设定。JSP有3个编译指令：page、include和taglib。<br>动作标签又称为动作元素、动作指令，也可以理解为JSP自带的标准标签库。动作标签利用XML语法格式的标记来控制JSP服务器的行为。利用动作标签可以动态地插入文件、重用JavaBean组件、把用户重定向到另外的页面、为Java插件生成HTML代码。动作标签起始符号为<code>&lt;jsp:xxx&gt;</code>，终止符号为&lt;/jsp:xxx&gt;。</p>
+<h2 id="使用page指令"><a href="#使用page指令" class="headerlink" title="使用page指令"></a>使用page指令</h2><p>page指令是最复杂的编译指令，它的主要功能为设定整个JSP 网页的属性和相关功能。page指令的基本语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page attribute1=&quot;value1&quot; attribute2= &quot;value2&quot; attribute3=...%&gt;</span><br></pre></td></tr></table></figure></p>
+<p>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page import=&quot;java.util.* java.lang.*&quot; %&gt;</span><br><span class="line">&lt;%@ page buffer=&quot;5kb&quot; autoFlush=&quot;false&quot; %&gt;</span><br><span class="line">&lt;%@ page errorPage=&quot;error.jsp&quot; %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>page指令有13个属性，如下所示。<br><img src="/2019/05/13/JSP编译指令和动作标签/210724.png" alt="page指令属性"><br>可以把page指令放在JSP的文件任意位置，但它的作用范围始终都是整个JSP页面。为了提高JSP程序的可读性，以及养成好的编程习惯，最好还是把它放在JSP文件的顶部。可以在一个页面中用上多个&lt;%@page%&gt;指令，但是其中的属性只能用一次。不过也有个例外，那就是import属性，这和Java中的import非常类似，可以使用多个import来引入类，它也是最常用的属性。</p>
+<h2 id="用include指令插入其他JSP"><a href="#用include指令插入其他JSP" class="headerlink" title="用include指令插入其他JSP"></a>用include指令插入其他JSP</h2><p>include指令是在JSP中包含一个静态的文件，同时解析这个文件中的JSP语句。include指令只有一个参数，就是要插入文件的相对路径。语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ include file=&quot;relativeURL&quot; %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>include指令将会在JSP编译时插入一个包含文本或代码的文件，当使用include指令时，这个包含的过程是静态的。也可以理解为不管要插入的文件内容是什么，简单地把其中所有的内容拷贝过来合并成一个新文件，然后提交给JSP服务器做接下来的工作。由此可以看出，如果两个文件中有重复的Java变量或函数定义，那么合并之后编译要出错，HTML的标签也同样会相互影响，要避免片段文件中有<html><body>之类的全局标签出现。<br>    这里提到的静态文件的意思是，引入文件名不能是一个变量，只能是一个静态的字符串。最后一点，如果这个片段文件被改变，那么包含此文件的JSP文件将被重新编译，因为是先插入再整体编译，片段改变相当于整个合并后的JSP改变了，当然需要重新编译。</body></html></p>
+<h2 id="用taglib指令引入标签库"><a href="#用taglib指令引入标签库" class="headerlink" title="用taglib指令引入标签库"></a>用taglib指令引入标签库</h2><p>taglib指令能够让用户自定义新的标签。这里只是先做一个简单介绍，在后面的章节再详细介绍如何自定义标签和如何使用标签。taglib指令的语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib uri = &quot;tagLibraryURI&quot; prefix=&quot;tagPrefix&quot; %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>和所有JSP标签元素一样，taglib指令也支持XML语法。参数如下所示。<br><img src="/2019/05/13/JSP编译指令和动作标签/11216.png" alt="taglib指令参数表"></p>
+<h2 id="用forward标签跳转页面"><a href="#用forward标签跳转页面" class="headerlink" title="用forward标签跳转页面"></a>用forward标签跳转页面</h2><p>forward动作把请求转到另外的页面。<code>&lt;jsp:forward&gt;</code>标签只有一个属性page。page属性包含的是一个相对URL。page的值既可以直接给出，也可以在请求的时候动态计算。如下面的例子所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">＜jsp:forward page=&quot;/utils/errorReporter.jsp&quot; /＞</span><br><span class="line">＜jsp:forward page=&quot;＜%=someJavaExpression%＞&quot; /＞</span><br></pre></td></tr></table></figure></p>
+<h2 id="动态插入文件"><a href="#动态插入文件" class="headerlink" title="动态插入文件"></a>动态插入文件</h2><p><code>&lt;jsp:include&gt;</code>标签把指定文件插入到正在生成的页面。其语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">＜jsp:include page=&quot;relative URL&quot; flush=&quot;true&quot; /＞</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/05/13/JSP编译指令和动作标签/1345.png" alt="&lt;jsp:include&gt;标签参数表"></p>
+<p>所谓动态插入，正是相对于前面已经介绍过的静态include指令，它是在JSP文件被转换成Servlet的时候引入文件，而这里的<code>&lt;jsp:include&gt;</code>动作不同，插入文件的时间是在页面被请求的时候。这里被插入的文件是一个完整的JSP文件而非片段，把两个JSP输出到客户端的结果结合在一起，它们分别被JSP服务器转化为两个不同Java类，因此不存在变量定义方面的冲突。用<code>&lt;jsp:include&gt;</code>标签引入文件的效率要稍微差一点，而且被引用文件不能包含某些JSP代码（例如不能设置HTTP头），但它的灵活性却要好得多。<br>又与静态插入不同，引入文件名可以是一个变量或者表达式。如果这个片段文件被改变，那么只是这个文件本身重新编译而包含此文件的JSP文件不会被重新编译。</p>
+<h2 id="用标签操作JavaBean"><a href="#用标签操作JavaBean" class="headerlink" title="用标签操作JavaBean"></a>用标签操作JavaBean</h2><p>JavaBean的原理:简单的说是依靠反射机制完成的，在jsp:useBean中也给出了具体的包.类,如果对这个很生疏，可以去学习JAVASE中的反射部分，后面的很多框架也会用到，打字写博客也是很累的，这里就简单提一下，没写过多不代表不重要啊，想知道更多原理就度娘吧，很多框架都会用到这个，很重要！！！。<br>简单的说就是一个包含了setter和getter以及至少一个无参构造方法的JAVA类，在框架中或其他方面也管它叫做PO，VO，TO等。<br>本节将涉及3个标签：<code>&lt;jsp:useBean&gt;、&lt;jsp:setProperty&gt;、&lt;jsp:getProperty&gt;</code>。<br><code>&lt;jsp:useBean&gt;</code>标签用来装载一个将在JSP页面中使用的JavaBean。这个功能非常有用，因为它使得开发人员既可以发挥Java组件重用的优势，同时也避免了直接在JSP实例化对象的复杂操作。<code>&lt;jsp:useBean&gt;</code>标签最简单的语法为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">＜jsp:useBean id=&quot;name&quot; class=&quot;package.class&quot; /＞</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/05/13/JSP编译指令和动作标签/2007.png" alt="&lt;jsp:useBean&gt;标签参数表"><br>获得Bean实例之后，要设置Bean的属性可以通过<code>&lt;jsp:setProperty&gt;</code>标签，要读取Bean的属性就用<code>&lt;jsp:getProperty&gt;</code>。这两个标签的语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">＜jsp:setProperty name=&quot;myName&quot; property=&quot;someProperty&quot; value=&quot;value&quot; /＞</span><br><span class="line">＜jsp:getProperty name=&quot;myName&quot; property=&quot;someProperty&quot; /＞</span><br></pre></td></tr></table></figure></p>
+<p>一个很简单的例子，它的功能是装载一个Bean，然后设置/读取它的message属性。<br>动作标签BeanTest.jsp示例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;title&gt;Bean动作标签&lt;/title&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;!--使用JSP编译指令定义Bean--&gt;</span><br><span class="line">		&lt;jsp:useBean id=&quot;test&quot; class=&quot; com.book.web3.SimpleBean&quot; /&gt;</span><br><span class="line">		&lt;!--使用JSP编译指令给Bean赋值--&gt;</span><br><span class="line">		&lt;jsp:setProperty name=&quot;test&quot; property=&quot;message&quot; value=&quot;Hello reader&quot; /&gt;</span><br><span class="line">		刚刚赋值的消息:&lt;jsp:getProperty name=&quot;test&quot; property=&quot;message&quot; /&gt;</span><br><span class="line">		&lt;br&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/05/13/JSP编译指令和动作标签/12308.png" alt="测试页面"><br>【运行程序】浏览该页面，结果如图2.17所示。<br>【代码剖析】上面代码中首先通过第7行创建了一个名为test的JavaBean，然后通过第9行设置JavaBean中属性message的值为Hello reader，最后通过第10行输出JavaBean中属性message的值。<br>BeanTest页面用到了一个SimpleBean类，具体内容如下。<br>动作标签示例涉及的SimpleBean：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package com.book.web3;</span><br><span class="line">	public class SimpleBean &#123;</span><br><span class="line">		// 属性定义</span><br><span class="line">		private String message = &quot;No message specified&quot;;</span><br><span class="line">		// 属性的getter/setter方法</span><br><span class="line">		public String getMessage() &#123;</span><br><span class="line">			return (message);</span><br><span class="line">		&#125;</span><br><span class="line">		public void setMessage(String message) &#123;</span><br><span class="line">			this.message = message;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p>【代码剖析】上面代码中首先在第4行创建了一个名为message的属性，然后分别在第6行和第9行设置该属性的getXXX()和setXXX()方法。<br><code>&lt;jsp:getProperty&gt;</code>标签提取指定Bean属性的值，转换成字符串，然后输出。<code>&lt;jsp:getProperty&gt;</code>有两个必需的属性，参数如下：<br><img src="/2019/05/13/JSP编译指令和动作标签/3212706.png" alt="&lt;jsp:getProperty&gt;标签参数表"><br><code>&lt;jsp:setProperty&gt;</code>用来设置已经实例化的Bean对象的属性，有4个属性<br><img src="/2019/05/13/JSP编译指令和动作标签/2756.png" alt="&lt;jsp: setProperty&gt;标签参数表"></p>
+<p>需要说明的是，value属性字符串数据会在目标类中通过标准的valueOf方法自动转换成数字、boolean、Boolean、byte、Byte、char、Character。例如，boolean和Boolean类型的属性值（比如“true”）通过Boolean.valueOf转换，int和Integer类型的属性值（比如“42”）通过Integer.valueOf转换。value和param不能同时使用，但可以使用其中任意一个。</p>
+<h2 id="其他动作标签"><a href="#其他动作标签" class="headerlink" title="其他动作标签"></a>其他动作标签</h2><p><code>&lt;jsp:plugin&gt;</code>标签用来根据浏览器的类型，插入通过Java插件运行JavaApplet所必需的OBJECT或EMBED元素。当JSP网页被编译后送往浏览器执行时，<code>&lt;jsp:plugin&gt;</code>将会根据浏览器的版本替换成<code>&lt;object&gt;</code>标签或者<embed>标签。一般来说，<code>&lt;jsp:plugin&gt;</code>会指定对象Applet或Bean，同样也会指定类的名字和位置，另外还会指定将从哪里下载这个Java 组件。</p>
+<ul>
+<li><code>&lt;jsp:fallback&gt;</code>一段文字用于：当不能启动Applet 或Bean 时，那么浏览器会显示一段错误信息。</li>
+<li><code>&lt;jsp:params&gt;</code>标签用来提供key/value的信息，它也可以与<code>&lt;jsp:include&gt;、&lt;jsp:forward&gt;和&lt;jsp:plugin&gt;</code>一起搭配使用。实例2-8展示了这3个标签的用法。<br><code>&lt;jsp:plugin&gt;</code>标签示例pluginTag.jsp:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:plugin type=&quot;applet&quot; code=&quot;Molecule.class&quot; codebase=&quot;/html&quot;&gt;</span><br><span class="line">	&lt;jsp:params&gt;</span><br><span class="line">		&lt;jsp:param name=&quot;molecule&quot; value=&quot;molecules/benzene.mol&quot; /&gt;</span><br><span class="line">	&lt;/jsp:params&gt;</span><br><span class="line">	&lt;jsp:fallback&gt;</span><br><span class="line">		&lt;p&gt;Unable to start plugin&lt;/p&gt;</span><br><span class="line">	&lt;/jsp:fallback&gt;</span><br><span class="line">&lt;/jsp:plugin&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>【代码剖析】上面代码中首先在第2行到第4行间创建了一个名为molecule的参数，然后在第5行到第7行间通过标签<a href="jsp:fallback" target="_blank" rel="noopener">jsp:fallback</a>显示出错时的内容。<br><code>&lt;jsp:element&gt;</code>、<code>&lt;jsp:attribute&gt;</code>和<code>&lt;jsp:body&gt;</code>标签是JSP 2.0新增的，用来动态定义XML元素。下面展示了这3个标签的用法。<br>XML标签示例xmlTag.jsp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:element name=&quot;firstname&quot;&gt;</span><br><span class="line">&lt;jsp:attribute name=&quot;name&quot;&gt;Mike&lt;/jsp:attribute&gt;</span><br><span class="line">&lt;jsp:body&gt;Hello&lt;/jsp:body&gt;</span><br><span class="line">&lt;/jsp:element&gt;</span><br></pre></td></tr></table></figure></p>
+<p>【运行程序】执行该代码，其结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;firstname name=&quot;Mike&quot;&gt;Hello&lt;/firstname&gt;</span><br></pre></td></tr></table></figure></p>
+<p>【代码剖析】上面代码中首先在第1行创建一个名为firstname的元素，然后在第2行为该元素创建了一个名为name的属性，同时设置该属性的值Mike，最后在第3行设置该元素的主体为Hello。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/05/13/JSP编译指令和动作标签/" data-id="cjvmg8oyr003wpcfv53iz5v9q" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/05/13/JSP的内置对象/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            JSP的内置对象
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/05/13/如何将JSP部署到Web应用中/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">如何将JSP部署到Web应用中</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/13/JSP的内置对象/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/05/13/JSP的内置对象/20036.png)" alt="JSP的内置对象" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/13/JSP的内置对象/" class="title">JSP的内置对象</a></p>
+                            <p class="item-date"><time datetime="2019-05-13T13:52:29.000Z" itemprop="datePublished">2019-05-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/13/JSP编译指令和动作标签/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/05/13/JSP编译指令和动作标签/210724.png)" alt="JSP编译指令和动作标签" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/13/JSP编译指令和动作标签/" class="title">JSP编译指令和动作标签</a></p>
+                            <p class="item-date"><time datetime="2019-05-13T13:00:21.000Z" itemprop="datePublished">2019-05-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/13/如何将JSP部署到Web应用中/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/05/13/如何将JSP部署到Web应用中/95446.png)" alt="如何将JSP部署到Web应用中" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/13/如何将JSP部署到Web应用中/" class="title">如何将JSP部署到Web应用中</a></p>
+                            <p class="item-date"><time datetime="2019-05-13T11:48:54.000Z" itemprop="datePublished">2019-05-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/13/request-setAttribute用法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/05/13/request-setAttribute用法/timg.jpg)" alt="request.setAttribute()用法" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/13/request-setAttribute用法/" class="title">request.setAttribute()用法</a></p>
+                            <p class="item-date"><time datetime="2019-05-13T03:54:21.000Z" itemprop="datePublished">2019-05-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/12/JSP中include指令/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/05/12/JSP中include指令/8866.png)" alt="JSP中include指令" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/12/JSP中include指令/" class="title">JSP中include指令</a></p>
+                            <p class="item-date"><time datetime="2019-05-12T10:52:42.000Z" itemprop="datePublished">2019-05-12</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h/">h</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Java/" style="font-size: 13.64px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19.09px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 16.36px;">PHP</a> <a href="/tags/XML/" style="font-size: 10.91px;">XML</a> <a href="/tags/git/" style="font-size: 10.91px;">git</a> <a href="/tags/h/" style="font-size: 10px;">h</a> <a href="/tags/html/" style="font-size: 18.18px;">html</a> <a href="/tags/java/" style="font-size: 17.27px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15.45px;">maven</a> <a href="/tags/node/" style="font-size: 10.91px;">node</a> <a href="/tags/orcal/" style="font-size: 12.73px;">orcal</a> <a href="/tags/python/" style="font-size: 14.55px;">python</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 11.82px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/心语/" style="font-size: 11.82px;">心语</a> <a href="/tags/技术/" style="font-size: 11.82px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15.45px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/05/13/JSP编译指令和动作标签/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

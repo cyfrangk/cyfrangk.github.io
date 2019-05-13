@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>如何将JSP部署到Web应用中 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Java">
+    
+    <meta name="description" content="JSP的工作原理JSP服务器管理JSP页面有两个阶段：转换阶段（translationphase）和执行阶段（executionphase）。    当有一个客户请求到来时，JSP服务器检验JSP页面的语法是否正确，将JSP页面转换为Servlet（Servlet就是用Java语言实现的CGI程序，后面章节将详细介绍）源文件，然后调用javac工具类编译Servlet源文件生成class文件，这一">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何将JSP部署到Web应用中">
+<meta property="og:url" content="http://yoursite.com/2019/05/13/如何将JSP部署到Web应用中/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="JSP的工作原理JSP服务器管理JSP页面有两个阶段：转换阶段（translationphase）和执行阶段（executionphase）。    当有一个客户请求到来时，JSP服务器检验JSP页面的语法是否正确，将JSP页面转换为Servlet（Servlet就是用Java语言实现的CGI程序，后面章节将详细介绍）源文件，然后调用javac工具类编译Servlet源文件生成class文件，这一">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/05/13/如何将JSP部署到Web应用中/95446.png">
+<meta property="og:updated_time" content="2019-05-13T14:20:51.500Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何将JSP部署到Web应用中">
+<meta name="twitter:description" content="JSP的工作原理JSP服务器管理JSP页面有两个阶段：转换阶段（translationphase）和执行阶段（executionphase）。    当有一个客户请求到来时，JSP服务器检验JSP页面的语法是否正确，将JSP页面转换为Servlet（Servlet就是用Java语言实现的CGI程序，后面章节将详细介绍）源文件，然后调用javac工具类编译Servlet源文件生成class文件，这一">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/13/如何将JSP部署到Web应用中/95446.png">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-如何将JSP部署到Web应用中" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        如何将JSP部署到Web应用中
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/05/13/如何将JSP部署到Web应用中/" class="article-date">
+            <time datetime="2019-05-13T11:48:54.000Z" itemprop="datePublished">2019-05-13</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Java/">Java</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="JSP的工作原理"><a href="#JSP的工作原理" class="headerlink" title="JSP的工作原理"></a>JSP的工作原理</h2><p>JSP服务器管理JSP页面有两个阶段：<code>转换阶段（translationphase）和执行阶段（executionphase）</code>。    当有一个客户请求到来时，JSP服务器检验JSP页面的语法是否正确，将JSP页面转换为Servlet（Servlet就是用Java语言实现的CGI程序，后面章节将详细介绍）源文件，然后调用javac工具类编译Servlet源文件生成class文件，这一阶段是转换阶段。接下来，Servlet容器加载转换后的Servlet类，实例化一个对象处理客户端的请求，在请求处理完成后，响应对象被JSP服务器接收，服务器将HTML格式的响应信息发送到客户端，这一阶段是执行阶段，如图所示。<br><img src="/2019/05/13/如何将JSP部署到Web应用中/95446.png" alt="JSP执行过程图"><br>从整个过程中可以知道，当第一次加载JSP页面时，因为要将JSP文件转换为Servlet类，所以响应速度较慢。当再次请求时，JSP服务器就会直接执行第一次请求时产生的Servlet，而不会再重新转换JSP文件，所以其执行速度和原始的Servlet执行速度几乎就相同了。在JSP执行期间，JSP服务器会检查JSP文件，看是否有更新或修改。如果有更新或修改，JSP服务器会再次编译JSP或Servlet；如果没有更新或修改，就直接执行前面产生的Servlet。这也是JSP相对于Servlet的好处之一。</p>
+<h2 id="JSP目录结构"><a href="#JSP目录结构" class="headerlink" title="JSP目录结构"></a>JSP目录结构</h2><p>在Tomcat上发布Web应用之前，首先要了解Tomcat的目录结构，参见表2.1。这些目录都是其子目录。<br>Tomcat 6.0与以前的版本相比，对目录结构做了很大改动，合并和简化了一些目录，现在的结构简单而且清晰。<br><img src="/2019/05/13/如何将JSP部署到Web应用中/95835.png" alt="Tomcat 6.0目录结构"><br>Web应用具有固定的目录结构，这里举例假定正在开发的Web应用名为jsp_example。首先，应该在/webapps目录下创建这个Web应用的目录结构，参见表2.2</p>
+<ul>
+<li>注意 此处介绍的Web目录结构不仅仅针对Tomcat，在所有的JSP服务器中都适用。<br><img src="/2019/05/13/如何将JSP部署到Web应用中/00025.png" alt="Web应用的目录结构"><br>在classes以及lib子目录下，都可以存放Java类文件。在运行过程中，Tomcat的装载器会先装载classes目录下的类，再装载lib目录下的类。因此，如果两个目录下存在同名的类，classes目录下的类具有优先权。一般情况下lib中只应存放外部引用的类，如JDBC驱动程序的JAR文件和后文中会提到的开源项目的包，而用户自己编写的类文件应该放在classes目录下。用一个图来说明更加清楚，如图所示。<br><img src="/2019/05/13/如何将JSP部署到Web应用中/0205.png" alt="Web应用的目录结构"><br>注意：WEB-INF目录对用户来说是隐藏的，用户不能通过浏览器直接访问这个目录中的文件。</li>
+</ul>
+<h2 id="解读web-xml"><a href="#解读web-xml" class="headerlink" title="解读web.xml"></a>解读web.xml</h2><p>Java Web应用通过一个基于XML的发布描述符文件来配置其发布信息，这个文件名为web.xml，它存放于WEB-INF子目录下。在web.xml文件中可主要包含如下配置信息：<br>    1）Servlet的定义。<br>    2）Servlet的初始化参数。<br>    3）Servlet以及JSP的映射。<br>    4）Filter的定义。<br>    5）安全域配置参数。<br>    6）welcome文件清单。<br>    7）资源引用。<br>    8）环境变量的定义。<br>创建一个默认的web.xml文件，并把这个文件放到WEB-INF目录中，该文件的内容如下。默认web.xml页面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;web-app version=&quot;2.5&quot; xmlns=&quot;http://java.sun.com/xml/ns/javaee&quot;</span><br><span class="line">	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">	xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/javaee</span><br><span class="line">	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;&gt;</span><br><span class="line">	&lt;!--空web配置, 只包含欢迎页面--&gt;</span><br><span class="line">	&lt;welcome-file-list&gt;</span><br><span class="line">		&lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;</span><br><span class="line">	&lt;/welcome-file-list&gt;</span><br><span class="line">&lt;/web-app&gt;</span><br></pre></td></tr></table></figure></p>
+<p>【代码剖析】上面代码中的第7行标签<welcome-file-list>为文件清单，这里只包含欢迎页面。</welcome-file-list></p>
+<h2 id="编写第一个JSP"><a href="#编写第一个JSP" class="headerlink" title="编写第一个JSP"></a>编写第一个JSP</h2><p>创建两个JSP文件，其中一个是login.jsp，它显示登录页面，要求输入用户名和口令。这个页面链接到另一个JSP文件welcome.jsp，显示欢迎页面。JSP的语法将在以后的章节详细讨论，本节侧重于介绍JSP的发布过程。这两个JSP文件都应放在jsp_example自己的目录下.<br>login.jsp示例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;title&gt;第一个JSP&lt;/title&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;form name=&quot;loginForm&quot; method=&quot;post&quot; action=&quot;welcome.jsp&quot;&gt;</span><br><span class="line">			&lt;table&gt;</span><br><span class="line">				&lt;tr&gt;</span><br><span class="line">					&lt;td&gt;</span><br><span class="line">						用户名:</span><br><span class="line">					&lt;/td&gt;</span><br><span class="line">					&lt;td&gt; &lt;!--用户名输入框--&gt;</span><br><span class="line">						&lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;</span><br><span class="line">					&lt;/td&gt;</span><br><span class="line">					&lt;/tr&gt;</span><br><span class="line">				&lt;tr&gt;</span><br><span class="line">					&lt;td&gt;</span><br><span class="line">						密码:</span><br><span class="line">					&lt;/td&gt;</span><br><span class="line">					&lt;td&gt; &lt;!--密码输入框--&gt;</span><br><span class="line">						&lt;input type=&quot;口令&quot; name=&quot;password&quot;&gt;</span><br><span class="line">					&lt;/td&gt;</span><br><span class="line">				&lt;/tr&gt;</span><br><span class="line">				&lt;tr&gt;</span><br><span class="line">					&lt;td&gt; &lt;!--提交按钮--&gt;</span><br><span class="line">						&lt;input type=&quot;Submit&quot; name=&quot;Submit&quot; value=&quot;确定&quot;&gt;</span><br><span class="line">					&lt;/td&gt;</span><br><span class="line">				&lt;/tr&gt;</span><br><span class="line">			&lt;/table&gt;</span><br><span class="line">		&lt;/form&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>【代码剖析】上面代码中第13行创建了一个文本框类型input标签，在第21行创建了一个密码类型input标签，最后又通过第26行创建了一个“确定”按钮。<br>welcome.jsp示例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;title&gt;欢迎&lt;/title&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		欢迎您:</span><br><span class="line">		&lt;%=request.getParameter(&quot;username&quot;)%&gt; &lt;!--显示相应的信息--&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>【代码剖析】上面代码中第7行通过类request的getParameter()方法获取参数username的值。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/05/13/如何将JSP部署到Web应用中/" data-id="cjvmg8owz0034pcfvobsrgrbs" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/05/13/JSP编译指令和动作标签/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            JSP编译指令和动作标签
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/05/13/request-setAttribute用法/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">request.setAttribute()用法</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/13/JSP的内置对象/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/05/13/JSP的内置对象/20036.png)" alt="JSP的内置对象" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/13/JSP的内置对象/" class="title">JSP的内置对象</a></p>
+                            <p class="item-date"><time datetime="2019-05-13T13:52:29.000Z" itemprop="datePublished">2019-05-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/13/JSP编译指令和动作标签/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/05/13/JSP编译指令和动作标签/210724.png)" alt="JSP编译指令和动作标签" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/13/JSP编译指令和动作标签/" class="title">JSP编译指令和动作标签</a></p>
+                            <p class="item-date"><time datetime="2019-05-13T13:00:21.000Z" itemprop="datePublished">2019-05-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/13/如何将JSP部署到Web应用中/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/05/13/如何将JSP部署到Web应用中/95446.png)" alt="如何将JSP部署到Web应用中" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/13/如何将JSP部署到Web应用中/" class="title">如何将JSP部署到Web应用中</a></p>
+                            <p class="item-date"><time datetime="2019-05-13T11:48:54.000Z" itemprop="datePublished">2019-05-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/13/request-setAttribute用法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/05/13/request-setAttribute用法/timg.jpg)" alt="request.setAttribute()用法" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/13/request-setAttribute用法/" class="title">request.setAttribute()用法</a></p>
+                            <p class="item-date"><time datetime="2019-05-13T03:54:21.000Z" itemprop="datePublished">2019-05-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/12/JSP中include指令/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/05/12/JSP中include指令/8866.png)" alt="JSP中include指令" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/12/JSP中include指令/" class="title">JSP中include指令</a></p>
+                            <p class="item-date"><time datetime="2019-05-12T10:52:42.000Z" itemprop="datePublished">2019-05-12</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h/">h</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Java/" style="font-size: 13.64px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19.09px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 16.36px;">PHP</a> <a href="/tags/XML/" style="font-size: 10.91px;">XML</a> <a href="/tags/git/" style="font-size: 10.91px;">git</a> <a href="/tags/h/" style="font-size: 10px;">h</a> <a href="/tags/html/" style="font-size: 18.18px;">html</a> <a href="/tags/java/" style="font-size: 17.27px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15.45px;">maven</a> <a href="/tags/node/" style="font-size: 10.91px;">node</a> <a href="/tags/orcal/" style="font-size: 12.73px;">orcal</a> <a href="/tags/python/" style="font-size: 14.55px;">python</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 11.82px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/心语/" style="font-size: 11.82px;">心语</a> <a href="/tags/技术/" style="font-size: 11.82px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15.45px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/05/13/如何将JSP部署到Web应用中/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

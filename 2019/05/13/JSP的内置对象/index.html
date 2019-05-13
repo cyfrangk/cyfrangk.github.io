@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>JSP的内置对象 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Java">
+    
+    <meta name="description" content="内置对象也称内建对象、隐含对象，是不需要声明的、直接可以在JSP中使用的Java对象。JSP基于Java语言，面向对象也是它的一大特色。JSP的内置对象就是把最常用、最重要的几个对象直接创建然后内置，用户无须再显式地用代码声明。用好JSP内置对象是JSP编程的精髓。JSP有以下9个内置对象：request、response、out、pageContext、session、application、c">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSP的内置对象">
+<meta property="og:url" content="http://yoursite.com/2019/05/13/JSP的内置对象/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="内置对象也称内建对象、隐含对象，是不需要声明的、直接可以在JSP中使用的Java对象。JSP基于Java语言，面向对象也是它的一大特色。JSP的内置对象就是把最常用、最重要的几个对象直接创建然后内置，用户无须再显式地用代码声明。用好JSP内置对象是JSP编程的精髓。JSP有以下9个内置对象：request、response、out、pageContext、session、application、c">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/05/13/JSP的内置对象/20036.png">
+<meta property="og:updated_time" content="2019-05-13T14:29:28.173Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSP的内置对象">
+<meta name="twitter:description" content="内置对象也称内建对象、隐含对象，是不需要声明的、直接可以在JSP中使用的Java对象。JSP基于Java语言，面向对象也是它的一大特色。JSP的内置对象就是把最常用、最重要的几个对象直接创建然后内置，用户无须再显式地用代码声明。用好JSP内置对象是JSP编程的精髓。JSP有以下9个内置对象：request、response、out、pageContext、session、application、c">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/13/JSP的内置对象/20036.png">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-JSP的内置对象" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        JSP的内置对象
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/05/13/JSP的内置对象/" class="article-date">
+            <time datetime="2019-05-13T13:52:29.000Z" itemprop="datePublished">2019-05-13</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Java/">Java</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>内置对象也称内建对象、隐含对象，是不需要声明的、直接可以在JSP中使用的Java对象。JSP基于Java语言，面向对象也是它的一大特色。JSP的内置对象就是把最常用、最重要的几个对象直接创建然后内置，用户无须再显式地用代码声明。用好JSP内置对象是JSP编程的精髓。<br>JSP有以下9个内置对象：request、response、out、pageContext、session、application、config、page、exception。本节将分别讲述如何使用这些对象。</p>
+<h2 id="使用request对象获取请求"><a href="#使用request对象获取请求" class="headerlink" title="使用request对象获取请求"></a>使用request对象获取请求</h2><p>request是最常用的内置对象，表示javax.servlet.http.HttpServletRequest对象。request对象包含所有请求的信息，如请求的来源、标头、cookies和请求相关的参数值等。比较常用的方法：<br>1）Object getAttribute(String name)：返回由name指定的属性值，该属性不存在时返回null。<br>2）void setAttribute(String name, Object value)：在属性列表中添加/删除指定的属性。<br>3）String getParameter(String name)：获取客户端发送给服务器端的参数值。<br>4）String[] getParameterValues( String name)：获得请求中指定参数的所有值。<br>5）String getProtocol()：返回请求使用的协议，可以是HTTP1.1或者HTTP1.0。<br>6）String RequestURI()：返回发出请求的客户端地址，但是不包括请求的参数字符串。<br>7）String getRemoteAddr()：获取发出请求的客户端IP地址。<br>8）HttpSession getSession()：获取session。<br>修改一下前面提到的第一个JSP的代码，给用户提供更多的信息。修改后的代码及结果如下。<br>request对象实例welcome1.jsp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;title&gt;欢迎&lt;/title&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		欢迎您: &lt;!--显示用户名--&gt;</span><br><span class="line">		&lt;%=request.getParameter(&quot;username&quot;)%&gt;</span><br><span class="line">		&lt;br&gt; &lt;!--显示协议--&gt;</span><br><span class="line">		使用的协议:&lt;%=request.getProtocol()%&gt;</span><br><span class="line">		&lt;br&gt; &lt;!--显示请求的地址-&gt;</span><br><span class="line">		请求的地址:&lt;%=request.getRequestURI()%&gt;</span><br><span class="line">		&lt;br&gt; &lt;!--显示地址-&gt;</span><br><span class="line">		您的地址是:&lt;%=request.getRemoteAddr()%&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>【运行程序】浏览该页面，结果如图所示。<br><img src="/2019/05/13/JSP的内置对象/20036.png" alt=""><br>【代码剖析】上面代码中首先在第7行获取参数username的值，然后在第9行获取请求页面使用的协议，最后在第11行获取请求页面的URI地址，同时在第13行获取请求页面的地址。</p>
+<h2 id="使用response对象做应答"><a href="#使用response对象做应答" class="headerlink" title="使用response对象做应答"></a>使用response对象做应答</h2><p>response表示HttpServletResponse对象，并提供了几个用于设置返回浏览器的响应的方法。如比较常见的方法：<br>    1）sendRedirect(URL)：可以将用户重定向到一个不同的页面（URL）。<br>    2）setContentType(String type)：响应设置内容类型头。<br>    3）addHeader(String name,String value)：添加String类型的值到HTTP文件头。<br>这里需要说明一下response的sendRedirect方法是转到另一个网页，前文叙述过的JSP动作标签<forward>也是网页跳转。两者区别如下：<br>首先，forward重定向是在容器内部实现的同一个Web应用程序的重定向，所以forward方法只能重定向到同一个Web应用程序中的一个资源，重定向后浏览器地址栏URL不变，而sendRedirect方法可以重定向到任何URL。因为这种方法是修改http头来实现的，URL没什么限制，重定向后浏览器地址栏URL改变。<br>其次，forward重定向将原始的HTTP请求对象（request）从一个Servlet实例传递到另一个实例，而采用sendRedirect方式的两者不是同一个request，forward转移的时候会把前面的请求参数也都带上，而sendRedirect方式则不能。</forward></p>
+<h2 id="在session对象中保存用户会话"><a href="#在session对象中保存用户会话" class="headerlink" title="在session对象中保存用户会话"></a>在session对象中保存用户会话</h2><p>session表示一个请求的javax.servlet.http.HttpSession对象。Session可以存储用户的状态信息。session在第一个JSP页面被装载时自动创建，完成会话期管理。从一个客户打开浏览器并连接到服务器开始，到客户关闭浏览器离开这个服务器结束，被称为一个会话。当一个客户访问一个服务器时，可能会在这个服务器的几个页面之间反复连接，反复刷新一个页面，服务器应当通过某种办法（比如cookie）知道这是同一个客户，这就需要session对象。</p>
+<p>session对象常用方法：<br>    1）public String getId()：获取session对象编号。<br>    2）public void setAttribute(String key,Object obj)：将参数Object指定的对象obj添加到session对象中，并为添加的对象指定一个索引关键字。<br>    3）public Object getAttribute(String key)：获取session对象中含有关键字的对象。<br>    4）public Boolean isNew()：判断是否是一个新的客户。<br>利用session对象计算当前用户是第几个访问此网站的用户。<br>session对象示例sessionUser.jsp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=&quot;text/html;charset=GB2312&quot;%&gt;</span><br><span class="line">	&lt;%!int number = 0; &lt;!--关于用户访问的数量--&gt;</span><br><span class="line">		synchronized void countPeople() &#123;</span><br><span class="line">			number++;</span><br><span class="line">		&#125;</span><br><span class="line">	%&gt;</span><br><span class="line">	&lt;%</span><br><span class="line">		if (session.isNew()) &#123;</span><br><span class="line">			countPeople();</span><br><span class="line">			String str = String.valueOf(number);</span><br><span class="line">			session.setAttribute(&quot;count&quot;, str);</span><br><span class="line">		&#125;</span><br><span class="line">	%&gt;</span><br><span class="line">	&lt;html&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;p&gt; &lt;!--关于显示用户访问的数量--&gt;</span><br><span class="line">		您是第&lt;%=(String) session.getAttribute(&quot;count&quot;)%&gt;个访问本站的人。</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">	&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>【代码剖析】上面代码中首先在第2行代码与第6行代码间定义表示访问该网站的人数的变量和实现计算访问量的方法countPeople()；接着在第7行代码到第13行代码间利用JSP脚本实现每当创建一个session对象就调用countPeople()方法，然后把该方法修改后的变量number值存储到session对象中；最后在第17行通过脚本获取session对象中属性count的值。</p>
+<h2 id="application对象、pageContext对象和JSP的范围"><a href="#application对象、pageContext对象和JSP的范围" class="headerlink" title="application对象、pageContext对象和JSP的范围"></a>application对象、pageContext对象和JSP的范围</h2><p>服务器启动后就产生了这个application对象，当客户在所访问的网站的各个页面之间浏览时，这个application对象都是同一个，可以理解为，在一个应用中application对象是一个全局的Map。<br>pageContext与application对象类似，有setAttribute( )和getAttribute( )方法来保存对象，只是它的范围只限于本网页内。<br>这里提到JSP的范围（scope），分别为Page、Request、Session、Application。这4个范围分别有pageContext、request、session、application 4个内置对象对应用来保存对象，方法名都是setAttribute( )和getAttribute( )。范围的概念十分重要，很多配置都有范围这一属性。<br>❑ Page指的是单单一页JSP Page的范围。<br>❑ Request的范围是指在JSP网页发出请求到另一个JSP网页之间，随后这个属性就失效。设定Request的范围时可利用request对象中的setAttribute( )和getAttribute( )。<br>❑ Session的作用范围为一段用户持续和服务器所连接的时间，但与服务器断线后，这个属性将无效。<br>❑ Application 的作用范围在服务器一开始执行服务，到服务器关闭为止。Application的范围最大，停留的时间也最久，所以使用时要特别注意，不然可能会造成服务器负载越来越重的情况。下图说明了JSP的4种范围关系。<br><img src="/2019/05/13/JSP的内置对象/20549.png" alt="JSP Scope图"></p>
+<h2 id="使用out对象输出"><a href="#使用out对象输出" class="headerlink" title="使用out对象输出"></a>使用out对象输出</h2><p>out对象是javax.jsp.JspWriter的一个实例，是一个输出流，用来向客户端输出数据。out对象用于各种数据的输出。常用方法如下：<br>    1）out.print()：输出各种类型数据。<br>    2）out.newLine()：输出一个换行符。<br>    3）out.close()：关闭流。<br>一个用out输出的例子，输出当前的日期。<br>out对象示例outTest.jsp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=&quot;text/html;charset=GB2312&quot;%&gt;</span><br><span class="line">&lt;%@ page import=&quot;java.util.Date&quot;%&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;% &lt;!--定义了当前时间的小时、分、秒--&gt;</span><br><span class="line">			Date Now = new Date();</span><br><span class="line">			String hours = String.valueOf(Now.getHours());</span><br><span class="line">			String mins = String.valueOf(Now.getMinutes());</span><br><span class="line">			String secs = String.valueOf(Now.getSeconds());</span><br><span class="line">		%&gt; &lt;!--显示了当前时间的小时、分、秒--&gt;</span><br><span class="line">		&lt;font&gt; 现在是 &lt;%</span><br><span class="line">			out.print(String.valueOf(Now.getHours()));</span><br><span class="line">		%&gt; 小时 &lt;%</span><br><span class="line">			out.print(String.valueOf(Now.getMinutes()));</span><br><span class="line">		%&gt; 分 &lt;%</span><br><span class="line">			out.print(String.valueOf(Now.getSeconds()));</span><br><span class="line">		%&gt; 秒 &lt;/font&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>【代码剖析】上面代码中首先在第2行导入类Date，然后在第6行代码到第11行代码间通过JSP脚本获取关于当前时间的小时、分和秒的变量，最后在第13行、第15行和第17行输出变量值。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/05/13/JSP的内置对象/" data-id="cjvmg8oym003upcfvg4yq2aen" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/05/13/JSP编译指令和动作标签/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">JSP编译指令和动作标签</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/13/JSP的内置对象/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/05/13/JSP的内置对象/20036.png)" alt="JSP的内置对象" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/13/JSP的内置对象/" class="title">JSP的内置对象</a></p>
+                            <p class="item-date"><time datetime="2019-05-13T13:52:29.000Z" itemprop="datePublished">2019-05-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/13/JSP编译指令和动作标签/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/05/13/JSP编译指令和动作标签/210724.png)" alt="JSP编译指令和动作标签" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/13/JSP编译指令和动作标签/" class="title">JSP编译指令和动作标签</a></p>
+                            <p class="item-date"><time datetime="2019-05-13T13:00:21.000Z" itemprop="datePublished">2019-05-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/13/如何将JSP部署到Web应用中/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/05/13/如何将JSP部署到Web应用中/95446.png)" alt="如何将JSP部署到Web应用中" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/13/如何将JSP部署到Web应用中/" class="title">如何将JSP部署到Web应用中</a></p>
+                            <p class="item-date"><time datetime="2019-05-13T11:48:54.000Z" itemprop="datePublished">2019-05-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/13/request-setAttribute用法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/05/13/request-setAttribute用法/timg.jpg)" alt="request.setAttribute()用法" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/13/request-setAttribute用法/" class="title">request.setAttribute()用法</a></p>
+                            <p class="item-date"><time datetime="2019-05-13T03:54:21.000Z" itemprop="datePublished">2019-05-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/12/JSP中include指令/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/05/12/JSP中include指令/8866.png)" alt="JSP中include指令" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/05/12/JSP中include指令/" class="title">JSP中include指令</a></p>
+                            <p class="item-date"><time datetime="2019-05-12T10:52:42.000Z" itemprop="datePublished">2019-05-12</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h/">h</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Java/" style="font-size: 13.64px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19.09px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 16.36px;">PHP</a> <a href="/tags/XML/" style="font-size: 10.91px;">XML</a> <a href="/tags/git/" style="font-size: 10.91px;">git</a> <a href="/tags/h/" style="font-size: 10px;">h</a> <a href="/tags/html/" style="font-size: 18.18px;">html</a> <a href="/tags/java/" style="font-size: 17.27px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15.45px;">maven</a> <a href="/tags/node/" style="font-size: 10.91px;">node</a> <a href="/tags/orcal/" style="font-size: 12.73px;">orcal</a> <a href="/tags/python/" style="font-size: 14.55px;">python</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 11.82px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/心语/" style="font-size: 11.82px;">心语</a> <a href="/tags/技术/" style="font-size: 11.82px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15.45px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/05/13/JSP的内置对象/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
