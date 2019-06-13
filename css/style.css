@@ -345,7 +345,7 @@ code {
 }
 #header {
   background: #26272b;
-  background-image: url("http://pic.58pic.com/58pic/14/64/69/50b58PICiyB_1024.jpg");
+  background-image: url("images/header.jpg");
   padding-bottom: 60px;
   position: relative;
 }
@@ -1621,7 +1621,7 @@ a.article-title:hover {
 }
 #footer {
   background: #33363b;
-  background-image: url("http://i1.wp.com/overdope.com/wp-content/uploads/2013/07/20130714020444.jpg");
+  background-image: url("images/footer.gif");
   margin-top: 60px;
   color: #aaa;
   line-height: 1.6em;
