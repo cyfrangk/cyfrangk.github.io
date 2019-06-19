@@ -6,26 +6,26 @@
     
 
     
-    <title>JSP编译指令和动作标签 | 陈义的个人博客</title>
+    <title>简述Servlet使用sendRedirect和forward两种方法的异同点 | 陈义的个人博客</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="Java">
+        <meta name="keywords" content="Javaweb">
     
-    <meta name="description" content="编译指令主要用来提供整个JSP 网页相关的信息，并且用来设定JSP网页的相关属性，例如：网页的编码方式、语法、信息等。起始符号为“&amp;lt;%@”，终止符号为“%&amp;gt;”，中间部分就是一些指令和一连串的属性设定。JSP有3个编译指令：page、include和taglib。动作标签又称为动作元素、动作指令，也可以理解为JSP自带的标准标签库。动作标签利用XML语法格式的标记来控制JSP服务器的行为">
-<meta name="keywords" content="Java">
+    <meta name="description" content="javax.servlet.http.HttpServletResponse接口中的sendRedirect()方法javax.servlet.RequestDispatcher接口中的forward()方法sendRedirect实现请求重定向，forward实现的是请求转发。二者皆可以利用别的资源(Servlet,JSP,HTML)来为客户端进行服务（service）； 在web服务器内部的处">
+<meta name="keywords" content="Javaweb">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JSP编译指令和动作标签">
-<meta property="og:url" content="http://yoursite.com/2019/05/13/JSP编译指令和动作标签/index.html">
+<meta property="og:title" content="简述Servlet使用sendRedirect和forward两种方法的异同点">
+<meta property="og:url" content="http://yoursite.com/2019/06/19/简述Servlet使用sendRedirect和forward两种方法的异同点/index.html">
 <meta property="og:site_name" content="陈义的个人博客">
-<meta property="og:description" content="编译指令主要用来提供整个JSP 网页相关的信息，并且用来设定JSP网页的相关属性，例如：网页的编码方式、语法、信息等。起始符号为“&amp;lt;%@”，终止符号为“%&amp;gt;”，中间部分就是一些指令和一连串的属性设定。JSP有3个编译指令：page、include和taglib。动作标签又称为动作元素、动作指令，也可以理解为JSP自带的标准标签库。动作标签利用XML语法格式的标记来控制JSP服务器的行为">
+<meta property="og:description" content="javax.servlet.http.HttpServletResponse接口中的sendRedirect()方法javax.servlet.RequestDispatcher接口中的forward()方法sendRedirect实现请求重定向，forward实现的是请求转发。二者皆可以利用别的资源(Servlet,JSP,HTML)来为客户端进行服务（service）； 在web服务器内部的处">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/05/13/JSP编译指令和动作标签/210724.png">
-<meta property="og:updated_time" content="2019-05-13T14:28:46.338Z">
+<meta property="og:image" content="http://yoursite.com/2019/06/19/简述Servlet使用sendRedirect和forward两种方法的异同点/sendRedirect.png">
+<meta property="og:updated_time" content="2019-06-19T02:20:31.354Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JSP编译指令和动作标签">
-<meta name="twitter:description" content="编译指令主要用来提供整个JSP 网页相关的信息，并且用来设定JSP网页的相关属性，例如：网页的编码方式、语法、信息等。起始符号为“&amp;lt;%@”，终止符号为“%&amp;gt;”，中间部分就是一些指令和一连串的属性设定。JSP有3个编译指令：page、include和taglib。动作标签又称为动作元素、动作指令，也可以理解为JSP自带的标准标签库。动作标签利用XML语法格式的标记来控制JSP服务器的行为">
-<meta name="twitter:image" content="http://yoursite.com/2019/05/13/JSP编译指令和动作标签/210724.png">
+<meta name="twitter:title" content="简述Servlet使用sendRedirect和forward两种方法的异同点">
+<meta name="twitter:description" content="javax.servlet.http.HttpServletResponse接口中的sendRedirect()方法javax.servlet.RequestDispatcher接口中的forward()方法sendRedirect实现请求重定向，forward实现的是请求转发。二者皆可以利用别的资源(Servlet,JSP,HTML)来为客户端进行服务（service）； 在web服务器内部的处">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/19/简述Servlet使用sendRedirect和forward两种方法的异同点/sendRedirect.png">
     
 
     
@@ -143,14 +143,14 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-JSP编译指令和动作标签" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+                            <article id="post-简述Servlet使用sendRedirect和forward两种方法的异同点" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        JSP编译指令和动作标签
+        简述Servlet使用sendRedirect和forward两种方法的异同点
         </h1>
     
 
@@ -160,8 +160,8 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2019/05/13/JSP编译指令和动作标签/" class="article-date">
-            <time datetime="2019-05-13T13:00:21.000Z" itemprop="datePublished">2019-05-13</time>
+        <a href="/2019/06/19/简述Servlet使用sendRedirect和forward两种方法的异同点/" class="article-date">
+            <time datetime="2019-06-19T00:54:31.000Z" itemprop="datePublished">2019-06-19</time>
         </a>
     </div>
 
@@ -170,40 +170,46 @@
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Java/">Java</a>
+        <a class="tag-link" href="/tags/Javaweb/">Javaweb</a>
     </div>
 
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p>编译指令主要用来提供整个JSP 网页相关的信息，并且用来设定JSP网页的相关属性，例如：网页的编码方式、语法、信息等。起始符号为“&lt;%@”，终止符号为“%&gt;”，中间部分就是一些指令和一连串的属性设定。JSP有3个编译指令：page、include和taglib。<br>动作标签又称为动作元素、动作指令，也可以理解为JSP自带的标准标签库。动作标签利用XML语法格式的标记来控制JSP服务器的行为。利用动作标签可以动态地插入文件、重用JavaBean组件、把用户重定向到另外的页面、为Java插件生成HTML代码。动作标签起始符号为<code>&lt;jsp:xxx&gt;</code>，终止符号为&lt;/jsp:xxx&gt;。</p>
-<h2 id="使用page指令"><a href="#使用page指令" class="headerlink" title="使用page指令"></a>使用page指令</h2><p>page指令是最复杂的编译指令，它的主要功能为设定整个JSP 网页的属性和相关功能。page指令的基本语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page attribute1=&quot;value1&quot; attribute2= &quot;value2&quot; attribute3=...%&gt;</span><br></pre></td></tr></table></figure></p>
-<p>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page import=&quot;java.util.* java.lang.*&quot; %&gt;</span><br><span class="line">&lt;%@ page buffer=&quot;5kb&quot; autoFlush=&quot;false&quot; %&gt;</span><br><span class="line">&lt;%@ page errorPage=&quot;error.jsp&quot; %&gt;</span><br></pre></td></tr></table></figure></p>
-<p>page指令有13个属性，如下所示。<br><img src="/2019/05/13/JSP编译指令和动作标签/210724.png" alt="page指令属性"><br>可以把page指令放在JSP的文件任意位置，但它的作用范围始终都是整个JSP页面。为了提高JSP程序的可读性，以及养成好的编程习惯，最好还是把它放在JSP文件的顶部。可以在一个页面中用上多个&lt;%@page%&gt;指令，但是其中的属性只能用一次。不过也有个例外，那就是import属性，这和Java中的import非常类似，可以使用多个import来引入类，它也是最常用的属性。</p>
-<h2 id="用include指令插入其他JSP"><a href="#用include指令插入其他JSP" class="headerlink" title="用include指令插入其他JSP"></a>用include指令插入其他JSP</h2><p>include指令是在JSP中包含一个静态的文件，同时解析这个文件中的JSP语句。include指令只有一个参数，就是要插入文件的相对路径。语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ include file=&quot;relativeURL&quot; %&gt;</span><br></pre></td></tr></table></figure></p>
-<p>include指令将会在JSP编译时插入一个包含文本或代码的文件，当使用include指令时，这个包含的过程是静态的。也可以理解为不管要插入的文件内容是什么，简单地把其中所有的内容拷贝过来合并成一个新文件，然后提交给JSP服务器做接下来的工作。由此可以看出，如果两个文件中有重复的Java变量或函数定义，那么合并之后编译要出错，HTML的标签也同样会相互影响，要避免片段文件中有<html><body>之类的全局标签出现。<br>    这里提到的静态文件的意思是，引入文件名不能是一个变量，只能是一个静态的字符串。最后一点，如果这个片段文件被改变，那么包含此文件的JSP文件将被重新编译，因为是先插入再整体编译，片段改变相当于整个合并后的JSP改变了，当然需要重新编译。</body></html></p>
-<h2 id="用taglib指令引入标签库"><a href="#用taglib指令引入标签库" class="headerlink" title="用taglib指令引入标签库"></a>用taglib指令引入标签库</h2><p>taglib指令能够让用户自定义新的标签。这里只是先做一个简单介绍，在后面的章节再详细介绍如何自定义标签和如何使用标签。taglib指令的语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib uri = &quot;tagLibraryURI&quot; prefix=&quot;tagPrefix&quot; %&gt;</span><br></pre></td></tr></table></figure></p>
-<p>和所有JSP标签元素一样，taglib指令也支持XML语法。参数如下所示。<br><img src="/2019/05/13/JSP编译指令和动作标签/11216.png" alt="taglib指令参数表"></p>
-<h2 id="用forward标签跳转页面"><a href="#用forward标签跳转页面" class="headerlink" title="用forward标签跳转页面"></a>用forward标签跳转页面</h2><p>forward动作把请求转到另外的页面。<code>&lt;jsp:forward&gt;</code>标签只有一个属性page。page属性包含的是一个相对URL。page的值既可以直接给出，也可以在请求的时候动态计算。如下面的例子所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">＜jsp:forward page=&quot;/utils/errorReporter.jsp&quot; /＞</span><br><span class="line">＜jsp:forward page=&quot;＜%=someJavaExpression%＞&quot; /＞</span><br></pre></td></tr></table></figure></p>
-<h2 id="动态插入文件"><a href="#动态插入文件" class="headerlink" title="动态插入文件"></a>动态插入文件</h2><p><code>&lt;jsp:include&gt;</code>标签把指定文件插入到正在生成的页面。其语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">＜jsp:include page=&quot;relative URL&quot; flush=&quot;true&quot; /＞</span><br></pre></td></tr></table></figure></p>
-<p><img src="/2019/05/13/JSP编译指令和动作标签/1345.png" alt="&lt;jsp:include&gt;标签参数表"></p>
-<p>所谓动态插入，正是相对于前面已经介绍过的静态include指令，它是在JSP文件被转换成Servlet的时候引入文件，而这里的<code>&lt;jsp:include&gt;</code>动作不同，插入文件的时间是在页面被请求的时候。这里被插入的文件是一个完整的JSP文件而非片段，把两个JSP输出到客户端的结果结合在一起，它们分别被JSP服务器转化为两个不同Java类，因此不存在变量定义方面的冲突。用<code>&lt;jsp:include&gt;</code>标签引入文件的效率要稍微差一点，而且被引用文件不能包含某些JSP代码（例如不能设置HTTP头），但它的灵活性却要好得多。<br>又与静态插入不同，引入文件名可以是一个变量或者表达式。如果这个片段文件被改变，那么只是这个文件本身重新编译而包含此文件的JSP文件不会被重新编译。</p>
-<h2 id="用标签操作JavaBean"><a href="#用标签操作JavaBean" class="headerlink" title="用标签操作JavaBean"></a>用标签操作JavaBean</h2><p>JavaBean的原理:简单的说是依靠反射机制完成的，在jsp:useBean中也给出了具体的包.类,如果对这个很生疏，可以去学习JAVASE中的反射部分，后面的很多框架也会用到，打字写博客也是很累的，这里就简单提一下，没写过多不代表不重要啊，想知道更多原理就度娘吧，很多框架都会用到这个，很重要！！！。<br>简单的说就是一个包含了setter和getter以及至少一个无参构造方法的JAVA类，在框架中或其他方面也管它叫做PO，VO，TO等。<br>本节将涉及3个标签：<code>&lt;jsp:useBean&gt;、&lt;jsp:setProperty&gt;、&lt;jsp:getProperty&gt;</code>。<br><code>&lt;jsp:useBean&gt;</code>标签用来装载一个将在JSP页面中使用的JavaBean。这个功能非常有用，因为它使得开发人员既可以发挥Java组件重用的优势，同时也避免了直接在JSP实例化对象的复杂操作。<code>&lt;jsp:useBean&gt;</code>标签最简单的语法为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">＜jsp:useBean id=&quot;name&quot; class=&quot;package.class&quot; /＞</span><br></pre></td></tr></table></figure></p>
-<p><img src="/2019/05/13/JSP编译指令和动作标签/2007.png" alt="&lt;jsp:useBean&gt;标签参数表"><br>获得Bean实例之后，要设置Bean的属性可以通过<code>&lt;jsp:setProperty&gt;</code>标签，要读取Bean的属性就用<code>&lt;jsp:getProperty&gt;</code>。这两个标签的语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">＜jsp:setProperty name=&quot;myName&quot; property=&quot;someProperty&quot; value=&quot;value&quot; /＞</span><br><span class="line">＜jsp:getProperty name=&quot;myName&quot; property=&quot;someProperty&quot; /＞</span><br></pre></td></tr></table></figure></p>
-<p>一个很简单的例子，它的功能是装载一个Bean，然后设置/读取它的message属性。<br>动作标签BeanTest.jsp示例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;title&gt;Bean动作标签&lt;/title&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;!--使用JSP编译指令定义Bean--&gt;</span><br><span class="line">		&lt;jsp:useBean id=&quot;test&quot; class=&quot; com.book.web3.SimpleBean&quot; /&gt;</span><br><span class="line">		&lt;!--使用JSP编译指令给Bean赋值--&gt;</span><br><span class="line">		&lt;jsp:setProperty name=&quot;test&quot; property=&quot;message&quot; value=&quot;Hello reader&quot; /&gt;</span><br><span class="line">		刚刚赋值的消息:&lt;jsp:getProperty name=&quot;test&quot; property=&quot;message&quot; /&gt;</span><br><span class="line">		&lt;br&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
-<p><img src="/2019/05/13/JSP编译指令和动作标签/12308.png" alt="测试页面"><br>【运行程序】浏览该页面，结果如图2.17所示。<br>【代码剖析】上面代码中首先通过第7行创建了一个名为test的JavaBean，然后通过第9行设置JavaBean中属性message的值为Hello reader，最后通过第10行输出JavaBean中属性message的值。<br>BeanTest页面用到了一个SimpleBean类，具体内容如下。<br>动作标签示例涉及的SimpleBean：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package com.book.web3;</span><br><span class="line">	public class SimpleBean &#123;</span><br><span class="line">		// 属性定义</span><br><span class="line">		private String message = &quot;No message specified&quot;;</span><br><span class="line">		// 属性的getter/setter方法</span><br><span class="line">		public String getMessage() &#123;</span><br><span class="line">			return (message);</span><br><span class="line">		&#125;</span><br><span class="line">		public void setMessage(String message) &#123;</span><br><span class="line">			this.message = message;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
-<p>【代码剖析】上面代码中首先在第4行创建了一个名为message的属性，然后分别在第6行和第9行设置该属性的getXXX()和setXXX()方法。<br><code>&lt;jsp:getProperty&gt;</code>标签提取指定Bean属性的值，转换成字符串，然后输出。<code>&lt;jsp:getProperty&gt;</code>有两个必需的属性，参数如下：<br><img src="/2019/05/13/JSP编译指令和动作标签/3212706.png" alt="&lt;jsp:getProperty&gt;标签参数表"><br><code>&lt;jsp:setProperty&gt;</code>用来设置已经实例化的Bean对象的属性，有4个属性<br><img src="/2019/05/13/JSP编译指令和动作标签/2756.png" alt="&lt;jsp: setProperty&gt;标签参数表"></p>
-<p>需要说明的是，value属性字符串数据会在目标类中通过标准的valueOf方法自动转换成数字、boolean、Boolean、byte、Byte、char、Character。例如，boolean和Boolean类型的属性值（比如“true”）通过Boolean.valueOf转换，int和Integer类型的属性值（比如“42”）通过Integer.valueOf转换。value和param不能同时使用，但可以使用其中任意一个。</p>
-<h2 id="其他动作标签"><a href="#其他动作标签" class="headerlink" title="其他动作标签"></a>其他动作标签</h2><p><code>&lt;jsp:plugin&gt;</code>标签用来根据浏览器的类型，插入通过Java插件运行JavaApplet所必需的OBJECT或EMBED元素。当JSP网页被编译后送往浏览器执行时，<code>&lt;jsp:plugin&gt;</code>将会根据浏览器的版本替换成<code>&lt;object&gt;</code>标签或者<embed>标签。一般来说，<code>&lt;jsp:plugin&gt;</code>会指定对象Applet或Bean，同样也会指定类的名字和位置，另外还会指定将从哪里下载这个Java 组件。</p>
-<ul>
-<li><code>&lt;jsp:fallback&gt;</code>一段文字用于：当不能启动Applet 或Bean 时，那么浏览器会显示一段错误信息。</li>
-<li><code>&lt;jsp:params&gt;</code>标签用来提供key/value的信息，它也可以与<code>&lt;jsp:include&gt;、&lt;jsp:forward&gt;和&lt;jsp:plugin&gt;</code>一起搭配使用。实例2-8展示了这3个标签的用法。<br><code>&lt;jsp:plugin&gt;</code>标签示例pluginTag.jsp:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:plugin type=&quot;applet&quot; code=&quot;Molecule.class&quot; codebase=&quot;/html&quot;&gt;</span><br><span class="line">	&lt;jsp:params&gt;</span><br><span class="line">		&lt;jsp:param name=&quot;molecule&quot; value=&quot;molecules/benzene.mol&quot; /&gt;</span><br><span class="line">	&lt;/jsp:params&gt;</span><br><span class="line">	&lt;jsp:fallback&gt;</span><br><span class="line">		&lt;p&gt;Unable to start plugin&lt;/p&gt;</span><br><span class="line">	&lt;/jsp:fallback&gt;</span><br><span class="line">&lt;/jsp:plugin&gt;</span><br></pre></td></tr></table></figure>
+            <p>javax.servlet.http.HttpServletResponse接口中的sendRedirect()方法<br>javax.servlet.RequestDispatcher接口中的forward()方法<br>sendRedirect实现请求重定向，forward实现的是请求转发。<br>二者皆可以利用别的资源(Servlet,JSP,HTML)来为客户端进行服务（service）；</p>
+<h2 id="在web服务器内部的处理机制也是不一样的。"><a href="#在web服务器内部的处理机制也是不一样的。" class="headerlink" title="在web服务器内部的处理机制也是不一样的。"></a>在web服务器内部的处理机制也是不一样的。</h2><ol>
+<li><p>跳转方式<br>运用forward方法只能重定向到同一个Web应用程序中的一个资源。而sendRedirect方法可以让你重定向到任何URL。<br>表单form的action= “/uu “;sendRedirect( “/uu “);表示相对于服务器根路径。<br>如<a href="http://localhost:8080/Test应用（则提交至http://localhost:8080/uu）" target="_blank" rel="noopener">http://localhost:8080/Test应用（则提交至http://localhost:8080/uu）</a>;<br>Forward代码中的 “/uu “则代表相对与WEB应用的路径。如<a href="http://localhost:8080/Test应用（则提交至http://localhost:8080/Test/uu）" target="_blank" rel="noopener">http://localhost:8080/Test应用（则提交至http://localhost:8080/Test/uu）</a>;</p>
+<p>2.forward重定向后，浏览器url地址不变，sendRedirect转发后，浏览器url地址变为目的url地址。<br>forward()无法重定向至有frame的jsp文件,可以重定向至有frame的html文件, 同时forward()无法在后面带参数传递,<br>比如servlet?name=frank,这样不行,可以程序内通过response.setAttribute( “name “,name)来传至下一个页面. </p>
+</li>
+</ol>
+<p>3.使用forward重定向的过程，是浏览器先向目的Servlet发送一次Request请求，然后在服务器端由Servlet再将请求发送到目的url，再由服务器端Servlet返回Response到浏览器端。浏览器和服务器一次请求响应。<br>使用sendRedirect转发的过程，浏览器先向目的Servlet发送一次请求，Servlet看到sendRedirect将目的url返回到浏览器，浏览器再去请求目的url,目的url再返回response到浏览器。浏览器和服务器两次请求响应。</p>
+<ol start="4">
+<li>forward方法的调用者与被调用者之间共享Request和Response</li>
+</ol>
+<p>sendRedirect方法由于两次浏览器服务器请求，所以有两个Request和Response。</p>
+<p>如果使用request.setAttribute传递一些属性就需要用forward，如果想要跳转到别的应用的资源，就需要用sendRedirect。</p>
+<p>5.无论是forward方法还是sendRedirect方法调用前面都不能有PrintWriter输出到客户端。</p>
+<p>forward方法报错： Java.lang.IllegalStateException: Cannot forward after response has been committed<br>sendRedirect报错：java.lang.IllegalStateException<br>at org.apache.catalina.connector.ResponseFacade.sendRedirect(ResponseFacade.java:435)</p>
+<p><strong>forward是服务器内部的跳转，浏览器的地址栏不会发生变化，同时可以把request和response传递给后一个请求。sendRedirect()是浏览器方面的跳转，要发送两次请求，地址栏也会发生变化，同时request和response也会发生变化，重新生成新的对象。</strong></p>
+<h2 id="sendRedirect"><a href="#sendRedirect" class="headerlink" title="sendRedirect()"></a>sendRedirect()</h2><ul>
+<li><p>sendRedirect()方法：至少产生两次请求<br>1.浏览器访问Servlet1<br>2.Servlet1让Servlet2为客户端服务<br>3.Servlet1调用sendRedirect()方法，将客户端的请求重定向到Servlet2（告知浏览器Servlet2的位置，让浏览器重新访问Servlet2,浏览器地址栏的URL变为重定向后的URL）<br>4.浏览器访问Servlet2<br>5.Servlet2对客户端请求做出响应</p>
+</li>
+<li><p>URL重定向的特点:<br>1):浏览器地址栏路径发送变化<br>2):只发送了两个请求.<br>3):因为是不同的请求,所以不能共享请求中的数据.<br>4):可以跨域访问资源.<br>5):不可以访问WEB-INF中的资源.</p>
 </li>
 </ul>
-<p>【代码剖析】上面代码中首先在第2行到第4行间创建了一个名为molecule的参数，然后在第5行到第7行间通过标签<a href="jsp:fallback" target="_blank" rel="noopener">jsp:fallback</a>显示出错时的内容。<br><code>&lt;jsp:element&gt;</code>、<code>&lt;jsp:attribute&gt;</code>和<code>&lt;jsp:body&gt;</code>标签是JSP 2.0新增的，用来动态定义XML元素。下面展示了这3个标签的用法。<br>XML标签示例xmlTag.jsp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:element name=&quot;firstname&quot;&gt;</span><br><span class="line">&lt;jsp:attribute name=&quot;name&quot;&gt;Mike&lt;/jsp:attribute&gt;</span><br><span class="line">&lt;jsp:body&gt;Hello&lt;/jsp:body&gt;</span><br><span class="line">&lt;/jsp:element&gt;</span><br></pre></td></tr></table></figure></p>
-<p>【运行程序】执行该代码，其结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;firstname name=&quot;Mike&quot;&gt;Hello&lt;/firstname&gt;</span><br></pre></td></tr></table></figure></p>
-<p>【代码剖析】上面代码中首先在第1行创建一个名为firstname的元素，然后在第2行为该元素创建了一个名为name的属性，同时设置该属性的值Mike，最后在第3行设置该元素的主体为Hello。</p>
+<p><img src="/2019/06/19/简述Servlet使用sendRedirect和forward两种方法的异同点/sendRedirect.png" alt=""></p>
+<h2 id="forward"><a href="#forward" class="headerlink" title="forward()"></a>forward()</h2><ul>
+<li>forward()方法：一次请求<br>1.浏览器访问Servlet1<br>2.Servlet1让Servlet2为客户端服务<br>3.Servlet1调用forward()方法，将客户端的请求转发给Servlet2进行处理（浏览器显示的URL始终是原始请求的URL）<br>4.Servlet2对请求做出响应</li>
+</ul>
+<ul>
+<li>请求转发的特点:<br>1):浏览器地址栏路径没变<br>2):只发送了一个请求.<br>3):共享同一个请求,在请求敏感词享数据.<br>4):只能访问当前应用中的资源,不能跨域跳转.<br>5):可以访问WEB-INF中的资源.</li>
+</ul>
+<p><img src="/2019/06/19/简述Servlet使用sendRedirect和forward两种方法的异同点/forward.png" alt=""></p>
+<p>此外，sendRedirect()方法不仅可以在位于同一主机上的不同web应用程序之间进行重定向，而且可以将客户端重定向到其它服务器上的web应用程序资源。</p>
+<p><strong> 请求转发与重定向的区别</strong><br>1.请求转发数据不会丢失，重定向数据会丢失<br>2.请求转发URL地址栏不变，重定向URL地址栏变化可以防止表单重复提交<br>3.请求转发不加上web项目名称，重定向需要加上web项目名<br>4.请求转发只能在一个web应用程序内转发，重定向可以到其他应用程序<br>5.请求转发后面调用的方法类别和前面的相同，重定向会全部变为get方法，和前面没有关系</p>
+<p>请求转发是一次请求，重定向为多次请求生成多个request对象，但是form表单第一次如果是post方法<br>当重定向是，再次生成新的request时，则变成默认的doget方法</p>
+<h2 id="请求转发和URL重定向的选择"><a href="#请求转发和URL重定向的选择" class="headerlink" title="请求转发和URL重定向的选择?"></a>请求转发和URL重定向的选择?</h2><p>1:若需要共享请求中的数据,只能使用请求转发.<br>2:若需要访问WEB-INF中的资源,只能使用请求转发.<br>3:若需要跨域访问,只能使用URL重定向.<br>4:请求转发可能造成表单的重复提交问题.<br>5:其他时候,任选. </p>
 
         </div>
         <footer class="article-footer">
@@ -211,7 +217,7 @@
 
 
 
-    <a data-url="http://yoursite.com/2019/05/13/JSP编译指令和动作标签/" data-id="cjx2m1kl2004aocfveoz99daw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2019/06/19/简述Servlet使用sendRedirect和forward两种方法的异同点/" data-id="cjx2m1kje003aocfvxvfd74h7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -349,20 +355,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2019/05/13/JSP的内置对象/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">下一篇</strong>
-        <p class="article-nav-title">
-        
-            JSP的内置对象
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2019/05/13/如何将JSP部署到Web应用中/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2019/06/13/jsp父子页面值调用知多少/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">如何将JSP部署到Web应用中</p>
+        <p class="article-nav-title">jsp父子页面值调用知多少</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -581,7 +577,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://yoursite.com/2019/05/13/JSP编译指令和动作标签/';
+    var disqus_url = 'http://yoursite.com/2019/06/19/简述Servlet使用sendRedirect和forward两种方法的异同点/';
     
     (function() {
     var dsq = document.createElement('script');
