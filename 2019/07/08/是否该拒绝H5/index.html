@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>是否该拒绝H5 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="ajax">
+    
+    <meta name="description" content="时代变了。在 Single Page WebApp 满地跑的年代，原最高票提到的经验已经不适用。  1. 页面上首次显示的内容尽量不要用 Ajax，显示更多（或换页）的时候再用该方案其实是对面向内容的传统 Web 页面的一种优化。对于强调沉浸体验的 WebApp 而言，所有数据都可以使用相同的方式获取并且渲染到页面。  比如说 Google Docs http://docs.google.com">
+<meta name="keywords" content="ajax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="是否该拒绝H5">
+<meta property="og:url" content="http://yoursite.com/2019/07/08/是否该拒绝H5/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="时代变了。在 Single Page WebApp 满地跑的年代，原最高票提到的经验已经不适用。  1. 页面上首次显示的内容尽量不要用 Ajax，显示更多（或换页）的时候再用该方案其实是对面向内容的传统 Web 页面的一种优化。对于强调沉浸体验的 WebApp 而言，所有数据都可以使用相同的方式获取并且渲染到页面。  比如说 Google Docs http://docs.google.com">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/07/08/是否该拒绝H5/05_hd.jpg">
+<meta property="og:updated_time" content="2019-07-08T12:41:39.931Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="是否该拒绝H5">
+<meta name="twitter:description" content="时代变了。在 Single Page WebApp 满地跑的年代，原最高票提到的经验已经不适用。  1. 页面上首次显示的内容尽量不要用 Ajax，显示更多（或换页）的时候再用该方案其实是对面向内容的传统 Web 页面的一种优化。对于强调沉浸体验的 WebApp 而言，所有数据都可以使用相同的方式获取并且渲染到页面。  比如说 Google Docs http://docs.google.com">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/08/是否该拒绝H5/05_hd.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-是否该拒绝H5" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        是否该拒绝H5
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/07/08/是否该拒绝H5/" class="article-date">
+            <time datetime="2019-07-08T12:21:00.000Z" itemprop="datePublished">2019-07-08</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/ajax/">ajax</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>时代变了。在 Single Page WebApp 满地跑的年代，原最高票提到的经验已经不适用。</p>
+<ul>
+<li><code>1. 页面上首次显示的内容尽量不要用 Ajax，显示更多（或换页）的时候再用</code><br>该方案其实是对面向内容的传统 Web 页面的一种优化。对于强调沉浸体验的 WebApp 而言，所有数据都可以使用相同的方式获取并且渲染到页面。</li>
+</ul>
+<p>比如说 Google Docs <a href="http://docs.google.com" target="_blank" rel="noopener">http://docs.google.com</a> 和<br>Dropbox Paper <a href="http://paper.dropbox.com" target="_blank" rel="noopener">http://paper.dropbox.com</a> 这样的WebApp，不需要也不应该去强求数据跟随HTML一起加载。</p>
+<ul>
+<li><code>2. 切换页面的时候不用要 Ajax</code><br>对于现代 Web 页面而言，切换页面时是可以保持 URL 的语义化的（无论使用<code>hashHistory</code>还是<code>browserHistory</code>）.<br>即使是面向内容阅读的网站,比如 <a href="http://Medium.com，" target="_blank" rel="noopener">http://Medium.com，</a><br>无论是翻页还是导航切换，都使用 Ajax 去异步加载。</li>
+</ul>
+<h2 id="什么时候应该用Ajax"><a href="#什么时候应该用Ajax" class="headerlink" title="什么时候应该用Ajax"></a>什么时候应该用Ajax</h2><p>先看看 Ajax 和传统 Server Centri Web 架构的区别。<br><img src="/2019/07/08/是否该拒绝H5/05_hd.jpg" alt=""><br>Ajax本质上是一种浏览器端技术，从图中可以看出，传统Server Centri Web 架构的最大区别是将大量业务逻辑从服务器端移到浏览器。</p>
+<p>好处是当数据发生变更时，只需要重新渲染相关的HTML，而不需要加载整个页面。<br>坏处是使用大量 Ajax 的项目与其说是B/S架构，不如说是C/S架构，自然也具备C/S架构的特点，在浏览器环境下，某些特点会成为缺陷。\</p>
+<p>比如说 Ajax 要求业务逻辑必须先于数据加载，浏览器必须加载完相关 js 文件后才能开始加载数据，因此第一次页面 ready 的时间会晚于传统 Web 页面。不过这样的问题也有很多解决方案，例如 Application Cache 可以将文件保存在浏览器里，避免反复加载相同的脚本和资源文件。</p>
+<p>所以结论是：<strong>是否应该使用 Ajax 取决于业务流程和技术栈</strong><br>那怎么判定一个业务流程是否适合 Ajax 呢，我举个例子 。<br>假如你需要在微信里接入一个卖水果的活动，流程可以如下设计：<br><img src="/2019/07/08/是否该拒绝H5/711_hd.jpg" alt=""><br><strong>如何应对使用 Ajax 技术导致的程序复杂性</strong></p>
+<p>澄清一点：Ajax 本身并没有加重程序复杂性。</p>
+<p>程序变得复杂的原因是：由于 Ajax 要求业务逻辑被移动到浏览器端，因此浏览器端为了应对更多业务逻辑变得复杂。<br>既然是问题是程序复杂性，那么解决方案当然来自软件工程：</p>
+<ul>
+<li><ol>
+<li>重浏览器端的 WebApp 应用，和客户端开发一样，善用 MVC/MVV(<a href="https://zh.wikipedia.org/wiki/MVC" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/MVC</a>)<br>这样的软件设计模式，对复杂度的简化，使程序结构更加直观。<br>现代 Web Frameworks 都在执行这一理念。如果需要做一个 WebApp，从 React、Vue.js、Angular.js 等框架入手都是最好的选择。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>使用 Ajax 优化传统 Server Centri Web 的体验<br>无非是结构化的程序设计方式，相信所有 CS 出身的开发者都能游刃有余。 再有就是合理使用第三方库，例如使用 jQuery、underscore.js 这样的工具性第三方库可以降低对 DOM 操作的难度，并应对浏览器兼容性问题。</li>
+</ol>
+</li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/07/08/是否该拒绝H5/" data-id="cjxudfk2w0031ykfvxxx6qifp" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/06/19/HTML中meta标签用处/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">HTML中meta标签用处</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/07/08/是否该拒绝H5/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/07/08/是否该拒绝H5/05_hd.jpg)" alt="是否该拒绝H5" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/07/08/是否该拒绝H5/" class="title">是否该拒绝H5</a></p>
+                            <p class="item-date"><time datetime="2019-07-08T12:21:00.000Z" itemprop="datePublished">2019-07-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/06/19/HTML中meta标签用处/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/06/19/HTML中meta标签用处/2.jpg)" alt="HTML中meta标签用处" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/06/19/HTML中meta标签用处/" class="title">HTML中meta标签用处</a></p>
+                            <p class="item-date"><time datetime="2019-06-19T12:36:59.000Z" itemprop="datePublished">2019-06-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/06/19/简述Servlet使用sendRedirect和forward两种方法的异同点/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/06/19/简述Servlet使用sendRedirect和forward两种方法的异同点/sendRedirect.png)" alt="简述Servlet使用sendRedirect和forward两种方法的异同点" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/06/19/简述Servlet使用sendRedirect和forward两种方法的异同点/" class="title">简述Servlet使用sendRedirect和forward两种方法的异同点</a></p>
+                            <p class="item-date"><time datetime="2019-06-19T00:54:31.000Z" itemprop="datePublished">2019-06-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/06/13/jsp父子页面值调用知多少/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/06/13/jsp父子页面值调用知多少/timg.jpg)" alt="jsp父子页面值调用知多少" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/06/13/jsp父子页面值调用知多少/" class="title">jsp父子页面值调用知多少</a></p>
+                            <p class="item-date"><time datetime="2019-06-13T11:35:53.000Z" itemprop="datePublished">2019-06-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/06/05/Java之JDBC通过加载properties文件来的两种方式来连接数据库/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/06/05/Java之JDBC通过加载properties文件来的两种方式来连接数据库/75711.jpg)" alt="Java之JDBC通过加载properties文件来的两种方式来连接数据库" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/06/05/Java之JDBC通过加载properties文件来的两种方式来连接数据库/" class="title">Java之JDBC通过加载properties文件来的两种方式来连接数据库</a></p>
+                            <p class="item-date"><time datetime="2019-06-05T09:03:45.000Z" itemprop="datePublished">2019-06-05</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/">JSP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javaweb/">Javaweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 14px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19px;">JavaScript</a> <a href="/tags/Javaweb/" style="font-size: 10px;">Javaweb</a> <a href="/tags/Jquery/" style="font-size: 10px;">Jquery</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 16px;">PHP</a> <a href="/tags/XML/" style="font-size: 11px;">XML</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/git/" style="font-size: 11px;">git</a> <a href="/tags/html/" style="font-size: 18px;">html</a> <a href="/tags/java/" style="font-size: 17px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/node/" style="font-size: 11px;">node</a> <a href="/tags/orcal/" style="font-size: 13px;">orcal</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 12px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/心语/" style="font-size: 12px;">心语</a> <a href="/tags/技术/" style="font-size: 12px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15px;">数据结构与算法</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/07/08/是否该拒绝H5/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
