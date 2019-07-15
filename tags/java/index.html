@@ -6,14 +6,14 @@
     
 
     
-    <title>标签：: java | 陈义的个人博客</title>
+    <title>标签：: Java | 陈义的个人博客</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="description" content="个人博客">
 <meta property="og:type" content="website">
 <meta property="og:title" content="陈义的个人博客">
-<meta property="og:url" content="http://yoursite.com/tags/java/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/Java/index.html">
 <meta property="og:site_name" content="陈义的个人博客">
 <meta property="og:description" content="个人博客">
 <meta property="og:locale" content="zh-CN">
@@ -22,8 +22,6 @@
 <meta name="twitter:description" content="个人博客">
     
 
-    
-        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
     
 
     
@@ -83,39 +81,18 @@
                         <nav id="sub-nav">
                             <div id="search-form-wrap">
 
-    <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
-        <button type="submit" class="search-form-submit"></button>
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
+    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
+    <input name="wd" type="text" class="search-form-input" placeholder="搜索">
+</form>
 <script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: '文章',
-            PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
-            UNTITLED: '(未命名)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        return false;
+    });
+})(jQuery);
 </script>
-<script src="/js/insight.js"></script>
 
 </div>
                         </nav>
@@ -132,7 +109,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-tag"></i>标签：: <em>java</em>
+    <i class="icon fa fa-tag"></i>标签：: <em>Java</em>
     </h1>
 </div>
 
@@ -156,17 +133,17 @@
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2019/07/14/JGroups入门/" class="thumbnail">
+        <a href="/2019/06/05/Java之JDBC通过加载properties文件来的两种方式来连接数据库/" class="thumbnail">
     
     
-        <span style="background-image:url(/2019/07/14/JGroups入门/p=0.jpg)" alt="JGroups入门" class="thumbnail-image"></span>
+        <span style="background-image:url(/2019/06/05/Java之JDBC通过加载properties文件来的两种方式来连接数据库/75711.jpg)" alt="Java之JDBC通过加载properties文件来的两种方式来连接数据库" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2019/07/14/JGroups入门/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2019/06/05/Java之JDBC通过加载properties文件来的两种方式来连接数据库/">0</span>
     
 </span>
 
@@ -179,17 +156,20 @@
             <div class="category">
             
             </div>
-            <div class="date"><time datetime="2019-07-14T09:05:17.000Z" itemprop="datePublished">2019-07-14</time></div>
+            <div class="date"><time datetime="2019-06-05T09:03:45.000Z" itemprop="datePublished">2019-06-05</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2019/07/14/JGroups入门/">JGroups入门</a>
+        <a href="/2019/06/05/Java之JDBC通过加载properties文件来的两种方式来连接数据库/">Java之JDBC通过加载properties文件来的两种方式来连接数据库</a>
         </h1>
     
 
         <p class="article-excerpt">
-            现在有很多项目都使用JGroups做底层的通讯，知道的开源项目有JBoss Cache和OSCache用它做为底层支持来实现集群的，一定还有其他的项目也用到了，只不过我不知道而已了。JGroups是一个开源的纯java编写的可靠的群组通讯工具。其工作模式基于IP多播，但可以在可靠性和群组成员管理上进行扩展。其结构上设计灵活，提供了一种灵活兼容多种协议的协议栈。JGroups 多线程的方式实现了多个
+            
+建立一个jdbc.properties文件内容如下：
+1234driver=com.mysql.jdbc.Driverurl=jdbc:mysql://localhost:3306/all_db?useUnicode=true&amp;characterEncoding=utf8username=rootpassword=root
+使用ResourceBundle这个类提供软件国际化的捷径。通过
         </p>
     </div>
 </article>
@@ -202,17 +182,17 @@
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2019/07/13/分布式架构基础-JavaRMI详解/" class="thumbnail">
+        <a href="/2019/05/13/JSP的内置对象/" class="thumbnail">
     
     
-        <span style="background-image:url(/2019/07/13/分布式架构基础-JavaRMI详解/12696746-07f8e95ec97df9dd.webp)" alt="分布式架构基础:JavaRMI详解" class="thumbnail-image"></span>
+        <span style="background-image:url(/2019/05/13/JSP的内置对象/20036.png)" alt="JSP的内置对象" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2019/07/13/分布式架构基础-JavaRMI详解/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2019/05/13/JSP的内置对象/">0</span>
     
 </span>
 
@@ -225,18 +205,17 @@
             <div class="category">
             
             </div>
-            <div class="date"><time datetime="2019-07-13T10:25:38.000Z" itemprop="datePublished">2019-07-13</time></div>
+            <div class="date"><time datetime="2019-05-13T13:52:29.000Z" itemprop="datePublished">2019-05-13</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2019/07/13/分布式架构基础-JavaRMI详解/">分布式架构基础:JavaRMI详解</a>
+        <a href="/2019/05/13/JSP的内置对象/">JSP的内置对象</a>
         </h1>
     
 
         <p class="article-excerpt">
-            RPC与RESTRPC（Remote Procedure Call) 翻译过来叫远程过程调用，加上 Protocol 之后也有称之为远程过程调用协议，可以由不同的语言实现，根据维基百科的解释 —— RPC 指在分布式环境下，一个计算机程序能调用另一个不同地址空间里的方法（不同地址空间通常指局域网下的另一台计算机），但是编码的形式就像调用一个本地方法一样，程序员不用去关心背后的细节。
-为什么要有 R
+            内置对象也称内建对象、隐含对象，是不需要声明的、直接可以在JSP中使用的Java对象。JSP基于Java语言，面向对象也是它的一大特色。JSP的内置对象就是把最常用、最重要的几个对象直接创建然后内置，用户无须再显式地用代码声明。用好JSP内置对象是JSP编程的精髓。JSP有以下9个内置对象：request、response、out、pageContext、session、application、c
         </p>
     </div>
 </article>
@@ -253,17 +232,17 @@
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2019/07/13/Socket通信原理/" class="thumbnail">
+        <a href="/2019/05/13/JSP编译指令和动作标签/" class="thumbnail">
     
     
-        <span style="background-image:url(/2019/07/13/Socket通信原理/socket1.jpg)" alt="Socket通信原理" class="thumbnail-image"></span>
+        <span style="background-image:url(/2019/05/13/JSP编译指令和动作标签/210724.png)" alt="JSP编译指令和动作标签" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2019/07/13/Socket通信原理/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2019/05/13/JSP编译指令和动作标签/">0</span>
     
 </span>
 
@@ -276,19 +255,17 @@
             <div class="category">
             
             </div>
-            <div class="date"><time datetime="2019-07-13T09:27:59.000Z" itemprop="datePublished">2019-07-13</time></div>
+            <div class="date"><time datetime="2019-05-13T13:00:21.000Z" itemprop="datePublished">2019-05-13</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2019/07/13/Socket通信原理/">Socket通信原理</a>
+        <a href="/2019/05/13/JSP编译指令和动作标签/">JSP编译指令和动作标签</a>
         </h1>
     
 
         <p class="article-excerpt">
-            什么是TCP/IP、UDP？TCP/IP（Transmission Control Protocol/Internet Protocol）即传输控制协议/网间协议，是一个工业标准的协议集，它是为广域网（WANs）设计的。UDP（User Data Protocol，用户数据报协议）是与TCP相对应的协议。它是属于TCP/IP协议族中的一种。这里有一张图，表明了这些协议的关系。
-
-Socket在哪里
+            编译指令主要用来提供整个JSP 网页相关的信息，并且用来设定JSP网页的相关属性，例如：网页的编码方式、语法、信息等。起始符号为“&lt;%@”，终止符号为“%&gt;”，中间部分就是一些指令和一连串的属性设定。JSP有3个编译指令：page、include和taglib。动作标签又称为动作元素、动作指令，也可以理解为JSP自带的标准标签库。动作标签利用XML语法格式的标记来控制JSP服务器的行为
         </p>
     </div>
 </article>
@@ -301,17 +278,17 @@ Socket在哪里
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2019/02/06/想和Java程序员谈一谈/" class="thumbnail">
+        <a href="/2019/05/13/如何将JSP部署到Web应用中/" class="thumbnail">
     
     
-        <span style="background-image:url(/2019/02/06/想和Java程序员谈一谈/aa.jpg)" alt="想和Java程序员谈一谈" class="thumbnail-image"></span>
+        <span style="background-image:url(/2019/05/13/如何将JSP部署到Web应用中/95446.png)" alt="如何将JSP部署到Web应用中" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2019/02/06/想和Java程序员谈一谈/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2019/05/13/如何将JSP部署到Web应用中/">0</span>
     
 </span>
 
@@ -324,21 +301,17 @@ Socket在哪里
             <div class="category">
             
             </div>
-            <div class="date"><time datetime="2019-02-06T09:58:31.000Z" itemprop="datePublished">2019-02-06</time></div>
+            <div class="date"><time datetime="2019-05-13T11:48:54.000Z" itemprop="datePublished">2019-05-13</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2019/02/06/想和Java程序员谈一谈/">想和Java程序员谈一谈</a>
+        <a href="/2019/05/13/如何将JSP部署到Web应用中/">如何将JSP部署到Web应用中</a>
         </h1>
     
 
         <p class="article-excerpt">
-            
-社招面试如何准备从四个部分来谈论这个问题。此外，面试的时候一般面试官的问题都是环环相扣，逐渐深入的，这点在下面大家可以更明显的感受出来。
-1、主语言本身以及它的高级特性。
-主语言当然就是你平日里拿来赚钱的家伙。不要告诉我你没有主语言，你会N多种语言，或者是你精通N多种语言。
-对于Java来说，它的语言本身以及它的高级特性，都有哪些比较容易在面试中问到呢？一般情况下，主要有以下知识点很容易被问到。
+            JSP的工作原理JSP服务器管理JSP页面有两个阶段：转换阶段（translationphase）和执行阶段（executionphase）。    当有一个客户请求到来时，JSP服务器检验JSP页面的语法是否正确，将JSP页面转换为Servlet（Servlet就是用Java语言实现的CGI程序，后面章节将详细介绍）源文件，然后调用javac工具类编译Servlet源文件生成class文件，这一
         </p>
     </div>
 </article>
@@ -355,17 +328,17 @@ Socket在哪里
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2019/01/10/javaweb放弃jsp，做了前后分离，而现在的你依然全栈/" class="thumbnail">
+        <a href="/2019/05/13/request-setAttribute用法/" class="thumbnail">
     
     
-        <span style="background-image:url(/2019/01/10/javaweb放弃jsp，做了前后分离，而现在的你依然全栈/gp=0.jpg)" alt="javaweb放弃jsp，做了前后分离，而现在的你依然全栈" class="thumbnail-image"></span>
+        <span style="background-image:url(/2019/05/13/request-setAttribute用法/timg.jpg)" alt="request.setAttribute()用法" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2019/01/10/javaweb放弃jsp，做了前后分离，而现在的你依然全栈/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2019/05/13/request-setAttribute用法/">0</span>
     
 </span>
 
@@ -378,75 +351,18 @@ Socket在哪里
             <div class="category">
             
             </div>
-            <div class="date"><time datetime="2019-01-10T08:06:58.000Z" itemprop="datePublished">2019-01-10</time></div>
+            <div class="date"><time datetime="2019-05-13T03:54:21.000Z" itemprop="datePublished">2019-05-13</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2019/01/10/javaweb放弃jsp，做了前后分离，而现在的你依然全栈/">javaweb放弃jsp，做了前后分离，而现在的你依然全栈</a>
+        <a href="/2019/05/13/request-setAttribute用法/">request.setAttribute()用法</a>
         </h1>
     
 
         <p class="article-excerpt">
-            前后端分离已成为互联网项目开发的业界标准使用方式，通过nginx+tomcat的方式（也可以中间加一个nodejs）有效的进行解耦，并且前后端分离会为以后的大型分布式架构、弹性计算架构、微服务架构、多端化服务（多种客户端，例如：浏览器，车载终端，安卓，IOS等等）打下坚实的基础。这个步骤是系统架构从猿进化成人的必经之路。核心思想：前端html页面通过ajax调用后端的restuful api接口并
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-        
-            </div></div></section>
-        
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2018" class="archive-year"><i class="icon fa fa-calendar-o"></i>2018</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2018/12/03/Java中处理异常中return关键字/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/2018/12/03/Java中处理异常中return关键字/&amp;gp.jpg)" alt="Java中处理异常中return关键字" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2018/12/03/Java中处理异常中return关键字/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            
-            </div>
-            <div class="date"><time datetime="2018-12-03T09:53:59.000Z" itemprop="datePublished">2018-12-03</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/12/03/Java中处理异常中return关键字/">Java中处理异常中return关键字</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            我们知道return语句用在某一个方法中，一是用于返回函数的执行结果，二是用于返回值为void类型的函数中，仅仅是一个return语句（return;），此时用于结束方法的执行，也即此return后的语句将不会被执行，当然，这种情况下return语句后不能再有其它的语句了。 一段代码如果可能抛出异常，我们通常就会用try catch代码块包起来，以防止当程序crash掉，增强代码的健壮性。如果程序
+            小问题：JSP1代码12345String [] test=new String[2];test[0]=&quot;1&quot;;test[1]=&quot;2&quot;;request.setAttribute(&quot;test&quot;,test) ;response.sendRedirect(&quot;jsp2.jsp&quot;);
+JSP2代码1String test[]=(
         </p>
     </div>
 </article>
@@ -459,17 +375,17 @@ Socket在哪里
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2018/11/29/Java-MySQL连接/" class="thumbnail">
+        <a href="/2019/05/12/JSP中include指令/" class="thumbnail">
     
     
-        <span style="background-image:url(/2018/11/29/Java-MySQL连接/6BF6.jpg)" alt="Java MySQL连接" class="thumbnail-image"></span>
+        <span style="background-image:url(/2019/05/12/JSP中include指令/8866.png)" alt="JSP中include指令" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2018/11/29/Java-MySQL连接/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2019/05/12/JSP中include指令/">0</span>
     
 </span>
 
@@ -482,21 +398,18 @@ Socket在哪里
             <div class="category">
             
             </div>
-            <div class="date"><time datetime="2018-11-29T12:14:16.000Z" itemprop="datePublished">2018-11-29</time></div>
+            <div class="date"><time datetime="2019-05-12T10:52:42.000Z" itemprop="datePublished">2019-05-12</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2018/11/29/Java-MySQL连接/">Java MySQL连接</a>
+        <a href="/2019/05/12/JSP中include指令/">JSP中include指令</a>
         </h1>
     
 
         <p class="article-excerpt">
-            介绍 Java 如何使用使用 JDBC 连接 MySQL 数据库。
-Java 连接 MySQL 需要驱动包，最新版下载地址为：http://dev.mysql.com/downloads/connector/j/
-解压后得到jar库文件，然后在对应的项目中导入该库文件。mysql-connector-java-5.1.39-bin.jar
-本实例使用的是 Eclipse，导入 jar 包：
-连接数
+            1.为什么要使用？　　使用include指令可以方便的把在多个页面中要重复显示的内容抽取出来，大大的减少代码的重复量，方便我们对重复内容的维护    include指令分为：静态include指令和动态include指令
+2.使用静态include指令引入页面　　说明：　　　　在JSP中插入一个或多个包含文件或代码的文件（jsp,html,inc,txt），把文件插入后与原来的JSP文件合并成一个
         </p>
     </div>
 </article>
@@ -513,17 +426,17 @@ Java 连接 MySQL 需要驱动包，最新版下载地址为：http://dev.mysql.
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2018/11/29/Java文档注释/" class="thumbnail">
+        <a href="/2019/04/16/java中Map循环及顺序/" class="thumbnail">
     
     
-        <span style="background-image:url(/2018/11/29/Java文档注释/3c45.png)" alt="Java文档注释" class="thumbnail-image"></span>
+        <span style="background-image:url(/2019/04/16/java中Map循环及顺序/timg.gif)" alt="java中Map循环及顺序" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2018/11/29/Java文档注释/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2019/04/16/java中Map循环及顺序/">0</span>
     
 </span>
 
@@ -536,69 +449,18 @@ Java 连接 MySQL 需要驱动包，最新版下载地址为：http://dev.mysql.
             <div class="category">
             
             </div>
-            <div class="date"><time datetime="2018-11-29T11:59:27.000Z" itemprop="datePublished">2018-11-29</time></div>
+            <div class="date"><time datetime="2019-04-16T08:59:04.000Z" itemprop="datePublished">2019-04-16</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2018/11/29/Java文档注释/">Java文档注释</a>
+        <a href="/2019/04/16/java中Map循环及顺序/">java中Map循环及顺序</a>
         </h1>
     
 
         <p class="article-excerpt">
-            ##Java 文档注释Java 支持三种注释方式。前两种分别是 // 和 / /，第三种被称作说明注释，它以 /* 开始，以 /结束。
-说明注释允许你在程序中嵌入关于程序的信息。你可以使用 javadoc 工具软件来生成信息，并输出到HTML文件中。说明注释，使你更加方便的记录你的程序信息。
-javadoc 标签javadoc 工具软件识别以下标签：| 标签 | 描述 | 示例 || — | —:
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2018/11/29/Java-Applet基础/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/2018/11/29/Java-Applet基础/fw658.png)" alt="Java Applet基础" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2018/11/29/Java-Applet基础/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
             
-            </div>
-            <div class="date"><time datetime="2018-11-29T08:12:24.000Z" itemprop="datePublished">2018-11-29</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/11/29/Java-Applet基础/">Java Applet基础</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            Applet 是一种 Java 程序。它一般运行在支持 Java 的 Web 浏览器内。因为它有完整的 Java API支持,所以Applet 是一个全功能的 Java 应用程序。
-如下所示是独立的 Java 应用程序和 applet 程序之间重要的不同：
-
-Java 中 Applet 类继承了 java.applet.Applet 类。
-Applet 类没有定义 main()，所以一个 Appl
+Java中Map循环的几种方式12345678910111213141516171819202122232425262728293031323334353637383940414243import org.junit.Test;import java.util.HashMap;import java.util.Iterator;import java.util.Map; public class
         </p>
     </div>
 </article>
@@ -606,62 +468,9 @@ Applet 类没有定义 main()，所以一个 Appl
         </div>
     
 
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2018/11/28/Java多线程编程/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/2018/11/28/Java多线程编程/java-thread.jpg)" alt="Java多线程编程" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2018/11/28/Java多线程编程/">0</span>
-    
-</span>
 
+    </div></section>
 
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            
-            </div>
-            <div class="date"><time datetime="2018-11-28T12:44:31.000Z" itemprop="datePublished">2018-11-28</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/11/28/Java多线程编程/">Java多线程编程</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            Java 给多线程编程提供了内置的支持。 一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。多线程是多任务的一种特别的形式，但多线程使用了更小的资源开销。这里定义和线程相关的另一个术语 - 进程：一个进程包括由操作系统分配的内存空间，包含一个或多个线程。一个线程不能独立的存在，它必须是进程的一部分。一个进程一直运行，直到所有的非守护线程都结束运行后才
-        </p>
-    </div>
-</article>
-    
-
-
-    </div></div></section>
-
-
-    <nav id="page-nav">
-        <span class="pages">第 1 页，共 2 页</span>
-        <span class="page-number current">1</span><a class="page-number" href="/tags/java/page/2/">2</a><a class="extend next" rel="next" href="/tags/java/page/2/">&raquo;</a>
-    </nav>
 
 
                         </div>
@@ -674,48 +483,8 @@ Applet 类没有定义 main()，所以一个 Appl
             
                 
                 <li>
-                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-twitter"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-facebook"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-google-plus"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
-                        <i class="icon fa fa-github"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-weibo"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-rss"></i>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1466132938&site=qq&menu=yes" target="_blank" rel="noopener">
+                          <i class="icon fa fa-qq"></i>
                     </a>
                 </li>
                 
@@ -842,26 +611,6 @@ Applet 类没有定义 main()，所以一个 Appl
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">分类</h3>
-        <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">归档</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-list">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
             <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/">JSP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javaweb/">Javaweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存机制/">缓存机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
@@ -880,17 +629,92 @@ Applet 类没有定义 main()，所以一个 Appl
 
 
             
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
+t-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存机制/">缓存机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
                 
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">链接</h3>
-        <div class="widget">
-            <ul>
-                
-                    <li>
-                        <a href="http://hexo.io">Hexo</a>
-                    </li>
-                
-            </ul>
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19px;">JavaScript</a> <a href="/tags/Javaweb/" style="font-size: 10px;">Javaweb</a> <a href="/tags/Jquery/" style="font-size: 10px;">Jquery</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 17px;">PHP</a> <a href="/tags/XML/" style="font-size: 11px;">XML</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/git/" style="font-size: 11px;">git</a> <a href="/tags/html/" style="font-size: 18px;">html</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 16px;">maven</a> <a href="/tags/node/" style="font-size: 11px;">node</a> <a href="/tags/orcal/" style="font-size: 14px;">orcal</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 13px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/心语/" style="font-size: 12px;">心语</a> <a href="/tags/技术/" style="font-size: 12px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 16px;">数据结构与算法</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/缓存机制/" style="font-size: 10px;">缓存机制</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
         </div>
     </div>
 

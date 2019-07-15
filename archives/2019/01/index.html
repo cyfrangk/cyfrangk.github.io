@@ -23,8 +23,6 @@
     
 
     
-        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
-    
 
     
 
@@ -83,39 +81,18 @@
                         <nav id="sub-nav">
                             <div id="search-form-wrap">
 
-    <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
-        <button type="submit" class="search-form-submit"></button>
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
+    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
+    <input name="wd" type="text" class="search-form-input" placeholder="搜索">
+</form>
 <script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: '文章',
-            PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
-            UNTITLED: '(未命名)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        return false;
+    });
+})(jQuery);
 </script>
-<script src="/js/insight.js"></script>
 
 </div>
                         </nav>
@@ -665,48 +642,8 @@ PHP 是一种运行在服务端的开源，解释和面向对象的脚本语言�
             
                 
                 <li>
-                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-twitter"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-facebook"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-google-plus"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
-                        <i class="icon fa fa-github"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-weibo"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
-                        <i class="icon fa fa-rss"></i>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1466132938&site=qq&menu=yes" target="_blank" rel="noopener">
+                          <i class="icon fa fa-qq"></i>
                     </a>
                 </li>
                 
@@ -833,26 +770,6 @@ PHP 是一种运行在服务端的开源，解释和面向对象的脚本语言�
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">分类</h3>
-        <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">归档</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-list">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
             <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/">JSP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javaweb/">Javaweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存机制/">缓存机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
@@ -866,22 +783,6 @@ PHP 是一种运行在服务端的开源，解释和面向对象的脚本语言�
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
             <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19px;">JavaScript</a> <a href="/tags/Javaweb/" style="font-size: 10px;">Javaweb</a> <a href="/tags/Jquery/" style="font-size: 10px;">Jquery</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 17px;">PHP</a> <a href="/tags/XML/" style="font-size: 11px;">XML</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/git/" style="font-size: 11px;">git</a> <a href="/tags/html/" style="font-size: 18px;">html</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 16px;">maven</a> <a href="/tags/node/" style="font-size: 11px;">node</a> <a href="/tags/orcal/" style="font-size: 14px;">orcal</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 13px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/心语/" style="font-size: 12px;">心语</a> <a href="/tags/技术/" style="font-size: 12px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 16px;">数据结构与算法</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/缓存机制/" style="font-size: 10px;">缓存机制</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">链接</h3>
-        <div class="widget">
-            <ul>
-                
-                    <li>
-                        <a href="http://hexo.io">Hexo</a>
-                    </li>
-                
-            </ul>
         </div>
     </div>
 
