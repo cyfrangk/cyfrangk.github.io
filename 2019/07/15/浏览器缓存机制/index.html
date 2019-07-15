@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>浏览器缓存机制 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="浏览器">
+    
+    <meta name="description" content="浏览器缓存机制详解　　对于浏览器缓存，相信很多开发者对它真的是又爱又恨。一方面极大地提升了用户体验，而另一方面有时会因为读取了缓存而展示了“错误”的东西，而在开发过程中千方百计地想把缓存禁掉。那么浏览器缓存究竟是个什么样的神奇玩意呢？ 什么是浏览器缓存：　　简单来说，浏览器缓存就是把一个已经请求过的Web资源（如html页面，图片，js，数据等）拷贝一份副本储存在浏览器中即在用户磁盘上对最近请求过">
+<meta name="keywords" content="浏览器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器缓存机制">
+<meta property="og:url" content="http://yoursite.com/2019/07/15/浏览器缓存机制/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="浏览器缓存机制详解　　对于浏览器缓存，相信很多开发者对它真的是又爱又恨。一方面极大地提升了用户体验，而另一方面有时会因为读取了缓存而展示了“错误”的东西，而在开发过程中千方百计地想把缓存禁掉。那么浏览器缓存究竟是个什么样的神奇玩意呢？ 什么是浏览器缓存：　　简单来说，浏览器缓存就是把一个已经请求过的Web资源（如html页面，图片，js，数据等）拷贝一份副本储存在浏览器中即在用户磁盘上对最近请求过">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/07/15/浏览器缓存机制/111.jpg">
+<meta property="og:updated_time" content="2019-07-15T03:15:47.382Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浏览器缓存机制">
+<meta name="twitter:description" content="浏览器缓存机制详解　　对于浏览器缓存，相信很多开发者对它真的是又爱又恨。一方面极大地提升了用户体验，而另一方面有时会因为读取了缓存而展示了“错误”的东西，而在开发过程中千方百计地想把缓存禁掉。那么浏览器缓存究竟是个什么样的神奇玩意呢？ 什么是浏览器缓存：　　简单来说，浏览器缓存就是把一个已经请求过的Web资源（如html页面，图片，js，数据等）拷贝一份副本储存在浏览器中即在用户磁盘上对最近请求过">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/15/浏览器缓存机制/111.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="陈义的个人博客" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-浏览器缓存机制" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        浏览器缓存机制
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/07/15/浏览器缓存机制/" class="article-date">
+            <time datetime="2019-07-15T00:39:25.000Z" itemprop="datePublished">2019-07-15</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/浏览器/">浏览器</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="浏览器缓存机制详解"><a href="#浏览器缓存机制详解" class="headerlink" title="浏览器缓存机制详解"></a>浏览器缓存机制详解</h1><p>　　对于浏览器缓存，相信很多开发者对它真的是又爱又恨。一方面极大地提升了用户体验，而另一方面有时会因为读取了缓存而展示了“错误”的东西，而在开发过程中千方百计地想把缓存禁掉。那么浏览器缓存究竟是个什么样的神奇玩意呢？<br><img src="/2019/07/15/浏览器缓存机制/111.jpg" alt=""></p>
+<h2 id="什么是浏览器缓存："><a href="#什么是浏览器缓存：" class="headerlink" title="什么是浏览器缓存："></a>什么是浏览器缓存：</h2><p>　　简单来说，浏览器缓存就是把一个已经请求过的Web资源（如html页面，图片，js，数据等）拷贝一份副本储存在浏览器中即在用户磁盘上对最近请求过的文档进行存储。缓存会根据进来的请求保存输出内容的副本。当下一个请求来到的时候，如果是相同的URL，缓存会根据缓存机制决定是直接使用副本响应访问请求，还是向源服务器再次发送请求。比较常见的就是浏览器会缓存访问过网站的网页，当再次访问这个URL地址的时候，如果网页没有更新，就不会再次下载网页，而是直接使用本地缓存的网页，这样就可以加速页面的阅览。只有当网站明确标识资源已经更新，浏览器才会再次下载网页。至于浏览器和网站服务器是如何标识网站页面是否更新的机制，将在后面介绍。<br><img src="/2019/07/15/浏览器缓存机制/1417594226.gif" alt=""><br>上图就是使用了缓存的栗子，在页面请求之后，web资源都被缓存了，在后面的重复请求中，可以看到许多资源都是直接从缓存中读取的（from cache），而不是重新去向服务器请求。</p>
+<h2 id="为什么使用缓存："><a href="#为什么使用缓存：" class="headerlink" title="为什么使用缓存："></a>为什么使用缓存：</h2><p>（1）减少网络带宽消耗<br>　　无论对于网站运营者或者用户，带宽都代表着金钱，过多的带宽消耗，只会便宜了网络运营商。当Web缓存副本被使用时，只会产生极小的网络流量，可以有效的降低运营成本。<br>（2）降低服务器压力<br>　　给网络资源设定有效期之后，用户可以重复使用本地的缓存，减少对源服务器的请求，间接降低服务器的压力。同时，搜索引擎的爬虫机器人也能根据过期机制降低爬取的频率，也能有效降低服务器的压力。<br>（3）减少网络延迟，加快页面打开速度<br>　　带宽对于个人网站运营者来说是十分重要，而对于大型的互联网公司来说，可能有时因为钱多而真的不在乎。那Web缓存还有作用吗？答案是肯定的，对于最终用户，缓存的使用能够明显加快页面打开速度，达到更好的体验。</p>
+<h2 id="浏览器端的缓存规则："><a href="#浏览器端的缓存规则：" class="headerlink" title="浏览器端的缓存规则："></a>浏览器端的缓存规则：</h2><p>对于浏览器端的缓存来讲，这些规则是在HTTP协议头和HTML页面的Meta标签中定义的。他们分别从<code>新鲜度</code>和<code>校验值</code>两个维度来规定浏览器是否可以直接使用缓存中的副本，还是需要去源服务器获取更新的版本。</p>
+<ul>
+<li><p>新鲜度（过期机制）：也就是缓存副本有效期。一个缓存副本必须满足以下条件，浏览器会认为它是有效的，足够新的：<br>　　　　1. 含有完整的过期时间控制头信息（HTTP协议报头），并且仍在有效期内；<br>　　　　2. 浏览器已经使用过这个缓存副本，并且在一个会话中已经检查过新鲜度；<br>　满足以上两个情况的一种，浏览器会直接从缓存中获取副本并渲染。</p>
+</li>
+<li><p>校验值（验证机制）：服务器返回资源的时候有时在控制头信息带上这个资源的实体标签Etag（Entity Tag），它可以用来作为浏览器再次请求过程的校验标识。如过发现校验标识不匹配，说明资源已经被修改或过期，浏览器需求重新获取资源内容。</p>
+</li>
+</ul>
+<h2 id="缓存策略"><a href="#缓存策略" class="headerlink" title="缓存策略"></a>缓存策略</h2><p>浏览器缓存主要有两类：缓存协商和彻底缓存，也有称之为协商缓存和强缓存<br>两者的共同点是，都是从客户端缓存中读取资源；区别是强缓存不会发请求，协商缓存会发请求。<br>根据获取资源的请求头（Headers）判断它是否<strong>命中强缓存</strong>，如命中，则浏览器返回200，并直接从本地获取缓存资源，不会发请求到服务端；如没有没命中强缓存，客户端会发送请求到服务端，服务端通过请求头（Headers）里面字段验证这个资源是否<strong>命中协商缓存（启发式缓存）</strong>，如命中，服务端将请求返回304，但不返回资源，从而告诉客户端直接从缓存中获取资源；当协商缓存也没命中时，服务端将返回200，并将资源发送给客户端。<br><img src="/2019/07/15/浏览器缓存机制/181226118.jpg" alt=""></p>
+<h3 id="1-什么是强缓存？"><a href="#1-什么是强缓存？" class="headerlink" title="1.什么是强缓存？"></a>1.什么是强缓存？</h3><p><strong>概念：</strong><br>客户端第一次问服务器要某个资源时，服务器丢还给客户端所请求的这个资源同时，告诉客户端将这个资源保存在本地，并且在未来的某个时点之前如果还需要这个资源，直接从本地获取就行了，不用向服务器请求。这种方式缓存下来的资源称为强缓存。<br>在chrome控制台的network选项中可以看到该请求返回200的状态码;<br><strong>建立关系：</strong><br>a.浏览器第一次跟服务器请求一个资源，服务器在返回这个资源时，在相应头部会加上<code>Cache-Control:max-age=xxx</code>（http1.0中是expries字段，同时出现使用cache-control），如下图：<br><img src="/2019/07/15/浏览器缓存机制/6154387-7942a3bd1e65de85.webp" alt=""><br>b.浏览器接收到资源后，连同response header一起缓存下来；<br>c.浏览器再次请求同一个资源时，会先从缓存中找到这个资源，获取date(第一次资源返回的响应时间)和<code>Cache-Control</code>中的max-age并计算出一个有效期(date + max-age)，然后再和浏览器请求时间比较最后判断是否命中缓存；<br>d.如果没有命中缓存，浏览器直接向服务器发起请求，Cache-Control会在重新获取到服务器返回资源时更新。</p>
+<p><strong>Cache-Control的值及含义：</strong><br>当值设为max-age=300时，则代表在这个请求正确返回时间（浏览器也会记录下来）的5分钟内再次加载资源，就会命中强缓存。<br>public指示响应可被任何缓存区缓存，包括终端用户和CDN等代理服务器。<br>private只允许被终端用户的浏览器端缓存，对于单个用户的整个或部分响应消息，不能被代理服务器将其保存在共享缓存里。服务器仅仅描述当用户的部分响应消息，此响应消息对于其他用户的请求无效。<br><code>no-cache</code>禁止使用强缓存，设置了no-cache之后并不代表浏览器不缓存，而是在缓存前要向服务器确认资源是否被更改。因此有的时候只设置<code>no-cache</code>防止缓存还是不够保险，还可以加上<code>private</code>指令，过期时间max-age=0。<br><img src="/2019/07/15/浏览器缓存机制/c7ce5927f0.webp" alt=""><br>no-store禁止使用缓存，每次都要去服务器重新请求，用于防止重要的信息被无意的发布。<br>max-age表示自第一次收到响应后的xxx ms以后可以用缓存。<br>min-fresh表示客户端希望在指定的时间内获取最新的响应。<br>max-stale表明客户端愿意接收一个已经过期的资源。 可选的设置一个时间(单位秒)，表示响应不能超过的过时时间。<br>注意：命中强缓存时，浏览器同样会收到status=200的response，chrome中可通过size区分从服务器返回的资源还是强缓存获得的资源。</p>
+<h3 id="2-什么是协商缓存？"><a href="#2-什么是协商缓存？" class="headerlink" title="2.什么是协商缓存？"></a>2.什么是协商缓存？</h3><p><strong>概念：</strong><br>客户端第一次问服务器要某个资源时，服务器丢还给客户端所请求的这个资源同时，将该资源的一些信息也返回给客户端，告诉客户端将这个资源缓存在本地。当客户端下一次需要这个资源时，将请求以及相关信息一并发送给服务器，服务器会根据这个请求的request header的一些参数来判断是否命中协商缓存，来判断客户端缓存的资源是否需要更新：如不需要更新，则返回304状态码(获取本地缓存资源)并带上新的response header通知浏览器从缓存中读取资源；如需要更新，则将最新的资源连同相应的信息一并返回给客户端。</p>
+<p>Last-Modify/If-Modify-Since：浏览器第一次请求一个资源的时候，服务器返回的header中会加上Last-Modify，Last-modify是一个时间标识该资源的最后修改时间；当浏览器再次请求该资源时，request的请求头中会包含If-Modify-Since，该值为缓存之前返回的Last-Modify。服务器收到If-Modify-Since后，根据资源的最后修改时间判断是否命中缓存</p>
+<p>Etag：web服务器响应请求时，告诉浏览器当前资源在服务器的唯一标识（生成规则由服务器决定）。</p>
+<p>If-None-Match：当资源过期时（使用Cache-Control标识的max-age），发现资源具有Etage声明，则再次向web服务器请求时带上头If-None-Match （Etag的值）。web服务器收到请求后发现有头If-None-Match 则与被请求资源的相应校验串进行比对，决定是否命中协商缓存；<br><strong>建立关系：</strong><br><code>Last-Modified &amp; If-Modified-Since（缺点：无法精确到毫秒）</code><br>a.浏览器第一次请求一个资源，服务器返回了该资源时，会在<code>response headers</code>中加上<code>Last-Modified</code>，这个response headers表示这个资源在服务器上的最后一次修改时间；<br>b.当浏览器再次请求该资源时，会在request headers中加上If-Modified-Since，这个值即为上一次服务器返回的Last-Modified时间；服务器再次收到资源请求时，将If-Modified-Since时间和资源在服务器上的最后修改时间与对比，如果If-Modifid-Since与最后修改时间一致，则命中缓存，服务器返回304，浏览器从缓存中获取资源；<br>c.若未命中缓存，服务器返回资源同时，浏览器缓存资源的Last-Modified会被更新。</p>
+<p><strong>ETag &amp; If-None-Match（缺点：ETag本身需要消耗 CPU，而它的优先级比 Last-Modified 高，当它存在时服务器无论 Last-Modified 是否存在都会使用它判断，ETag在分布式系统中生成的值可能不一样，会导致缓存失效）</strong></p>
+<p>a.浏览器第一次请求一个资源，会在response headers中加上ETag（这个ETag是根据该资源生成的唯一标识，这个唯一标识是个字符串，只有服务器认为资源有变化且应该提供新的资源时才会改变ETag），浏览器将资源连同ETag一并缓存。<br>b.当浏览器再次请求该资源时，会在request headers中加上If-None-Match，该值即为第一次服务器返回的ETag值；<br>c.服务器收到资源请求后，会根据要请求的资源重新计算生成相应的ETag，然后与If-None-Match比较。对比结果一致即命中缓存，不一致则未命中缓存，返回资源同时将新的ETag。</p>
+<p><strong>ETag和Last-Modified的作用和用法，他们的区别：</strong></p>
+<p>1.Etag要优于Last-Modified。Last-Modified的时间单位是秒，如果某个文件在1秒内改变了多次，那么他们的Last-Modified其实并没有体现出来修改，但是Etag每次都会改变确保了精度；<br>2.在性能上，Etag要逊于Last-Modified，毕竟Last-Modified只需要记录时间，而Etag需要服务器通过算法来计算出一个hash值；<br>3.在优先级上，服务器校验优先考虑Etag</p>
+<p><strong>以下情况使用ETag &amp; If-None-Match，除此之外使用Last-Modified &amp; If-Modified-Since：</strong><br>1.存在周期性重写某些资源，但资源实际包含的内容并无变化；<br>2.被修改的信息并不重要，如注释等；<br>3.Last-Modified无法精确到毫秒，但有些资源更新频率有时会小于一秒<br><img src="/2019/07/15/浏览器缓存机制/412b7312bb5.webp" alt=""></p>
+<h2 id="缓存方式"><a href="#缓存方式" class="headerlink" title="缓存方式"></a>缓存方式</h2><p><strong>1.获取静态资源：</strong><br>Cache-Control: public, max-age=31536000<br>Expires: (一年后的今天)<br>ETag: (基于内容生成)<br>Last-Modified: (过去某个时间)Vary:Accept-Encoding</p>
+<p><strong>2.获取动态资源：</strong><br>Cache-Control: public, max-age=0<br>Expires: (当前时间)<br>ETag: (基于内容生成)<br>Last-Modified: (过去某个时间)<br>Vary:Accept-Encoding</p>
+<h2 id="缓存处理"><a href="#缓存处理" class="headerlink" title="缓存处理"></a>缓存处理</h2><ul>
+<li><p>1.图片缓存：<br>通过前端变化，让js每次生成一个随机数作参数放在url后边</p>
+</li>
+<li><p>2.js、css缓存：<br>a.引入js、css文件时加个版本号，如果每次发布新的js代码，更新对应的版本号。<br>b.如果内容较少可以通过script和style标签将js和css代码写到html页面中，但内容较多时不容易维护</p>
+</li>
+<li><p>3.接口缓存：<br>在请求的接口后面加一个时间戳</p>
+</li>
+<li><p>4.微信缓存页面<br><img src="/2019/07/15/浏览器缓存机制/8e9b9e1ef.webp" alt=""></p>
+</li>
+</ul>
+<h2 id="浏览器缓存的控制："><a href="#浏览器缓存的控制：" class="headerlink" title="浏览器缓存的控制："></a>浏览器缓存的控制：</h2><p>　　<strong>（1）使用HTML Meta 标签</strong><br>　　Web开发者可以在HTML页面的<head><meta name="generator" content="Hexo 3.8.0">节点中加入<meta>标签，代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;Pragma&quot; content=&quot;no-cache&quot;&gt;  </span><br><span class="line">&lt;!- Pragma是http1.0版本中给客户端设定缓存方式之一，具体作用会在后面详细介绍 --&gt;</span><br></pre></td></tr></table></figure></head></p>
+<p>　　上述代码的作用是告诉浏览器当前页面不被缓存，每次访问都需要去服务器拉取。但是！这里有个坑…<br>　　事实上这种禁用缓存的形式用处很有限：<br>　　　　a. 仅有IE才能识别这段meta标签含义，其它主流浏览器仅识别“Cache-Control: no-store”的meta标签。<br>　　　　b. 在IE中识别到该meta标签含义，并不一定会在请求字段加上Pragma，但的确会让当前页面每次都发新请求（仅限页面，页面上的资源则不受影响）。</p>
+<p>　　<strong>（2）使用缓存有关的HTTP消息报头</strong><br>　　在这里就需要先跟大家介绍一下HTTP的相关知识。一个URI的完整HTTP协议交互过程是由HTTP请求和HTTP响应组成的。有关HTTP详细内容可参考<a href="https://www.w3.org/Protocols/rfc2616/rfc2616.html" target="_blank" rel="noopener">《Hypertext Transfer Protocol — HTTP/1.1》</a> 、<a href="https://www.cnblogs.com/li0803/archive/2008/11/03/1324746.html" target="_blank" rel="noopener">《HTTP协议详解》</a>等。</p>
+<h3 id="在我们对HTTP请求头和响应头的部分字段有了一定的认识之后，我们接下来就来讨论不同字段之间的关系和区别："><a href="#在我们对HTTP请求头和响应头的部分字段有了一定的认识之后，我们接下来就来讨论不同字段之间的关系和区别：" class="headerlink" title="在我们对HTTP请求头和响应头的部分字段有了一定的认识之后，我们接下来就来讨论不同字段之间的关系和区别："></a>在我们对HTTP请求头和响应头的部分字段有了一定的认识之后，我们接下来就来讨论不同字段之间的关系和区别：</h3><p>　　<strong>· Cache-Control与Expires</strong></p>
+<p>　　Cache-Control与Expires的作用一致，都是指明当前资源的有效期，控制浏览器是否直接从浏览器缓存取数据还是重新发请求到服务器取数据。只不过Cache-Control的选择更多，设置更细致，如果同时设置的话，其优先级高于Expires。</p>
+<p>　　<strong>· Last-Modified/ETag与Cache-Control/Expires</strong></p>
+<p>　　配置Last-Modified/ETag的情况下，浏览器再次访问统一URI的资源，还是会发送请求到服务器询问文件是否已经修改，如果没有，服务器会只发送一个304回给浏览器，告诉浏览器直接从自己本地的缓存取数据；如果修改过那就整个数据重新发给浏览器；</p>
+<p>　　Cache-Control/Expires则不同，如果检测到本地的缓存还是有效的时间范围内，浏览器直接使用本地副本，不会发送任何请求。两者一起使用时，Cache-Control/Expires的优先级要高于Last-Modified/ETag。即当本地副本根据Cache-Control/Expires发现还在有效期内时，则不会再次发送请求去服务器询问修改时间（Last-Modified）或实体标识（Etag）了。</p>
+<p>　　一般情况下，使用Cache-Control/Expires会配合Last-Modified/ETag一起使用，因为即使服务器设置缓存时间, 当用户点击“刷新”按钮时，浏览器会忽略缓存继续向服务器发送请求，这时Last-Modified/ETag将能够很好利用304，从而减少响应开销。</p>
+<p> 　　<strong>· Last-Modified与ETag</strong></p>
+<p>你可能会觉得使用Last-Modified已经足以让浏览器知道本地的缓存副本是否足够新，为什么还需要Etag（实体标识）呢？HTTP1.1中Etag的出现主要是为了解决几个Last-Modified比较难解决的问题：</p>
+<ul>
+<li>Last-Modified标注的最后修改只能精确到秒级，如果某些文件在1秒钟以内，被修改多次的话，它将不能准确标注文件的新鲜度</li>
+<li>如果某些文件会被定期生成，当有时内容并没有任何变化，但Last-Modified却改变了，导致文件没法使用缓存</li>
+<li>有可能存在服务器没有准确获取文件修改时间，或者与代理服务器时间不一致等情形</li>
+</ul>
+<p>Etag是服务器自动生成或者由开发者生成的对应资源在服务器端的唯一标识符，能够更加准确的控制缓存。Last-Modified与ETag是可以一起使用的，服务器会优先验证ETag，一致的情况下，才会继续比对Last-Modified，最后才决定是否返回304。Etag的服务器生成规则和强弱Etag的相关内容可以参考，《互动百科-Etag》和《HTTP Header definition》，这里不再深入。</p>
+<blockquote>
+<p>注意：<br>　　1. Etag是服务器自动生成或者由开发者生成的对应资源在服务器端的唯一标识符，能够更加准确的控制缓存，但是需要注意的是分布式系统里多台机器间文件的last-modified必须保持一致，以免负载均衡到不同机器导致比对失败，Yahoo建议分布式系统尽量关闭掉Etag(每台机器生成的etag都会不一样，因为除了 last-modified、inode 也很难保持一致)。<br> 　 2. Last-Modified/If-Modified-Since要配合Cache-Control使用，Etag/If-None-Match也要配合Cache-Control使用。</p>
+</blockquote>
+<h2 id="浏览器HTTP请求流程："><a href="#浏览器HTTP请求流程：" class="headerlink" title="浏览器HTTP请求流程："></a>浏览器HTTP请求流程：</h2><p>第一次请求：<br><img src="/2019/07/15/浏览器缓存机制/1993543549.png" alt=""><br>再次请求：<br><img src="/2019/07/15/浏览器缓存机制/34238622.png" alt=""></p>
+<blockquote>
+<p>过程：<br>1.浏览器第一次加载资源，服务器返回200，浏览器将资源文件从服务器上请求下载下来，并把response header及该请求的返回时间一并缓存；<br>2.下一次加载资源时，先比较当前时间和上一次返回200时的时间差，如果没有超过cache-control设置的max-age，则没有过期，命中强缓存，不发请求直接从本地缓存读取该文件（如果浏览器不支持HTTP1.1，则用expires判断是否过期）；如果时间过期，则向服务器发送header带有If-None-Match和If-Modified-Since的请求<br>3.服务器收到请求后，优先根据Etag的值判断被请求的文件有没有做修改，Etag值一致则没有修改，命中协商缓存，返回304；如果不一致则有改动，直接返回新的资源文件带上新的Etag值并返回200；；<br>4.如果服务器收到的请求没有Etag值，则将If-Modified-Since和被请求文件的最后修改时间做比对，一致则命中协商缓存，返回304；不一致则返回新的last-modified和文件并返回200；；</p>
+</blockquote>
+<h2 id="用户行为与缓存："><a href="#用户行为与缓存：" class="headerlink" title="用户行为与缓存："></a>用户行为与缓存：</h2><p>浏览器缓存行为还有用户的行为有关，具体情况如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">用户操作</th>
+<th style="text-align:center">Expires/Cache-Control</th>
+<th style="text-align:center">Last-Modified/Etag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">地址栏回车</td>
+<td style="text-align:center">有效</td>
+<td style="text-align:center">有效</td>
+</tr>
+<tr>
+<td style="text-align:center">页面链接跳转</td>
+<td style="text-align:center">有效</td>
+<td style="text-align:center">有效</td>
+</tr>
+<tr>
+<td style="text-align:center">新开窗口</td>
+<td style="text-align:center">有效</td>
+<td style="text-align:center">有效</td>
+</tr>
+<tr>
+<td style="text-align:center">前进、后退</td>
+<td style="text-align:center">有效</td>
+<td style="text-align:center">有效</td>
+</tr>
+<tr>
+<td style="text-align:center">F5刷新</td>
+<td style="text-align:center"><strong>无效(BR重置max-age=0)</strong></td>
+<td style="text-align:center">有效</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl+F5刷新</td>
+<td style="text-align:center"><strong>无效（重置Cache-Control=no-cache）</strong></td>
+<td style="text-align:center"><strong>无效（请求头丢弃该选项）</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="不能缓存的请求："><a href="#不能缓存的请求：" class="headerlink" title="不能缓存的请求："></a>不能缓存的请求：</h2><p>　　当然并不是所有请求都能被缓存，无法被浏览器缓存的请求如下：<br>　　　　1. HTTP信息头中包含Cache-Control:no-cache，pragma:no-cache（HTTP1.0），或Cache-Control:max-age=0等告诉浏览器不用缓存的请求<br>　　　　2. 需要根据Cookie，认证信息等决定输入内容的动态请求是不能被缓存的<br>　　　　3. 经过HTTPS安全加密的请求（有人也经过测试发现，ie其实在头部加入Cache-Control：max-age信息，firefox在头部加入Cache-Control:Public之后，能够对HTTPS的资源进行缓存，参考《HTTPS的七个误解》）<br>　　　　4. POST请求无法被缓存<br>　　　　5. HTTP响应头中不包含Last-Modified/Etag，也不包含Cache-Control/Expires的请求无法被缓存</p>
+<h3 id="让页面不缓存，永远访问最新的数据"><a href="#让页面不缓存，永远访问最新的数据" class="headerlink" title="让页面不缓存，永远访问最新的数据"></a>让页面不缓存，永远访问最新的数据</h3><ul>
+<li><p>方法一：在<head><meta name="generator" content="Hexo 3.8.0">标签里增加如下meta标签。</head></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=8&quot;&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Expires&quot; content=&quot;0&quot;&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Pragma&quot; content=&quot;no-cache&quot;&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Cache-control&quot; content=&quot;no-cache&quot;&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Cache&quot; content=&quot;no-cache&quot;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法二：给请求的路径中加一个随机数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function OpenURL()&#123;</span><br><span class="line"> var url=&quot;index.jsp&quot;+&quot;?a=&quot;+Math.random();</span><br><span class="line"> window.open(url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法三：在java代码中增加如下代码。<br>如果是简单的功能测试用的可以直接在serevlet上写，如果是一个完整的项目，可以考虑在过滤器上加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">response.setHeader(&quot;Cache-Control&quot;,&quot;no-cache&quot;); </span><br><span class="line">response.setHeader(&quot;Pragma&quot;,&quot;no-cache&quot;); </span><br><span class="line">response.setDateHeader(&quot;Expires&quot;,0);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2019/07/15/浏览器缓存机制/浏览器缓存机制" alt=""><br><img src="/2019/07/15/浏览器缓存机制/浏览器缓存机制" alt=""></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/07/15/浏览器缓存机制/" data-id="cjy3t5izu007ixofv0slf2ocj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/07/14/JGroups入门/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">JGroups入门</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/07/15/浏览器缓存机制/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/07/15/浏览器缓存机制/111.jpg)" alt="浏览器缓存机制" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/07/15/浏览器缓存机制/" class="title">浏览器缓存机制</a></p>
+                            <p class="item-date"><time datetime="2019-07-15T00:39:25.000Z" itemprop="datePublished">2019-07-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/07/14/JGroups入门/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/07/14/JGroups入门/p=0.jpg)" alt="JGroups入门" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/07/14/JGroups入门/" class="title">JGroups入门</a></p>
+                            <p class="item-date"><time datetime="2019-07-14T09:05:17.000Z" itemprop="datePublished">2019-07-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/07/14/jedisPool与RedisTemplate/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/07/14/jedisPool与RedisTemplate/568d00009fb237a22650.jpg)" alt="jedisPool与RedisTemplate" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/07/14/jedisPool与RedisTemplate/" class="title">jedisPool与RedisTemplate</a></p>
+                            <p class="item-date"><time datetime="2019-07-14T04:40:54.000Z" itemprop="datePublished">2019-07-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/07/14/struts2的DevMode-开发模式-模式/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/07/14/struts2的DevMode-开发模式-模式/gp.jpg)" alt="struts2的DevMode(开发模式)模式" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/07/14/struts2的DevMode-开发模式-模式/" class="title">struts2的DevMode(开发模式)模式</a></p>
+                            <p class="item-date"><time datetime="2019-07-14T04:32:40.000Z" itemprop="datePublished">2019-07-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/07/13/分布式架构基础-JavaRMI详解/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/07/13/分布式架构基础-JavaRMI详解/12696746-07f8e95ec97df9dd.webp)" alt="分布式架构基础:JavaRMI详解" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/07/13/分布式架构基础-JavaRMI详解/" class="title">分布式架构基础:JavaRMI详解</a></p>
+                            <p class="item-date"><time datetime="2019-07-13T10:25:38.000Z" itemprop="datePublished">2019-07-13</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/遥感/">遥感</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/">JSP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javaweb/">Javaweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存机制/">缓存机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19px;">JavaScript</a> <a href="/tags/Javaweb/" style="font-size: 10px;">Javaweb</a> <a href="/tags/Jquery/" style="font-size: 10px;">Jquery</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 17px;">PHP</a> <a href="/tags/XML/" style="font-size: 11px;">XML</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/git/" style="font-size: 11px;">git</a> <a href="/tags/html/" style="font-size: 18px;">html</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 16px;">maven</a> <a href="/tags/node/" style="font-size: 11px;">node</a> <a href="/tags/orcal/" style="font-size: 14px;">orcal</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 13px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/心语/" style="font-size: 12px;">心语</a> <a href="/tags/技术/" style="font-size: 12px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 16px;">数据结构与算法</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/缓存机制/" style="font-size: 10px;">缓存机制</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/07/15/浏览器缓存机制/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
