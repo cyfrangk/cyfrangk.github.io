@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Java对象的内存分配过程是如何保证线程安全的 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JVM">
+    
+    <meta name="description" content="JVM内存结构，是很重要的知识，相信每一个静心准备过面试的程序员都可以清楚的把堆、栈、方法区等介绍的比较清楚。上图，是一张在作者根据《Java虚拟机规范（Java SE 8）》中描述的JVM运行时内存区域结构画的。 很多人都知道Java对象是在堆内存中分配空间的（JIT优化除外），也知道内存分配过程中是线程安全的，那么虚拟机到底是如何保证线程安全的呢？本文就来简单介绍一下。 Java对象的内存分配">
+<meta name="keywords" content="JVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java对象的内存分配过程是如何保证线程安全的">
+<meta property="og:url" content="http://yoursite.com/2019/07/29/Java对象的内存分配过程是如何保证线程安全的/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="JVM内存结构，是很重要的知识，相信每一个静心准备过面试的程序员都可以清楚的把堆、栈、方法区等介绍的比较清楚。上图，是一张在作者根据《Java虚拟机规范（Java SE 8）》中描述的JVM运行时内存区域结构画的。 很多人都知道Java对象是在堆内存中分配空间的（JIT优化除外），也知道内存分配过程中是线程安全的，那么虚拟机到底是如何保证线程安全的呢？本文就来简单介绍一下。 Java对象的内存分配">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/07/29/Java对象的内存分配过程是如何保证线程安全的/182039.jpg">
+<meta property="og:updated_time" content="2019-08-14T11:05:50.994Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java对象的内存分配过程是如何保证线程安全的">
+<meta name="twitter:description" content="JVM内存结构，是很重要的知识，相信每一个静心准备过面试的程序员都可以清楚的把堆、栈、方法区等介绍的比较清楚。上图，是一张在作者根据《Java虚拟机规范（Java SE 8）》中描述的JVM运行时内存区域结构画的。 很多人都知道Java对象是在堆内存中分配空间的（JIT优化除外），也知道内存分配过程中是线程安全的，那么虚拟机到底是如何保证线程安全的呢？本文就来简单介绍一下。 Java对象的内存分配">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/29/Java对象的内存分配过程是如何保证线程安全的/182039.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/推荐好文/">推荐好文</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
+    <input name="wd" type="text" class="search-form-input" placeholder="搜索">
+</form>
+<script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/推荐好文/">推荐好文</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-Java对象的内存分配过程是如何保证线程安全的" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Java对象的内存分配过程是如何保证线程安全的
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/07/29/Java对象的内存分配过程是如何保证线程安全的/" class="article-date">
+            <time datetime="2019-07-29T10:19:06.000Z" itemprop="datePublished">2019-07-29</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JVM/">JVM</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/2019/07/29/Java对象的内存分配过程是如何保证线程安全的/182039.jpg" alt=""><br>JVM内存结构，是很重要的知识，相信每一个静心准备过面试的程序员都可以清楚的把堆、栈、方法区等介绍的比较清楚。<br><img src="/2019/07/29/Java对象的内存分配过程是如何保证线程安全的/82108.jpg" alt=""><br>上图，是一张在作者根据《Java虚拟机规范（Java SE 8）》中描述的JVM运行时内存区域结构画的。</p>
+<p>很多人都知道Java对象是在堆内存中分配空间的（JIT优化除外），也知道内存分配过程中是线程安全的，那么虚拟机到底是如何保证线程安全的呢？本文就来简单介绍一下。</p>
+<h2 id="Java对象的内存分配"><a href="#Java对象的内存分配" class="headerlink" title="Java对象的内存分配"></a>Java对象的内存分配</h2><p>我们知道，Java是一门面向对象的语言，我们在Java中使用的对象都需要被创建出来，在Java中，创建一个对象的方法有很多种，如使用new、使用反射、使用Clone方法等，但是无论如何，对象在创建过程中，都需要进行内存分配。</p>
+<p>拿最常见的new关键字举例，当我们使用new创建对象后代码开始运行后，虚拟机执行到这条new指令的时候，会先检查要new的对象对应的类是否已被加载，如果没有被加载则先进行类加载。</p>
+<p>在类加载检查通过之后，就需要给对象进行内存分配了，分配的内存主要用来存放对象的实例变量。</p>
+<p>在进行内存分配时，需要根据对象中的实例变量情况等信息确定需要分配的空间大小，然后从Java堆中划分出这样一块区域（假设没有JIT优化）。</p>
+<p>根据JVM使用的垃圾回收器的类型，因其回收算法不同，会导致堆中内存分配情况不同。如标记-清楚算法回收后的内存中会有大量不连续的内存碎片，在给新的对象分配的时候，就需要通过”空闲列表”来确定一块空闲区域。（这部分不是本文重点，读者可以自行学习一下。）</p>
+<p>无论那种方式，最终都需要确定出一块内存区域，用于给新建对象分配内存。我们知道，对象的内存分配过程中，主要是对象的引用指向这个内存区域，然后进行初始化操作。</p>
+<p>那么问题就来了：</p>
+<p>在并发场景中，如何内存分配过程的线程安全性？如果两个线程先后把对象引用指向了同一个内存区域，怎么办。</p>
+<h2 id="TLAB"><a href="#TLAB" class="headerlink" title="TLAB"></a>TLAB</h2><p>一般有两种解决方案：</p>
+<p>1、对分配内存空间的动作做同步处理，采用CAS机制，配合失败重试的方式保证更新操作的线程安全性。<br>2、每个线程在Java堆中预先分配一小块内存，然后再给对象分配内存的时候，直接在自己这块”私有”内存中分配，当这部分区域用完之后，再分配新的”私有”内存。<br>方案1在每次分配时都需要进行同步控制，这种是比较低效的。</p>
+<p>方案2是HotSpot虚拟机中采用的，这种方案被称之为TLAB分配，即Thread Local Allocation Buffer。这部分Buffer是从堆中划分出来的，但是是本地线程独享的。</p>
+<p>这里值得注意的是，我们说TLAB时线程独享的，但是只是在“分配”这个动作上是线程独占的，至于在读取、垃圾回收等动作上都是线程共享的。而且在使用上也没有什么区别。</p>
+<p>另外，TLAB仅作用于新生代的Eden Space，对象被创建的时候首先放到这个区域，但是新生代分配不了内存的大对象会直接进入老年代。因此在编写Java程序时，通常多个小的对象比大的对象分配起来更加高效。</p>
+<p>所以，虽然对象刚开始可能通过TLAB分配内存，存放在Eden区，但是还是会被垃圾回收或者被移到Survivor Space、Old Gen等。</p>
+<p>不知道大家有没有想过，我们使用了TLAB之后，在TLAB上给对象分配内存时线程独享的了，这就没有冲突了，但是，TLAB这块内存自身从堆中划分出来的过程也可能存在内存安全问题啊。</p>
+<p>所以，在对于TLAB的分配过程，还是需要进行同步控制的。但是这种开销相比于每次为单个对象划分内存时候对进行同步控制的要低的多。</p>
+<p>虚拟机是否使用TLAB是可以选择的，可以通过设置-XX:+/-UseTLAB参数来指定。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>为了保证Java对象的内存分配的安全性，同时提升效率，每个线程在Java堆中可以预先分配一小块内存，这部分内存称之为TLAB（Thread Local Allocation Buffer），这块内存的分配时线程独占的，读取、使用、回收是线程共享的。</p>
+<p>可以通过设置-XX:+/-UseTLAB参数来指定是否开启TLAB分配。</p>
+<p>参考资料：</p>
+<p>《深入理解Java虚拟机》<br><a href="https://www.cnblogs.com/straybirds/p/8529924.html" target="_blank" rel="noopener">https://www.cnblogs.com/straybirds/p/8529924.html</a> <a href="https://www.zhihu.com/question/56538259" target="_blank" rel="noopener">https://www.zhihu.com/question/56538259</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/07/29/Java对象的内存分配过程是如何保证线程安全的/" data-id="cjzb6e3vo000fvgfv2tvrz1zg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1466132938&site=qq&menu=yes" target="_blank" rel="noopener">
+                          <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/08/07/非常接地气的架构和分层方法，值得学习/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            非常接地气的架构和分层方法，值得学习
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/07/19/Java两种动态代理JDK动态代理和CGLIB动态代理/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Java两种动态代理JDK动态代理和CGLIB动态代理</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/14/考考你对JVM内存结构的理解/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/14/考考你对JVM内存结构的理解/145536.jpg)" alt="考考你对JVM内存结构的理解" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/推荐好文/">推荐好文</a></p>
+                            <p class="item-title"><a href="/2019/08/14/考考你对JVM内存结构的理解/" class="title">考考你对JVM内存结构的理解</a></p>
+                            <p class="item-date"><time datetime="2019-08-14T06:36:34.000Z" itemprop="datePublished">2019-08-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/14/这样配置你的IDEA-好用到飞起来/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/14/这样配置你的IDEA-好用到飞起来/gp=0.jpg)" alt="这样配置你的IDEA,好用到飞起来" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/推荐好文/">推荐好文</a></p>
+                            <p class="item-title"><a href="/2019/08/14/这样配置你的IDEA-好用到飞起来/" class="title">这样配置你的IDEA,好用到飞起来</a></p>
+                            <p class="item-date"><time datetime="2019-08-14T06:08:28.000Z" itemprop="datePublished">2019-08-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/07/非常接地气的架构和分层方法，值得学习/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/07/非常接地气的架构和分层方法，值得学习/72330.jpg)" alt="非常接地气的架构和分层方法，值得学习" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/推荐好文/">推荐好文</a></p>
+                            <p class="item-title"><a href="/2019/08/07/非常接地气的架构和分层方法，值得学习/" class="title">非常接地气的架构和分层方法，值得学习</a></p>
+                            <p class="item-date"><time datetime="2019-08-07T09:20:07.000Z" itemprop="datePublished">2019-08-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/07/29/Java对象的内存分配过程是如何保证线程安全的/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/07/29/Java对象的内存分配过程是如何保证线程安全的/182039.jpg)" alt="Java对象的内存分配过程是如何保证线程安全的" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/推荐好文/">推荐好文</a></p>
+                            <p class="item-title"><a href="/2019/07/29/Java对象的内存分配过程是如何保证线程安全的/" class="title">Java对象的内存分配过程是如何保证线程安全的</a></p>
+                            <p class="item-date"><time datetime="2019-07-29T10:19:06.000Z" itemprop="datePublished">2019-07-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/07/19/Java两种动态代理JDK动态代理和CGLIB动态代理/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/07/19/Java两种动态代理JDK动态代理和CGLIB动态代理/43117298.png)" alt="Java两种动态代理JDK动态代理和CGLIB动态代理" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/07/19/Java两种动态代理JDK动态代理和CGLIB动态代理/" class="title">Java两种动态代理JDK动态代理和CGLIB动态代理</a></p>
+                            <p class="item-date"><time datetime="2019-07-19T11:15:32.000Z" itemprop="datePublished">2019-07-19</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/">JSP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javaweb/">Javaweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发工具/">开发工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/框架/">框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存机制/">缓存机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JVM/" style="font-size: 12px;">JVM</a> <a href="/tags/Java/" style="font-size: 16px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19px;">JavaScript</a> <a href="/tags/Javaweb/" style="font-size: 10px;">Javaweb</a> <a href="/tags/Jquery/" style="font-size: 10px;">Jquery</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 17px;">PHP</a> <a href="/tags/XML/" style="font-size: 11px;">XML</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/git/" style="font-size: 11px;">git</a> <a href="/tags/html/" style="font-size: 18px;">html</a> <a href="/tags/java/" style="font-size: 19px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 16px;">maven</a> <a href="/tags/node/" style="font-size: 11px;">node</a> <a href="/tags/orcal/" style="font-size: 14px;">orcal</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 13px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/开发工具/" style="font-size: 10px;">开发工具</a> <a href="/tags/心语/" style="font-size: 12px;">心语</a> <a href="/tags/技术/" style="font-size: 12px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 16px;">数据结构与算法</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/缓存机制/" style="font-size: 10px;">缓存机制</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/07/29/Java对象的内存分配过程是如何保证线程安全的/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
