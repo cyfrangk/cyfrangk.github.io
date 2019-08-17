@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>阿里巴巴29个屌炸天的开源项目 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="开源项目">
+    
+    <meta name="description" content="前言众所周知，阿里巴巴是 apache基金会成员、Linux基金会成员，同时是Xen顾问委员会成员。上述身份可见阿里在开源方面的重视程度，阿里通过开源贡献更多技术、分享更多理念。其开源的很多项目大受欢迎，今日就来盘点阿里 29 个开源项目，你用过几个，哪个最好用，欢迎在留言区告诉我。 1. 分布式应用服务开发的一站式解决方案 Spring Cloud AlibabaSpring Cloud Al">
+<meta name="keywords" content="开源项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阿里巴巴29个屌炸天的开源项目">
+<meta property="og:url" content="http://yoursite.com/2019/08/15/阿里巴巴29个屌炸天的开源项目/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="前言众所周知，阿里巴巴是 apache基金会成员、Linux基金会成员，同时是Xen顾问委员会成员。上述身份可见阿里在开源方面的重视程度，阿里通过开源贡献更多技术、分享更多理念。其开源的很多项目大受欢迎，今日就来盘点阿里 29 个开源项目，你用过几个，哪个最好用，欢迎在留言区告诉我。 1. 分布式应用服务开发的一站式解决方案 Spring Cloud AlibabaSpring Cloud Al">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/08/15/阿里巴巴29个屌炸天的开源项目/150509.jpg">
+<meta property="og:updated_time" content="2019-08-15T06:50:08.456Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="阿里巴巴29个屌炸天的开源项目">
+<meta name="twitter:description" content="前言众所周知，阿里巴巴是 apache基金会成员、Linux基金会成员，同时是Xen顾问委员会成员。上述身份可见阿里在开源方面的重视程度，阿里通过开源贡献更多技术、分享更多理念。其开源的很多项目大受欢迎，今日就来盘点阿里 29 个开源项目，你用过几个，哪个最好用，欢迎在留言区告诉我。 1. 分布式应用服务开发的一站式解决方案 Spring Cloud AlibabaSpring Cloud Al">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/15/阿里巴巴29个屌炸天的开源项目/150509.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/推荐好文/">推荐好文</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
+    <input name="wd" type="text" class="search-form-input" placeholder="搜索">
+</form>
+<script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/推荐好文/">推荐好文</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-阿里巴巴29个屌炸天的开源项目" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        阿里巴巴29个屌炸天的开源项目
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/08/15/阿里巴巴29个屌炸天的开源项目/" class="article-date">
+            <time datetime="2019-08-15T06:20:23.000Z" itemprop="datePublished">2019-08-15</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/开源项目/">开源项目</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/2019/08/15/阿里巴巴29个屌炸天的开源项目/150509.jpg" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>众所周知，阿里巴巴是 apache基金会成员、Linux基金会成员，同时是Xen顾问委员会成员。上述身份可见阿里在开源方面的重视程度，阿里通过开源贡献更多技术、分享更多理念。其开源的很多项目大受欢迎，今日就来盘点阿里 29 个开源项目，你用过几个，哪个最好用，欢迎在留言区告诉我。</p>
+<h3 id="1-分布式应用服务开发的一站式解决方案-Spring-Cloud-Alibaba"><a href="#1-分布式应用服务开发的一站式解决方案-Spring-Cloud-Alibaba" class="headerlink" title="1. 分布式应用服务开发的一站式解决方案 Spring Cloud Alibaba"></a>1. 分布式应用服务开发的一站式解决方案 Spring Cloud Alibaba</h3><p>Spring Cloud Alibaba 致力于提供分布式应用服务开发的一站式解决方案。此项目包含开发分布式应用服务的必需组件，方便开发者通过 Spring Cloud 编程模型轻松使用这些组件来开发分布式应用服务。</p>
+<p>依托 Spring Cloud Alibaba，您只需要添加一些注解和少量配置，就可以将 Spring Cloud 应用接入阿里分布式应用解决方案，通过阿里中间件来迅速搭建分布式应用系统。</p>
+<p>地址：<a href="https://github.com/spring-cloud-incubator/spring-cloud-alibaba" target="_blank" rel="noopener">https://github.com/spring-cloud-incubator/spring-cloud-alibaba</a></p>
+<h3 id="2-设计语言-amp-前端框架-Ant-Design"><a href="#2-设计语言-amp-前端框架-Ant-Design" class="headerlink" title="2. 设计语言 &amp; 前端框架 Ant Design"></a>2. 设计语言 &amp; 前端框架 Ant Design</h3><p><img src="/2019/08/15/阿里巴巴29个屌炸天的开源项目/142920.jpg" alt=""><br>Ant Design 是蚂蚁金服开发和正在使用的一套企业级的前端设计语言和基于 React 的前端框架实现。</p>
+<p>它的特性：企业级金融产品的交互语言和视觉体系；丰富实用的 React UI 组件；基于 React 的组件化开发模式；背靠 npm 生态圈；基于 webpack 的调试构建方案，支持 ES6。</p>
+<p>地址：<a href="https://github.com/ant-design/ant-design" target="_blank" rel="noopener">https://github.com/ant-design/ant-design</a></p>
+<h3 id="3-JDBC-连接池、监控组件-Druid"><a href="#3-JDBC-连接池、监控组件-Druid" class="headerlink" title="3. JDBC 连接池、监控组件 Druid"></a>3. JDBC 连接池、监控组件 Druid</h3><p>Druid是一个 JDBC 组件。</p>
+<p>1.监控数据库访问性能。</p>
+<p>2.提供了一个高效、功能强大、可扩展性好的数据库连接池。</p>
+<p>3.数据库密码加密。</p>
+<p>4.SQL执行日志。</p>
+<p>地址：<a href="https://github.com/alibaba/druid" target="_blank" rel="noopener">https://github.com/alibaba/druid</a></p>
+<h3 id="4-Java-的-JSON-处理器-fastjson"><a href="#4-Java-的-JSON-处理器-fastjson" class="headerlink" title="4. Java 的 JSON 处理器 fastjson"></a>4. Java 的 JSON 处理器 fastjson</h3><p>fastjson 是一个性能很好的 Java 语言实现的 JSON 解析器和生成器，来自阿里巴巴的工程师开发。</p>
+<p>主要特点：快速FAST (比其它任何基于Java的解析器和生成器更快，包括jackson）；强大（支持普通JDK类包括任意Java Bean Class、Collection、Map、Date或enum）；零依赖（没有依赖其它任何类库除了JDK）。</p>
+<p>地址：<a href="https://github.com/alibaba/fastjson" target="_blank" rel="noopener">https://github.com/alibaba/fastjson</a></p>
+<h3 id="5-服务框架-Dubbo"><a href="#5-服务框架-Dubbo" class="headerlink" title="5. 服务框架 Dubbo"></a>5. 服务框架 Dubbo</h3><p>Apache Dubbo (incubating) |是阿里巴巴的一款高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡，以及服务自动注册和发现。</p>
+<p>地址：<a href="https://github.com/alibaba/dubbo" target="_blank" rel="noopener">https://github.com/alibaba/dubbo</a></p>
+<h3 id="6-企业级流式计算引擎-JStorm"><a href="#6-企业级流式计算引擎-JStorm" class="headerlink" title="6. 企业级流式计算引擎 JStorm"></a>6. 企业级流式计算引擎 JStorm</h3><p>JStorm 是参考 Apache Storm 实现的实时流式计算框架，在网络IO、线程模型、资源调度、可用性及稳定性上做了持续改进，已被越来越多企业使用。JStorm 可以看作是 storm 的 java 增强版本，除了内核用纯java实现外，还包括了thrift、python、facet ui。从架构上看，其本质是一个基于 zk 的分布式调度系统。</p>
+<p>地址：<a href="https://github.com/alibaba/jstorm" target="_blank" rel="noopener">https://github.com/alibaba/jstorm</a></p>
+<h3 id="7-apns4j"><a href="#7-apns4j" class="headerlink" title="7. apns4j"></a>7. apns4j</h3><p>apns4j 是 Apple Push Notification Service 的 Java 实现。</p>
+<p>地址：<a href="https://github.com/teaey/apns4j" target="_blank" rel="noopener">https://github.com/teaey/apns4j</a></p>
+<h3 id="8-数据驱动的高交互可视化图形语法-AntV-G2"><a href="#8-数据驱动的高交互可视化图形语法-AntV-G2" class="headerlink" title="8. 数据驱动的高交互可视化图形语法 AntV - G2"></a>8. 数据驱动的高交互可视化图形语法 AntV - G2</h3><p><img src="/2019/08/15/阿里巴巴29个屌炸天的开源项目/43015.jpg" alt=""><br>G2 是一套基于可视化编码的图形语法，以数据驱动，具有高度的易用性和扩展性，用户无需关注各种繁琐的实现细节，一条语句即可构建出各种各样的可交互的统计图表。</p>
+<p>同时，G2 也是 AntV 最重要的组成，始于《The Grammar of Graphics》一书描述的视觉编码语法系统（这也是 G2 项目命名的由来）。</p>
+<p>项目地址：<a href="https://github.com/antvis/g2" target="_blank" rel="noopener">https://github.com/antvis/g2</a></p>
+<h3 id="9-前端构建和工程化工具-Dawn"><a href="#9-前端构建和工程化工具-Dawn" class="headerlink" title="9. 前端构建和工程化工具 Dawn"></a>9. 前端构建和工程化工具 Dawn</h3><p><img src="/2019/08/15/阿里巴巴29个屌炸天的开源项目/5143037.jpg" alt=""><br>Dawn 取「黎明、破晓」之意，原为「阿里云·业务运营团队」内部的前端构建和工程化工具，现已完全开源。</p>
+<p>它通过 pipeline 和 middleware 将开发过程抽象为相对固定的阶段和有限的操作，简化并统一了开发人员的日常构建与开发相关的工作。</p>
+<p>地址：<a href="https://alibaba.github.io/dawn/" target="_blank" rel="noopener">https://alibaba.github.io/dawn/</a></p>
+<h3 id="10-分布式数据层-TDDL"><a href="#10-分布式数据层-TDDL" class="headerlink" title="10. 分布式数据层 TDDL"></a>10. 分布式数据层 TDDL</h3><p>TDDL 是一个基于集中式配置的 jdbc datasource实现，具有主备，读写分离，动态数据库配置等功能。</p>
+<p>地址：<a href="https://github.com/alibaba/tb_tddl" target="_blank" rel="noopener">https://github.com/alibaba/tb_tddl</a></p>
+<h3 id="11-轻量级分布式数据访问层-CobarClient"><a href="#11-轻量级分布式数据访问层-CobarClient" class="headerlink" title="11. 轻量级分布式数据访问层 CobarClient"></a>11. 轻量级分布式数据访问层 CobarClient</h3><p>Cobar Client是一个轻量级分布式数据访问层（DAL）基于iBatis(已更名为MyBatis)和Spring框架实现。</p>
+<p>地址：<a href="https://github.com/alibaba/cobarclient" target="_blank" rel="noopener">https://github.com/alibaba/cobarclient</a></p>
+<h3 id="12-淘宝定制-JVM：TaobaoJVM"><a href="#12-淘宝定制-JVM：TaobaoJVM" class="headerlink" title="12. 淘宝定制 JVM：TaobaoJVM"></a>12. 淘宝定制 JVM：TaobaoJVM</h3><p>TaobaoJVM 基于 OpenJDK HotSpot VM，是国内第一个优化、定制且开源的服务器版Java虚拟机。目前已经在淘宝、天猫上线，全部替换了Oracle官方JVM版本，在性能，功能上都初步体现了它的价值。</p>
+<p>地址：<a href="http://jvm.taobao.org" target="_blank" rel="noopener">http://jvm.taobao.org</a></p>
+<h3 id="13-Java-图片处理类库-SimpleImage"><a href="#13-Java-图片处理类库-SimpleImage" class="headerlink" title="13. Java 图片处理类库 SimpleImage"></a>13. Java 图片处理类库 SimpleImage</h3><p>SimpleImage是阿里巴巴的一个Java图片处理的类库，可以实现图片缩略、水印等处理。</p>
+<p>地址：<a href="https://github.com/alibaba/simpleimage" target="_blank" rel="noopener">https://github.com/alibaba/simpleimage</a></p>
+<h3 id="14-Redis-的-Java-客户端-Tedis"><a href="#14-Redis-的-Java-客户端-Tedis" class="headerlink" title="14. Redis 的 Java 客户端 Tedis"></a>14. Redis 的 Java 客户端 Tedis</h3><p>Tedis 是另一个 redis 的 java 客户端。Tedis 的目标是打造一个可在生产环境直接使用的高可用 Redis 解决方案。</p>
+<p>地址：<a href="https://github.com/justified/tedis" target="_blank" rel="noopener">https://github.com/justified/tedis</a></p>
+<h3 id="15-开源-Java-诊断工具-Arthas"><a href="#15-开源-Java-诊断工具-Arthas" class="headerlink" title="15. 开源 Java 诊断工具 Arthas"></a>15. 开源 Java 诊断工具 Arthas</h3><p>Arthas（阿尔萨斯）是阿里巴巴开源的 Java 诊断工具，深受开发者喜爱。</p>
+<p>Arthas 采用命令行交互模式，同时提供丰富的 Tab 自动补全功能，进一步方便进行问题的定位和诊断。</p>
+<p>地址：<a href="https://alibaba.github.io/arthas/" target="_blank" rel="noopener">https://alibaba.github.io/arthas/</a></p>
+<h3 id="16-动态服务发现、配置和服务管理平台-Nacos"><a href="#16-动态服务发现、配置和服务管理平台-Nacos" class="headerlink" title="16. 动态服务发现、配置和服务管理平台 Nacos"></a>16. 动态服务发现、配置和服务管理平台 Nacos</h3><p><img src="/2019/08/15/阿里巴巴29个屌炸天的开源项目/143100.jpg" alt=""><br>Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您实现动态服务发现、服务配置管理、服务及流量管理。</p>
+<p>Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。Nacos 是构建以“服务”为中心的现代应用架构(例如微服务范式、云原生范式)的服务基础设施。</p>
+<p>地址：<a href="https://nacos.io/en-us/" target="_blank" rel="noopener">https://nacos.io/en-us/</a></p>
+<h3 id="17-Java-解析-Excel-工具-easyexcel"><a href="#17-Java-解析-Excel-工具-easyexcel" class="headerlink" title="17. Java 解析 Excel 工具 easyexcel"></a>17. Java 解析 Excel 工具 easyexcel</h3><p>Java 解析、生成 Excel 比较有名的框架有 Apache poi、jxl 。但他们都存在一个严重的问题就是非常的耗内存，poi 有一套 SAX 模式的 API 可以一定程度的解决一些内存溢出的问题，但 POI 还是有一些缺陷，比如 07 版 Excel 解压缩以及解压后存储都是在内存中完成的，内存消耗依然很大。</p>
+<p>easyexcel 重写了 poi 对 07 版 Excel 的解析，能够原本一个 3M 的 excel 用 POI sax 依然需要 100M 左右内存降低到 KB 级别，并且再大的 excel 不会出现内存溢出，03 版依赖 POI 的 sax 模式。在上层做了模型转换的封装，让使用者更加简单方便。</p>
+<p>地址：<a href="https://github.com/alibaba/easyexcel" target="_blank" rel="noopener">https://github.com/alibaba/easyexcel</a></p>
+<h3 id="18-高可用流量管理框架-Sentinel"><a href="#18-高可用流量管理框架-Sentinel" class="headerlink" title="18. 高可用流量管理框架 Sentinel"></a>18. 高可用流量管理框架 Sentinel</h3><p>Sentinel 是面向微服务的轻量级流量控制框架，从流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性。</p>
+<p>只要通过 Sentinel API 定义的代码，就是资源，能够被 Sentinel 保护起来。大部分情况下，可以使用方法签名，URL，甚至服务名称作为资源名来标示资源。</p>
+<p>地址：<a href="https://github.com/alibaba/Sentinel" target="_blank" rel="noopener">https://github.com/alibaba/Sentinel</a></p>
+<h3 id="19-基于多维度-Metrics-的系统度量和监控中间件-SOFALookout"><a href="#19-基于多维度-Metrics-的系统度量和监控中间件-SOFALookout" class="headerlink" title="19.  基于多维度 Metrics 的系统度量和监控中间件 SOFALookout"></a>19.  基于多维度 Metrics 的系统度量和监控中间件 SOFALookout</h3><p>Lookout 是一个利用多维度的 metrics 对目标系统进行度量和监控的项目。Lookout 的多维度 metrics 参考 Metrics 2.0 标准。Lookout 项目分为客户端部分与服务器端部分。</p>
+<p>客户端是一个 Java 的类库，可以将它植入您的应用代码中采集 metrics 信息，客户端更多详情。</p>
+<p>服务端代码部分，将于下一版本提供。通过 LOOKOUT 的服务，可以对 metrics 数据进行收集、加工、存储和查询等处理，另外结合 grafana，可做数据可视化展示。</p>
+<p>地址：<a href="https://github.com/alipay/sofa-lookout" target="_blank" rel="noopener">https://github.com/alipay/sofa-lookout</a></p>
+<h3 id="20-基于-Spring-Boot-的研发框架-SOFABoot"><a href="#20-基于-Spring-Boot-的研发框架-SOFABoot" class="headerlink" title="20. 基于 Spring Boot 的研发框架 SOFABoot"></a>20. 基于 Spring Boot 的研发框架 SOFABoot</h3><p>SOFABoot 是蚂蚁金服开源的基于 Spring Boot 的研发框架，它在 Spring Boot 的基础上，提供了诸如 Readiness Check，类隔离，日志空间隔离等等能力。在增强了 Spring Boot 的同时，SOFABoot 提供了让用户可以在 Spring Boot 中非常方便地使用 SOFAStack 相关中间件的能力。</p>
+<p>地址：<a href="https://github.com/alipay/sofa-boot" target="_blank" rel="noopener">https://github.com/alipay/sofa-boot</a></p>
+<h3 id="21-轻量级-Java-类隔离容器-SOFAArk"><a href="#21-轻量级-Java-类隔离容器-SOFAArk" class="headerlink" title="21. 轻量级 Java 类隔离容器 SOFAArk"></a>21. 轻量级 Java 类隔离容器 SOFAArk</h3><p>SOFAArk 是一款基于 Java 实现的轻量级类隔离容器，由蚂蚁金服公司开源贡献；主要为应用程序提供类隔离和依赖包隔离的能力；基于 Fat Jar 技术，应用可以被打包成一个自包含可运行的 Fat Jar，应用既可以是简单的单模块 Java 应用也可以是 Spring Boot 应用。可访问网址进入快速开始并获取更多详细信息。</p>
+<p>地址：<a href="https://alipay.github.io/sofastack.github.io/" target="_blank" rel="noopener">https://alipay.github.io/sofastack.github.io/</a></p>
+<h3 id="22-分布式链路追踪中间件-SOFATracer"><a href="#22-分布式链路追踪中间件-SOFATracer" class="headerlink" title="22. 分布式链路追踪中间件 SOFATracer"></a>22. 分布式链路追踪中间件 SOFATracer</h3><p>SOFATracer 是一个用于分布式系统调用跟踪的组件，通过统一的 traceId 将调用链路中的各种网络调用情况以日志的方式记录下来，以达到透视化网络调用的目的。这些日志可用于故障的快速发现，服务治理等。</p>
+<p>地址：<a href="https://github.com/alipay/sofa-tracer" target="_blank" rel="noopener">https://github.com/alipay/sofa-tracer</a></p>
+<h3 id="23-高性能-Java-RPC-框架-SOFARPC"><a href="#23-高性能-Java-RPC-框架-SOFARPC" class="headerlink" title="23. 高性能 Java RPC 框架 SOFARPC"></a>23. 高性能 Java RPC 框架 SOFARPC</h3><p>SOFARPC 是一个高可扩展性、高性能、生产级的 Java RPC 框架。在蚂蚁金服 SOFARPC 已经经历了十多年及五代版本的发展。SOFARPC 致力于简化应用之间的 RPC 调用，为应用提供方便透明、稳定高效的点对点远程服务调用方案。为了用户和开发者方便的进行功能扩展，SOFARPC 提供了丰富的模型抽象和可扩展接口，包括过滤器、路由、负载均衡等等。同时围绕 SOFARPC 框架及其周边组件提供丰富的微服务治理方案。</p>
+<p>地址：<a href="https://github.com/alipay/sofa-rpc" target="_blank" rel="noopener">https://github.com/alipay/sofa-rpc</a></p>
+<h3 id="24-基于-Netty-的网络通信框架-SOFABolt"><a href="#24-基于-Netty-的网络通信框架-SOFABolt" class="headerlink" title="24. 基于 Netty 的网络通信框架 SOFABolt"></a>24. 基于 Netty 的网络通信框架 SOFABolt</h3><p>SOFABolt 是蚂蚁金融服务集团开发的一套基于 Netty 实现的网络通信框架。</p>
+<p>为了让 Java 程序员能将更多的精力放在基于网络通信的业务逻辑实现上，而不是过多的纠结于网络底层 NIO 的实现以及处理难以调试的网络问题，Netty 应运而生。</p>
+<p>为了让中间件开发者能将更多的精力放在产品功能特性实现上，而不是重复地一遍遍制造通信框架的轮子，SOFABolt 应运而生。</p>
+<p>地址：<a href="https://github.com/alipay/sofa-bolt" target="_blank" rel="noopener">https://github.com/alipay/sofa-bolt</a></p>
+<h3 id="25-动态非侵入-AOP-解决方案-JVM-Sandbox"><a href="#25-动态非侵入-AOP-解决方案-JVM-Sandbox" class="headerlink" title="25. 动态非侵入 AOP 解决方案 JVM-Sandbox"></a>25. 动态非侵入 AOP 解决方案 JVM-Sandbox</h3><p>JVM-Sandbox，JVM 沙箱容器，一种基于 JVM 的非侵入式运行期 AOP 解决方案。</p>
+<p>地址：<a href="https://github.com/alibaba/jvm-sandbox" target="_blank" rel="noopener">https://github.com/alibaba/jvm-sandbox</a></p>
+<h3 id="26-面向云的分布式消息领域标准-OpenMessaging"><a href="#26-面向云的分布式消息领域标准-OpenMessaging" class="headerlink" title="26. 面向云的分布式消息领域标准 OpenMessaging"></a>26. 面向云的分布式消息领域标准 OpenMessaging</h3><p>OpenMessaging 是由阿里巴巴发起，与雅虎、滴滴出行、Streamlio 公司共同参与创立，旨在创立厂商无关、平台无关的分布式消息及流处理领域的应用开发标准。</p>
+<p>地址：<a href="https://github.com/openmessaging/openmessaging-java" target="_blank" rel="noopener">https://github.com/openmessaging/openmessaging-java</a></p>
+<h3 id="27-P2P-文件分发系统-Dragonfly"><a href="#27-P2P-文件分发系统-Dragonfly" class="headerlink" title="27. P2P 文件分发系统 Dragonfly"></a>27. P2P 文件分发系统 Dragonfly</h3><p>Dragonfly（蜻蜓）是阿里自研的 P2P 文件分发系统，用于解决大规模文件分发场景下分发耗时、成功率低、带宽浪费等难题。大幅提升发布部署、数据预热、大规模容器镜像分发等业务能力。</p>
+<p>开源版的 Dragonfly 可用于 P2P 文件分发、容器镜像分发、局部限速、磁盘容量预检等。它支持多种容器技术，对容器本身无需做任何改造，镜像分发比 natvie 方式提速可高达 57 倍，Registry 网络出流量降低99.5%以上。</p>
+<p>地址：<a href="https://github.com/alibaba/Dragonfly" target="_blank" rel="noopener">https://github.com/alibaba/Dragonfly</a></p>
+<h3 id="28-LayoutManager-定制化布局方案-vlayout"><a href="#28-LayoutManager-定制化布局方案-vlayout" class="headerlink" title="28. LayoutManager 定制化布局方案 vlayout"></a>28. LayoutManager 定制化布局方案 vlayout</h3><p>VirtualLayout是一个针对RecyclerView的LayoutManager扩展, 主要提供一整套布局方案和布局间的组件复用的问题。</p>
+<p>地址：<a href="https://github.com/alibaba/vlayout" target="_blank" rel="noopener">https://github.com/alibaba/vlayout</a></p>
+<h3 id="29-Java-代码规约扫描插件-P3C"><a href="#29-Java-代码规约扫描插件-P3C" class="headerlink" title="29. Java 代码规约扫描插件 P3C"></a>29. Java 代码规约扫描插件 P3C</h3><p>项目包含三部分：PMD 实现、IntelliJ IDEA 插件、Eclipse 插件</p>
+<p>地址：<a href="https://github.com/alibaba/p3c" target="_blank" rel="noopener">https://github.com/alibaba/p3c</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/08/15/阿里巴巴29个屌炸天的开源项目/" data-id="cjzfem5fa007uk0fvikn0vhfa" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1466132938&site=qq&menu=yes" target="_blank" rel="noopener">
+                          <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/08/15/IDEA远程一键部署SpringBoot/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            IDEA远程一键部署SpringBoot
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/08/14/机器学习开源工具助你从新手到高手/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">机器学习开源工具助你从新手到高手</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/17/推荐几个IDEA插件/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/17/推荐几个IDEA插件/0817183002.png)" alt="推荐几个IDEA插件" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/推荐好文/">推荐好文</a></p>
+                            <p class="item-title"><a href="/2019/08/17/推荐几个IDEA插件/" class="title">推荐几个IDEA插件</a></p>
+                            <p class="item-date"><time datetime="2019-08-17T10:23:26.000Z" itemprop="datePublished">2019-08-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/17/IDEA从入门到癫狂/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/17/IDEA从入门到癫狂/7165751.jpg)" alt="IDEA从入门到癫狂" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/推荐好文/">推荐好文</a></p>
+                            <p class="item-title"><a href="/2019/08/17/IDEA从入门到癫狂/" class="title">IDEA从入门到癫狂</a></p>
+                            <p class="item-date"><time datetime="2019-08-17T08:55:50.000Z" itemprop="datePublished">2019-08-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/16/几款主流JSON库性能对比/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/16/几款主流JSON库性能对比/94444.jpg)" alt="几款主流JSON库性能对比" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/16/几款主流JSON库性能对比/" class="title">几款主流JSON库性能对比</a></p>
+                            <p class="item-date"><time datetime="2019-08-16T08:01:59.000Z" itemprop="datePublished">2019-08-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/15/7种JVM垃圾收集器的对比/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/15/7种JVM垃圾收集器的对比/154645.jpg)" alt="7种JVM垃圾收集器的对比" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/推荐好文/">推荐好文</a></p>
+                            <p class="item-title"><a href="/2019/08/15/7种JVM垃圾收集器的对比/" class="title">7种JVM垃圾收集器的对比</a></p>
+                            <p class="item-date"><time datetime="2019-08-15T07:43:11.000Z" itemprop="datePublished">2019-08-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/15/IDEA远程一键部署SpringBoot/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/15/IDEA远程一键部署SpringBoot/5152858.jpg)" alt="IDEA远程一键部署SpringBoot" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/推荐好文/">推荐好文</a></p>
+                            <p class="item-title"><a href="/2019/08/15/IDEA远程一键部署SpringBoot/" class="title">IDEA远程一键部署SpringBoot</a></p>
+                            <p class="item-date"><time datetime="2019-08-15T07:27:31.000Z" itemprop="datePublished">2019-08-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/">JSP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javaweb/">Javaweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发工具/">开发工具</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能测试/">性能测试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/框架/">框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存机制/">缓存机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JVM/" style="font-size: 13px;">JVM</a> <a href="/tags/Java/" style="font-size: 16px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19px;">JavaScript</a> <a href="/tags/Javaweb/" style="font-size: 10px;">Javaweb</a> <a href="/tags/Jquery/" style="font-size: 10px;">Jquery</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 17px;">PHP</a> <a href="/tags/XML/" style="font-size: 11px;">XML</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/git/" style="font-size: 11px;">git</a> <a href="/tags/html/" style="font-size: 18px;">html</a> <a href="/tags/java/" style="font-size: 19px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 16px;">maven</a> <a href="/tags/node/" style="font-size: 11px;">node</a> <a href="/tags/orcal/" style="font-size: 14px;">orcal</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 13px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/开发工具/" style="font-size: 15px;">开发工具</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/心语/" style="font-size: 12px;">心语</a> <a href="/tags/性能测试/" style="font-size: 10px;">性能测试</a> <a href="/tags/技术/" style="font-size: 12px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 16px;">数据结构与算法</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/缓存机制/" style="font-size: 10px;">缓存机制</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/08/15/阿里巴巴29个屌炸天的开源项目/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

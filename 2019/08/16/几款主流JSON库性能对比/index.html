@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>几款主流JSON库性能对比 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="性能测试">
+    
+    <meta name="description" content="本篇通过JMH 来测试一下Java中几种常见的JSON解析库的性能。每次都在网上看到别人说什么某某库性能是如何如何的好，碾压其他的库。但是百闻不如一见，只有自己亲手测试过的才是最值得相信的。   对于JMH的使用可以参考网上的这篇文章https://www.jianshu.com/p/23abfe3251ca   JSON不管是在Web开发还是服务器开发中是相当常见的数据传输格式，一般情况我们对">
+<meta name="keywords" content="性能测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="几款主流JSON库性能对比">
+<meta property="og:url" content="http://yoursite.com/2019/08/16/几款主流JSON库性能对比/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="本篇通过JMH 来测试一下Java中几种常见的JSON解析库的性能。每次都在网上看到别人说什么某某库性能是如何如何的好，碾压其他的库。但是百闻不如一见，只有自己亲手测试过的才是最值得相信的。   对于JMH的使用可以参考网上的这篇文章https://www.jianshu.com/p/23abfe3251ca   JSON不管是在Web开发还是服务器开发中是相当常见的数据传输格式，一般情况我们对">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/08/16/几款主流JSON库性能对比/94444.jpg">
+<meta property="og:updated_time" content="2019-08-17T08:29:36.041Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="几款主流JSON库性能对比">
+<meta name="twitter:description" content="本篇通过JMH 来测试一下Java中几种常见的JSON解析库的性能。每次都在网上看到别人说什么某某库性能是如何如何的好，碾压其他的库。但是百闻不如一见，只有自己亲手测试过的才是最值得相信的。   对于JMH的使用可以参考网上的这篇文章https://www.jianshu.com/p/23abfe3251ca   JSON不管是在Web开发还是服务器开发中是相当常见的数据传输格式，一般情况我们对">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/16/几款主流JSON库性能对比/94444.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/推荐好文/">推荐好文</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
+    <input name="wd" type="text" class="search-form-input" placeholder="搜索">
+</form>
+<script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-几款主流JSON库性能对比" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        几款主流JSON库性能对比
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/08/16/几款主流JSON库性能对比/" class="article-date">
+            <time datetime="2019-08-16T08:01:59.000Z" itemprop="datePublished">2019-08-16</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/性能测试/">性能测试</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/2019/08/16/几款主流JSON库性能对比/94444.jpg" alt=""></p>
+<p>本篇通过<a href="http://juke.outofmemory.cn/entry/87054" target="_blank" rel="noopener">JMH</a> 来测试一下Java中几种常见的JSON解析库的性能。每次都在网上看到别人说什么某某库性能是如何如何的好，碾压其他的库。但是百闻不如一见，只有自己亲手测试过的才是最值得相信的。</p>
+<blockquote>
+<blockquote>
+<p>对于JMH的使用可以参考网上的这篇文章<a href="https://www.jianshu.com/p/23abfe3251ca" target="_blank" rel="noopener">https://www.jianshu.com/p/23abfe3251ca</a></p>
+</blockquote>
+</blockquote>
+<p>JSON不管是在Web开发还是服务器开发中是相当常见的数据传输格式，一般情况我们对于JSON解析构造的性能并不需要过于关心，除非是在性能要求比较高的系统。</p>
+<p>目前对于Java开源的JSON类库有很多种，下面我们取4个常用的JSON库进行性能测试对比， 同时根据测试结果分析如果根据实际应用场景选择最合适的JSON库。</p>
+<p>这4个JSON类库分别为：<code>Gson，FastJson，Jackson，Json-lib</code>。</p>
+<h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>选择一个合适的JSON库要从多个方面进行考虑：</p>
+<p>1.字符串解析成JSON性能<br>2.字符串解析成JavaBean性能<br>3.JavaBean构造JSON性能<br>4.集合构造JSON性能<br>5.易用性</p>
+<p>先简单介绍下四个类库的身份背景</p>
+<p><strong>Gson</strong></p>
+<p>项目地址：<a href="https://github.com/google/gson" target="_blank" rel="noopener">https://github.com/google/gson</a></p>
+<p>Gson是目前功能最全的Json解析神器，Gson当初是为因应Google公司内部需求而由Google自行研发而来，但自从在2008年五月公开发布第一版后已被许多公司或用户应用。Gson的应用主要为toJson与fromJson两个转换函数，无依赖，不需要例外额外的jar，能够直接跑在JDK上。在使用这种对象转换之前，需先创建好对象的类型以及其成员才能成功的将JSON字符串成功转换成相对应的对象。类里面只要有get和set方法，Gson完全可以实现复杂类型的json到bean或bean到json的转换，是JSON解析的神器。</p>
+<p><strong>FastJson</strong></p>
+<p>项目地址：<a href="https://github.com/alibaba/fastjson" target="_blank" rel="noopener">https://github.com/alibaba/fastjson</a></p>
+<p>Fastjson是一个Java语言编写的高性能的JSON处理器,由阿里巴巴公司开发。无依赖，不需要例外额外的jar，能够直接跑在JDK上。FastJson在复杂类型的Bean转换Json上会出现一些问题，可能会出现引用的类型，导致Json转换出错，需要制定引用。FastJson采用独创的算法，将parse的速度提升到极致，超过所有json库。</p>
+<p><strong>Jackson</strong></p>
+<p>项目地址：<a href="https://github.com/FasterXML/jackson" target="_blank" rel="noopener">https://github.com/FasterXML/jackson</a></p>
+<p>Jackson是当前用的比较广泛的，用来序列化和反序列化json的Java开源框架。Jackson社区相对比较活跃，更新速度也比较快， 从Github中的统计来看，Jackson是最流行的json解析器之一，Spring MVC的默认json解析器便是Jackson。</p>
+<p>Jackson优点很多：</p>
+<ul>
+<li>Jackson 所依赖的jar包较少，简单易用。</li>
+<li>与其他 Java 的 json 的框架 Gson 等相比，Jackson 解析大的 json 文件速度比较快。</li>
+<li>Jackson 运行时占用内存比较低，性能比较好</li>
+<li>Jackson 有灵活的 API，可以很容易进行扩展和定制。</li>
+</ul>
+<p>目前最新版本是2.9.4，Jackson 的核心模块由三部分组成：</p>
+<ul>
+<li>jackson-core 核心包，提供基于”流模式”解析的相关 API，它包括 JsonPaser 和 JsonGenerator。Jackson 内部实现正是通过高性能的流模式 API 的 JsonGenerator 和 JsonParser 来生成和解析 json。</li>
+<li>jackson-annotations 注解包，提供标准注解功能；</li>
+<li>jackson-databind 数据绑定包，提供基于”对象绑定” 解析的相关 API（ ObjectMapper ）和”树模型” 解析的相关 API（JsonNode）；基于”对象绑定” 解析的 API 和”树模型”解析的 API 依赖基于”流模式”解析的 API。</li>
+</ul>
+<p>为什么Jackson的介绍这么长啊？因为它也是本人的最爱。</p>
+<p><strong>Json-lib</strong></p>
+<p>项目地址：<a href="http://json-lib.sourceforge.net/index.html" target="_blank" rel="noopener">http://json-lib.sourceforge.net/index.html</a></p>
+<p>json-lib最开始的也是应用最广泛的json解析工具，json-lib 不好的地方确实是依赖于很多第三方包，对于复杂类型的转换，json-lib对于json转换成bean还有缺陷， 比如一个类里面会出现另一个类的list或者map集合，json-lib从json到bean的转换就会出现问题。json-lib在功能和性能上面都不能满足现在互联网化的需求。</p>
+<h2 id="编写性能测试"><a href="#编写性能测试" class="headerlink" title="编写性能测试"></a>编写性能测试</h2><p>接下来开始编写这四个库的性能测试代码。</p>
+<p><strong>添加maven依赖</strong></p>
+<p>当然首先是添加四个库的maven依赖，公平起见，我全部使用它们最新的版本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Json libs--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;net.sf.json-lib&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;json-lib&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.4&lt;/version&gt;</span><br><span class="line">    &lt;classifier&gt;jdk15&lt;/classifier&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;gson&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.8.2&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;fastjson&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.2.46&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.9.4&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jackson-annotations&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.9.4&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>四个库的工具类</strong></p>
+<p>FastJsonUtil.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class FastJsonUtil &#123;</span><br><span class="line">    public static String bean2Json(Object obj) &#123;</span><br><span class="line">        return JSON.toJSONString(obj);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static &lt;T&gt; T json2Bean(String jsonStr, Class&lt;T&gt; objClass) &#123;</span><br><span class="line">        return JSON.parseObject(jsonStr, objClass);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>GsonUtil.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class GsonUtil &#123;</span><br><span class="line">    private static Gson gson = new GsonBuilder().create();</span><br><span class="line"></span><br><span class="line">    public static String bean2Json(Object obj) &#123;</span><br><span class="line">        return gson.toJson(obj);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static &lt;T&gt; T json2Bean(String jsonStr, Class&lt;T&gt; objClass) &#123;</span><br><span class="line">        return gson.fromJson(jsonStr, objClass);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static String jsonFormatter(String uglyJsonStr) &#123;</span><br><span class="line">        Gson gson = new GsonBuilder().setPrettyPrinting().create();</span><br><span class="line">        JsonParser jp = new JsonParser();</span><br><span class="line">        JsonElement je = jp.parse(uglyJsonStr);</span><br><span class="line">        return gson.toJson(je);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>JacksonUtil.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class JacksonUtil &#123;</span><br><span class="line">    private static ObjectMapper mapper = new ObjectMapper();</span><br><span class="line"></span><br><span class="line">    public static String bean2Json(Object obj) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            return mapper.writeValueAsString(obj);</span><br><span class="line">        &#125; catch (JsonProcessingException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static &lt;T&gt; T json2Bean(String jsonStr, Class&lt;T&gt; objClass) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            return mapper.readValue(jsonStr, objClass);</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>JsonLibUtil.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class JsonLibUtil &#123;</span><br><span class="line"></span><br><span class="line">    public static String bean2Json(Object obj) &#123;</span><br><span class="line">        JSONObject jsonObject = JSONObject.fromObject(obj);</span><br><span class="line">        return jsonObject.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">    public static &lt;T&gt; T json2Bean(String jsonStr, Class&lt;T&gt; objClass) &#123;</span><br><span class="line">        return (T) JSONObject.toBean(JSONObject.fromObject(jsonStr), objClass);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>准备Model类</strong></p>
+<p>这里我写一个简单的Person类，同时属性有Date、List、Map和自定义的类FullName，最大程度模拟真实场景。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class Person &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private FullName fullName;</span><br><span class="line">    private int age;</span><br><span class="line">    private Date birthday;</span><br><span class="line">    private List&lt;String&gt; hobbies;</span><br><span class="line">    private Map&lt;String, String&gt; clothes;</span><br><span class="line">    private List&lt;Person&gt; friends;</span><br><span class="line"></span><br><span class="line">    // getter/setter省略</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        StringBuilder str = new StringBuilder(&quot;Person [name=&quot; + name + &quot;, fullName=&quot; + fullName + &quot;, age=&quot;</span><br><span class="line">                + age + &quot;, birthday=&quot; + birthday + &quot;, hobbies=&quot; + hobbies</span><br><span class="line">                + &quot;, clothes=&quot; + clothes + &quot;]\n&quot;);</span><br><span class="line">        if (friends != null) &#123;</span><br><span class="line">            str.append(&quot;Friends:\n&quot;);</span><br><span class="line">            for (Person f : friends) &#123;</span><br><span class="line">                str.append(&quot;\t&quot;).append(f);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return str.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class FullName &#123;</span><br><span class="line">    private String firstName;</span><br><span class="line">    private String middleName;</span><br><span class="line">    private String lastName;</span><br><span class="line"></span><br><span class="line">    public FullName() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public FullName(String firstName, String middleName, String lastName) &#123;</span><br><span class="line">        this.firstName = firstName;</span><br><span class="line">        this.middleName = middleName;</span><br><span class="line">        this.lastName = lastName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 省略getter和setter</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;[firstName=&quot; + firstName + &quot;, middleName=&quot;</span><br><span class="line">                + middleName + &quot;, lastName=&quot; + lastName + &quot;]&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>JSON序列化性能基准测试</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">@BenchmarkMode(Mode.SingleShotTime)</span><br><span class="line">@OutputTimeUnit(TimeUnit.SECONDS)</span><br><span class="line">@State(Scope.Benchmark)</span><br><span class="line">public class JsonSerializeBenchmark &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 序列化次数参数</span><br><span class="line">     */</span><br><span class="line">    @Param(&#123;&quot;1000&quot;, &quot;10000&quot;, &quot;100000&quot;&#125;)</span><br><span class="line">    private int count;</span><br><span class="line"></span><br><span class="line">    private Person p;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line">        Options opt = new OptionsBuilder()</span><br><span class="line">                .include(JsonSerializeBenchmark.class.getSimpleName())</span><br><span class="line">                .forks(1)</span><br><span class="line">                .warmupIterations(0)</span><br><span class="line">                .build();</span><br><span class="line">        Collection&lt;RunResult&gt; results =  new Runner(opt).run();</span><br><span class="line">        ResultExporter.exportResult(&quot;JSON序列化性能&quot;, results, &quot;count&quot;, &quot;秒&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Benchmark</span><br><span class="line">    public void JsonLib() &#123;</span><br><span class="line">        for (int i = 0; i &lt; count; i++) &#123;</span><br><span class="line">            JsonLibUtil.bean2Json(p);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Benchmark</span><br><span class="line">    public void Gson() &#123;</span><br><span class="line">        for (int i = 0; i &lt; count; i++) &#123;</span><br><span class="line">            GsonUtil.bean2Json(p);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Benchmark</span><br><span class="line">    public void FastJson() &#123;</span><br><span class="line">        for (int i = 0; i &lt; count; i++) &#123;</span><br><span class="line">            FastJsonUtil.bean2Json(p);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Benchmark</span><br><span class="line">    public void Jackson() &#123;</span><br><span class="line">        for (int i = 0; i &lt; count; i++) &#123;</span><br><span class="line">            JacksonUtil.bean2Json(p);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Setup</span><br><span class="line">    public void prepare() &#123;</span><br><span class="line">        List&lt;Person&gt; friends=new ArrayList&lt;Person&gt;();</span><br><span class="line">        friends.add(createAPerson(&quot;小明&quot;,null));</span><br><span class="line">        friends.add(createAPerson(&quot;Tony&quot;,null));</span><br><span class="line">        friends.add(createAPerson(&quot;陈小二&quot;,null));</span><br><span class="line">        p=createAPerson(&quot;邵同学&quot;,friends);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @TearDown</span><br><span class="line">    public void shutdown() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private Person createAPerson(String name,List&lt;Person&gt; friends) &#123;</span><br><span class="line">        Person newPerson=new Person();</span><br><span class="line">        newPerson.setName(name);</span><br><span class="line">        newPerson.setFullName(new FullName(&quot;zjj_first&quot;, &quot;zjj_middle&quot;, &quot;zjj_last&quot;));</span><br><span class="line">        newPerson.setAge(24);</span><br><span class="line">        List&lt;String&gt; hobbies=new ArrayList&lt;String&gt;();</span><br><span class="line">        hobbies.add(&quot;篮球&quot;);</span><br><span class="line">        hobbies.add(&quot;游泳&quot;);</span><br><span class="line">        hobbies.add(&quot;coding&quot;);</span><br><span class="line">        newPerson.setHobbies(hobbies);</span><br><span class="line">        Map&lt;String,String&gt; clothes=new HashMap&lt;String, String&gt;();</span><br><span class="line">        clothes.put(&quot;coat&quot;, &quot;Nike&quot;);</span><br><span class="line">        clothes.put(&quot;trousers&quot;, &quot;adidas&quot;);</span><br><span class="line">        clothes.put(&quot;shoes&quot;, &quot;安踏&quot;);</span><br><span class="line">        newPerson.setClothes(clothes);</span><br><span class="line">        newPerson.setFriends(friends);</span><br><span class="line">        return newPerson;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>说明一下，上面的代码中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ResultExporter.exportResult(&quot;JSON序列化性能&quot;, results, &quot;count&quot;, &quot;秒&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>这个是我自己编写的将性能测试报告数据填充至Echarts图，然后导出png图片的方法，具体代码我就不贴了，参考我的github源码。</p>
+<p>执行后的结果图：<br><img src="/2019/08/16/几款主流JSON库性能对比/161923.jpg" alt=""><br>从上面的测试结果可以看出，序列化次数比较小的时候，Gson性能最好，当不断增加的时候到了100000，Gson明细弱于Jackson和FastJson， 这时候FastJson性能是真的牛，另外还可以看到不管数量少还是多，Jackson一直表现优异。而那个Json-lib简直就是来搞笑的。^_^</p>
+<p><strong>JSON反序列化性能基准测试</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">@BenchmarkMode(Mode.SingleShotTime)</span><br><span class="line">@OutputTimeUnit(TimeUnit.SECONDS)</span><br><span class="line">@State(Scope.Benchmark)</span><br><span class="line">public class JsonDeserializeBenchmark &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 反序列化次数参数</span><br><span class="line">     */</span><br><span class="line">    @Param(&#123;&quot;1000&quot;, &quot;10000&quot;, &quot;100000&quot;&#125;)</span><br><span class="line">    private int count;</span><br><span class="line"></span><br><span class="line">    private String jsonStr;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line">        Options opt = new OptionsBuilder()</span><br><span class="line">                .include(JsonDeserializeBenchmark.class.getSimpleName())</span><br><span class="line">                .forks(1)</span><br><span class="line">                .warmupIterations(0)</span><br><span class="line">                .build();</span><br><span class="line">        Collection&lt;RunResult&gt; results =  new Runner(opt).run();</span><br><span class="line">        ResultExporter.exportResult(&quot;JSON反序列化性能&quot;, results, &quot;count&quot;, &quot;秒&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Benchmark</span><br><span class="line">    public void JsonLib() &#123;</span><br><span class="line">        for (int i = 0; i &lt; count; i++) &#123;</span><br><span class="line">            JsonLibUtil.json2Bean(jsonStr, Person.class);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Benchmark</span><br><span class="line">    public void Gson() &#123;</span><br><span class="line">        for (int i = 0; i &lt; count; i++) &#123;</span><br><span class="line">            GsonUtil.json2Bean(jsonStr, Person.class);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Benchmark</span><br><span class="line">    public void FastJson() &#123;</span><br><span class="line">        for (int i = 0; i &lt; count; i++) &#123;</span><br><span class="line">            FastJsonUtil.json2Bean(jsonStr, Person.class);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Benchmark</span><br><span class="line">    public void Jackson() &#123;</span><br><span class="line">        for (int i = 0; i &lt; count; i++) &#123;</span><br><span class="line">            JacksonUtil.json2Bean(jsonStr, Person.class);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Setup</span><br><span class="line">    public void prepare() &#123;</span><br><span class="line">        jsonStr=&quot;&#123;\&quot;name\&quot;:\&quot;邵同学\&quot;,\&quot;fullName\&quot;:&#123;\&quot;firstName\&quot;:\&quot;zjj_first\&quot;,\&quot;middleName\&quot;:\&quot;zjj_middle\&quot;,\&quot;lastName\&quot;:\&quot;zjj_last\&quot;&#125;,\&quot;age\&quot;:24,\&quot;birthday\&quot;:null,\&quot;hobbies\&quot;:[\&quot;篮球\&quot;,\&quot;游泳\&quot;,\&quot;coding\&quot;],\&quot;clothes\&quot;:&#123;\&quot;shoes\&quot;:\&quot;安踏\&quot;,\&quot;trousers\&quot;:\&quot;adidas\&quot;,\&quot;coat\&quot;:\&quot;Nike\&quot;&#125;,\&quot;friends\&quot;:[&#123;\&quot;name\&quot;:\&quot;小明\&quot;,\&quot;fullName\&quot;:&#123;\&quot;firstName\&quot;:\&quot;xxx_first\&quot;,\&quot;middleName\&quot;:\&quot;xxx_middle\&quot;,\&quot;lastName\&quot;:\&quot;xxx_last\&quot;&#125;,\&quot;age\&quot;:24,\&quot;birthday\&quot;:null,\&quot;hobbies\&quot;:[\&quot;篮球\&quot;,\&quot;游泳\&quot;,\&quot;coding\&quot;],\&quot;clothes\&quot;:&#123;\&quot;shoes\&quot;:\&quot;安踏\&quot;,\&quot;trousers\&quot;:\&quot;adidas\&quot;,\&quot;coat\&quot;:\&quot;Nike\&quot;&#125;,\&quot;friends\&quot;:null&#125;,&#123;\&quot;name\&quot;:\&quot;Tony\&quot;,\&quot;fullName\&quot;:&#123;\&quot;firstName\&quot;:\&quot;xxx_first\&quot;,\&quot;middleName\&quot;:\&quot;xxx_middle\&quot;,\&quot;lastName\&quot;:\&quot;xxx_last\&quot;&#125;,\&quot;age\&quot;:24,\&quot;birthday\&quot;:null,\&quot;hobbies\&quot;:[\&quot;篮球\&quot;,\&quot;游泳\&quot;,\&quot;coding\&quot;],\&quot;clothes\&quot;:&#123;\&quot;shoes\&quot;:\&quot;安踏\&quot;,\&quot;trousers\&quot;:\&quot;adidas\&quot;,\&quot;coat\&quot;:\&quot;Nike\&quot;&#125;,\&quot;friends\&quot;:null&#125;,&#123;\&quot;name\&quot;:\&quot;陈小二\&quot;,\&quot;fullName\&quot;:&#123;\&quot;firstName\&quot;:\&quot;xxx_first\&quot;,\&quot;middleName\&quot;:\&quot;xxx_middle\&quot;,\&quot;lastName\&quot;:\&quot;xxx_last\&quot;&#125;,\&quot;age\&quot;:24,\&quot;birthday\&quot;:null,\&quot;hobbies\&quot;:[\&quot;篮球\&quot;,\&quot;游泳\&quot;,\&quot;coding\&quot;],\&quot;clothes\&quot;:&#123;\&quot;shoes\&quot;:\&quot;安踏\&quot;,\&quot;trousers\&quot;:\&quot;adidas\&quot;,\&quot;coat\&quot;:\&quot;Nike\&quot;&#125;,\&quot;friends\&quot;:null&#125;]&#125;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @TearDown</span><br><span class="line">    public void shutdown() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>执行后的结果图：<br><img src="/2019/08/16/几款主流JSON库性能对比/7162032.jpg" alt=""><br>从上面的测试结果可以看出，反序列化的时候，Gson、Jackson和FastJson区别不大，性能都很优异，而那个Json-lib还是来继续搞笑的。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/08/16/几款主流JSON库性能对比/" data-id="cjzfem5eo006zk0fvf2iujltg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1466132938&site=qq&menu=yes" target="_blank" rel="noopener">
+                          <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/08/17/IDEA从入门到癫狂/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            IDEA从入门到癫狂
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/08/15/7种JVM垃圾收集器的对比/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">7种JVM垃圾收集器的对比</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/17/推荐几个IDEA插件/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/17/推荐几个IDEA插件/0817183002.png)" alt="推荐几个IDEA插件" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/推荐好文/">推荐好文</a></p>
+                            <p class="item-title"><a href="/2019/08/17/推荐几个IDEA插件/" class="title">推荐几个IDEA插件</a></p>
+                            <p class="item-date"><time datetime="2019-08-17T10:23:26.000Z" itemprop="datePublished">2019-08-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/17/IDEA从入门到癫狂/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/17/IDEA从入门到癫狂/7165751.jpg)" alt="IDEA从入门到癫狂" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/推荐好文/">推荐好文</a></p>
+                            <p class="item-title"><a href="/2019/08/17/IDEA从入门到癫狂/" class="title">IDEA从入门到癫狂</a></p>
+                            <p class="item-date"><time datetime="2019-08-17T08:55:50.000Z" itemprop="datePublished">2019-08-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/16/几款主流JSON库性能对比/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/16/几款主流JSON库性能对比/94444.jpg)" alt="几款主流JSON库性能对比" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/16/几款主流JSON库性能对比/" class="title">几款主流JSON库性能对比</a></p>
+                            <p class="item-date"><time datetime="2019-08-16T08:01:59.000Z" itemprop="datePublished">2019-08-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/15/7种JVM垃圾收集器的对比/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/15/7种JVM垃圾收集器的对比/154645.jpg)" alt="7种JVM垃圾收集器的对比" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/推荐好文/">推荐好文</a></p>
+                            <p class="item-title"><a href="/2019/08/15/7种JVM垃圾收集器的对比/" class="title">7种JVM垃圾收集器的对比</a></p>
+                            <p class="item-date"><time datetime="2019-08-15T07:43:11.000Z" itemprop="datePublished">2019-08-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/15/IDEA远程一键部署SpringBoot/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/15/IDEA远程一键部署SpringBoot/5152858.jpg)" alt="IDEA远程一键部署SpringBoot" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/推荐好文/">推荐好文</a></p>
+                            <p class="item-title"><a href="/2019/08/15/IDEA远程一键部署SpringBoot/" class="title">IDEA远程一键部署SpringBoot</a></p>
+                            <p class="item-date"><time datetime="2019-08-15T07:27:31.000Z" itemprop="datePublished">2019-08-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/">JSP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javaweb/">Javaweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发工具/">开发工具</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能测试/">性能测试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/框架/">框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存机制/">缓存机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JVM/" style="font-size: 13px;">JVM</a> <a href="/tags/Java/" style="font-size: 16px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19px;">JavaScript</a> <a href="/tags/Javaweb/" style="font-size: 10px;">Javaweb</a> <a href="/tags/Jquery/" style="font-size: 10px;">Jquery</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 17px;">PHP</a> <a href="/tags/XML/" style="font-size: 11px;">XML</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/git/" style="font-size: 11px;">git</a> <a href="/tags/html/" style="font-size: 18px;">html</a> <a href="/tags/java/" style="font-size: 19px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 16px;">maven</a> <a href="/tags/node/" style="font-size: 11px;">node</a> <a href="/tags/orcal/" style="font-size: 14px;">orcal</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 13px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/开发工具/" style="font-size: 15px;">开发工具</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/心语/" style="font-size: 12px;">心语</a> <a href="/tags/性能测试/" style="font-size: 10px;">性能测试</a> <a href="/tags/技术/" style="font-size: 12px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 16px;">数据结构与算法</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/缓存机制/" style="font-size: 10px;">缓存机制</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/08/16/几款主流JSON库性能对比/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

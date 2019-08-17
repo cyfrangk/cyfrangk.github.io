@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>IDEA从入门到癫狂 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="开发工具">
+    
+    <meta name="description" content="前言：IntelliJ IDEA如果说IntelliJ IDEA是一款现代化智能开发工具的话，Eclipse则称得上是石器时代的东西了。 其实笔者也是一枚从Eclipse转IDEA的探索者，随着近期的不断开发实践和调试，逐步体会到这款智能IDE带来的巨大开发便利，在强大的插件功能支持下，诸如对Git和Maven的支持简直让人停不下来，各种代码提示，包括JS更是手到擒来，最终不得不被这款神奇的IDE">
+<meta name="keywords" content="开发工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IDEA从入门到癫狂">
+<meta property="og:url" content="http://yoursite.com/2019/08/17/IDEA从入门到癫狂/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="前言：IntelliJ IDEA如果说IntelliJ IDEA是一款现代化智能开发工具的话，Eclipse则称得上是石器时代的东西了。 其实笔者也是一枚从Eclipse转IDEA的探索者，随着近期的不断开发实践和调试，逐步体会到这款智能IDE带来的巨大开发便利，在强大的插件功能支持下，诸如对Git和Maven的支持简直让人停不下来，各种代码提示，包括JS更是手到擒来，最终不得不被这款神奇的IDE">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/08/17/IDEA从入门到癫狂/7165751.jpg">
+<meta property="og:updated_time" content="2019-08-17T09:23:11.828Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IDEA从入门到癫狂">
+<meta name="twitter:description" content="前言：IntelliJ IDEA如果说IntelliJ IDEA是一款现代化智能开发工具的话，Eclipse则称得上是石器时代的东西了。 其实笔者也是一枚从Eclipse转IDEA的探索者，随着近期的不断开发实践和调试，逐步体会到这款智能IDE带来的巨大开发便利，在强大的插件功能支持下，诸如对Git和Maven的支持简直让人停不下来，各种代码提示，包括JS更是手到擒来，最终不得不被这款神奇的IDE">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/17/IDEA从入门到癫狂/7165751.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/推荐好文/">推荐好文</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
+    <input name="wd" type="text" class="search-form-input" placeholder="搜索">
+</form>
+<script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/推荐好文/">推荐好文</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-IDEA从入门到癫狂" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        IDEA从入门到癫狂
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/08/17/IDEA从入门到癫狂/" class="article-date">
+            <time datetime="2019-08-17T08:55:50.000Z" itemprop="datePublished">2019-08-17</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/开发工具/">开发工具</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="前言：IntelliJ-IDEA"><a href="#前言：IntelliJ-IDEA" class="headerlink" title="前言：IntelliJ IDEA"></a>前言：IntelliJ IDEA</h2><p>如果说IntelliJ IDEA是一款现代化智能开发工具的话，Eclipse则称得上是石器时代的东西了。</p>
+<p>其实笔者也是一枚从Eclipse转IDEA的探索者，随着近期的不断开发实践和调试，逐步体会到这款智能IDE带来的巨大开发便利，在强大的插件功能支持下，诸如对Git和Maven的支持简直让人停不下来，各种代码提示，包括JS更是手到擒来，最终不得不被这款神奇的IDE所折服。为了让身边更多的小伙伴参与进来，决定写下这篇文章。</p>
+<h2 id="1-IDEA-VS-Eclipse-核心术语比较"><a href="#1-IDEA-VS-Eclipse-核心术语比较" class="headerlink" title="1. IDEA VS Eclipse 核心术语比较"></a>1. IDEA VS Eclipse 核心术语比较</h2><p>由下图可见：两者最大的转变就在于工作空间概念的转变，并且在IDEA当中，Project和 Module是作为两个不同的概念，对项目结构是具有重大意义的，这也恰恰是许多IDEA初学者觉得困扰的地方。<br><img src="/2019/08/17/IDEA从入门到癫狂/7165751.jpg" alt=""><br><strong>1.1 为什么要取消工作空间？</strong></p>
+<p>答：简单来说，IDEA不需要设置工作空间，因为每一个Project都具备一个工作空间！！对于每一个IDEA的项目工程（Project）而言，它的每一个子模块（Module）都可以使用独立的JDK和MAVEN配置。这对于传统项目迈向新项目的重构添加了极大的便利性，这种多元化的灵活性正是Eclipse所缺失的，因为开始Eclipse在初次使用时已经绑死了工作空间。</p>
+<p><strong>1.2 此外，很多新手都会问，为什么IDEA里面的子工程要称为Module ？</strong></p>
+<p>答：其实就是模块化的概念，作为聚合工程亦或普通的根目录，它称之为Project，而下面的子工程称为模块，每一个子模块之间可以相关联，也可以没有任何关联。</p>
+<h2 id="2-当前项目配置VS-默认配置"><a href="#2-当前项目配置VS-默认配置" class="headerlink" title="2. 当前项目配置VS 默认配置"></a>2. 当前项目配置VS 默认配置</h2><p><strong>2.1 为什么有了当前项目配置，还需要默认配置呢？</strong></p>
+<p>答：因为IDEA没有工作空间的概念，所以每个新项目（Project）都需要设置自己的JDK和MAVEN等相关配置，这样虽然提高了灵活性，但是却要为每个新项目都要重新配置，这显然不符合我们的预期。在这个背景下，默认配置给予当前项目配置提供了Default选项，问题自然就迎刃而解了。</p>
+<blockquote>
+<blockquote>
+<p>补充：IDEA为了明确这个新项目配置的概念，在2018.2之后的正式版本已正式将“Default Settings”名字修改“ Default Settings /ProjectStructs”，即“默认配置”就是指“新项目配置”。</p>
+</blockquote>
+</blockquote>
+<p><strong>2.2 初始化步骤</strong></p>
+<p>打开默认配置：<code>顶部导航栏 -&gt; File -&gt; Other Settings -&gt; Default Settings /ProjectStructs</code></p>
+<p>打开当前配置：<code>顶部导航栏 -&gt; File -&gt; Settings / ProjectStructs</code></p>
+<p>示例图：<br><img src="/2019/08/17/IDEA从入门到癫狂/170511.jpg" alt=""><br>如果当前项目想覆盖默认配置，直接在Settins/Project Structure设置即可。</p>
+<p>接下来，来看看IDEA如何快速搭建Java开发环境！！</p>
+<h2 id="3-全局JDK（默认配置）"><a href="#3-全局JDK（默认配置）" class="headerlink" title="3. 全局JDK（默认配置）"></a>3. 全局JDK（默认配置）</h2><p>具体步骤：<code>顶部工具栏 File -&gt;Other Settins -&gt; Default Project Structure -&gt; SDKs -&gt; JDK</code></p>
+<p>示例：根据下图步骤设置JDK目录，最后点击OK保存。<br><img src="/2019/08/17/IDEA从入门到癫狂/170553.jpg" alt=""></p>
+<blockquote>
+<blockquote>
+<p>注：SDKs全称是Software Development Kit ，因为IDEA支持JDK等多种开发工具包。</p>
+</blockquote>
+</blockquote>
+<p>同理，当前项目在Project Structure可为工程和各模块设置喜欢的JDK版本。</p>
+<h2 id="4-全局Maven（默认配置）"><a href="#4-全局Maven（默认配置）" class="headerlink" title="4. 全局Maven（默认配置）"></a>4. 全局Maven（默认配置）</h2><p>具体步骤：<code>顶部工具栏 File -&gt;Other Settings -&gt; Default Settings -&gt; Build &amp; Tools -&gt; Maven</code></p>
+<p>示例：理论上只要配置了Maven主目录即可，实际开发推荐采用User Settins file。<br><img src="/2019/08/17/IDEA从入门到癫狂/7170648.jpg" alt=""><br>这里提醒一下，Apache Maven 本地仓库的地址是自动生成的，通常在C盘的用户目录里，所以在实际开发中推荐大家指定本地仓库的地址，避免因重装系统或被第三方安全工具清理而丢失数据。Maven的配置很简单，删掉注释后一目了然。（注：Maven不熟悉的，可以在我们Java知音公众号回复”maven视频”，获取maven视频教程）如图：<br><img src="/2019/08/17/IDEA从入门到癫狂/17170732.jpg" alt=""><br>打开Maven神器</p>
+<p>还在Eclipse使用Update命令苦苦挣扎的童鞋，请火速尝试IDEA提供的Maven插件，其操作的便利性将给你带来前所未有的愉快感！！</p>
+<p>具体步骤：<code>右侧工具栏 Maven -&gt; 点击展开某工程或模块 -&gt;快速执行Maven命令。</code><br><img src="/2019/08/17/IDEA从入门到癫狂/7170806.jpg" alt=""></p>
+<h2 id="5-版本控制Git-Svn-（默认配置）"><a href="#5-版本控制Git-Svn-（默认配置）" class="headerlink" title="5. 版本控制Git/Svn （默认配置）"></a>5. 版本控制Git/Svn （默认配置）</h2><p>具体步骤：<code>顶部工具栏 File -&gt;Other Settings -&gt; Default Settings -&gt; Version Control -&gt; Git</code></p>
+<p>使用说明：IDEA默认集成了对Git/Svn的支持 直接设置执行程序，右边Test提示成功即可。</p>
+<p>问题反馈：有部分小伙伴反馈说IDEA无法找到svn.exe，解决方法：重装SVN，配置项重新选择command line client tools 即可。<br><img src="/2019/08/17/IDEA从入门到癫狂/17170847.jpg" alt=""></p>
+<blockquote>
+<blockquote>
+<p>PS: IDEA内置的Git插件灰常好用，尤其是解决冲突性的代码。另外Git客户端推荐SourceTree。</p>
+</blockquote>
+</blockquote>
+<h2 id="6-自动导包和智能移除-（默认配置）"><a href="#6-自动导包和智能移除-（默认配置）" class="headerlink" title="6. 自动导包和智能移除 （默认配置）"></a>6. 自动导包和智能移除 （默认配置）</h2><p>具体步骤：<code>顶部工具栏 File -&gt;Other Settings -&gt; Default Settings -&gt; Auto Import</code></p>
+<p>使用说明：在网上看到很多人在提问IDEA为什么不能优化导包而Eclipse可以，这不是低端黑嘛， 所以特意抽出来跟大家分享IDEA如何优化导包。<br><img src="/2019/08/17/IDEA从入门到癫狂/17170926.jpg" alt=""></p>
+<h2 id="7-Tomcat-Server（当前项目配置）"><a href="#7-Tomcat-Server（当前项目配置）" class="headerlink" title="7. Tomcat Server（当前项目配置）"></a>7. Tomcat Server（当前项目配置）</h2><p>很多小伙伴刚开始都找不到Tomcat的配置，其实很简单，Tomcat或者Jetty这些都是部署的容器，自然会联想到Deployment ，打开部署配置，可以看到应用服务器的配置。</p>
+<p>配置Tomcat方法：<code>File -&gt; Settings -&gt; Deployment -&gt; Application Servers -&gt; Tomcat Server</code></p>
+<p>具体配置方法，如下图：<br><img src="/2019/08/17/IDEA从入门到癫狂/71011.jpg" alt=""><br><strong>IDEA 必备小技能</strong><br>为了提升开发效率，撸主贴心为大家准备以下实用指数五颗星的小技巧：</p>
+<h2 id="8-自动编译"><a href="#8-自动编译" class="headerlink" title="8. 自动编译"></a>8. 自动编译</h2><p>具体步骤：<code>顶部工具栏 File -&gt;Other Settings -&gt; Default Settings -&gt; Auto Import</code></p>
+<p>说明：开启自动编译之后，结合Ctrl+Shift+F9 会有热更新效果。<br><img src="/2019/08/17/IDEA从入门到癫狂/171052.jpg" alt=""><br>具体步骤：敲击 Ctrl + Shift + Alt + / 然后双击Shift搜索进入Registry ，找到compiler.automake.allow.when.app.running ，然后勾选上。<br><img src="/2019/08/17/IDEA从入门到癫狂/171147.jpg" alt=""><br><img src="/2019/08/17/IDEA从入门到癫狂/7171201.jpg" alt=""></p>
+<h2 id="9-取大小写敏感"><a href="#9-取大小写敏感" class="headerlink" title="9. 取大小写敏感"></a>9. 取大小写敏感</h2><p>具体步骤：</p>
+<p><code>File | Settings | Editor | General | Code Completion Case | Sensitive Completion = None</code></p>
+<p>取消大小敏感，在编写代码的时候，代码的自动提示将更加全面和丰富。<br><img src="/2019/08/17/IDEA从入门到癫狂/7171230.jpg" alt=""></p>
+<h2 id="10-调整字体类型和字体大小"><a href="#10-调整字体类型和字体大小" class="headerlink" title="10. 调整字体类型和字体大小"></a>10. 调整字体类型和字体大小</h2><p>默认的白色背景和细小的字体会影响大家的编码体验，这里特意提供了调整代码窗的快捷配置。打开配置，搜索Font，然后再Font可以调整字体类型，Size可以调整字体大小，如图：<br><img src="/2019/08/17/IDEA从入门到癫狂/17171256.jpg" alt=""></p>
+<h2 id="11-将快捷键设置为跟Eclipse一样"><a href="#11-将快捷键设置为跟Eclipse一样" class="headerlink" title="11. 将快捷键设置为跟Eclipse一样"></a>11. 将快捷键设置为跟Eclipse一样</h2><p>很多人可能并不习惯IDEA的快捷键，为了方便，这里我们将快捷键设置为跟 Eclipse一样。</p>
+<p>具体步骤: <code>File -&gt; Settings -&gt; Keymap - &gt; 选择Eclipse</code><br><img src="/2019/08/17/IDEA从入门到癫狂/7171346.jpg" alt=""><br>从Eclipse转过来的小伙伴 可以放心使用</p>
+<h2 id="12-打开常用工具栏"><a href="#12-打开常用工具栏" class="headerlink" title="12. 打开常用工具栏"></a>12. 打开常用工具栏</h2><p>具体步骤：<code>顶部导航栏 - View -&gt; 勾选 Toolbar &amp; Tool Buttons</code></p>
+<p>如下图所示：<br><img src="/2019/08/17/IDEA从入门到癫狂/17171422.jpg" alt=""></p>
+<h2 id="13-懒人必备快捷键"><a href="#13-懒人必备快捷键" class="headerlink" title="13. 懒人必备快捷键"></a>13. 懒人必备快捷键</h2><p><strong>A. 按【鼠标中键】快速打开智能提示，取代alt+enter 。</strong></p>
+<p>File-&gt;Settings-&gt; Keymap-&gt; 搜索 Show Intention Actions -&gt; 添加快捷键为鼠标中键。</p>
+<p><strong>B. 按【F2】快速修改文件名，告别双手操作。</strong></p>
+<p>File-&gt;Settings-&gt; Keymap-&gt; 搜索 Rename -&gt; 将快捷键设置为F2 。</p>
+<p><strong>C. 按【F3】直接打开文件所在目录，浏览一步到位。</strong></p>
+<p>File-&gt;Settings-&gt; Keymap-&gt; 搜索 Show In Explorer -&gt; 将快捷键设置为F3 。</p>
+<p><strong>D. 按【Ctrl+鼠标右键】直接打开实现类，方便开发查询。</strong></p>
+<p>File-&gt;Settings-&gt; Keymap-&gt; 搜索 implementation-&gt; Add Mouse Shortcut 将快捷键设置为Ctrl+ 鼠标右键。</p>
+<h2 id="14-重度强迫症患者"><a href="#14-重度强迫症患者" class="headerlink" title="14. 重度强迫症患者"></a>14. 重度强迫症患者</h2><p><strong>A.取消大小写敏感，让自动提示更齐全！</strong></p>
+<p>File | Settings | Editor | General | Code Completion Case | Sensitive Completion = None。</p>
+<p><strong>B.隐藏开发工具的配置目录 例如 .idea;.iml</strong></p>
+<p>File | Settings | File Types | 在末尾加上 .idea;.iml</p>
+<p><strong>C.收起注释，让源码阅读更为清爽！</strong></p>
+<p>File -&gt; Settings -&gt; Editor -&gt; General -&gt; Code Folding -&gt; Documentation comments 勾选。</p>
+<p>如何想快速一键打开全部注释，则单击鼠标右键，选择Folding -&gt; Expand Doc comments 。</p>
+<h2 id="15-IDEA问答"><a href="#15-IDEA问答" class="headerlink" title="15. IDEA问答"></a>15. IDEA问答</h2><p><strong>(1).如何打开本地工程/已存在的工程？</strong></p>
+<p>答：点击File -&gt; Open 打开 工程文件夹即可，注意先配置好JDK、Maven等基础配置。</p>
+<p><strong>(2).IDEA如何删除项目工程？</strong></p>
+<p>答：问这个问题的Coder真的好可爱啊哈哈，很肯定的回答你，不需要删，</p>
+<p>点击File-&gt; Close Project 即可快速关闭当前项目；</p>
+<p>示例：</p>
+<p>什么？你还是想要干掉整个目录？那也阔以，右键Show In Explorer ，删掉文件夹 即可。不过笔者建议还是直接Close关掉就好啦，万一以后用得上呢，你说呢？<br><img src="/2019/08/17/IDEA从入门到癫狂/7171613.jpg" alt=""><br><strong>(3).如何在单个窗口打开多个Maven工程啊？</strong></p>
+<p>答：随便新建一个文件夹，然后将工程都扔进去，使用IDEA打开这个文件夹。</p>
+<p><strong>(4).如何为当前项目工程添加多个模块啊？</strong></p>
+<p>答：对着工程右键 -&gt; 选择New -&gt; Module -&gt; 通常选择Spring Initializr ，如图：<br><img src="/2019/08/17/IDEA从入门到癫狂/171654.jpg" alt="新增模块"><br><img src="/2019/08/17/IDEA从入门到癫狂/7171713.jpg" alt="多模块工程"></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/08/17/IDEA从入门到癫狂/" data-id="cjzfem5at005hk0fv3k63ufex" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1466132938&site=qq&menu=yes" target="_blank" rel="noopener">
+                          <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/08/17/推荐几个IDEA插件/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            推荐几个IDEA插件
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/08/16/几款主流JSON库性能对比/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">几款主流JSON库性能对比</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/17/推荐几个IDEA插件/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/17/推荐几个IDEA插件/0817183002.png)" alt="推荐几个IDEA插件" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/推荐好文/">推荐好文</a></p>
+                            <p class="item-title"><a href="/2019/08/17/推荐几个IDEA插件/" class="title">推荐几个IDEA插件</a></p>
+                            <p class="item-date"><time datetime="2019-08-17T10:23:26.000Z" itemprop="datePublished">2019-08-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/17/IDEA从入门到癫狂/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/17/IDEA从入门到癫狂/7165751.jpg)" alt="IDEA从入门到癫狂" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/推荐好文/">推荐好文</a></p>
+                            <p class="item-title"><a href="/2019/08/17/IDEA从入门到癫狂/" class="title">IDEA从入门到癫狂</a></p>
+                            <p class="item-date"><time datetime="2019-08-17T08:55:50.000Z" itemprop="datePublished">2019-08-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/16/几款主流JSON库性能对比/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/16/几款主流JSON库性能对比/94444.jpg)" alt="几款主流JSON库性能对比" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/16/几款主流JSON库性能对比/" class="title">几款主流JSON库性能对比</a></p>
+                            <p class="item-date"><time datetime="2019-08-16T08:01:59.000Z" itemprop="datePublished">2019-08-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/15/7种JVM垃圾收集器的对比/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/15/7种JVM垃圾收集器的对比/154645.jpg)" alt="7种JVM垃圾收集器的对比" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/推荐好文/">推荐好文</a></p>
+                            <p class="item-title"><a href="/2019/08/15/7种JVM垃圾收集器的对比/" class="title">7种JVM垃圾收集器的对比</a></p>
+                            <p class="item-date"><time datetime="2019-08-15T07:43:11.000Z" itemprop="datePublished">2019-08-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/15/IDEA远程一键部署SpringBoot/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/15/IDEA远程一键部署SpringBoot/5152858.jpg)" alt="IDEA远程一键部署SpringBoot" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/推荐好文/">推荐好文</a></p>
+                            <p class="item-title"><a href="/2019/08/15/IDEA远程一键部署SpringBoot/" class="title">IDEA远程一键部署SpringBoot</a></p>
+                            <p class="item-date"><time datetime="2019-08-15T07:27:31.000Z" itemprop="datePublished">2019-08-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/">JSP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javaweb/">Javaweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发工具/">开发工具</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能测试/">性能测试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/框架/">框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存机制/">缓存机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JVM/" style="font-size: 13px;">JVM</a> <a href="/tags/Java/" style="font-size: 16px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19px;">JavaScript</a> <a href="/tags/Javaweb/" style="font-size: 10px;">Javaweb</a> <a href="/tags/Jquery/" style="font-size: 10px;">Jquery</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PHP/" style="font-size: 17px;">PHP</a> <a href="/tags/XML/" style="font-size: 11px;">XML</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/git/" style="font-size: 11px;">git</a> <a href="/tags/html/" style="font-size: 18px;">html</a> <a href="/tags/java/" style="font-size: 19px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 16px;">maven</a> <a href="/tags/node/" style="font-size: 11px;">node</a> <a href="/tags/orcal/" style="font-size: 14px;">orcal</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 13px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/开发工具/" style="font-size: 15px;">开发工具</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/心语/" style="font-size: 12px;">心语</a> <a href="/tags/性能测试/" style="font-size: 10px;">性能测试</a> <a href="/tags/技术/" style="font-size: 12px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 16px;">数据结构与算法</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/缓存机制/" style="font-size: 10px;">缓存机制</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/08/17/IDEA从入门到癫狂/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
