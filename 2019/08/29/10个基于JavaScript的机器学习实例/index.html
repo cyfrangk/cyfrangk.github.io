@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>10个基于JavaScript的机器学习实例 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JavaScript">
+    
+    <meta name="description" content="随着人工智能技术的发展，机器学习越来越受到开发者们的关注，从而也导致了机器学习库如雨后春笋般的涌现出来，而且没有任何放缓的趋势。 虽然，传统意义上 Python 已经成为了最受欢迎的机器学习语言。但目前神经网络可在任何编程语言中运行，当然也包括 JavaScript！ 近来，Web 生态系统取得了重大的进展。尽管 JavaScript 和 Node.js 的性能要比 Python 和 Java 的">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10个基于JavaScript的机器学习实例">
+<meta property="og:url" content="http://yoursite.com/2019/08/29/10个基于JavaScript的机器学习实例/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="随着人工智能技术的发展，机器学习越来越受到开发者们的关注，从而也导致了机器学习库如雨后春笋般的涌现出来，而且没有任何放缓的趋势。 虽然，传统意义上 Python 已经成为了最受欢迎的机器学习语言。但目前神经网络可在任何编程语言中运行，当然也包括 JavaScript！ 近来，Web 生态系统取得了重大的进展。尽管 JavaScript 和 Node.js 的性能要比 Python 和 Java 的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/08/29/10个基于JavaScript的机器学习实例/1.png">
+<meta property="og:updated_time" content="2019-08-29T11:37:07.832Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="10个基于JavaScript的机器学习实例">
+<meta name="twitter:description" content="随着人工智能技术的发展，机器学习越来越受到开发者们的关注，从而也导致了机器学习库如雨后春笋般的涌现出来，而且没有任何放缓的趋势。 虽然，传统意义上 Python 已经成为了最受欢迎的机器学习语言。但目前神经网络可在任何编程语言中运行，当然也包括 JavaScript！ 近来，Web 生态系统取得了重大的进展。尽管 JavaScript 和 Node.js 的性能要比 Python 和 Java 的">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/29/10个基于JavaScript的机器学习实例/1.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/推荐好文/">推荐好文</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
+    <input name="wd" type="text" class="search-form-input" placeholder="搜索">
+</form>
+<script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-10个基于JavaScript的机器学习实例" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        10个基于JavaScript的机器学习实例
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/08/29/10个基于JavaScript的机器学习实例/" class="article-date">
+            <time datetime="2019-08-29T10:20:15.000Z" itemprop="datePublished">2019-08-29</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/2019/08/29/10个基于JavaScript的机器学习实例/1.png" alt=""><br>随着人工智能技术的发展，机器学习越来越受到开发者们的关注，从而也导致了机器学习库如雨后春笋般的涌现出来，而且没有任何放缓的趋势。</p>
+<p>虽然，传统意义上 Python 已经成为了最受欢迎的机器学习语言。但目前神经网络可在任何编程语言中运行，当然也包括 JavaScript！</p>
+<p>近来，Web 生态系统取得了重大的进展。尽管 JavaScript 和 Node.js 的性能要比 Python 和 Java 的性能差，但它们已经能够应对机器学习中的许多问题。</p>
+<p>同时，Web 编程语言也具有很强的易用性，即你只要搞定了 Web 浏览器，那么运行 JavaScript ML 项目就不是个事儿。</p>
+<p>虽然，大多数 JavaScript 机器学习库都是“新轮子”，有的甚至还在研发中，但并不会影响你的使用。</p>
+<p>今天在这篇文章中，我们将与你分享这些库，以及一些很酷的 AI Web 应用程序实例，帮助你开启机器学习之旅。</p>
+<p>1、Brain<br>实例地址：<a href="https://github.com/harthur-org/brain.js/" target="_blank" rel="noopener">https://github.com/harthur-org/brain.js/</a><br><img src="/2019/08/29/10个基于JavaScript的机器学习实例/2.jpg" alt=""><br>Brain 是一个可以让你轻松创建神经网络的库，并可通过输入/输出数据进行训练。尽管，它可以直接在浏览器网页上运行，但是训练的过程会占用大量的资源，因此最好在 Node.js 环境中启动它。另外，在他们网站上还有一个用于训练识别色彩对比度的小例子，你也可以了解下。</p>
+<p>2、Deep playground</p>
+<p>实例地址：<a href="https://github.com/tensorflow/playground" target="_blank" rel="noopener">https://github.com/tensorflow/playground</a><br><img src="/2019/08/29/10个基于JavaScript的机器学习实例/3.jpg" alt=""><br>这是由 TensorFlow 出品的可视化的神经网络交互式学习程序。它可以带你了解神经网络，并探索其不同的组件。</p>
+<p>它不仅有一个漂亮的用户界面，而且通过控制数据、神经元数量、使用算法的类别以及各项其他的指标，让你能够直观、实时的了解其运行的状态。</p>
+<p>另外，由于它是开源的（它用 TypeScript 编写，并具备优质的文档可查阅），所以通过了解其项目背景，你还能够学到更多有价值的知识。</p>
+<p>3、FlappyLearning</p>
+<p>实例地址：<a href="https://github.com/xviniette/FlappyLearning" target="_blank" rel="noopener">https://github.com/xviniette/FlappyLearning</a><br><img src="/2019/08/29/10个基于JavaScript的机器学习实例/182728.jpg" alt=""><br>FlappyLearning 是一个仅用 800 行代码创建的 JavaScript 机器学习库，它让你可以像行家一样玩转 Flappy Bird  游戏。</p>
+<p>在这个库中所使用的 AI 技术被称为“ Neuroevolution”，而它所应用算法的灵感则源于自然界生物神经系统的进化，并且它可以从每次成功或失败的迭代中进行动态的学习。</p>
+<p>另外，你只需要在浏览器中打开 index.html 就可以运行它了，炒鸡简单。</p>
+<p>4、Synaptic</p>
+<p>实例地址：<a href="https://github.com/cazala/synaptic" target="_blank" rel="noopener">https://github.com/cazala/synaptic</a><br><img src="/2019/08/29/10个基于JavaScript的机器学习实例/182755.jpg" alt=""><br>这个项目可能是本文所有项目中最活跃的项目了。Synaptic 是一个 Node.js 和浏览器可用的库。</p>
+<p>虽然它的架构未知，但开发人员可以通过它来构建任何类型的神经网络。它也具备一些内置架构，使它能够快速的测试，并能针对不同的机器学习算法进行比较。</p>
+<p>同时，它的使用文档丰富且全面，包含了神经网络的基本介绍、一些实用的演示，以及相应的使用教程。</p>
+<p>5、Land Lines<br>实例地址：<a href="https://github.com/ofZach/landlines" target="_blank" rel="noopener">https://github.com/ofZach/landlines</a><br><img src="/2019/08/29/10个基于JavaScript的机器学习实例/182816.jpg" alt=""><br>Land Lines 是一个有趣的 Chrome Web 实验。用户通过在页面上涂鸦，来发现地球上的卫星图像。它可以完全在浏览器中运行，无需服务器端的调用。同时，由于机器学习和 WebGL 的巧妙使用，即使在移动设备上它也有出色的表现。如果你对它比较感兴趣，也可以在 GitHub 上查看其源码，或者在这里阅读整个案例研究。</p>
+<p>6、ConvNetJS<br>实例地址：<a href="https://developers.google.com/web/showcase/2016/land-lines" target="_blank" rel="noopener">https://developers.google.com/web/showcase/2016/land-lines</a><br><img src="/2019/08/29/10个基于JavaScript的机器学习实例/182837.jpg" alt=""><br>虽然，此项目不再积极维护，但 ConvNetJS 却是基于 JavaScript 最先进的深度学习库之一。最初它是由斯坦福大学开发的项目，随着在 GitHub 上的流行，许多社区开始驱动了其新的特性，并撰写了相关的教程。它可以直接在浏览器中工作，支持多种学习技术，而且操作简单，适合神经网络进阶者学习。</p>
+<p>7、Thing Translator<br>实例地址：<a href="https://github.com/dmotz/thing-translator" target="_blank" rel="noopener">https://github.com/dmotz/thing-translator</a><br><img src="/2019/08/29/10个基于JavaScript的机器学习实例/182854.jpg" alt=""><br>Thing Translator 是一个 Web 实验，让你可以通过手机来识别实物，并可用不同的语言为它们命名。</p>
+<p>这款应用程序完全基于 Web 技术构建，并整合了 Google 的两种机器学习 API，即用于图像识别的 Cloud Vision 和用于自然语言翻译的 Translate API 。</p>
+<p>8、Neurojs<br>实例地址：<a href="https://github.com/janhuenermann/neurojs" target="_blank" rel="noopener">https://github.com/janhuenermann/neurojs</a><br><img src="/2019/08/29/10个基于JavaScript的机器学习实例/182915.jpg" alt=""><br>这是一个基于强化学习的人工智能系统框架。遗憾的是，这个开源项目并没有合适的文档。但其中一个自动驾驶汽车的演示，却对组成神经网络的不同部分有很好的描述。这个库仅通过 JavaScript 实现，并应用了 webpack 和 babel 。</p>
+<p>9、Machine_learning<br>实例地址：<a href="https://github.com/junku901/machine_learning" target="_blank" rel="noopener">https://github.com/junku901/machine_learning</a><br><img src="/2019/08/29/10个基于JavaScript的机器学习实例/182934.jpg" alt=""><br>Machine_learning 是一个仅通过 JavaScript 便可设置和训练神经网络的库。无论是在 Node.js，还是客户端上，它都易于安装，并且具备非常干净的 API，适合任何技术级别的开发者进行学习。</p>
+<p>同时，该库还提供了许多现成的流行算法示例，帮助你了解核心的机器学习原理。</p>
+<p>10、DeepForge<br>实例地址：<a href="https://github.com/deepforge-dev/deepforge" target="_blank" rel="noopener">https://github.com/deepforge-dev/deepforge</a><br><img src="/2019/08/29/10个基于JavaScript的机器学习实例/182957.jpg" alt=""><br>DeepForge 是一个对于用户友好的深度学习开发环境。有了它，你可以使用简单的图形界面对神经网络进行设计，同时它还支持远程机器的训练模型，并且内置了版本控制。它基于 Node.js 和 MongoDB，可在浏览器中运行。</p>
+<p>对于大多数 Web 开发者来说，它的安装过程也会相当的简单。<br><img src="/2019/08/29/10个基于JavaScript的机器学习实例/183028.jpg" alt=""><br>最后，Machine Learning in Javascript，这是由 Burak Kanber 发表的一系列文章（地址：<a href="https://burakkanber.com/blog/machine-learning-in-other-languages-introduction/" target="_blank" rel="noopener">https://burakkanber.com/blog/machine-learning-in-other-languages-introduction/</a> ），主要介绍了一些机器学习基础知识。这些教程专门针对 JavaScript 开发人员，而且写得比较透彻。如果你想更深入地了解机器学习，不妨看一看。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/08/29/10个基于JavaScript的机器学习实例/" data-id="cjzwls9lc00007kfvsxn2tvac" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1466132938&site=qq&menu=yes" target="_blank" rel="noopener">
+                          <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/08/29/四幅思维导图学会Python爬虫/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">四幅思维导图学会Python爬虫</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/10个基于JavaScript的机器学习实例/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/10个基于JavaScript的机器学习实例/1.png)" alt="10个基于JavaScript的机器学习实例" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/10个基于JavaScript的机器学习实例/" class="title">10个基于JavaScript的机器学习实例</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T10:20:15.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/四幅思维导图学会Python爬虫/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/四幅思维导图学会Python爬虫/1.png)" alt="四幅思维导图学会Python爬虫" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/四幅思维导图学会Python爬虫/" class="title">四幅思维导图学会Python爬虫</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T09:43:14.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/比Thread-sleep优雅的线程睡眠/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/比Thread-sleep优雅的线程睡眠/90829171904.png)" alt="比Thread.sleep优雅的线程睡眠" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/比Thread-sleep优雅的线程睡眠/" class="title">比Thread.sleep优雅的线程睡眠</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T09:16:39.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/提到Serverless你需要知道什么/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/提到Serverless你需要知道什么/9fc54f7427.webp)" alt="提到Serverless你需要知道什么" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/提到Serverless你需要知道什么/" class="title">提到Serverless你需要知道什么</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T07:48:37.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/28/17幅思维导图-Python核心知识体系/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/28/17幅思维导图-Python核心知识体系/rules.png)" alt="17幅思维导图:Python核心知识体系" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/28/17幅思维导图-Python核心知识体系/" class="title">17幅思维导图:Python核心知识体系</a></p>
+                            <p class="item-date"><time datetime="2019-08-28T10:00:09.000Z" itemprop="datePublished">2019-08-28</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA/">JAVA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/">JSP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javaweb/">Javaweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot/">Springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发工具/">开发工具</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能测试/">性能测试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/框架/">框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存机制/">缓存机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机/">计算机</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JAVA/" style="font-size: 10.83px;">JAVA</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JVM/" style="font-size: 12.5px;">JVM</a> <a href="/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19.17px;">JavaScript</a> <a href="/tags/Javaweb/" style="font-size: 10px;">Javaweb</a> <a href="/tags/Jquery/" style="font-size: 10px;">Jquery</a> <a href="/tags/Linux/" style="font-size: 10.83px;">Linux</a> <a href="/tags/PHP/" style="font-size: 15.83px;">PHP</a> <a href="/tags/Python/" style="font-size: 10.83px;">Python</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Springboot/" style="font-size: 10px;">Springboot</a> <a href="/tags/XML/" style="font-size: 10.83px;">XML</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/git/" style="font-size: 10.83px;">git</a> <a href="/tags/html/" style="font-size: 17.5px;">html</a> <a href="/tags/java/" style="font-size: 18.33px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/node/" style="font-size: 10.83px;">node</a> <a href="/tags/orcal/" style="font-size: 13.33px;">orcal</a> <a href="/tags/python/" style="font-size: 14.17px;">python</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 12.5px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/开发工具/" style="font-size: 14.17px;">开发工具</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/心语/" style="font-size: 11.67px;">心语</a> <a href="/tags/性能测试/" style="font-size: 10px;">性能测试</a> <a href="/tags/技术/" style="font-size: 12.5px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15px;">数据结构与算法</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/缓存机制/" style="font-size: 10px;">缓存机制</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/计算机/" style="font-size: 10px;">计算机</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/08/29/10个基于JavaScript的机器学习实例/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

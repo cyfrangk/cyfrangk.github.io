@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>抓包工具tcpdump用法说明 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Linux">
+    
+    <meta name="description" content="tcpdump采用命令行方式对接口的数据包进行筛选抓取，其丰富特性表现在灵活的表达式上。 不带任何选项的tcpdump，默认会抓取第一个网络接口，且只有将tcpdump进程终止才会停止抓包。 例如：1shell&amp;gt; tcpdump -nn -i eth0 icmp 下面是详细的tcpdump用法。 1.1 tcpdump选项 它的命令格式为：12345678910111213141516171">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="抓包工具tcpdump用法说明">
+<meta property="og:url" content="http://yoursite.com/2019/08/21/抓包工具tcpdump用法说明/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="tcpdump采用命令行方式对接口的数据包进行筛选抓取，其丰富特性表现在灵活的表达式上。 不带任何选项的tcpdump，默认会抓取第一个网络接口，且只有将tcpdump进程终止才会停止抓包。 例如：1shell&amp;gt; tcpdump -nn -i eth0 icmp 下面是详细的tcpdump用法。 1.1 tcpdump选项 它的命令格式为：12345678910111213141516171">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-21T04:00:08.540Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="抓包工具tcpdump用法说明">
+<meta name="twitter:description" content="tcpdump采用命令行方式对接口的数据包进行筛选抓取，其丰富特性表现在灵活的表达式上。 不带任何选项的tcpdump，默认会抓取第一个网络接口，且只有将tcpdump进程终止才会停止抓包。 例如：1shell&amp;gt; tcpdump -nn -i eth0 icmp 下面是详细的tcpdump用法。 1.1 tcpdump选项 它的命令格式为：12345678910111213141516171">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/推荐好文/">推荐好文</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
+    <input name="wd" type="text" class="search-form-input" placeholder="搜索">
+</form>
+<script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-抓包工具tcpdump用法说明" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        抓包工具tcpdump用法说明
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/08/21/抓包工具tcpdump用法说明/" class="article-date">
+            <time datetime="2019-08-21T03:31:42.000Z" itemprop="datePublished">2019-08-21</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Linux/">Linux</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>tcpdump采用命令行方式对接口的数据包进行筛选抓取，其丰富特性表现在灵活的表达式上。</p>
+<p>不带任何选项的tcpdump，默认会抓取第一个网络接口，且只有将tcpdump进程终止才会停止抓包。</p>
+<p>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; tcpdump -nn -i eth0 icmp</span><br></pre></td></tr></table></figure></p>
+<p>下面是详细的tcpdump用法。</p>
+<p><strong>1.1 tcpdump选项</strong></p>
+<p>它的命令格式为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">tcpdump [ -DenNqvX ] [ -c count ] [ -F file ] [ -i interface ] [ -r file ]</span><br><span class="line">        [ -s snaplen ] [ -w file ] [ expression ]</span><br><span class="line"></span><br><span class="line">抓包选项：</span><br><span class="line">-c：指定要抓取的包数量。注意，是最终要获取这么多个包。例如，指定&quot;-c 10&quot;将获取10个包，但可能已经处理了100个包，只不过只有10个包是满足条件的包。</span><br><span class="line">-i interface：指定tcpdump需要监听的接口。若未指定该选项，将从系统接口列表中搜寻编号最小的已配置好的接口(不包括loopback接口，要抓取loopback接口使用tcpdump -i lo)，</span><br><span class="line">            ：一旦找到第一个符合条件的接口，搜寻马上结束。可以使用&apos;any&apos;关键字表示所有网络接口。</span><br><span class="line">-n：对地址以数字方式显式，否则显式为主机名，也就是说-n选项不做主机名解析。</span><br><span class="line">-nn：除了-n的作用外，还把端口显示为数值，否则显示端口服务名。</span><br><span class="line">-N：不打印出host的域名部分。例如tcpdump将会打印&apos;nic&apos;而不是&apos;nic.ddn.mil&apos;。</span><br><span class="line">-P：指定要抓取的包是流入还是流出的包。可以给定的值为&quot;in&quot;、&quot;out&quot;和&quot;inout&quot;，默认为&quot;inout&quot;。</span><br><span class="line">-s len：设置tcpdump的数据包抓取长度为len，如果不设置默认将会是65535字节。对于要抓取的数据包较大时，长度设置不够可能会产生包截断，若出现包截断，</span><br><span class="line">      ：输出行中会出现&quot;[|proto]&quot;的标志(proto实际会显示为协议名)。但是抓取len越长，包的处理时间越长，并且会减少tcpdump可缓存的数据包的数量，</span><br><span class="line">      ：从而会导致数据包的丢失，所以在能抓取我们想要的包的前提下，抓取长度越小越好。</span><br><span class="line"></span><br><span class="line">输出选项：</span><br><span class="line">-e：输出的每行中都将包括数据链路层头部信息，例如源MAC和目标MAC。</span><br><span class="line">-q：快速打印输出。即打印很少的协议相关信息，从而输出行都比较简短。</span><br><span class="line">-X：输出包的头部数据，会以16进制和ASCII两种方式同时输出。</span><br><span class="line">-XX：输出包的头部数据，会以16进制和ASCII两种方式同时输出，更详细。</span><br><span class="line">-v：当分析和打印的时候，产生详细的输出。</span><br><span class="line">-vv：产生比-v更详细的输出。</span><br><span class="line">-vvv：产生比-vv更详细的输出。</span><br><span class="line"></span><br><span class="line">其他功能性选项：</span><br><span class="line">-D：列出可用于抓包的接口。将会列出接口的数值编号和接口名，它们都可以用于&quot;-i&quot;后。</span><br><span class="line">-F：从文件中读取抓包的表达式。若使用该选项，则命令行中给定的其他表达式都将失效。</span><br><span class="line">-w：将抓包数据输出到文件中而不是标准输出。可以同时配合&quot;-G time&quot;选项使得输出文件每time秒就自动切换到另一个文件。可通过&quot;-r&quot;选项载入这些文件以进行分析和打印。</span><br><span class="line">-r：从给定的数据包文件中读取数据。使用&quot;-&quot;表示从标准输入中读取。</span><br></pre></td></tr></table></figure></p>
+<p>所以常用的选项也就这几个：</p>
+<ul>
+<li>tcpdump -D</li>
+<li>tcpdump -c num -i int -nn -XX -vvv</li>
+</ul>
+<p><strong>1.2 tcpdump表达式</strong></p>
+<p>表达式用于筛选输出哪些类型的数据包，如果没有给定表达式，所有的数据包都将输出，否则只输出表达式为true的包。在表达式中出现的shell元字符建议使用单引号包围。</p>
+<p>tcpdump的表达式由一个或多个”单元”组成，每个单元一般包含ID的修饰符和一个ID(数字或名称)。有三种修饰符：</p>
+<p>(1).type：指定ID的类型。</p>
+<p>可以给定的值有host/net/port/portrange。例如”host foo”，”net 128.3”，”port 20”，”portrange 6000-6008”。默认的type为host。</p>
+<p>(2).dir：指定ID的方向。</p>
+<p>可以给定的值包括src/dst/src or dst/src and dst，默认为src or dst。例如，”src foo”表示源主机为foo的数据包，”dst net 128.3”表示目标网络为128.3的数据包，”src or dst port 22”表示源或目的端口为22的数据包。</p>
+<p>(3).proto：通过给定协议限定匹配的数据包类型。</p>
+<p>常用的协议有tcp/udp/arp/ip/ether/icmp等，若未给定协议类型，则匹配所有可能的类型。例如”tcp port 21”，”udp portrange 7000-7009”。</p>
+<p>所以，一个基本的表达式单元格式为”proto dir type ID”<br>![抓包工具tcpdump用法说明/21115421.jpg]<br>除了使用修饰符和ID组成的表达式单元，还有关键字表达式单元：gateway，broadcast，less，greater以及算术表达式。</p>
+<p>表达式单元之间可以使用操作符” and / &amp;&amp; / or / || / not / ! “进行连接，从而组成复杂的条件表达式。如”host foo and not port ftp and not port ftp-data”，这表示筛选的数据包要满足”主机为foo且端口不是ftp(端口21)和ftp-data(端口20)的包”，常用端口和名字的对应关系可在linux系统中的/etc/service文件中找到。</p>
+<p>另外，同样的修饰符可省略，如”tcp dst port ftp or ftp-data or domain”与”tcp dst port ftp or tcp dst port ftp-data or tcp dst port domain”意义相同，都表示包的协议为tcp且目的端口为ftp或ftp-data或domain(端口53)。</p>
+<p>使用括号”()”可以改变表达式的优先级，但需要注意的是括号会被shell解释，所以应该使用反斜线”\”转义为”()“，在需要的时候，还需要包围在引号中。</p>
+<p><strong>1.3 tcpdump示例</strong></p>
+<p>注意，tcpdump只能抓取流经本机的数据包。</p>
+<p>(1).默认启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump</span><br></pre></td></tr></table></figure></p>
+<p>默认情况下，直接启动tcpdump将监视第一个网络接口(非lo口)上所有流通的数据包。这样抓取的结果会非常多，滚动非常快。</p>
+<p>(2).监视指定网络接口的数据包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i eth1</span><br></pre></td></tr></table></figure></p>
+<p>如果不指定网卡，默认tcpdump只会监视第一个网络接口，如eth0。</p>
+<p>(3).监视指定主机的数据包，例如所有进入或离开longshuai的数据包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump host longshuai</span><br></pre></td></tr></table></figure></p>
+<p>(4).打印helios<-->hot或helios<-->ace之间通信的数据包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump host helios and \( hot or ace \)</span><br></pre></td></tr></table></figure></--></--></p>
+<p>(5).打印ace与任何其他主机之间通信的IP数据包,但不包括与helios之间的数据包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump ip host ace and not helios</span><br></pre></td></tr></table></figure></p>
+<p>(6).截获主机hostname发送的所有数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump src host hostname</span><br></pre></td></tr></table></figure></p>
+<p>(7).监视所有发送到主机hostname的数据包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump dst host hostname</span><br></pre></td></tr></table></figure></p>
+<p>(8).监视指定主机和端口的数据包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump tcp port 22 and host hostname</span><br></pre></td></tr></table></figure></p>
+<p>(9).对本机的udp 123端口进行监视(123为ntp的服务端口)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump udp port 123</span><br></pre></td></tr></table></figure></p>
+<p>(10).监视指定网络的数据包，如本机与192.168网段通信的数据包，”-c 10”表示只抓取10个包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -c 10 net 192.168</span><br></pre></td></tr></table></figure></p>
+<p>(11).打印所有通过网关snup的ftp数据包(注意,表达式被单引号括起来了,这可以防止shell对其中的括号进行错误解析)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; tcpdump &apos;gateway snup and (port ftp or ftp-data)&apos;</span><br></pre></td></tr></table></figure></p>
+<p>(12).抓取ping包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@server2 ~]# tcpdump -c 5 -nn -i eth0 icmp </span><br><span class="line"></span><br><span class="line">tcpdump: verbose output suppressed, use -v or -vv for full protocol decode</span><br><span class="line">listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes</span><br><span class="line">12:11:23.273638 IP 192.168.100.70 &gt; 192.168.100.62: ICMP echo request, id 16422, seq 10, length 64</span><br><span class="line">12:11:23.273666 IP 192.168.100.62 &gt; 192.168.100.70: ICMP echo reply, id 16422, seq 10, length 64</span><br><span class="line">12:11:24.356915 IP 192.168.100.70 &gt; 192.168.100.62: ICMP echo request, id 16422, seq 11, length 64</span><br><span class="line">12:11:24.356936 IP 192.168.100.62 &gt; 192.168.100.70: ICMP echo reply, id 16422, seq 11, length 64</span><br><span class="line">12:11:25.440887 IP 192.168.100.70 &gt; 192.168.100.62: ICMP echo request, id 16422, seq 12, length 64</span><br><span class="line">packets captured</span><br><span class="line">packets received by filter</span><br><span class="line">packets dropped by kernel</span><br></pre></td></tr></table></figure></p>
+<p>如果明确要抓取主机为192.168.100.70对本机的ping，则使用and操作符。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@server2 ~]# tcpdump -c 5 -nn -i eth0 icmp and src 192.168.100.62</span><br><span class="line"></span><br><span class="line">tcpdump: verbose output suppressed, use -v or -vv for full protocol decode</span><br><span class="line">listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes</span><br><span class="line">12:09:29.957132 IP 192.168.100.70 &gt; 192.168.100.62: ICMP echo request, id 16166, seq 1, length 64</span><br><span class="line">12:09:31.041035 IP 192.168.100.70 &gt; 192.168.100.62: ICMP echo request, id 16166, seq 2, length 64</span><br><span class="line">12:09:32.124562 IP 192.168.100.70 &gt; 192.168.100.62: ICMP echo request, id 16166, seq 3, length 64</span><br><span class="line">12:09:33.208514 IP 192.168.100.70 &gt; 192.168.100.62: ICMP echo request, id 16166, seq 4, length 64</span><br><span class="line">12:09:34.292222 IP 192.168.100.70 &gt; 192.168.100.62: ICMP echo request, id 16166, seq 5, length 64</span><br><span class="line">packets captured</span><br><span class="line">packets received by filter</span><br><span class="line">packets dropped by kernel</span><br><span class="line"></span><br><span class="line">注意不能直接写icmp src 192.168.100.70，因为icmp协议不支持直接应用host这个type。</span><br></pre></td></tr></table></figure></p>
+<p>(13).抓取到本机22端口包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@server2 ~]# tcpdump -c 10 -nn -i eth0 tcp dst port 22  </span><br><span class="line"></span><br><span class="line">tcpdump: verbose output suppressed, use -v or -vv for full protocol decode</span><br><span class="line">listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes</span><br><span class="line">12:06:57.574293 IP 192.168.100.1.5788 &gt; 192.168.100.62.22: Flags [.], ack 535528834, win 2053, length 0</span><br><span class="line">12:06:57.629125 IP 192.168.100.1.5788 &gt; 192.168.100.62.22: Flags [.], ack 193, win 2052, length 0</span><br><span class="line">12:06:57.684688 IP 192.168.100.1.5788 &gt; 192.168.100.62.22: Flags [.], ack 385, win 2051, length 0</span><br><span class="line">12:06:57.738977 IP 192.168.100.1.5788 &gt; 192.168.100.62.22: Flags [.], ack 577, win 2050, length 0</span><br><span class="line">12:06:57.794305 IP 192.168.100.1.5788 &gt; 192.168.100.62.22: Flags [.], ack 769, win 2050, length 0</span><br><span class="line">12:06:57.848720 IP 192.168.100.1.5788 &gt; 192.168.100.62.22: Flags [.], ack 961, win 2049, length 0</span><br><span class="line">12:06:57.904057 IP 192.168.100.1.5788 &gt; 192.168.100.62.22: Flags [.], ack 1153, win 2048, length 0</span><br><span class="line">12:06:57.958477 IP 192.168.100.1.5788 &gt; 192.168.100.62.22: Flags [.], ack 1345, win 2047, length 0</span><br><span class="line">12:06:58.014338 IP 192.168.100.1.5788 &gt; 192.168.100.62.22: Flags [.], ack 1537, win 2053, length 0</span><br><span class="line">12:06:58.069361 IP 192.168.100.1.5788 &gt; 192.168.100.62.22: Flags [.], ack 1729, win 2052, length 0</span><br><span class="line">packets captured</span><br><span class="line">packets received by filter</span><br><span class="line">packets dropped by kernel</span><br></pre></td></tr></table></figure></p>
+<p>(14).解析包数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@server2 ~]# tcpdump -c 2 -q -XX -vvv -nn -i eth0 tcp dst port 22</span><br><span class="line">tcpdump: listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes</span><br><span class="line">12:15:54.788812 IP (tos 0x0, ttl 64, id 19303, offset 0, flags [DF], proto TCP (6), length 40)</span><br><span class="line">    192.168.100.1.5788 &gt; 192.168.100.62.22: tcp 0</span><br><span class="line">        0x0000:  000c 2908 9234 0050 56c0 0008 0800 4500  ..)..4.PV.....E.</span><br><span class="line">        0x0010:  0028 4b67 4000 4006 a5d8 c0a8 6401 c0a8  .(Kg@.@.....d...</span><br><span class="line">        0x0020:  643e 169c 0016 2426 5fd6 1fec 2b62 5010  d&gt;....$&amp;_...+bP.</span><br><span class="line">        0x0030:  0803 7844 0000 0000 0000 0000            ..xD........</span><br><span class="line">12:15:54.842641 IP (tos 0x0, ttl 64, id 19304, offset 0, flags [DF], proto TCP (6), length 40)</span><br><span class="line">    192.168.100.1.5788 &gt; 192.168.100.62.22: tcp 0</span><br><span class="line">        0x0000:  000c 2908 9234 0050 56c0 0008 0800 4500  ..)..4.PV.....E.</span><br><span class="line">        0x0010:  0028 4b68 4000 4006 a5d7 c0a8 6401 c0a8  .(Kh@.@.....d...</span><br><span class="line">        0x0020:  643e 169c 0016 2426 5fd6 1fec 2d62 5010  d&gt;....$&amp;_...-bP.</span><br><span class="line">        0x0030:  0801 7646 0000 0000 0000 0000            ..vF........</span><br><span class="line">packets captured</span><br><span class="line">packets received by filter</span><br><span class="line">packets dropped by kernel</span><br></pre></td></tr></table></figure></p>
+<p>总的来说，tcpdump对基本的数据包抓取方法还是较简单的。只要掌握有限的几个选项(-nn -XX -vvv -i -c -q)，再组合表达式即可。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/08/21/抓包工具tcpdump用法说明/" data-id="cjzwlsahd008c7kfvmyl8c4e6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1466132938&site=qq&menu=yes" target="_blank" rel="noopener">
+                          <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/08/25/Java中Socket套接字入门/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Java中Socket套接字入门
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/08/20/计算机网络体系结构/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">计算机网络体系结构</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/10个基于JavaScript的机器学习实例/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/10个基于JavaScript的机器学习实例/1.png)" alt="10个基于JavaScript的机器学习实例" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/10个基于JavaScript的机器学习实例/" class="title">10个基于JavaScript的机器学习实例</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T10:20:15.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/四幅思维导图学会Python爬虫/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/四幅思维导图学会Python爬虫/1.png)" alt="四幅思维导图学会Python爬虫" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/四幅思维导图学会Python爬虫/" class="title">四幅思维导图学会Python爬虫</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T09:43:14.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/比Thread-sleep优雅的线程睡眠/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/比Thread-sleep优雅的线程睡眠/90829171904.png)" alt="比Thread.sleep优雅的线程睡眠" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/比Thread-sleep优雅的线程睡眠/" class="title">比Thread.sleep优雅的线程睡眠</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T09:16:39.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/提到Serverless你需要知道什么/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/提到Serverless你需要知道什么/9fc54f7427.webp)" alt="提到Serverless你需要知道什么" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/提到Serverless你需要知道什么/" class="title">提到Serverless你需要知道什么</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T07:48:37.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/28/17幅思维导图-Python核心知识体系/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/28/17幅思维导图-Python核心知识体系/rules.png)" alt="17幅思维导图:Python核心知识体系" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/28/17幅思维导图-Python核心知识体系/" class="title">17幅思维导图:Python核心知识体系</a></p>
+                            <p class="item-date"><time datetime="2019-08-28T10:00:09.000Z" itemprop="datePublished">2019-08-28</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA/">JAVA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/">JSP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javaweb/">Javaweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot/">Springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发工具/">开发工具</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能测试/">性能测试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/框架/">框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存机制/">缓存机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机/">计算机</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JAVA/" style="font-size: 10.83px;">JAVA</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JVM/" style="font-size: 12.5px;">JVM</a> <a href="/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19.17px;">JavaScript</a> <a href="/tags/Javaweb/" style="font-size: 10px;">Javaweb</a> <a href="/tags/Jquery/" style="font-size: 10px;">Jquery</a> <a href="/tags/Linux/" style="font-size: 10.83px;">Linux</a> <a href="/tags/PHP/" style="font-size: 15.83px;">PHP</a> <a href="/tags/Python/" style="font-size: 10.83px;">Python</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Springboot/" style="font-size: 10px;">Springboot</a> <a href="/tags/XML/" style="font-size: 10.83px;">XML</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/git/" style="font-size: 10.83px;">git</a> <a href="/tags/html/" style="font-size: 17.5px;">html</a> <a href="/tags/java/" style="font-size: 18.33px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/node/" style="font-size: 10.83px;">node</a> <a href="/tags/orcal/" style="font-size: 13.33px;">orcal</a> <a href="/tags/python/" style="font-size: 14.17px;">python</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 12.5px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/开发工具/" style="font-size: 14.17px;">开发工具</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/心语/" style="font-size: 11.67px;">心语</a> <a href="/tags/性能测试/" style="font-size: 10px;">性能测试</a> <a href="/tags/技术/" style="font-size: 12.5px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15px;">数据结构与算法</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/缓存机制/" style="font-size: 10px;">缓存机制</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/计算机/" style="font-size: 10px;">计算机</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/08/21/抓包工具tcpdump用法说明/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

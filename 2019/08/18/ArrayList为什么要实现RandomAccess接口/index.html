@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>ArrayList为什么要实现RandomAccess接口 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JAVA">
+    
+    <meta name="description" content="在我们的开发中，List接口是最常见不过，而且我们几乎每天都在用ArrayList或者LinkedList，但是细心的同学有没有发现，ArrayList中实现了RandomAccess接口，而LinkedList却没有实现RandomAccess接口，这是为什么呢？12public class ArrayList&amp;lt;E&amp;gt; extends AbstractList&amp;lt;E&amp;gt;">
+<meta name="keywords" content="JAVA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArrayList为什么要实现RandomAccess接口">
+<meta property="og:url" content="http://yoursite.com/2019/08/18/ArrayList为什么要实现RandomAccess接口/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="在我们的开发中，List接口是最常见不过，而且我们几乎每天都在用ArrayList或者LinkedList，但是细心的同学有没有发现，ArrayList中实现了RandomAccess接口，而LinkedList却没有实现RandomAccess接口，这是为什么呢？12public class ArrayList&amp;lt;E&amp;gt; extends AbstractList&amp;lt;E&amp;gt;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/08/18/ArrayList为什么要实现RandomAccess接口/1111.jpg">
+<meta property="og:updated_time" content="2019-08-18T11:34:01.748Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ArrayList为什么要实现RandomAccess接口">
+<meta name="twitter:description" content="在我们的开发中，List接口是最常见不过，而且我们几乎每天都在用ArrayList或者LinkedList，但是细心的同学有没有发现，ArrayList中实现了RandomAccess接口，而LinkedList却没有实现RandomAccess接口，这是为什么呢？12public class ArrayList&amp;lt;E&amp;gt; extends AbstractList&amp;lt;E&amp;gt;">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/18/ArrayList为什么要实现RandomAccess接口/1111.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/推荐好文/">推荐好文</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
+    <input name="wd" type="text" class="search-form-input" placeholder="搜索">
+</form>
+<script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/推荐好文/">推荐好文</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-ArrayList为什么要实现RandomAccess接口" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        ArrayList为什么要实现RandomAccess接口
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/08/18/ArrayList为什么要实现RandomAccess接口/" class="article-date">
+            <time datetime="2019-08-18T11:23:48.000Z" itemprop="datePublished">2019-08-18</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JAVA/">JAVA</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/2019/08/18/ArrayList为什么要实现RandomAccess接口/1111.jpg" alt=""><br>在我们的开发中，List接口是最常见不过，而且我们几乎每天都在用ArrayList或者LinkedList，但是细心的同学有没有发现，ArrayList中实现了RandomAccess接口，而LinkedList却没有实现RandomAccess接口，这是为什么呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public class ArrayList&lt;E&gt; extends AbstractList&lt;E&gt;</span><br><span class="line">        implements List&lt;E&gt;, RandomAccess, Cloneable, java.io.Serializable</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public class LinkedList&lt;E&gt;</span><br><span class="line">    extends AbstractSequentialList&lt;E&gt;</span><br><span class="line">    implements List&lt;E&gt;, Deque&lt;E&gt;, Cloneable, java.io.Serializable</span><br></pre></td></tr></table></figure>
+<p>RandomAccess接口中是空的，RandomAccess接口又是什么呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public interface RandomAccess &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="RandomAccess接口"><a href="#RandomAccess接口" class="headerlink" title="RandomAccess接口"></a>RandomAccess接口</h2><p>RandomAccess是一个标记接口，官方解释是只要List实现这个接口，就能支持快速随机访问。而什么是随机访问呢？接下来我们来举例说明。</p>
+<p>Collections是集合的一个工具类，我们看一下Collections源码中的二分搜索方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public static &lt;T&gt;</span><br><span class="line">    int binarySearch(List&lt;? extends Comparable&lt;? super T&gt;&gt; list, T key) &#123;</span><br><span class="line">        if (list instanceof RandomAccess || list.size()&lt;BINARYSEARCH_THRESHOLD)</span><br><span class="line">            return Collections.indexedBinarySearch(list, key);</span><br><span class="line">        else</span><br><span class="line">            return Collections.iteratorBinarySearch(list, key);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>在源码中可以看出，判断list是否是RandomAccess的实例，如果是，则执行indexedBinarySearch方法，如果不是，则执行iteratorBinarySearch方法。接下来看一下这两个方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">private static &lt;T&gt;</span><br><span class="line">    int indexedBinarySearch(List&lt;? extends Comparable&lt;? super T&gt;&gt; list, T key) &#123;</span><br><span class="line">        int low = 0;</span><br><span class="line">        int high = list.size()-1;</span><br><span class="line"></span><br><span class="line">        while (low &lt;= high) &#123;</span><br><span class="line">            int mid = (low + high) &gt;&gt;&gt; 1;</span><br><span class="line">            Comparable&lt;? super T&gt; midVal = list.get(mid);</span><br><span class="line">            int cmp = midVal.compareTo(key);</span><br><span class="line"></span><br><span class="line">            if (cmp &lt; 0)</span><br><span class="line">                low = mid + 1;</span><br><span class="line">            else if (cmp &gt; 0)</span><br><span class="line">                high = mid - 1;</span><br><span class="line">            else</span><br><span class="line">                return mid; // key found</span><br><span class="line">        &#125;</span><br><span class="line">        return -(low + 1);  // key not found</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">private static &lt;T&gt;</span><br><span class="line">    int iteratorBinarySearch(List&lt;? extends Comparable&lt;? super T&gt;&gt; list, T key)</span><br><span class="line">    &#123;</span><br><span class="line">        int low = 0;</span><br><span class="line">        int high = list.size()-1;</span><br><span class="line">        ListIterator&lt;? extends Comparable&lt;? super T&gt;&gt; i = list.listIterator();</span><br><span class="line"></span><br><span class="line">        while (low &lt;= high) &#123;</span><br><span class="line">            int mid = (low + high) &gt;&gt;&gt; 1;</span><br><span class="line">            Comparable&lt;? super T&gt; midVal = get(i, mid);</span><br><span class="line">            int cmp = midVal.compareTo(key);</span><br><span class="line"></span><br><span class="line">            if (cmp &lt; 0)</span><br><span class="line">                low = mid + 1;</span><br><span class="line">            else if (cmp &gt; 0)</span><br><span class="line">                high = mid - 1;</span><br><span class="line">            else</span><br><span class="line">                return mid; // key found</span><br><span class="line">        &#125;</span><br><span class="line">        return -(low + 1);  // key not found</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>上述两个方法的源码表示，实现了RandomAccess接口的List使用索引遍历，而未实现RandomAccess接口的List使用迭代器遍历。那么为什么要这么设计呢？</p>
+<p>既然涉及到二分搜索的遍历操作，那么现在我们来分析一下ArrayList和LinkedList遍历元素的性能如何？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">public class CollectionTest &#123;</span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        long arrayListIndexedTime = arrayListIndexed();</span><br><span class="line">        long arrayListIteratorTime = arrayListIterator();</span><br><span class="line">        long linkedListIndexedTime = linkedListIndexed();</span><br><span class="line">        long linkedListIteratorTime = linkedListIterator();</span><br><span class="line">        System.out.println(&quot;测试ArrayList通过for遍历所消耗时间：&quot; + arrayListIndexedTime);</span><br><span class="line">        System.out.println(&quot;测试ArrayList通过iterator遍历所消耗时间：&quot; + arrayListIteratorTime);</span><br><span class="line">        System.out.println(&quot;测试LinkedList通过for遍历所消耗时间：&quot; + linkedListIndexedTime);</span><br><span class="line">        System.out.println(&quot;测试LinkedList通过iterator遍历所消耗时间：&quot; + linkedListIteratorTime);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //测试ArrayList通过for遍历所消耗时间</span><br><span class="line">    public static long arrayListIndexed() &#123;</span><br><span class="line">        List&lt;Integer&gt; arrayList = new ArrayList&lt;&gt;();</span><br><span class="line">        for (int i = 0; i &lt; 10000; i++) &#123;</span><br><span class="line">            arrayList.add(i);</span><br><span class="line">        &#125;</span><br><span class="line">        //记录开始时间</span><br><span class="line">        long startTime = System.currentTimeMillis();</span><br><span class="line">        for (int i = 0; i &lt; arrayList.size(); i++) &#123;</span><br><span class="line">            arrayList.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">        //记录结束时间</span><br><span class="line">        long endTime = System.currentTimeMillis();</span><br><span class="line">        //遍历消耗时间</span><br><span class="line">        long resultTime = endTime - startTime;</span><br><span class="line">        return resultTime;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //测试ArrayList通过iterator遍历所消耗时间</span><br><span class="line">    public static long arrayListIterator() &#123;</span><br><span class="line">        List&lt;Integer&gt; arrayList = new ArrayList&lt;&gt;();</span><br><span class="line">        for (int i = 0; i &lt; 10000; i++) &#123;</span><br><span class="line">            arrayList.add(i);</span><br><span class="line">        &#125;</span><br><span class="line">        //记录开始时间</span><br><span class="line">        long startTime = System.currentTimeMillis();</span><br><span class="line">        Iterator&lt;Integer&gt; iterator = arrayList.iterator();</span><br><span class="line">        while (iterator.hasNext()) &#123;</span><br><span class="line">            iterator.next();</span><br><span class="line">        &#125;</span><br><span class="line">        //记录结束时间</span><br><span class="line">        long endTime = System.currentTimeMillis();</span><br><span class="line">        //遍历消耗时间</span><br><span class="line">        long resultTime = endTime - startTime;</span><br><span class="line">        return resultTime;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //测试LinkedList通过for遍历所消耗时间</span><br><span class="line">    public static long linkedListIndexed() &#123;</span><br><span class="line">        List&lt;Integer&gt; linkedList = new LinkedList&lt;&gt;();</span><br><span class="line">        for (int i = 0; i &lt; 10000; i++) &#123;</span><br><span class="line">            linkedList.add(i);</span><br><span class="line">        &#125;</span><br><span class="line">        //记录开始时间</span><br><span class="line">        long startTime = System.currentTimeMillis();</span><br><span class="line">        for (int i = 0; i &lt; linkedList.size(); i++) &#123;</span><br><span class="line">            linkedList.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">        //记录结束时间</span><br><span class="line">        long endTime = System.currentTimeMillis();</span><br><span class="line">        //遍历消耗时间</span><br><span class="line">        long resultTime = endTime - startTime;</span><br><span class="line">        return resultTime;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //测试LinkedList通过iterator遍历所消耗时间</span><br><span class="line">    public static long linkedListIterator() &#123;</span><br><span class="line">        List&lt;Integer&gt; linkedList = new LinkedList&lt;&gt;();</span><br><span class="line">        for (int i = 0; i &lt; 10000; i++) &#123;</span><br><span class="line">            linkedList.add(i);</span><br><span class="line">        &#125;</span><br><span class="line">        //记录开始时间</span><br><span class="line">        long startTime = System.currentTimeMillis();</span><br><span class="line">        Iterator&lt;Integer&gt; iterator = linkedList.iterator();</span><br><span class="line">        while (iterator.hasNext()) &#123;</span><br><span class="line">            iterator.next();</span><br><span class="line">        &#125;</span><br><span class="line">        //记录结束时间</span><br><span class="line">        long endTime = System.currentTimeMillis();</span><br><span class="line">        //遍历消耗时间</span><br><span class="line">        long resultTime = endTime - startTime;</span><br><span class="line">        return resultTime;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>测试结果如下</strong></p>
+<blockquote>
+<blockquote>
+<p>测试ArrayList通过for遍历所消耗时间：1<br>测试ArrayList通过iterator遍历所消耗时间：2<br>测试LinkedList通过for遍历所消耗时间：47<br>测试LinkedList通过iterator遍历所消耗时间：1</p>
+</blockquote>
+</blockquote>
+<p>我们来分析一下测试结果：ArrayList通过for遍历比通过iterator遍历要稍快，LinkedList通过iterator遍历比通过for遍历要快。</p>
+<p>所以说在我们的应用中，要考虑使用List接口的哪种实现类，可以更好更高效的满足实际场景需求。所以在这里通过实现RandomAccess接口来区分List的哪种实现类。</p>
+<p>最后总结一句话：实现RandomAccess接口的List可以通过for循环来遍历数据比使用iterator遍历数据更高效，未实现RandomAccess接口的List可以通过iterator遍历数据比使用for循环来遍历数据更高效。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/08/18/ArrayList为什么要实现RandomAccess接口/" data-id="cjzwls9w800037kfv8mhnr42q" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1466132938&site=qq&menu=yes" target="_blank" rel="noopener">
+                          <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/08/18/必须掌握的20-种Spring常用注解/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            必须掌握的20+种Spring常用注解
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/08/17/推荐几个IDEA插件/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">推荐几个IDEA插件</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/10个基于JavaScript的机器学习实例/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/10个基于JavaScript的机器学习实例/1.png)" alt="10个基于JavaScript的机器学习实例" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/10个基于JavaScript的机器学习实例/" class="title">10个基于JavaScript的机器学习实例</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T10:20:15.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/四幅思维导图学会Python爬虫/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/四幅思维导图学会Python爬虫/1.png)" alt="四幅思维导图学会Python爬虫" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/四幅思维导图学会Python爬虫/" class="title">四幅思维导图学会Python爬虫</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T09:43:14.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/比Thread-sleep优雅的线程睡眠/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/比Thread-sleep优雅的线程睡眠/90829171904.png)" alt="比Thread.sleep优雅的线程睡眠" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/比Thread-sleep优雅的线程睡眠/" class="title">比Thread.sleep优雅的线程睡眠</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T09:16:39.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/提到Serverless你需要知道什么/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/提到Serverless你需要知道什么/9fc54f7427.webp)" alt="提到Serverless你需要知道什么" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/提到Serverless你需要知道什么/" class="title">提到Serverless你需要知道什么</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T07:48:37.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/28/17幅思维导图-Python核心知识体系/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/28/17幅思维导图-Python核心知识体系/rules.png)" alt="17幅思维导图:Python核心知识体系" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/28/17幅思维导图-Python核心知识体系/" class="title">17幅思维导图:Python核心知识体系</a></p>
+                            <p class="item-date"><time datetime="2019-08-28T10:00:09.000Z" itemprop="datePublished">2019-08-28</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA/">JAVA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/">JSP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javaweb/">Javaweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot/">Springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发工具/">开发工具</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能测试/">性能测试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/框架/">框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存机制/">缓存机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机/">计算机</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JAVA/" style="font-size: 10.83px;">JAVA</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JVM/" style="font-size: 12.5px;">JVM</a> <a href="/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19.17px;">JavaScript</a> <a href="/tags/Javaweb/" style="font-size: 10px;">Javaweb</a> <a href="/tags/Jquery/" style="font-size: 10px;">Jquery</a> <a href="/tags/Linux/" style="font-size: 10.83px;">Linux</a> <a href="/tags/PHP/" style="font-size: 15.83px;">PHP</a> <a href="/tags/Python/" style="font-size: 10.83px;">Python</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Springboot/" style="font-size: 10px;">Springboot</a> <a href="/tags/XML/" style="font-size: 10.83px;">XML</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/git/" style="font-size: 10.83px;">git</a> <a href="/tags/html/" style="font-size: 17.5px;">html</a> <a href="/tags/java/" style="font-size: 18.33px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/node/" style="font-size: 10.83px;">node</a> <a href="/tags/orcal/" style="font-size: 13.33px;">orcal</a> <a href="/tags/python/" style="font-size: 14.17px;">python</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 12.5px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/开发工具/" style="font-size: 14.17px;">开发工具</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/心语/" style="font-size: 11.67px;">心语</a> <a href="/tags/性能测试/" style="font-size: 10px;">性能测试</a> <a href="/tags/技术/" style="font-size: 12.5px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15px;">数据结构与算法</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/缓存机制/" style="font-size: 10px;">缓存机制</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/计算机/" style="font-size: 10px;">计算机</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/08/18/ArrayList为什么要实现RandomAccess接口/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

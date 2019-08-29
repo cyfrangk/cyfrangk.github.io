@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>webSocket是TCP上一个轻量级层 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Springboot">
+    
+    <meta name="description" content="在构建Spring boot项目时已经提供webSocket依赖的勾选。webSocket是TCP之上的一个非常薄的轻量级层 ，webSocket主要的应用场景离不开即时通讯与消息推送，但只要应用程序需要在浏览器和服务器之间来回发送消息，就可以使用webSocket来降低客户端流量与服务器的负载。 下面将基于Spring boot实现一个非常简单的HelloWorld程序，用来熟悉项目构建逻辑。">
+<meta name="keywords" content="Springboot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webSocket是TCP上一个轻量级层">
+<meta property="og:url" content="http://yoursite.com/2019/08/20/webSocket是TCP上一个轻量级层/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="在构建Spring boot项目时已经提供webSocket依赖的勾选。webSocket是TCP之上的一个非常薄的轻量级层 ，webSocket主要的应用场景离不开即时通讯与消息推送，但只要应用程序需要在浏览器和服务器之间来回发送消息，就可以使用webSocket来降低客户端流量与服务器的负载。 下面将基于Spring boot实现一个非常简单的HelloWorld程序，用来熟悉项目构建逻辑。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/08/20/webSocket是TCP上一个轻量级层/0203024.jpg">
+<meta property="og:updated_time" content="2019-08-20T12:44:05.235Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webSocket是TCP上一个轻量级层">
+<meta name="twitter:description" content="在构建Spring boot项目时已经提供webSocket依赖的勾选。webSocket是TCP之上的一个非常薄的轻量级层 ，webSocket主要的应用场景离不开即时通讯与消息推送，但只要应用程序需要在浏览器和服务器之间来回发送消息，就可以使用webSocket来降低客户端流量与服务器的负载。 下面将基于Spring boot实现一个非常简单的HelloWorld程序，用来熟悉项目构建逻辑。">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/20/webSocket是TCP上一个轻量级层/0203024.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/推荐好文/">推荐好文</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
+    <input name="wd" type="text" class="search-form-input" placeholder="搜索">
+</form>
+<script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-webSocket是TCP上一个轻量级层" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        webSocket是TCP上一个轻量级层
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/08/20/webSocket是TCP上一个轻量级层/" class="article-date">
+            <time datetime="2019-08-20T12:26:34.000Z" itemprop="datePublished">2019-08-20</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Springboot/">Springboot</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/2019/08/20/webSocket是TCP上一个轻量级层/0203024.jpg" alt=""><br>在构建Spring boot项目时已经提供webSocket依赖的勾选。webSocket是TCP之上的一个非常薄的轻量级层 ，webSocket主要的应用场景离不开即时通讯与消息推送，但只要应用程序需要在浏览器和服务器之间来回发送消息，就可以使用webSocket来降低客户端流量与服务器的负载。</p>
+<p>下面将基于Spring boot实现一个非常简单的HelloWorld程序，用来熟悉项目构建逻辑。</p>
+<h2 id="1-导入依赖"><a href="#1-导入依赖" class="headerlink" title="1.导入依赖"></a>1.导入依赖</h2><p>主要的webSocket依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-websocket&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>一些js库依赖，这里也使用maven方式导入，官网<a href="https://www.webjars.org/" target="_blank" rel="noopener">https://www.webjars.org/</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.webjars&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;webjars-locator-core&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.webjars&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;sockjs-client&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.0.2&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.webjars&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;stomp-websocket&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.3.3&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.webjars&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;bootstrap&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.3.7&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.webjars&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jquery&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.1.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>Thymeleaf模板引擎，不用多说了吧</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="2-配置开启"><a href="#2-配置开启" class="headerlink" title="2.配置开启"></a>2.配置开启</h2><p>接下来开启webSocket并配置一番<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@EnableWebSocketMessageBroker</span><br><span class="line">public class WebSocketConfig implements WebSocketMessageBrokerConfigurer &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void registerStompEndpoints(StompEndpointRegistry registry) &#123;</span><br><span class="line">        registry.addEndpoint(&quot;/gs-guide-websocket&quot;).withSockJS();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public void configureMessageBroker(MessageBrokerRegistry config) &#123;</span><br><span class="line">        config.enableSimpleBroker(&quot;/topic&quot;);</span><br><span class="line">        config.setApplicationDestinationPrefixes(&quot;/app&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里从上向下说一下，</p>
+<p>1）@EnableWebSocketMessageBroker注解用于开启使用STOMP协议来传输基于代理（MessageBroker）的消息，这时候控制器（controller）开始支持@MessageMapping,就像是使用@requestMapping一样。</p>
+<p>2）registerStompEndpoints()方法只写了一行代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">registry.addEndpoint(&quot;/gs-guide-websocket&quot;).withSockJS();</span><br></pre></td></tr></table></figure>
+<p>一是用来注册一个Stomp的节点（endpoint）,也就是webSocket的服务端地址，客户端在链接时使用到；</p>
+<p>二是withSockJs()方法指定使用SockJS协议。SockJs是一个WebSocket的通信js库，Spring对这个js库进行了后台的自动支持，如果使用它不需要进行过多配置。</p>
+<p>3）配置消息代理（MessageBroker），该方法干了两件事，一是启用一个简单的message broker并配置一个或多个前缀来过滤针对代理的目的地(例如以“/topic”为前缀的目的地)，该前戳限制了网页客户端设置本地地址时的前戳。二是设置了一个客户端访问服务端地址的前缀。比如我们设置@MessageMapping(“/hello”)，那客户端要发送消息到服务器上的地址是 /app/hello。</p>
+<h2 id="3-提供接口"><a href="#3-提供接口" class="headerlink" title="3.提供接口"></a>3.提供接口</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Controller</span><br><span class="line">public class GreetingController &#123;</span><br><span class="line"></span><br><span class="line">    @MessageMapping(&quot;/hello&quot;)</span><br><span class="line">    @SendTo(&quot;/topic/greetings&quot;)</span><br><span class="line">    public Greeting greeting(HelloMessage message) throws Exception &#123;</span><br><span class="line">        System.out.println(&quot;收到：&quot; + message.toString() + &quot;消息&quot;);</span><br><span class="line">        return new Greeting(&quot;Hello, &quot; + HtmlUtils.htmlEscape(message.getName()) + &quot;!&quot;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>1）@MessageMapping和@RequestMapping功能类似，用于设置URL映射地址，浏览器向服务器发起请求，需要通过该地址。</p>
+<p>需要注意，这里设置路径为/hello，但是客户端需要访问/app/hello，原因前面已经讲述。</p>
+<p>2）@SendTo(“/topic/greetings”) 设置目的地，这里的目的地是站在服务端的角度对客户端而言。客户端也需要设置相同的地址，而且必须使用/topic前戳，前面也已经讲述。</p>
+<p>本示例中如果服务器接受到了消息，就会对订阅了@SendTo括号中的地址传送消息。</p>
+<p>备注：HtmlUtils.htmlEscape()方法会将特殊字符转换为HTML字符引用。</p>
+<p>HelloMessage.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public class HelloMessage &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Greeting.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public class Greeting &#123;</span><br><span class="line">    private String content;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-客户端"><a href="#4-客户端" class="headerlink" title="4.客户端"></a>4.客户端</h2><p>在resources/static目录下：</p>
+<p>index.html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Hello WebSocket&lt;/title&gt;</span><br><span class="line">    &lt;link href=&quot;/webjars/bootstrap/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">    &lt;link href=&quot;/main.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">    &lt;link rel=&quot;shortcut icon&quot; href=&quot;/favicon.ico&quot; /&gt;</span><br><span class="line">    &lt;script src=&quot;/webjars/jquery/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;/webjars/sockjs-client/sockjs.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;/webjars/stomp-websocket/stomp.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;/app.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;noscript&gt;&lt;h2 style=&quot;color: #ff0000&quot;&gt;Seems your browser doesn&apos;t support Javascript! Websocket relies on Javascript being</span><br><span class="line">    enabled. Please enable</span><br><span class="line">    Javascript and reload this page!&lt;/h2&gt;&lt;/noscript&gt;</span><br><span class="line">&lt;div id=&quot;main-content&quot; class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;row&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;col-md-6&quot;&gt;</span><br><span class="line">            &lt;form class=&quot;form-inline&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">                    &lt;label for=&quot;connect&quot;&gt;WebSocket connection:&lt;/label&gt;</span><br><span class="line">                    &lt;button id=&quot;connect&quot; class=&quot;btn btn-default&quot; type=&quot;submit&quot;&gt;Connect&lt;/button&gt;</span><br><span class="line">                    &lt;button id=&quot;disconnect&quot; class=&quot;btn btn-default&quot; type=&quot;submit&quot; disabled=&quot;disabled&quot;&gt;Disconnect</span><br><span class="line">                    &lt;/button&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/form&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;col-md-6&quot;&gt;</span><br><span class="line">            &lt;form class=&quot;form-inline&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">                    &lt;label for=&quot;name&quot;&gt;What is your name?&lt;/label&gt;</span><br><span class="line">                    &lt;input type=&quot;text&quot; id=&quot;name&quot; class=&quot;form-control&quot; placeholder=&quot;Your name here...&quot;&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;button id=&quot;send&quot; class=&quot;btn btn-default&quot; type=&quot;submit&quot;&gt;Send&lt;/button&gt;</span><br><span class="line">            &lt;/form&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;row&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;col-md-12&quot;&gt;</span><br><span class="line">            &lt;table id=&quot;conversation&quot; class=&quot;table table-striped&quot;&gt;</span><br><span class="line">                &lt;thead&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                    &lt;th&gt;Greetings&lt;/th&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">                &lt;/thead&gt;</span><br><span class="line">                &lt;tbody id=&quot;greetings&quot;&gt;</span><br><span class="line">                &lt;/tbody&gt;</span><br><span class="line">            &lt;/table&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>main.css<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    background-color: #f5f5f5;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#main-content &#123;</span><br><span class="line">    max-width: 940px;</span><br><span class="line">    padding: 2em 3em;</span><br><span class="line">    margin: 0 auto 20px;</span><br><span class="line">    background-color: #fff;</span><br><span class="line">    border: 1px solid #e5e5e5;</span><br><span class="line">    -webkit-border-radius: 5px;</span><br><span class="line">    -moz-border-radius: 5px;</span><br><span class="line">    border-radius: 5px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>app.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">var stompClient = null;</span><br><span class="line"></span><br><span class="line">function setConnected(connected) &#123;</span><br><span class="line">    $(&quot;#connect&quot;).prop(&quot;disabled&quot;, connected);</span><br><span class="line">    $(&quot;#disconnect&quot;).prop(&quot;disabled&quot;, !connected);</span><br><span class="line">    if (connected) &#123;</span><br><span class="line">        $(&quot;#conversation&quot;).show();</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        $(&quot;#conversation&quot;).hide();</span><br><span class="line">    &#125;</span><br><span class="line">    $(&quot;#greetings&quot;).html(&quot;&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function connect() &#123;</span><br><span class="line">    var socket = new SockJS(&apos;/gs-guide-websocket&apos;);</span><br><span class="line">    stompClient = Stomp.over(socket);</span><br><span class="line">    stompClient.connect(&#123;&quot;id&quot;: &quot;header&quot;&#125;, function (frame) &#123;</span><br><span class="line">        setConnected(true);</span><br><span class="line">        console.log(&apos;Connected: &apos; + frame);</span><br><span class="line">        stompClient.subscribe(&apos;/topic/greetings&apos;, function (greeting) &#123;</span><br><span class="line">            showGreeting(JSON.parse(greeting.body).content);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function disconnect() &#123;</span><br><span class="line">    if (stompClient !== null) &#123;</span><br><span class="line">        stompClient.disconnect();</span><br><span class="line">    &#125;</span><br><span class="line">    setConnected(false);</span><br><span class="line">    console.log(&quot;Disconnected&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function sendName() &#123;</span><br><span class="line">    stompClient.send(&quot;/app/hello&quot;, &#123;&#125;, JSON.stringify(&#123;&apos;name&apos;: $(&quot;#name&quot;).val()&#125;));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function showGreeting(message) &#123;</span><br><span class="line">    $(&quot;#greetings&quot;).append(&quot;&lt;tr&gt;&lt;td&gt;&quot; + message + &quot;&lt;/td&gt;&lt;/tr&gt;&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$(function () &#123;</span><br><span class="line">    $(&quot;form&quot;).on(&apos;submit&apos;, function (e) &#123;</span><br><span class="line">        e.preventDefault();</span><br><span class="line">    &#125;);</span><br><span class="line">    $( &quot;#connect&quot; ).click(function() &#123; connect(); &#125;);</span><br><span class="line">    $( &quot;#disconnect&quot; ).click(function() &#123; disconnect(); &#125;);</span><br><span class="line">    $( &quot;#send&quot; ).click(function() &#123; sendName(); &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>这部分最值得说的就是JS部分了，比较简单主要就是3个点击事件，包括连接、断开、发送消息。</p>
+<p>当我们点击了连接后，会新建SockjS对象，并设置服务端的连接点（/gs-guide-websocket），这里的连接点由服务端提供。</p>
+<p>subscribe()方法的第一个参数是注册客户端地址，注意前戳必须是/topic开头，因为在前面服务端已经配置了目的地前戳。与@SendTo中的地址对应。</p>
+<p>客户端发送消息只需要调用send()方法，还方法的第一个参数是服务端@MessageMapping地址并且加了指定的/app前戳，第二个参数为header头部信息，第三个是发送的消息内容。</p>
+<h2 id="5-运行程序"><a href="#5-运行程序" class="headerlink" title="5.运行程序"></a>5.运行程序</h2><p><img src="/2019/08/20/webSocket是TCP上一个轻量级层/203413.png" alt=""><br>成功实现Hello World程序，下面将通过搭建一个一对一聊天服务器，深入学习更多的socket知识。</p>
+<h2 id="6-发送消息"><a href="#6-发送消息" class="headerlink" title="6.发送消息"></a>6.发送消息</h2><p>在前面我们写了一个自动回复的小例子，用到了@MessageMapping(“/hello”)和@SendTo(“/topic/greetings”)两个注解，其实我们还可以使用编程的方式发送消息。</p>
+<p>其实很简单，直接引用该消息模板<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">private SimpMessagingTemplate messagingTemplate;</span><br></pre></td></tr></table></figure></p>
+<p>消息模板内置了一系列方法，比如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void convertAndSendToUser(String user, String destination, Object payload)</span><br><span class="line"></span><br><span class="line">void convertAndSend(D destination, Object payload)</span><br></pre></td></tr></table></figure></p>
+<p>这俩方法会包装为消息并将其发送到给定的目的地。</p>
+<h2 id="7-STOMP监听"><a href="#7-STOMP监听" class="headerlink" title="7.STOMP监听"></a>7.STOMP监听</h2><p>监听webSocket服务器的连接只需要实现ApplicationListener&lt;&gt;接口。代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class STOMPConnectEventListener implements ApplicationListener&lt;SessionConnectEvent&gt; &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onApplicationEvent(SessionConnectEvent event) &#123;</span><br><span class="line">        StompHeaderAccessor sha = StompHeaderAccessor.wrap(event.getMessage());</span><br><span class="line">        //判断客户端的连接状态</span><br><span class="line">        switch (sha.getCommand()) &#123;</span><br><span class="line">            case CONNECT:</span><br><span class="line">                System.out.println(&quot;上线&quot;);</span><br><span class="line">                break;</span><br><span class="line">            case DISCONNECT:</span><br><span class="line">                System.out.println(&quot;下线&quot;);</span><br><span class="line">                break;</span><br><span class="line">            case SUBSCRIBE:</span><br><span class="line">                System.out.println(&quot;订阅&quot;);</span><br><span class="line">                break;</span><br><span class="line">            case SEND:</span><br><span class="line">                System.out.println(&quot;发送&quot;);</span><br><span class="line">                break;</span><br><span class="line">            case UNSUBSCRIBE:</span><br><span class="line">                System.out.println(&quot;取消订阅&quot;);</span><br><span class="line">                break;</span><br><span class="line">            default:</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>监听的所有状态被封装在一个枚举类中，其实还有很多，这里不再一一列举。</p>
+<p>有了上面这些知识，我们就可以基于此开发一对一聊天服务器。</p>
+<h2 id="8-Session存取"><a href="#8-Session存取" class="headerlink" title="8.Session存取"></a>8.Session存取</h2><p>webSocket提供的是一个socket框架，并不会帮我们管理session，我们需要自己去编写session管理类，进行session的读写。代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class SocketSessionMap &#123;</span><br><span class="line">    private final static ConcurrentMap&lt;String, String&gt; sessionMap = new ConcurrentHashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 注册Session</span><br><span class="line">     * @param userId</span><br><span class="line">     * @param sessionId</span><br><span class="line">     */</span><br><span class="line">    public synchronized void registerSession(String userId, String sessionId) &#123;</span><br><span class="line">        sessionMap.put(userId,sessionId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 移除Session</span><br><span class="line">     * @param userId</span><br><span class="line">     * @param sessionId</span><br><span class="line">     */</span><br><span class="line">    public synchronized void removeSession(String userId, String sessionId) &#123;</span><br><span class="line">        sessionMap.remove(userId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 获取用户的SessionId</span><br><span class="line">     * @param userId</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public String getUserSessionId(String userId)&#123;</span><br><span class="line">        return sessionMap.get(userId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 获取所有Session集合</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public Map&lt;String, String&gt; queryAllSession()&#123;</span><br><span class="line">        return sessionMap;</span><br><span class="line">    &#125;</span><br><span class="line">    /**</span><br><span class="line">     * 获取集合的大小</span><br><span class="line">     */</span><br><span class="line">    public int onlineCount()&#123;</span><br><span class="line">        return sessionMap.size();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="9-监听注册"><a href="#9-监听注册" class="headerlink" title="9.监听注册"></a>9.监听注册</h2><p>接着，对STOMP监听类进行扩展。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class STOMPConnectEventListener implements ApplicationListener&lt;SessionConnectEvent&gt; &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    SocketSessionMap socketSessionMap;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onApplicationEvent(SessionConnectEvent event) &#123;</span><br><span class="line">        StompHeaderAccessor sha = StompHeaderAccessor.wrap(event.getMessage());</span><br><span class="line">        String userId = sha.getFirstNativeHeader(&quot;id&quot;);</span><br><span class="line">        String sessionId = sha.getSessionId();</span><br><span class="line">        switch (sha.getCommand()) &#123;</span><br><span class="line">            case CONNECT:</span><br><span class="line">                System.out.println(&quot;上线：&quot; + userId + &quot;  &quot; + sessionId);</span><br><span class="line">                socketSessionMap.registerSession(userId, sessionId);</span><br><span class="line">                break;</span><br><span class="line">            default:</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>服务端通过sha.getFirstNativeHeader(“id”)读取到客户端的ID，这个值需要网页客户端手动在header头部信息中设置。</p>
+<p>当服务端监听到客户端连接时，会将用户SessionId注册到Map中。</p>
+<h2 id="10-监听下线"><a href="#10-监听下线" class="headerlink" title="10.监听下线"></a>10.监听下线</h2><p>这里我们使用更可靠的请求下线方式，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@MessageMapping(&quot;/chatOut&quot;)</span><br><span class="line">public void sayHello(String userId) &#123;</span><br><span class="line">    String sessionId = socketSessionMap.getUserSessionId(userId);</span><br><span class="line">    System.out.println(&quot;下线：&quot; + userId + &quot;  &quot; + sessionId);</span><br><span class="line">    socketSessionMap.removeSession(userId,sessionId);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当收到下线请求时，移除SessionId。</p>
+<p>关于Session，也可以设置一个最大值，超时自动移除。</p>
+<h2 id="11-一对一消息处理"><a href="#11-一对一消息处理" class="headerlink" title="11.一对一消息处理"></a>11.一对一消息处理</h2><p>在一对一服务器中，主要处理的就是一对一的消息发送。大致逻辑是接收客户端消息，分析消息结构，通过SessionMap判断对方是否在线，然后发送相应内容。代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@MessageMapping(&quot;/chat&quot;)</span><br><span class="line">public void sayHello(Message user) &#123;</span><br><span class="line">    System.out.println(user.getId()+&quot;--&gt;&quot;+user.getPid()+&quot;:&quot;+user.getContent());</span><br><span class="line">    String userPid = String.valueOf(user.getPid());</span><br><span class="line">    String userId = String.valueOf(user.getId());</span><br><span class="line">    String sendTo = &quot;/topic/chat/&quot;+userPid;</span><br><span class="line">    String content = user.getId()+&quot;:&quot;+user.getContent();</span><br><span class="line">    if (socketSessionMap.getUserSessionId(userPid)!=null)&#123;</span><br><span class="line">        messagingTemplate.convertAndSend(sendTo, HtmlUtils.htmlEscape(content));</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">        sendTo = &quot;/topic/chat/&quot;+userId;</span><br><span class="line">        content = &quot;对方已下线&quot;;</span><br><span class="line">        messagingTemplate.convertAndSend(sendTo, HtmlUtils.htmlEscape(content));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>值得一体的是，关于用户ID的处理，这里使用的是自定义客户端地址，不同的地址表示不同的用户。最后通过convertAndSend()方法发送，这种方式比较可靠方便。</p>
+<p>Message.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public class Message &#123;</span><br><span class="line">    private int id; //用户ID</span><br><span class="line">    private String content;//发送内容</span><br><span class="line">    private int pid;    //发送到用户</span><br></pre></td></tr></table></figure></p>
+<h2 id="12-聊天网页"><a href="#12-聊天网页" class="headerlink" title="12.聊天网页"></a>12.聊天网页</h2><p>服务端使用FreeMarker模板引擎返回html网页，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(&quot;/chat/&#123;id&#125;&quot;)</span><br><span class="line">public String chat_page(@PathVariable int id, ModelMap model) &#123;</span><br><span class="line">    model.addAttribute(&quot;id&quot;, id);</span><br><span class="line">    int count = socketSessionMap.onlineCount();</span><br><span class="line">    model.addAttribute(&quot;count&quot;, count);</span><br><span class="line">    return &quot;chat&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过RESTful形式的URl注册ID。</p>
+<p>chat.html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html &gt;</span><br><span class="line">&lt;html xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Hello WebSocket&lt;/title&gt;</span><br><span class="line">    &lt;link href=&quot;/webjars/bootstrap/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">    &lt;link href=&quot;/main.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">    &lt;link rel=&quot;shortcut icon&quot; href=&quot;/favicon.ico&quot; /&gt;</span><br><span class="line">    &lt;script src=&quot;/webjars/jquery/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;/webjars/sockjs-client/sockjs.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;/webjars/stomp-websocket/stomp.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;/chat.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;noscript&gt;&lt;h2 style=&quot;color: #ff0000&quot;&gt;Seems your browser doesn&apos;t support Javascript! Websocket relies on Javascript being</span><br><span class="line">    enabled. Please enable</span><br><span class="line">    Javascript and reload this page!&lt;/h2&gt;&lt;/noscript&gt;</span><br><span class="line">&lt;div id=&quot;main-content&quot; class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;row&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;col-md-6&quot;&gt;</span><br><span class="line">            &lt;form class=&quot;form-inline&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">                    &lt;label for=&quot;connect&quot;&gt;WebSocket connection:&lt;/label&gt;</span><br><span class="line">                    &lt;button id=&quot;connect&quot; class=&quot;btn btn-default&quot; type=&quot;submit&quot;&gt;Connect&lt;/button&gt;</span><br><span class="line">                    &lt;button id=&quot;disconnect&quot; class=&quot;btn btn-default&quot; type=&quot;submit&quot; disabled=&quot;disabled&quot;&gt;Disconnect</span><br><span class="line">                    &lt;/button&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/form&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;col-md-6&quot;&gt;</span><br><span class="line">            &lt;form class=&quot;form-inline&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">                    &lt;label th:text=&quot;&apos;Online:&apos;+$&#123;count&#125;&quot;&gt; &lt;/label&gt;</span><br><span class="line">                    &lt;input type=&quot;text&quot; id=&quot;id&quot; class=&quot;form-control&quot; th:value=&quot;$&#123;id&#125;&quot;required&gt;</span><br><span class="line">                    &lt;input type=&quot;text&quot; id=&quot;content&quot; class=&quot;form-control&quot; placeholder=&quot;Your name here...&quot;required&gt;</span><br><span class="line">                    &lt;input type=&quot;text&quot; id=&quot;pid&quot; class=&quot;form-control&quot; placeholder=&quot;Your PID&quot;required&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;button id=&quot;send&quot; class=&quot;btn btn-default&quot; type=&quot;submit&quot;&gt;Send&lt;/button&gt;</span><br><span class="line">            &lt;/form&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;row&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;col-md-12&quot;&gt;</span><br><span class="line">            &lt;table id=&quot;conversation&quot; class=&quot;table table-striped&quot;&gt;</span><br><span class="line">                &lt;thead&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                    &lt;th&gt;Greetings&lt;/th&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">                &lt;/thead&gt;</span><br><span class="line">                &lt;tbody id=&quot;greetings&quot;&gt;</span><br><span class="line">                &lt;/tbody&gt;</span><br><span class="line">            &lt;/table&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>chat.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">var stompClient = null;</span><br><span class="line"></span><br><span class="line">function setConnected(connected) &#123;</span><br><span class="line">    $(&quot;#connect&quot;).prop(&quot;disabled&quot;, connected);</span><br><span class="line">    $(&quot;#disconnect&quot;).prop(&quot;disabled&quot;, !connected);</span><br><span class="line">    if (connected) &#123;</span><br><span class="line">        $(&quot;#conversation&quot;).show();</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        $(&quot;#conversation&quot;).hide();</span><br><span class="line">    &#125;</span><br><span class="line">    $(&quot;#greetings&quot;).html(&quot;&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function connect() &#123;</span><br><span class="line">    var socket = new SockJS(&apos;/gs-guide-websocket&apos;);</span><br><span class="line">    stompClient = Stomp.over(socket);</span><br><span class="line">    stompClient.connect(&#123;&quot;id&quot;: $(&quot;#id&quot;).val()&#125;, function (frame) &#123; //客户端ID</span><br><span class="line">        setConnected(true);</span><br><span class="line">        console.log(&apos;Connected: &apos; + frame);</span><br><span class="line">        stompClient.subscribe(&apos;/topic/chat/&apos; + $(&quot;#id&quot;).val(), function (greeting) &#123; //表明客户端地址</span><br><span class="line">            showGreeting(greeting.body);</span><br><span class="line">        &#125;, &#123;&quot;id&quot;: &quot;Host_&quot; + $(&quot;#id&quot;).val()&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function disconnect() &#123;</span><br><span class="line">    if (stompClient !== null) &#123;</span><br><span class="line">        stompClient.send(&quot;/app/chatOut&quot;, &#123;&#125;,$(&quot;#id&quot;).val());</span><br><span class="line">        stompClient.disconnect();</span><br><span class="line">    &#125;</span><br><span class="line">    setConnected(false);</span><br><span class="line">    console.log(&quot;Disconnected&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function sendName() &#123;</span><br><span class="line">    stompClient.send(&quot;/app/chat&quot;, &#123;&#125;, JSON.stringify(&#123;</span><br><span class="line">        &apos;content&apos;: $(&quot;#content&quot;).val(),</span><br><span class="line">        &apos;id&apos;: $(&quot;#id&quot;).val(),</span><br><span class="line">        &apos;pid&apos;: $(&quot;#pid&quot;).val()</span><br><span class="line">    &#125;));</span><br><span class="line">    showGreeting(&quot;我:&quot; + $(&quot;#content&quot;).val())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function showGreeting(message) &#123;</span><br><span class="line">    $(&quot;#greetings&quot;).append(&quot;&lt;tr&gt;&lt;td&gt;&quot; + message + &quot;&lt;/td&gt;&lt;/tr&gt;&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$(function () &#123;</span><br><span class="line">    $(&quot;form&quot;).on(&apos;submit&apos;, function (e) &#123;</span><br><span class="line">        e.preventDefault();</span><br><span class="line">    &#125;);</span><br><span class="line">    $(&quot;#connect&quot;).click(function () &#123;</span><br><span class="line">        connect();</span><br><span class="line">    &#125;);</span><br><span class="line">    $(&quot;#disconnect&quot;).click(function () &#123;</span><br><span class="line">        disconnect();</span><br><span class="line">    &#125;);</span><br><span class="line">    $(&quot;#send&quot;).click(function () &#123;</span><br><span class="line">        sendName();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>网页客户端的主要逻辑在chat.js中。非常有必要的是在stompClient.connect()方法的第一个参数中传入header头信息，该头部信息必须设置id字段的值，因为服务端会读取该ID值，该值最终会取自URL中的参数。</p>
+<p>其次是在用户断开链接前，会向服务端发送断开通知。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stompClient.send(&quot;/app/chatOut&quot;, &#123;&#125;,$(&quot;#id&quot;).val());</span><br></pre></td></tr></table></figure>
+<h2 id="13-程序演示"><a href="#13-程序演示" class="headerlink" title="13.程序演示"></a>13.程序演示</h2><p>打开两个网页，URl分别为<code>http://localhost:8080/chat/100和http://localhost:8080/chat/101</code>，点击链接。<br>查看控制台输出：<br><img src="/2019/08/20/webSocket是TCP上一个轻量级层/20204117.png" alt=""><br>接下来演示用户101向用户100发送消息：<br><img src="/2019/08/20/webSocket是TCP上一个轻量级层/820204158.png" alt=""><br>查看用户100收到信息：<br><img src="/2019/08/20/webSocket是TCP上一个轻量级层/204231.png" alt=""><br>再次查看控制输出：<br><img src="/2019/08/20/webSocket是TCP上一个轻量级层/20204310.png" alt=""><br>消息成功发送！</p>
+<p>当用户断开链接时，控制台输出为：<br><img src="/2019/08/20/webSocket是TCP上一个轻量级层/20204351.png" alt=""></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/08/20/webSocket是TCP上一个轻量级层/" data-id="cjzwlsamt009r7kfvrfap2p1o" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1466132938&site=qq&menu=yes" target="_blank" rel="noopener">
+                          <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/08/20/计算机网络体系结构/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            计算机网络体系结构
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/08/18/必须掌握的20-种Spring常用注解/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">必须掌握的20+种Spring常用注解</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/10个基于JavaScript的机器学习实例/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/10个基于JavaScript的机器学习实例/1.png)" alt="10个基于JavaScript的机器学习实例" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/10个基于JavaScript的机器学习实例/" class="title">10个基于JavaScript的机器学习实例</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T10:20:15.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/四幅思维导图学会Python爬虫/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/四幅思维导图学会Python爬虫/1.png)" alt="四幅思维导图学会Python爬虫" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/四幅思维导图学会Python爬虫/" class="title">四幅思维导图学会Python爬虫</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T09:43:14.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/比Thread-sleep优雅的线程睡眠/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/比Thread-sleep优雅的线程睡眠/90829171904.png)" alt="比Thread.sleep优雅的线程睡眠" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/比Thread-sleep优雅的线程睡眠/" class="title">比Thread.sleep优雅的线程睡眠</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T09:16:39.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/提到Serverless你需要知道什么/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/提到Serverless你需要知道什么/9fc54f7427.webp)" alt="提到Serverless你需要知道什么" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/提到Serverless你需要知道什么/" class="title">提到Serverless你需要知道什么</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T07:48:37.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/28/17幅思维导图-Python核心知识体系/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/28/17幅思维导图-Python核心知识体系/rules.png)" alt="17幅思维导图:Python核心知识体系" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/28/17幅思维导图-Python核心知识体系/" class="title">17幅思维导图:Python核心知识体系</a></p>
+                            <p class="item-date"><time datetime="2019-08-28T10:00:09.000Z" itemprop="datePublished">2019-08-28</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA/">JAVA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/">JSP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javaweb/">Javaweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot/">Springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发工具/">开发工具</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能测试/">性能测试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/框架/">框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存机制/">缓存机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机/">计算机</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JAVA/" style="font-size: 10.83px;">JAVA</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JVM/" style="font-size: 12.5px;">JVM</a> <a href="/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19.17px;">JavaScript</a> <a href="/tags/Javaweb/" style="font-size: 10px;">Javaweb</a> <a href="/tags/Jquery/" style="font-size: 10px;">Jquery</a> <a href="/tags/Linux/" style="font-size: 10.83px;">Linux</a> <a href="/tags/PHP/" style="font-size: 15.83px;">PHP</a> <a href="/tags/Python/" style="font-size: 10.83px;">Python</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Springboot/" style="font-size: 10px;">Springboot</a> <a href="/tags/XML/" style="font-size: 10.83px;">XML</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/git/" style="font-size: 10.83px;">git</a> <a href="/tags/html/" style="font-size: 17.5px;">html</a> <a href="/tags/java/" style="font-size: 18.33px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/node/" style="font-size: 10.83px;">node</a> <a href="/tags/orcal/" style="font-size: 13.33px;">orcal</a> <a href="/tags/python/" style="font-size: 14.17px;">python</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 12.5px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/开发工具/" style="font-size: 14.17px;">开发工具</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/心语/" style="font-size: 11.67px;">心语</a> <a href="/tags/性能测试/" style="font-size: 10px;">性能测试</a> <a href="/tags/技术/" style="font-size: 12.5px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15px;">数据结构与算法</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/缓存机制/" style="font-size: 10px;">缓存机制</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/计算机/" style="font-size: 10px;">计算机</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/08/20/webSocket是TCP上一个轻量级层/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

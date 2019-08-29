@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Java中Socket套接字入门 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Java">
+    
+    <meta name="description" content="古代，由于通信不便利，一些聪明的人就利用鸽子会飞且飞得比较快、会辨认方向的优点，对其进行了驯化，用来进行消息的传递——也就是所谓的“飞鸽传书”。而在 Java 中，网络套接字（Socket）扮演了同样的角色。 套接字（Socket）是一个抽象层，应用程序可以通过它发送或接收数据；就像操作文件那样可以打开、读写和关闭。套接字允许应用程序将 I/O 应用于网络中，并与其他应用程序进行通信。网络套接字是">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java中Socket套接字入门">
+<meta property="og:url" content="http://yoursite.com/2019/08/25/Java中Socket套接字入门/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="古代，由于通信不便利，一些聪明的人就利用鸽子会飞且飞得比较快、会辨认方向的优点，对其进行了驯化，用来进行消息的传递——也就是所谓的“飞鸽传书”。而在 Java 中，网络套接字（Socket）扮演了同样的角色。 套接字（Socket）是一个抽象层，应用程序可以通过它发送或接收数据；就像操作文件那样可以打开、读写和关闭。套接字允许应用程序将 I/O 应用于网络中，并与其他应用程序进行通信。网络套接字是">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/08/25/Java中Socket套接字入门/5155330.jpg">
+<meta property="og:updated_time" content="2019-08-25T08:01:32.077Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java中Socket套接字入门">
+<meta name="twitter:description" content="古代，由于通信不便利，一些聪明的人就利用鸽子会飞且飞得比较快、会辨认方向的优点，对其进行了驯化，用来进行消息的传递——也就是所谓的“飞鸽传书”。而在 Java 中，网络套接字（Socket）扮演了同样的角色。 套接字（Socket）是一个抽象层，应用程序可以通过它发送或接收数据；就像操作文件那样可以打开、读写和关闭。套接字允许应用程序将 I/O 应用于网络中，并与其他应用程序进行通信。网络套接字是">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/25/Java中Socket套接字入门/5155330.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/推荐好文/">推荐好文</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
+    <input name="wd" type="text" class="search-form-input" placeholder="搜索">
+</form>
+<script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-Java中Socket套接字入门" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Java中Socket套接字入门
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/08/25/Java中Socket套接字入门/" class="article-date">
+            <time datetime="2019-08-25T07:52:18.000Z" itemprop="datePublished">2019-08-25</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Java/">Java</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>古代，由于通信不便利，一些聪明的人就利用鸽子会飞且飞得比较快、会辨认方向的优点，对其进行了驯化，用来进行消息的传递——也就是所谓的“飞鸽传书”。而在 Java 中，网络套接字（Socket）扮演了同样的角色。</p>
+<p>套接字（Socket）是一个抽象层，应用程序可以通过它发送或接收数据；就像操作文件那样可以打开、读写和关闭。套接字允许应用程序将 I/O 应用于网络中，并与其他应用程序进行通信。网络套接字是 IP 地址与端口的组合。</p>
+<h2 id="01、ping-与-telnet"><a href="#01、ping-与-telnet" class="headerlink" title="01、ping 与 telnet"></a>01、ping 与 telnet</h2><p>“老王啊，能不能帮我看一下这个问题呢，明明本地可以进行网络通信，可等我部署到服务器上时就通信不了了，搞了半天也不知道什么原因，我看代码是没有问题的。”小二的语气中充满了沮丧。</p>
+<p>“ping 过吗？或者 telnet 了吗？”老王头都没回，冷冰冰地扔出去了这句话。</p>
+<p>“哦，我去试试。”小二心头掠过一丝愧疚。</p>
+<p>ping 与 telnet 这两个命令，对调试网络程序有着非常大的帮助。</p>
+<p>ping，一种计算机网络工具，用来测试数据包能否透过 IP 协议到达特定主机。ping 会向目标主机发出一个 ICMP 的请求回显数据包，并等待接收回显响应数据包。</p>
+<p>例如，我们 ping 一下博客园。截图如下。<br><img src="/2019/08/25/Java中Socket套接字入门/5155330.jpg" alt=""><br>telnet，Internet 远程登录服务的标准协议和主要方式，可以让我们坐在家里的计算机面前，登录到另一台远在天涯海角的远程计算机上。<br><img src="/2019/08/25/Java中Socket套接字入门/5155415.jpg" alt=""><br>在 Windows 系统中，telnet 一般是默认安装的，但未激活（可以在控制面板中激活它）。</p>
+<p>例如，我们 telnet 一下火（shui）土（mu）社区。截图如下。<br><img src="/2019/08/25/Java中Socket套接字入门/25155442.jpg" alt=""><br>使用 telnet 登录远程计算机时，需要远程计算机上运行一个服务，它一直不停地等待那些希望和它进行连接的网络请求；当接收到一个客户端的网络连接时，它便唤醒正在监听网络连接请求的服务器进程，并为两者建立连接。连接会一直保持，直到某一方中止。</p>
+<p>不过，需要注意的是，telnet 在格外重视安全的现代网络技术中并不受到重用。因为 telnet 是一个明文传输协议，用户的所有内容（包括用户名和密码）都没有经过加密，安全隐患非常大。</p>
+<h2 id="02、Socket-实例"><a href="#02、Socket-实例" class="headerlink" title="02、Socket 实例"></a>02、Socket 实例</h2><p>不知道你有没有体验一下 telnet 火土社区的那条命令，结果非常有趣。我们也可以通过 Java 的客户端套接字（Socket）实现，代码示例如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">try (Socket socket = new Socket(&quot;bbs.newsmth.net&quot;, 23);) &#123;</span><br><span class="line">    InputStream is = socket.getInputStream();</span><br><span class="line">    Scanner scanner = new Scanner(is, &quot;gbk&quot;);</span><br><span class="line"></span><br><span class="line">    while (scanner.hasNextLine()) &#123;</span><br><span class="line">        String line = scanner.nextLine();</span><br><span class="line">        System.out.println(line);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125; catch (UnknownHostException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125; catch (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>1）建立套接字连接非常简单，只需要一行代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Socket socket = new Socket(host, port)</span><br></pre></td></tr></table></figure></p>
+<p>host 为主机名，port 为端口号（23 为默认的 telnet 端口号）。如果无法确定主机的 IP 地址，则抛出 <code>UnknownHostException</code> 异常；如果在创建套接字时发生 IO 错误，则抛出 <code>IOException</code> 异常。</p>
+<p>需要注意的是，套接字在建立的时候，如果远程主机不可访问，这段代码就会阻塞很长时间，直到底层操作系统的限制而抛出异常。所以一般会在套接字建立后设置一个超时时间。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Socket socket = new Socket(...);</span><br><span class="line">socket.setSoTimeout(10000); // 单位为毫秒</span><br></pre></td></tr></table></figure></p>
+<p>2）套接字连接成功后，可以通过 <code>java.net.Socket</code> 类的 <code>getInputStream()</code> 方法获取输入流。有了 <code>InputStream</code> 对象后，可以借助文本扫描器类（Scanner）将其中的内容打印出来。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">InputStream is = socket.getInputStream();</span><br><span class="line">Scanner scanner = new Scanner(is, &quot;gbk&quot;);</span><br><span class="line"></span><br><span class="line">while (scanner.hasNextLine()) &#123;</span><br><span class="line">    String line = scanner.nextLine();</span><br><span class="line">    System.out.println(line);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>部分结果（完整结果自己亲手实践一下哦）如下图所示：<br><img src="/2019/08/25/Java中Socket套接字入门/25155512.jpg" alt=""></p>
+<h2 id="03、ServerSocket-实例"><a href="#03、ServerSocket-实例" class="headerlink" title="03、ServerSocket 实例"></a>03、ServerSocket 实例</h2><p>接下来，我们模拟一个远程服务，通过 <code>java.net.ServerSocket</code> 实现。代码示例如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">try (ServerSocket server = new ServerSocket(8888);</span><br><span class="line">        Socket socket = server.accept();</span><br><span class="line">        InputStream is = socket.getInputStream();</span><br><span class="line">        OutputStream os = socket.getOutputStream();</span><br><span class="line"></span><br><span class="line">        Scanner scanner = new Scanner(is)) &#123;</span><br><span class="line">    PrintWriter pw = new PrintWriter(new OutputStreamWriter(os, &quot;gbk&quot;), true);</span><br><span class="line">    pw.println(&quot;你好啊，欢迎登陆，回复关键字「2048」退出&quot;);</span><br><span class="line"></span><br><span class="line">    boolean done = false;</span><br><span class="line">    while (!done &amp;&amp; scanner.hasNextLine()) &#123;</span><br><span class="line">        String line = scanner.nextLine();</span><br><span class="line">        System.out.println(line);</span><br><span class="line"></span><br><span class="line">        if (&quot;2048&quot;.equals(line)) &#123;</span><br><span class="line">            done = true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; catch (UnknownHostException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125; catch (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>1）建立服务器端的套接字也比较简单，只需要指定一个能够独占的端口号就可以了（0~1023 这些端口都已经被系统预留了）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ServerSocket server = new ServerSocket(8888);</span><br></pre></td></tr></table></figure></p>
+<p>2）调用 ServerSocket 对象的 accept() 等待客户端套接字的连接请求。一旦监听到客户端的套接字请求，就会返回一个表示连接已建立的 Socket 对象，可以从中获取到输入流和输出流。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Socket socket = server.accept();</span><br><span class="line">InputStream is = socket.getInputStream();</span><br><span class="line">OutputStream os = socket.getOutputStream();</span><br></pre></td></tr></table></figure></p>
+<p>客户端套接字发送的所有信息都会包裹在服务器端套接字的输入流中；而服务器端套接字发送的所有信息都会包裹在客户端套接字的输出流中。</p>
+<p>3）服务器端可以通过以下代码向客户端发送消息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PrintWriter pw = new PrintWriter(new OutputStreamWriter(os, &quot;gbk&quot;), true);</span><br><span class="line">pw.println(&quot;你好啊，欢迎登陆，回复关键字「2048」退出&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>4）服务器端可以通过以下代码读取客户端发送过来的消息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Scanner scanner = new Scanner(is);</span><br><span class="line">boolean done = false;</span><br><span class="line">while (!done &amp;&amp; scanner.hasNextLine()) &#123;</span><br><span class="line">    String line = scanner.nextLine();</span><br><span class="line">    System.out.println(line);</span><br><span class="line"></span><br><span class="line">    if (&quot;2048&quot;.equals(line)) &#123;</span><br><span class="line">        done = true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行该服务后，可以通过 <code>telnet localhost 8888</code> 命令连接该远程服务，不出所料，你将会看到如上信息。<br>PS：可以在当前命令窗口中输入 2048，服务端收到该消息后会中断该套接字连接（当前窗口会显示“遗失对主机的连接”）。</p>
+<h2 id="04、为多个客户端服务"><a href="#04、为多个客户端服务" class="headerlink" title="04、为多个客户端服务"></a>04、为多个客户端服务</h2><p>非常遗憾的是，上面的例子中，服务器端只能为一个客户端服务——这不符合服务器端一对多的要求。</p>
+<p>优化方案也非常简单（你应该也能想得到）：服务器端接收到客户端的套接字请求时，可以启动一个线程来处理，而主程序继续等待下一个连接。代码示例如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">try (ServerSocket server = new ServerSocket(8888)) &#123;</span><br><span class="line"></span><br><span class="line">    while (true) &#123;</span><br><span class="line">        Socket socket = server.accept();</span><br><span class="line">        Thread thread = new Thread(new Runnable() &#123;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">              // 套接字处理程序</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125; catch (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>线程内部（run(){} 方法里）用来处理套接字，代码示例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">    InputStream is = socket.getInputStream();</span><br><span class="line">    OutputStream os = socket.getOutputStream();</span><br><span class="line">    Scanner scanner = new Scanner(is);</span><br><span class="line"></span><br><span class="line">   // 其他代码省略</span><br><span class="line">   // 向客户端发送消息</span><br><span class="line">   // 读取客户端发送过来的消息</span><br><span class="line">&#125; catch (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125; finally &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        socket.close();</span><br><span class="line">    &#125; catch (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>服务器端代码优化后重新运行，你就可以通过 telnet 命令测试了。打开一个命令行窗口输入 <code>telnet localhost 8888</code>，再打开一个新的命令行窗口输入 <code>telnet localhost 8888</code>，多个窗口都可以和服务器端进行通信，除非服务器端代码中断运行。</p>
+<h2 id="05、最后"><a href="#05、最后" class="headerlink" title="05、最后"></a>05、最后</h2><p>如今大多数基于网络的软件，如浏览器、即时通讯工具甚至是 P2P 下载都是基于 Socket 实现的，所以掌握 Java Socket 编程还是蛮有必要的。Socket 编程也比较有趣，很多初学者都会编写一两个基于“客户端-服务器端”的小程序来提高自己的编程水平，建议你也试一试。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/08/25/Java中Socket套接字入门/" data-id="cjzwlsaaj006m7kfvad4ej2z2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1466132938&site=qq&menu=yes" target="_blank" rel="noopener">
+                          <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/08/25/八点建议助您写出优雅的Java代码/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            八点建议助您写出优雅的Java代码
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/08/21/抓包工具tcpdump用法说明/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">抓包工具tcpdump用法说明</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/10个基于JavaScript的机器学习实例/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/10个基于JavaScript的机器学习实例/1.png)" alt="10个基于JavaScript的机器学习实例" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/10个基于JavaScript的机器学习实例/" class="title">10个基于JavaScript的机器学习实例</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T10:20:15.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/四幅思维导图学会Python爬虫/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/四幅思维导图学会Python爬虫/1.png)" alt="四幅思维导图学会Python爬虫" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/四幅思维导图学会Python爬虫/" class="title">四幅思维导图学会Python爬虫</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T09:43:14.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/比Thread-sleep优雅的线程睡眠/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/比Thread-sleep优雅的线程睡眠/90829171904.png)" alt="比Thread.sleep优雅的线程睡眠" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/比Thread-sleep优雅的线程睡眠/" class="title">比Thread.sleep优雅的线程睡眠</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T09:16:39.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/提到Serverless你需要知道什么/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/提到Serverless你需要知道什么/9fc54f7427.webp)" alt="提到Serverless你需要知道什么" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/提到Serverless你需要知道什么/" class="title">提到Serverless你需要知道什么</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T07:48:37.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/28/17幅思维导图-Python核心知识体系/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/28/17幅思维导图-Python核心知识体系/rules.png)" alt="17幅思维导图:Python核心知识体系" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/28/17幅思维导图-Python核心知识体系/" class="title">17幅思维导图:Python核心知识体系</a></p>
+                            <p class="item-date"><time datetime="2019-08-28T10:00:09.000Z" itemprop="datePublished">2019-08-28</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA/">JAVA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/">JSP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javaweb/">Javaweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot/">Springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发工具/">开发工具</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能测试/">性能测试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/框架/">框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存机制/">缓存机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机/">计算机</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JAVA/" style="font-size: 10.83px;">JAVA</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JVM/" style="font-size: 12.5px;">JVM</a> <a href="/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19.17px;">JavaScript</a> <a href="/tags/Javaweb/" style="font-size: 10px;">Javaweb</a> <a href="/tags/Jquery/" style="font-size: 10px;">Jquery</a> <a href="/tags/Linux/" style="font-size: 10.83px;">Linux</a> <a href="/tags/PHP/" style="font-size: 15.83px;">PHP</a> <a href="/tags/Python/" style="font-size: 10.83px;">Python</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Springboot/" style="font-size: 10px;">Springboot</a> <a href="/tags/XML/" style="font-size: 10.83px;">XML</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/git/" style="font-size: 10.83px;">git</a> <a href="/tags/html/" style="font-size: 17.5px;">html</a> <a href="/tags/java/" style="font-size: 18.33px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/node/" style="font-size: 10.83px;">node</a> <a href="/tags/orcal/" style="font-size: 13.33px;">orcal</a> <a href="/tags/python/" style="font-size: 14.17px;">python</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 12.5px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/开发工具/" style="font-size: 14.17px;">开发工具</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/心语/" style="font-size: 11.67px;">心语</a> <a href="/tags/性能测试/" style="font-size: 10px;">性能测试</a> <a href="/tags/技术/" style="font-size: 12.5px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15px;">数据结构与算法</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/缓存机制/" style="font-size: 10px;">缓存机制</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/计算机/" style="font-size: 10px;">计算机</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/08/25/Java中Socket套接字入门/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

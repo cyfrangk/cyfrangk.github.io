@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>计算机网络体系结构 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="计算机">
+    
+    <meta name="description" content="计算机网络是一个非常复杂的系统 , 涉及许多组成部分：  主机（hosts） 路由器（routers） 各种链路（links） 应用（applications） 协议（protocols） 硬件、软件 ……  分层结构：每层完成一种（类）特定服务/功能，每层依赖底层提供的服务，通过层内动作完成相应功能。 计算机网络的体系结构  网络体系结构是从功能上描述计算机网络结构 计算机网络体系结构简称网络体">
+<meta name="keywords" content="计算机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络体系结构">
+<meta property="og:url" content="http://yoursite.com/2019/08/20/计算机网络体系结构/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="计算机网络是一个非常复杂的系统 , 涉及许多组成部分：  主机（hosts） 路由器（routers） 各种链路（links） 应用（applications） 协议（protocols） 硬件、软件 ……  分层结构：每层完成一种（类）特定服务/功能，每层依赖底层提供的服务，通过层内动作完成相应功能。 计算机网络的体系结构  网络体系结构是从功能上描述计算机网络结构 计算机网络体系结构简称网络体">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/08/20/计算机网络体系结构/0214347.jpg">
+<meta property="og:updated_time" content="2019-08-20T13:58:16.777Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机网络体系结构">
+<meta name="twitter:description" content="计算机网络是一个非常复杂的系统 , 涉及许多组成部分：  主机（hosts） 路由器（routers） 各种链路（links） 应用（applications） 协议（protocols） 硬件、软件 ……  分层结构：每层完成一种（类）特定服务/功能，每层依赖底层提供的服务，通过层内动作完成相应功能。 计算机网络的体系结构  网络体系结构是从功能上描述计算机网络结构 计算机网络体系结构简称网络体">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/20/计算机网络体系结构/0214347.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/推荐好文/">推荐好文</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
+    <input name="wd" type="text" class="search-form-input" placeholder="搜索">
+</form>
+<script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-计算机网络体系结构" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        计算机网络体系结构
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/08/20/计算机网络体系结构/" class="article-date">
+            <time datetime="2019-08-20T13:39:28.000Z" itemprop="datePublished">2019-08-20</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/计算机/">计算机</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>计算机网络是一个非常复杂的系统 , 涉及许多组成部分：</p>
+<ul>
+<li>主机（hosts）</li>
+<li>路由器（routers）</li>
+<li>各种链路（links）</li>
+<li>应用（applications）</li>
+<li>协议（protocols）</li>
+<li>硬件、软件</li>
+<li>……</li>
+</ul>
+<h1 id="分层结构："><a href="#分层结构：" class="headerlink" title="分层结构："></a>分层结构：</h1><p>每层完成一种（类）特定服务/功能，每层依赖底层提供的服务，通过层内动作完成相应功能。</p>
+<p><strong>计算机网络的体系结构</strong></p>
+<ul>
+<li>网络体系结构是从功能上描述计算机网络结构</li>
+<li>计算机网络体系结构简称网络体系结构(network architecture)是分层结构</li>
+<li>每层遵循某个/些网络协议完成本层功能</li>
+<li>计算机网络体系结构是计算机网络的各层及其协议的集合</li>
+<li>体系结构是一个计算机网络的功能层次及其关系的定义</li>
+<li>体系结构是抽象的</li>
+</ul>
+<p><strong>分层好处：</strong></p>
+<ul>
+<li>结构清晰，有利于识别复杂系统的部件及其关系<br>分层的参考模型（reference model ）</li>
+<li>模块化的分层易于系统更新、维护<br>任何一层服务实现的改变对于系统其它层都是透明的<br>例如，登机过程的改变并不影响航空系统的其它部分（层）</li>
+<li>有利于标准化</li>
+</ul>
+<p><strong>分层网络体系结构基本概念</strong><br><img src="/2019/08/20/计算机网络体系结构/0214347.jpg" alt=""></p>
+<ul>
+<li>实体(entity)  表示任何可发送或接收信息的硬件或软件进程。</li>
+<li>协议是控制两个对等实体进行通信的规则的集合，协议是 “ 水平的”  。</li>
+<li>任一层实体需要使用下层服务，遵循本层协议，实现本层功能， 向上层提供服务 ，服务是“ 垂直的 ”。</li>
+<li>下层协议的实现对上层的服务用户是透明的。</li>
+<li>同系统的相邻层实体间通过接口进行交互，通过服务访问点 SAP(Service Access Point) ，交换原语，指定请求的特定服务。</li>
+</ul>
+<h1 id="一、OSI参考模型"><a href="#一、OSI参考模型" class="headerlink" title="一、OSI参考模型"></a>一、OSI参考模型</h1><p><img src="/2019/08/20/计算机网络体系结构/820214506.jpg" alt=""></p>
+<ul>
+<li>开放系统互连 (OSI)参考模型是由国际标准化组织 (ISO) 于1984年提出的分层网络体系结构模型</li>
+<li>目的是支持异构网络系统的互联互通</li>
+<li>异构网络系统互连的国际标准</li>
+<li>理解网络通信的最佳学习工具（理论模型）<br>理论成功，市场失败</li>
+<li><p>7层（功能）,每层完成特定的网络功能<br><strong>OSI 参考模型解释的通信过程</strong><br><img src="/2019/08/20/计算机网络体系结构/20214634.jpg" alt=""><br><strong>OSI参考模型数据封装与通信过程</strong><br><img src="/2019/08/20/计算机网络体系结构/0214655.jpg" alt=""><br><strong>数据封装</strong></p>
+</li>
+<li><p>增加控制信息<br>构造协议数据单元 (PDU)</p>
+</li>
+<li>控制信息主要包括:<br>地址（Address）: 标识发送端/接收端<br>差错检测编码（Error-detecting code）: 用于差错检测或纠正<br>协议控制（Protocol control）: 实现协议功能的附加信息，如: 优先级（priority）、服务质量（QoS）、 和安全控制等</li>
+</ul>
+<h2 id="1-物理层"><a href="#1-物理层" class="headerlink" title="1.物理层"></a>1.物理层</h2><p><strong>单位：比特、数据位、流、比特流</strong><br><img src="/2019/08/20/计算机网络体系结构/0214802.jpg" alt=""></p>
+<ul>
+<li>接口特性<br>机械特性、电气特性、功能特性、规程特性</li>
+<li>比特编码</li>
+<li>数据率</li>
+<li>比特同步<br>时钟同步</li>
+<li>传输模式<br>单工（Simplex）<br>半双工（half-duplex）<br>全双工（full-duplex）<h2 id="2-数据链路层"><a href="#2-数据链路层" class="headerlink" title="2.数据链路层"></a>2.数据链路层</h2></li>
+</ul>
+<p><strong>单位：帧、数据帧</strong><br><img src="/2019/08/20/计算机网络体系结构/214913.jpg" alt=""></p>
+<ul>
+<li>负责点 结点- 结点（node-to-node） ） 数据输传输</li>
+<li>组帧（Framing ）</li>
+<li>物理寻址（Physical addressing ）<br>在帧头中增加发送端和/或接收端的物理地址标识数据帧的发送端和/或接收端</li>
+</ul>
+<p><img src="/2019/08/20/计算机网络体系结构/20214948.jpg" alt=""></p>
+<ul>
+<li>流量控制（Flow control）<br>避免淹没接收端</li>
+<li>差错控制（Error control）<br>检测并重传损坏或丢失帧，并避免重复帧</li>
+<li>访问(接入)控制（Access control）<br>在任一给定时刻决定哪个设备拥有链路（物理介质）控制使用权</li>
+</ul>
+<h2 id="3-网络层"><a href="#3-网络层" class="headerlink" title="3.网络层"></a>3.网络层</h2><p><strong>单位：数据报、数据包、分组、包</strong><br><img src="/2019/08/20/计算机网络体系结构/0215038.jpg" alt=""></p>
+<ul>
+<li>负责源主机到目的主机数据分组（packet）交付<br>可能穿越多个网络</li>
+<li>逻辑寻址（Logical addressing）<br>全局唯一逻辑地址，确保数据分组被送达目的主机，如IP地址</li>
+<li>路由（Routing）<br>路由器(或网关)互连网络，并路由分组至最终目的主机<br>路径选择</li>
+<li><p>分组转发<br><img src="/2019/08/20/计算机网络体系结构/20215119.jpg" alt=""></p>
+<h2 id="4-传输层"><a href="#4-传输层" class="headerlink" title="4.传输层"></a>4.传输层</h2><p><strong>单位：数据段、分段、报文段</strong><br><img src="/2019/08/20/计算机网络体系结构/20215202.jpg" alt=""><br>负责 源- - 目的（端- - 端）（进程间） 完整报文传输<br>功能：</p>
+</li>
+<li><p>分段与重组</p>
+</li>
+<li>SAP寻址<br>确保将完整报文提交给正确进程，如端口号</li>
+<li>连接控制</li>
+<li>流量控制</li>
+<li>差错控制<br><img src="/2019/08/20/计算机网络体系结构/20215238.jpg" alt=""><h2 id="5-会话层"><a href="#5-会话层" class="headerlink" title="5.会话层"></a>5.会话层</h2><img src="/2019/08/20/计算机网络体系结构/0215258.jpg" alt=""></li>
+<li>对话控制（dialog controlling）<br>建立、维护</li>
+<li>同步(synchronization)<br>在数据流中插入“同步点”</li>
+<li>最“薄”的一层<h2 id="6-表示层"><a href="#6-表示层" class="headerlink" title="6.表示层"></a>6.表示层</h2><img src="/2019/08/20/计算机网络体系结构/0215336.jpg" alt=""><br>处理两个系统间交换信息的（ 语法与语义（syntax and semantics ） 问题</li>
+</ul>
+<p>功能：</p>
+<ul>
+<li>数据表示转化<br>转换为主机独立的编码</li>
+<li>加密/解密</li>
+<li>压缩/解压缩<h2 id="7-应用层"><a href="#7-应用层" class="headerlink" title="7.应用层"></a>7.应用层</h2></li>
+</ul>
+<p><strong>单位：报文</strong><br><img src="/2019/08/20/计算机网络体系结构/20215436.jpg" alt=""></p>
+<ul>
+<li>支持用户通过用户代理（如浏览器）或网络接口使用网络（服务）</li>
+<li>典型应用层服务：<br>文件传输（FTP）<br>电子邮件（SMTP）<br>Web（HTTP）<br>……</li>
+</ul>
+<h1 id="二、TCP-IP参考模型"><a href="#二、TCP-IP参考模型" class="headerlink" title="二、TCP/IP参考模型"></a>二、TCP/IP参考模型</h1><h2 id="1-四层参考模型"><a href="#1-四层参考模型" class="headerlink" title="1.四层参考模型"></a>1.四层参考模型</h2><p>IP over Everything<br>IP 可为各式各样的应用程序提供服务<br><img src="/2019/08/20/计算机网络体系结构/820215631.jpg" alt=""></p>
+<h2 id="2-五层参考模型"><a href="#2-五层参考模型" class="headerlink" title="2.五层参考模型"></a>2.五层参考模型</h2><p><img src="/2019/08/20/计算机网络体系结构/0215654.jpg" alt=""></p>
+<ul>
+<li>综合 OSI 和 TCP/IP 的优点</li>
+<li>应用层 : 支持各种网络应用<br>FTP, SMTP, HTTP</li>
+<li>传输层 : 进程-进程的数据传输<br>TCP, UDP</li>
+<li>网络层 : 源主机到目的主机的数据分组路由与转发<br>IP协议、路由协议等</li>
+<li>链路层 : 相邻网络元素（主机、交换机、路由器等）的数据传输<br>以太网（Ethernet）、802.11 (WiFi)、PPP</li>
+<li>物理层 :比特传输</li>
+</ul>
+<p><strong>五层模型的数据封装</strong></p>
+<p><img src="/2019/08/20/计算机网络体系结构/20215803.jpg" alt=""></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/08/20/计算机网络体系结构/" data-id="cjzwlsa9i005h7kfv8hzanh31" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1466132938&site=qq&menu=yes" target="_blank" rel="noopener">
+                          <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/08/21/抓包工具tcpdump用法说明/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            抓包工具tcpdump用法说明
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/08/20/webSocket是TCP上一个轻量级层/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">webSocket是TCP上一个轻量级层</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/10个基于JavaScript的机器学习实例/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/10个基于JavaScript的机器学习实例/1.png)" alt="10个基于JavaScript的机器学习实例" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/10个基于JavaScript的机器学习实例/" class="title">10个基于JavaScript的机器学习实例</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T10:20:15.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/四幅思维导图学会Python爬虫/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/四幅思维导图学会Python爬虫/1.png)" alt="四幅思维导图学会Python爬虫" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/四幅思维导图学会Python爬虫/" class="title">四幅思维导图学会Python爬虫</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T09:43:14.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/比Thread-sleep优雅的线程睡眠/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/比Thread-sleep优雅的线程睡眠/90829171904.png)" alt="比Thread.sleep优雅的线程睡眠" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/比Thread-sleep优雅的线程睡眠/" class="title">比Thread.sleep优雅的线程睡眠</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T09:16:39.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/29/提到Serverless你需要知道什么/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/29/提到Serverless你需要知道什么/9fc54f7427.webp)" alt="提到Serverless你需要知道什么" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/29/提到Serverless你需要知道什么/" class="title">提到Serverless你需要知道什么</a></p>
+                            <p class="item-date"><time datetime="2019-08-29T07:48:37.000Z" itemprop="datePublished">2019-08-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/08/28/17幅思维导图-Python核心知识体系/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/08/28/17幅思维导图-Python核心知识体系/rules.png)" alt="17幅思维导图:Python核心知识体系" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/08/28/17幅思维导图-Python核心知识体系/" class="title">17幅思维导图:Python核心知识体系</a></p>
+                            <p class="item-date"><time datetime="2019-08-28T10:00:09.000Z" itemprop="datePublished">2019-08-28</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA/">JAVA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/">JSP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javaweb/">Javaweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot/">Springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发工具/">开发工具</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能测试/">性能测试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/框架/">框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存机制/">缓存机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机/">计算机</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JAVA/" style="font-size: 10.83px;">JAVA</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JVM/" style="font-size: 12.5px;">JVM</a> <a href="/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19.17px;">JavaScript</a> <a href="/tags/Javaweb/" style="font-size: 10px;">Javaweb</a> <a href="/tags/Jquery/" style="font-size: 10px;">Jquery</a> <a href="/tags/Linux/" style="font-size: 10.83px;">Linux</a> <a href="/tags/PHP/" style="font-size: 15.83px;">PHP</a> <a href="/tags/Python/" style="font-size: 10.83px;">Python</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Springboot/" style="font-size: 10px;">Springboot</a> <a href="/tags/XML/" style="font-size: 10.83px;">XML</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/git/" style="font-size: 10.83px;">git</a> <a href="/tags/html/" style="font-size: 17.5px;">html</a> <a href="/tags/java/" style="font-size: 18.33px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/node/" style="font-size: 10.83px;">node</a> <a href="/tags/orcal/" style="font-size: 13.33px;">orcal</a> <a href="/tags/python/" style="font-size: 14.17px;">python</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 12.5px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/开发工具/" style="font-size: 14.17px;">开发工具</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/心语/" style="font-size: 11.67px;">心语</a> <a href="/tags/性能测试/" style="font-size: 10px;">性能测试</a> <a href="/tags/技术/" style="font-size: 12.5px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15px;">数据结构与算法</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/缓存机制/" style="font-size: 10px;">缓存机制</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/计算机/" style="font-size: 10px;">计算机</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/08/20/计算机网络体系结构/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
