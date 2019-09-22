@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>超级实用的Java工具类 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Java">
+    
+    <meta name="description" content="在Java中，工具类定义了一组公共方法，这篇文章将介绍Java中使用最频繁及最通用的Java工具类。以下工具类、方法按使用流行度排名，参考数据来源于Github上随机选取的5万个开源项目源码。123456&amp;lt;!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils --&amp;gt;&amp;lt;dependenc">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="超级实用的Java工具类">
+<meta property="og:url" content="http://yoursite.com/2019/08/30/超级实用的Java工具类/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="在Java中，工具类定义了一组公共方法，这篇文章将介绍Java中使用最频繁及最通用的Java工具类。以下工具类、方法按使用流行度排名，参考数据来源于Github上随机选取的5万个开源项目源码。123456&amp;lt;!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils --&amp;gt;&amp;lt;dependenc">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/08/30/超级实用的Java工具类/1.png">
+<meta property="og:updated_time" content="2019-09-01T07:05:54.690Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="超级实用的Java工具类">
+<meta name="twitter:description" content="在Java中，工具类定义了一组公共方法，这篇文章将介绍Java中使用最频繁及最通用的Java工具类。以下工具类、方法按使用流行度排名，参考数据来源于Github上随机选取的5万个开源项目源码。123456&amp;lt;!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils --&amp;gt;&amp;lt;dependenc">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/30/超级实用的Java工具类/1.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/推荐好文/">推荐好文</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
+    <input name="wd" type="text" class="search-form-input" placeholder="搜索">
+</form>
+<script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-超级实用的Java工具类" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        超级实用的Java工具类
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/08/30/超级实用的Java工具类/" class="article-date">
+            <time datetime="2019-08-30T08:49:48.000Z" itemprop="datePublished">2019-08-30</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Java/">Java</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>在Java中，工具类定义了一组公共方法，这篇文章将介绍Java中使用最频繁及最通用的Java工具类。以下工具类、方法按使用流行度排名，参考数据来源于Github上随机选取的5万个开源项目源码。<br><img src="/2019/08/30/超级实用的Java工具类/1.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;commons-beanutils&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;commons-beanutils&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.9.2&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="一-org-apache-commons-beanutils-BeanUtils"><a href="#一-org-apache-commons-beanutils-BeanUtils" class="headerlink" title="一. org.apache.commons.beanutils.BeanUtils"></a>一. org.apache.commons.beanutils.BeanUtils</h2><p>copyPeoperties：复制属性值，从一个对象到另一个对象<br>getProperty：获取对象属性值<br>setProperty：设置对象属性值<br>populate：根据Map给属性复制<br>copyPeoperty：复制单个值，从一个对象到另一个对象<br>cloneBean：克隆bean实例</p>
+<h2 id="二-org-apache-commons-beanutils-PropertyUtils"><a href="#二-org-apache-commons-beanutils-PropertyUtils" class="headerlink" title="二. org.apache.commons.beanutils.PropertyUtils"></a>二. org.apache.commons.beanutils.PropertyUtils</h2><p>getProperty：获取对象属性值<br>setProperty：设置对象属性值<br>getPropertyDiscriptor：获取属性描述器<br>isReadable：检查属性是否可访问<br>copyProperties：复制属性值，从一个对象到另一个对象<br>getPropertyDiscriptors：获取所有属性描述器<br>isWriteable：检查属性是否可写<br>getPropertyType：获取对象属性类型</p>
+<p><img src="/2019/08/30/超级实用的Java工具类/2.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- https://mvnrepository.com/artifact/org.apache.commons/commons-io --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.apache.commons&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;commons-io&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.3.2&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="三-org-apache-commons-io-IOUtils"><a href="#三-org-apache-commons-io-IOUtils" class="headerlink" title="三. org.apache.commons.io.IOUtils"></a>三. org.apache.commons.io.IOUtils</h2><p>closeQuietly：关闭一个IO流、socket、或者selector且不抛出异常，通常放在finally块<br>toString：转换IO流、 Uri、 byte[]为String<br>copy：IO流数据复制，从输入流写到输出流中，最大支持2GB<br>toByteArray：从输入流、URI获取byte[]<br>write：把字节. 字符等写入输出流<br>toInputStream：把字符转换为输入流<br>readLines：从输入流中读取多行数据，返回List<string><br>copyLarge：同copy，支持2GB以上数据的复制<br>lineIterator：从输入流返回一个迭代器，根据参数要求读取的数据量，全部读取，如果数据不够，则失败</string></p>
+<h2 id="四-org-apache-commons-io-FileUtils"><a href="#四-org-apache-commons-io-FileUtils" class="headerlink" title="四. org.apache.commons.io.FileUtils"></a>四. org.apache.commons.io.FileUtils</h2><p>deleteDirectory：删除文件夹<br>readFileToString：以字符形式读取文件内容<br>deleteQueitly：删除文件或文件夹且不会抛出异常<br>copyFile：复制文件<br>writeStringToFile：把字符写到目标文件，如果文件不存在，则创建<br>forceMkdir：强制创建文件夹，如果该文件夹父级目录不存在，则创建父级<br>write：把字符写到指定文件中<br>listFiles：列举某个目录下的文件(根据过滤器)<br>copyDirectory：复制文件夹<br>forceDelete：强制删除文件</p>
+<h2 id="五-org-apache-commons-io-FilenameUtils"><a href="#五-org-apache-commons-io-FilenameUtils" class="headerlink" title="五. org.apache.commons.io.FilenameUtils"></a>五. org.apache.commons.io.FilenameUtils</h2><p>getExtension：返回文件后缀名<br>getBaseName：返回文件名，不包含后缀名<br>getName：返回文件全名<br>concat：按命令行风格组合文件路径(详见方法注释)<br>removeExtension：删除后缀名<br>normalize：使路径正常化<br>wildcardMatch：匹配通配符<br>seperatorToUnix：路径分隔符改成unix系统格式的，即/<br>getFullPath：获取文件路径，不包括文件名<br>isExtension：检查文件后缀名是不是传入参数(List<string>)中的一个</string></p>
+<h2 id="六-org-apache-commons-codec-digest-DigestUtils"><a href="#六-org-apache-commons-codec-digest-DigestUtils" class="headerlink" title="六. org.apache.commons.codec.digest.DigestUtils"></a>六. org.apache.commons.codec.digest.DigestUtils</h2><p><img src="/2019/08/30/超级实用的Java工具类/3.png" alt=""><br>md5Hex：MD5加密，返回32位字符串<br>sha1Hex：SHA-1加密<br>sha256Hex：SHA-256加密<br>sha512Hex：SHA-512加密<br>md5：MD5加密，返回16位字符串</p>
+<h2 id="七-org-apache-commons-collections-CollectionUtils"><a href="#七-org-apache-commons-collections-CollectionUtils" class="headerlink" title="七. org.apache.commons.collections.CollectionUtils"></a>七. org.apache.commons.collections.CollectionUtils</h2><p><img src="/2019/08/30/超级实用的Java工具类/4.png" alt=""><br>isEmpty：是否为空<br>select：根据条件筛选集合元素<br>transform：根据指定方法处理集合元素，类似List的map()<br>filter：过滤元素，雷瑟List的filter()<br>find：基本和select一样<br>collect：和transform 差不多一样，但是返回新数组<br>forAllDo：调用每个元素的指定方法<br>isEqualCollection：判断两个集合是否一致</p>
+<p><img src="/2019/08/30/超级实用的Java工具类/5.png" alt=""></p>
+<h2 id="八-org-apache-commons-lang-ArrayUtils"><a href="#八-org-apache-commons-lang-ArrayUtils" class="headerlink" title="八. org.apache.commons.lang.ArrayUtils"></a>八. org.apache.commons.lang.ArrayUtils</h2><p>contains：是否包含某字符串<br>addAll：添加整个数组<br>clone：克隆一个数组<br>isEmpty：是否空数组<br>add：向数组添加元素<br>subarray：截取数组<br>indexOf：查找某个元素的下标<br>isEquals：比较数组是否相等<br>toObject：基础类型数据数组转换为对应的Object数组</p>
+<h2 id="九-org-apache-commons-lang-StringUtils"><a href="#九-org-apache-commons-lang-StringUtils" class="headerlink" title="九. org.apache.commons.lang.StringUtils"></a>九. org.apache.commons.lang.StringUtils</h2><p>isBlank：字符串是否为空 (trim后判断)<br>isEmpty：字符串是否为空 (不trim并判断)<br>equals：字符串是否相等<br>join：合并数组为单一字符串，可传分隔符<br>split：分割字符串<br>EMPTY：返回空字符串<br>trimToNull：trim后为空字符串则转换为null<br>replace：替换字符串</p>
+<h2 id="十-org-apache-commons-lang-StringEscapeUtils"><a href="#十-org-apache-commons-lang-StringEscapeUtils" class="headerlink" title="十. org.apache.commons.lang.StringEscapeUtils"></a>十. org.apache.commons.lang.StringEscapeUtils</h2><p><strong>参考十二：</strong><br>org.apache.commons.lang3.StringEscapeUtils</p>
+<p><img src="/2019/08/30/超级实用的Java工具类/6.png" alt=""></p>
+<h2 id="十一-org-apache-commons-lang3-ArrayUtils"><a href="#十一-org-apache-commons-lang3-ArrayUtils" class="headerlink" title="十一. org.apache.commons.lang3.ArrayUtils"></a>十一. org.apache.commons.lang3.ArrayUtils</h2><p>contains：是否包含某个字符串<br>addAll：添加整个数组<br>clone：克隆一个数组<br>isEmpty：是否空数组<br>add：向数组添加元素<br>subarray：截取数组<br>indexOf：查找某个元素的下标<br>isEquals：比较数组是否相等<br>toObject：基础类型数据数组转换为对应的Object数组</p>
+<h2 id="十二-org-apache-commons-lang3-StringEscapeUtils"><a href="#十二-org-apache-commons-lang3-StringEscapeUtils" class="headerlink" title="十二. org.apache.commons.lang3.StringEscapeUtils"></a>十二. org.apache.commons.lang3.StringEscapeUtils</h2><p>unescapeHtml4：转义html<br>escapeHtml4：反转义html<br>escapeXml：转义xml<br>unescapeXml：反转义xml<br>escapeJava：转义unicode编码<br>escapeEcmaScript：转义EcmaScript字符<br>unescapeJava：反转义unicode编码<br>escapeJson：转义json字符<br>escapeXml10：转义Xml10<br>这个现在已经废弃了，建议使用commons-text包里面的方法。</p>
+<h2 id="十三-org-apache-commons-lang3-StringUtils"><a href="#十三-org-apache-commons-lang3-StringUtils" class="headerlink" title="十三. org.apache.commons.lang3.StringUtils"></a>十三. org.apache.commons.lang3.StringUtils</h2><p>isBlank：字符串是否为空 (trim后判断)<br>isEmpty：字符串是否为空 (不trim并判断)<br>equals：字符串是否相等<br>join：合并数组为单一字符串，可传分隔符<br>split：分割字符串<br>EMPTY：返回空字符串<br>replace：替换字符串<br>capitalize：首字符大写</p>
+<h2 id="十四-org-apache-http-util-EntityUtils"><a href="#十四-org-apache-http-util-EntityUtils" class="headerlink" title="十四. org.apache.http.util.EntityUtils"></a>十四. org.apache.http.util.EntityUtils</h2><p>toString：把Entity转换为字符串<br>consume：确保Entity中的内容全部被消费。可以看到源码里又一次消费了Entity的内容，假如用户没有消费，那调用Entity时候将会把它消费掉<br>toByteArray：把Entity转换为字节流<br>consumeQuietly：和consume一样，但不抛异常<br>getContentCharset：获取内容的编码</p>
+<h2 id="十五-org-apache-http-client-utils-URLEncodedUtils"><a href="#十五-org-apache-http-client-utils-URLEncodedUtils" class="headerlink" title="十五. org.apache.http.client.utils.URLEncodedUtils"></a>十五. org.apache.http.client.utils.URLEncodedUtils</h2><p>format：格式化参数，返回一个HTTP POST或者HTTP PUT可用application/x-www-form-urlencoded字符串<br>parse：把String或者URI等转换为List<namevaluepair></namevaluepair></p>
+<h2 id="十六-org-springframework-util-StringUtils"><a href="#十六-org-springframework-util-StringUtils" class="headerlink" title="十六. org.springframework.util.StringUtils"></a>十六. org.springframework.util.StringUtils</h2><p>hasText：检查字符串中是否包含文本<br>hasLength：检测字符串是否长度大于0<br>isEmpty：检测字符串是否为空（若传入为对象，则判断对象是否为null）<br>commaDelimitedStringToArray：逗号分隔的String转换为数组<br>collectionToDelimitedString：把集合转为CSV格式字符串<br>replace 替换字符串<br>delimitedListToStringArray：相当于split<br>uncapitalize：首字母小写<br>collectionToDelimitedCommaString：把集合转为CSV格式字符串<br>tokenizeToStringArray：和split基本一样，但能自动去掉空白的单词</p>
+<p>现在你只要了解了以上16种最流行的工具类方法，你就不必要再自己写工具类了，不必重复造轮子。大部分工具类方法通过其名字就能明白其用途，如果不清楚的，可以看下别人是怎么用的，或者去网上查询其用法。</p>
+<p>另外，工具类，根据阿里开发手册，包名如果要使用util不能带s，工具类命名为 XxxUtils</p>
+<p>来源：juejin.im/post/5d4a25b351882505c105cc6e</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/08/30/超级实用的Java工具类/" data-id="ck0ux1hsa005q2cfv3ll7svyw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1466132938&site=qq&menu=yes" target="_blank" rel="noopener">
+                          <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/09/03/Linux系统下安装jdk与tomcat/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Linux系统下安装jdk与tomcat
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/08/29/10个基于JavaScript的机器学习实例/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">10个基于JavaScript的机器学习实例</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/22/基于redis的分布式锁的分析与实践/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/22/基于redis的分布式锁的分析与实践/ik41d52nnip.png)" alt="基于redis的分布式锁的分析与实践" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/22/基于redis的分布式锁的分析与实践/" class="title">基于redis的分布式锁的分析与实践</a></p>
+                            <p class="item-date"><time datetime="2019-09-22T10:53:16.000Z" itemprop="datePublished">2019-09-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/21/如何访问redis中的海量数据/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/21/如何访问redis中的海量数据/=26&amp;gp=0.jpg)" alt="如何访问redis中的海量数据" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/21/如何访问redis中的海量数据/" class="title">如何访问redis中的海量数据</a></p>
+                            <p class="item-date"><time datetime="2019-09-21T10:02:22.000Z" itemprop="datePublished">2019-09-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/21/8问Redis/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/21/8问Redis/1175005.jpg)" alt="8问Redis" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/21/8问Redis/" class="title">8问Redis</a></p>
+                            <p class="item-date"><time datetime="2019-09-21T09:48:17.000Z" itemprop="datePublished">2019-09-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/21/深入了解Redis内存模型/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/21/深入了解Redis内存模型/1.png)" alt="深入了解Redis内存模型" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/21/深入了解Redis内存模型/" class="title">深入了解Redis内存模型</a></p>
+                            <p class="item-date"><time datetime="2019-09-21T06:49:23.000Z" itemprop="datePublished">2019-09-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/18/Struts2框架基础概念总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/18/Struts2框架基础概念总结/1276201300.jpg)" alt="Struts2框架基础概念总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/18/Struts2框架基础概念总结/" class="title">Struts2框架基础概念总结</a></p>
+                            <p class="item-date"><time datetime="2019-09-18T03:45:40.000Z" itemprop="datePublished">2019-09-18</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA/">JAVA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/">JSP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javaweb/">Javaweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot/">Springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts2/">Struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发工具/">开发工具</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能测试/">性能测试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/框架/">框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存机制/">缓存机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机/">计算机</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JAVA/" style="font-size: 10.91px;">JAVA</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JVM/" style="font-size: 12.73px;">JVM</a> <a href="/tags/Java/" style="font-size: 17.27px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19.09px;">JavaScript</a> <a href="/tags/Javaweb/" style="font-size: 10px;">Javaweb</a> <a href="/tags/Jquery/" style="font-size: 10px;">Jquery</a> <a href="/tags/Linux/" style="font-size: 11.82px;">Linux</a> <a href="/tags/PHP/" style="font-size: 16.36px;">PHP</a> <a href="/tags/Python/" style="font-size: 10.91px;">Python</a> <a href="/tags/Redis/" style="font-size: 14.55px;">Redis</a> <a href="/tags/Springboot/" style="font-size: 10px;">Springboot</a> <a href="/tags/Struts2/" style="font-size: 10px;">Struts2</a> <a href="/tags/XML/" style="font-size: 10.91px;">XML</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/git/" style="font-size: 10.91px;">git</a> <a href="/tags/html/" style="font-size: 17.27px;">html</a> <a href="/tags/java/" style="font-size: 18.18px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15.45px;">maven</a> <a href="/tags/node/" style="font-size: 10.91px;">node</a> <a href="/tags/orcal/" style="font-size: 13.64px;">orcal</a> <a href="/tags/python/" style="font-size: 14.55px;">python</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 12.73px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/开发工具/" style="font-size: 14.55px;">开发工具</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/心语/" style="font-size: 11.82px;">心语</a> <a href="/tags/性能测试/" style="font-size: 10px;">性能测试</a> <a href="/tags/技术/" style="font-size: 12.73px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15.45px;">数据结构与算法</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/缓存机制/" style="font-size: 10px;">缓存机制</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/计算机/" style="font-size: 10px;">计算机</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/08/30/超级实用的Java工具类/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

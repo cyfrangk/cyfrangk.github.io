@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>学Redis这篇就够了 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Redis">
+    
+    <meta name="description" content="来源：http://rrd.me/ekrCq Redis 简介Redis 是完全开源免费的，遵守 BSD 协议，是一个高性能的 key - value 数据库Redis 与 其他 key - value 缓存产品有以下三个特点：  Redis 支持数据持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。 Redis 不仅仅支持简单的 key - value 类型的数据，同时还提">
+<meta name="keywords" content="Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学Redis这篇就够了">
+<meta property="og:url" content="http://yoursite.com/2019/08/20/学Redis这篇就够了/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="来源：http://rrd.me/ekrCq Redis 简介Redis 是完全开源免费的，遵守 BSD 协议，是一个高性能的 key - value 数据库Redis 与 其他 key - value 缓存产品有以下三个特点：  Redis 支持数据持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。 Redis 不仅仅支持简单的 key - value 类型的数据，同时还提">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/08/20/学Redis这篇就够了/7bb1dc8bb75a43c2a069a13ead61dcf7.jpg">
+<meta property="og:updated_time" content="2019-09-21T08:17:35.563Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学Redis这篇就够了">
+<meta name="twitter:description" content="来源：http://rrd.me/ekrCq Redis 简介Redis 是完全开源免费的，遵守 BSD 协议，是一个高性能的 key - value 数据库Redis 与 其他 key - value 缓存产品有以下三个特点：  Redis 支持数据持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。 Redis 不仅仅支持简单的 key - value 类型的数据，同时还提">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/20/学Redis这篇就够了/7bb1dc8bb75a43c2a069a13ead61dcf7.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/推荐好文/">推荐好文</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
+    <input name="wd" type="text" class="search-form-input" placeholder="搜索">
+</form>
+<script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-学Redis这篇就够了" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        学Redis这篇就够了
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/08/20/学Redis这篇就够了/" class="article-date">
+            <time datetime="2019-08-20T10:30:20.000Z" itemprop="datePublished">2019-08-20</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Redis/">Redis</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>来源：<a href="http://rrd.me/ekrCq" target="_blank" rel="noopener">http://rrd.me/ekrCq</a></p>
+<h2 id="Redis-简介"><a href="#Redis-简介" class="headerlink" title="Redis 简介"></a>Redis 简介</h2><p>Redis 是完全开源免费的，遵守 BSD 协议，是一个高性能的 key - value 数据库<br>Redis 与 其他 key - value 缓存产品有以下三个特点：</p>
+<ul>
+<li>Redis 支持数据持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。</li>
+<li>Redis 不仅仅支持简单的 key - value 类型的数据，同时还提供 list，set，zset，hash 等数据结构的存储</li>
+<li>Redis 支持数据的备份，即 master - slave 模式的数据备份<h2 id="Redis-优势"><a href="#Redis-优势" class="headerlink" title="Redis 优势"></a>Redis 优势</h2></li>
+<li>性能极高 – Redis 读的速度是 110000 次 /s, 写的速度是 81000 次 /s 。</li>
+<li>丰富的数据类型 - Redis 支持二进制案例的 Strings, Lists, Hashes, Sets 及 Ordered Sets 数据类型操作。</li>
+<li>原子性 - Redis 的所有操作都是原子性的，意思就是要么成功执行要么失败完全不执行。单个操作是原子性的。多个操作也支持事务，即原子性，通过 MULTI 和 EXEC 指令包起来。</li>
+<li>其他特性 - Redis 还支持 publish/subscribe 通知，key 过期等特性。<h2 id="Redis-数据类型"><a href="#Redis-数据类型" class="headerlink" title="Redis 数据类型"></a>Redis 数据类型</h2>Redis 支持 5 中数据类型：string（字符串），hash（哈希），list（列表），set（集合），zset（sorted set：有序集合）。<h4 id="string"><a href="#string" class="headerlink" title="string"></a>string</h4>string 是 redis 最基本的数据类型。一个 key 对应一个 value。<br>string 是二进制安全的。也就是说 redis 的 string 可以包含任何数据。比如 jpg 图片或者序列化的对象。<br>string 类型是 redis 最基本的数据类型，string 类型的值最大能存储 512 MB。</li>
+</ul>
+<p>理解：string 就像是 java 中的 map 一样，一个 key 对应一个 value<br><img src="/2019/08/20/学Redis这篇就够了/7bb1dc8bb75a43c2a069a13ead61dcf7.jpg" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set hello world</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get hello</span><br><span class="line">&quot;world&quot;</span><br></pre></td></tr></table></figure></p>
+<h4 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h4><p>Redis hash 是一个键值对（key - value）集合。<br>Redis hash 是一个 string 类型的 key 和 value 的映射表，hash 特别适合用于存储对象。</p>
+<p>理解：可以将 hash 看成一个 key - value 的<code>集合</code>。也可以将其想成一个 hash 对应着多个 string。<br>与 string 区别：string 是 一个 key - value 键值对，而 hash 是<code>多个</code>key - value 键值对。<br><img src="/2019/08/20/学Redis这篇就够了/bcd13cc0172e429988beeaa029e6f512.jpg" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">// hash-key 可以看成是一个键值对集合的名字,在这里分别为其添加了 sub-key1 : value1、</span><br><span class="line">sub-key2 : value2、sub-key3 : value3 这三个键值对</span><br><span class="line">127.0.0.1:6379&gt; hset hash-key sub-key1 value1 </span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hset hash-key sub-key2 value2</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hset hash-key sub-key3 value3</span><br><span class="line">(integer) 1</span><br><span class="line">// 获取 hash-key 这个 hash 里面的所有键值对</span><br><span class="line">127.0.0.1:6379&gt; hgetall hash-key</span><br><span class="line">1) &quot;sub-key1&quot;</span><br><span class="line">2) &quot;value1&quot;</span><br><span class="line">3) &quot;sub-key2&quot;</span><br><span class="line">4) &quot;value2&quot;</span><br><span class="line">5) &quot;sub-key3&quot;</span><br><span class="line">6) &quot;value3&quot;</span><br><span class="line">// 删除 hash-key 这个 hash 里面的 sub-key2 键值对</span><br><span class="line">127.0.0.1:6379&gt; hdel hash-key sub-key2</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hget hash-key sub-key2</span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6379&gt; hget hash-key sub-key1</span><br><span class="line">&quot;value1&quot;</span><br><span class="line">127.0.0.1:6379&gt; hgetall hash-key</span><br><span class="line">1) &quot;sub-key1&quot;</span><br><span class="line">2) &quot;value1&quot;</span><br><span class="line">3) &quot;sub-key3&quot;</span><br><span class="line">4) &quot;value3&quot;</span><br></pre></td></tr></table></figure></p>
+<h4 id="list"><a href="#list" class="headerlink" title="list"></a>list</h4><p>Redis 列表是简单的字符串列表，按照插入顺序排序。我们可以网列表的左边或者右边添加元素。<br><img src="/2019/08/20/学Redis这篇就够了/f5a6143900a44fcbaa133b5ea6fe27a8.jpg" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; rpush list-key v1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; rpush list-key v2</span><br><span class="line">(integer) 2</span><br><span class="line">127.0.0.1:6379&gt; rpush list-key v1</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6379&gt; lrange list-key 0 -1</span><br><span class="line">1) &quot;v1&quot;</span><br><span class="line">2) &quot;v2&quot;</span><br><span class="line">3) &quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; lindex list-key 1</span><br><span class="line">&quot;v2&quot;</span><br><span class="line">127.0.0.1:6379&gt; lpop list</span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6379&gt; lpop list-key</span><br><span class="line">&quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; lrange list-key 0 -1</span><br><span class="line">1) &quot;v2&quot;</span><br><span class="line">2) &quot;v1&quot;</span><br></pre></td></tr></table></figure></p>
+<p>我们可以看出 list 就是一个简单的字符串集合，和 Java 中的 list 相差不大，区别就是这里的 list 存放的是字符串。<code>list 内的元素是可重复的</code>。</p>
+<h4 id="set"><a href="#set" class="headerlink" title="set"></a>set</h4><p>redis 的 set 是字符串类型的无序集合。集合是通过哈希表实现的，因此添加、删除、查找的复杂度都是 O（1）。<br><img src="/2019/08/20/学Redis这篇就够了/c3f2dc9c36764c09a8860a6c955a8b99.jpg" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; sadd k1 v1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd k1 v2</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd k1 v3</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd k1 v1</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; smembers k1</span><br><span class="line">1) &quot;v3&quot;</span><br><span class="line">2) &quot;v2&quot;</span><br><span class="line">3) &quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt;</span><br><span class="line">127.0.0.1:6379&gt; sismember k1 k4</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; sismember k1 v1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; srem k1 v2</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; srem k1 v2</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; smembers k1</span><br><span class="line">1) &quot;v3&quot;</span><br><span class="line">2) &quot;v1&quot;</span><br></pre></td></tr></table></figure></p>
+<p>redis 的 set 与 java 中的 set 还是有点区别的。redis 的 set 是一个 key 对应着 多个字符串类型的 value，也是一个字符串类型的集合，但是和 redis 的 list 不同的是 set 中的字符串集合元素不能重复，但是 list 可以。</p>
+<h4 id="Zset"><a href="#Zset" class="headerlink" title="Zset"></a>Zset</h4><p>redis zset 和 set 一样都是 字符串类型元素的集合，并且集合内的元素不能重复。<br>不同的是 zset 每个元素都会关联一个 double 类型的分数。redis 通过分数来为集合中的成员进行从小到大的排序。<br><code>zset 的元素是唯一的，但是分数（score）却可以重复。</code><br><img src="/2019/08/20/学Redis这篇就够了/2bc191f91c9a40c4af37018814eb03ae.jpg" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zadd zset-key 728 member1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd zset-key 982 member0</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd zset-key 982 member0</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; zrange zset-key 0 -1 withscores</span><br><span class="line">1) &quot;member1&quot;</span><br><span class="line">2) &quot;728&quot;</span><br><span class="line">3) &quot;member0&quot;</span><br><span class="line">4) &quot;982&quot;</span><br><span class="line">127.0.0.1:6379&gt; zrangebyscore zset-key 0 800 withscores</span><br><span class="line">1) &quot;member1&quot;</span><br><span class="line">2) &quot;728&quot;</span><br><span class="line">127.0.0.1:6379&gt; zrem zset-key member1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zrem zset-key member1</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; zrange zset-key 0 -1 withscores</span><br><span class="line">1) &quot;member0&quot;</span><br><span class="line">2) &quot;982&quot;</span><br></pre></td></tr></table></figure></p>
+<p>zset 是按照 分输的大小来排序的。</p>
+<p><strong>小总结</strong><br>类型简介特性场景string（字符串）二进制安全可以包含任何数据，比如 jpg 图片或者序列化的对象，一个键最大能存储 521M—Hash（哈希）键值对集合，即编程语言中的 Map 类型适合存储对象，并且可以像数据库中 update 一样只修改某一项属性值存储、读取、修改用户属性List（列表）双向链表增删快，提供了操作某一段元素的 API1、最新消息排行等功能（朋友圈的时间线）2、消息队列Set（集合）哈希表实现，元素不能重复添加删除查找的复杂度都是 O(1);为集合提供了求交集、并集、差集等操作共同好友；利用唯一性，统计访问网站的所有独立 ip；好友推荐时，根据 tag 求交集，大于某个阈值就可以推荐Zset（有序集合）将 Set 中的元素增加一个权重参数 score，元素按 score 有序排列数据插入集合时，已经进行天然排序排行榜；带权重的消息队列</p>
+<h2 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h2><p>一般不用 Redis 做消息发布订阅。</p>
+<h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>Redis 发布订阅 (pub/sub) 是一种消息通信模式：发送者 (pub) 发送消息，订阅者 (sub) 接收消息。</p>
+<p>Redis 客户端可以订阅任意数量的频道。<br>下图展示了频道 channel1 ， 以及订阅这个频道的三个客户端 —— client2 、 client5 和 client1 之间的关系：<br><img src="/2019/08/20/学Redis这篇就够了/be52cd4c9e054a83bc9b698cde69b6b3.jpg" alt=""><br>当有新消息通过 PUBLISH 命令发送给频道 channel1 时， 这个消息就会被发送给订阅它的三个客户端：<br><img src="/2019/08/20/学Redis这篇就够了/485344be260843708ff04a9ccecd7609.jpg" alt=""></p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>以下实例演示了发布订阅是如何工作的。在我们实例中我们创建了订阅频道名为<code>redisChat</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; SUBsCRIBE redisChat</span><br><span class="line">Reading messages... (press Ctrl-C to quit)</span><br><span class="line">1) &quot;subscribe&quot;</span><br><span class="line">2) &quot;redisChat&quot;</span><br></pre></td></tr></table></figure></p>
+<p>现在，我们先重新开启个 redis 客户端，然后在同一个频道 redisChat 发布两次消息，订阅者就能接收到消息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; PUBLISH redisChat &quot;send message&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; PUBLISH redisChat &quot;hello world&quot;</span><br><span class="line">(integer) 1</span><br><span class="line"># 订阅者的客户端显示如下</span><br><span class="line">1) &quot;message&quot;</span><br><span class="line">2) &quot;redisChat&quot;</span><br><span class="line">3) &quot;send message&quot;</span><br><span class="line">1) &quot;message&quot;</span><br><span class="line">2) &quot;redisChat&quot;</span><br><span class="line">3) &quot;hello world&quot;</span><br></pre></td></tr></table></figure></p>
+<h4 id="发布订阅常用命令"><a href="#发布订阅常用命令" class="headerlink" title="发布订阅常用命令"></a>发布订阅常用命令</h4><p>自行查阅</p>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>redis 事务一次可以执行多条命令，服务器在执行命令期间，不会去执行其他客户端的命令请求。</p>
+<p>事务中的多条命令被一次性发送给服务器，而不是一条一条地发送，这种方式被称为流水线，它可以减少客户端与服务器之间的网络通信次数从而提升性能。</p>
+<p>Redis 最简单的事务实现方式是使用 MULTI 和 EXEC 命令将事务操作包围起来。</p>
+<ul>
+<li>批量操作在发送 EXEC 命令前被放入队列缓存。</li>
+<li>收到 EXEC 命令后进入事务执行，事务中任意命令执行失败，其余命令依然被执行。也就是说 Redis 事务不保证原子性。</li>
+<li>在事务执行过程中，其他客户端提交的命令请求不会插入到事务执行命令序列中。</li>
+</ul>
+<p>一个事务从开始到执行会经历以下三个阶段：</p>
+<ul>
+<li>开始事务。</li>
+<li>命令入队。</li>
+<li>执行事务。</li>
+</ul>
+<h4 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h4><p>以下是一个事务的例子， 它先以 MULTI 开始一个事务， 然后将多个命令入队到事务中， 最后由 EXEC 命令触发事务， 一并执行事务中的所有命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; MULTI</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; SET book-name &quot;Mastering C++ in 21 days&quot;</span><br><span class="line">QUEUED</span><br><span class="line">redis 127.0.0.1:6379&gt; GET book-name</span><br><span class="line">QUEUED</span><br><span class="line">redis 127.0.0.1:6379&gt; SADD tag &quot;C++&quot; &quot;Programming&quot; &quot;Mastering Series&quot;</span><br><span class="line">QUEUED</span><br><span class="line">redis 127.0.0.1:6379&gt; SMEMBERS tag</span><br><span class="line">QUEUED</span><br><span class="line">redis 127.0.0.1:6379&gt; EXEC</span><br><span class="line">1) OK</span><br><span class="line">2) &quot;Mastering C++ in 21 days&quot;</span><br><span class="line">3) (integer) 3</span><br><span class="line">4) 1) &quot;Mastering Series&quot;</span><br><span class="line"> 2) &quot;C++&quot;</span><br><span class="line"> 3) &quot;Programming&quot;</span><br></pre></td></tr></table></figure></p>
+<p>单个 Redis 命令的执行是原子性的，但 Redis 没有在事务上增加任何维持原子性的机制，所以 Redis 事务的执行并不是原子性的。</p>
+<p>事务可以理解为一个打包的批量执行脚本，但批量指令并非原子化的操作，中间某条指令的失败不会导致前面已做指令的回滚，也不会造成后续的指令不做。</p>
+<blockquote>
+<p>这是官网上的说明 From redis docs on transactions:<br>It’s important to note that even when a command fails, all the other commands in the queue are processed – Redis will not stop the processing of commands.</p>
+</blockquote>
+<p>比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:7000&gt; multi</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:7000&gt; set a aaa</span><br><span class="line">QUEUED</span><br><span class="line">redis 127.0.0.1:7000&gt; set b bbb</span><br><span class="line">QUEUED</span><br><span class="line">redis 127.0.0.1:7000&gt; set c ccc</span><br><span class="line">QUEUED</span><br><span class="line">redis 127.0.0.1:7000&gt; exec</span><br><span class="line">1) OK</span><br><span class="line">2) OK</span><br><span class="line">3) OK</span><br></pre></td></tr></table></figure></p>
+<p>如果在 set b bbb 处失败，set a 已成功不会回滚，set c 还会继续执行。</p>
+<h4 id="Redis-事务命令"><a href="#Redis-事务命令" class="headerlink" title="Redis 事务命令"></a>Redis 事务命令</h4><p>下表列出了 redis 事务的相关命令：</p>
+<p>序号命令及描述1DISCARD 取消事务，放弃执行事务块内的所有命令。2EXEC 执行所有事务块内的命令。3MULTI 标记一个事务块的开始。4UNWATCH 取消 WATCH 命令对所有 key 的监视。5WATCH key [key …] 监视一个 (或多个) key ，如果在事务执行之前这个 (或这些) key 被其他命令所改动，那么事务将被打断。</p>
+<h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><p>Redis 是内存型数据库，为了保证数据在断电后不会丢失，需要将内存中的数据持久化到硬盘上。</p>
+<h4 id="RDB-持久化"><a href="#RDB-持久化" class="headerlink" title="RDB 持久化"></a>RDB 持久化</h4><p>将某个时间点的所有数据都存放到硬盘上。</p>
+<p>可以将快照复制到其他服务器从而创建具有相同数据的服务器副本。</p>
+<p>如果系统发生故障，将会丢失最后一次创建快照之后的数据。</p>
+<p>如果数据量大，保存快照的时间会很长。</p>
+<h4 id="AOF-持久化"><a href="#AOF-持久化" class="headerlink" title="AOF 持久化"></a>AOF 持久化</h4><p>将写命令添加到 AOF 文件（append only file）末尾。</p>
+<p>使用 AOF 持久化需要设置同步选项，从而确保写命令同步到磁盘文件上的时机。这是因为对文件进行写入并不会马上将内容同步到磁盘上，而是先存储到缓冲区，然后由操作系统决定什么时候同步到磁盘。</p>
+<p>选项同步频率always每个写命令都同步eyerysec每秒同步一次no让操作系统来决定何时同步</p>
+<ul>
+<li>always 选项会严重减低服务器的性能</li>
+<li>everysec 选项比较合适，可以保证系统崩溃时只会丢失一秒左右的数据，并且 Redis 每秒执行一次同步对服务器几乎没有任何影响。</li>
+<li>no 选项并不能给服务器性能带来多大的提升，而且会增加系统崩溃时数据丢失的数量。<br>随着服务器写请求的增多，AOF 文件会越来越大。Redis 提供了一种将 AOF 重写的特性，能够去除 AOF 文件中的冗余写命令。</li>
+</ul>
+<h2 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h2><p>通过使用 slaveof host port 命令来让一个服务器成为另一个服务器的从服务器。</p>
+<p>一个从服务器只能有一个主服务器，并且不支持主主复制。</p>
+<h4 id="连接过程"><a href="#连接过程" class="headerlink" title="连接过程"></a>连接过程</h4><p>主服务器创建快照文件，即 RDB 文件，发送给从服务器，并在发送期间使用缓冲区记录执行的写命令。快照文件发送完毕之后，开始像从服务器发送存储在缓冲区的写命令。<br>从服务器丢弃所有旧数据，载入主服务器发来的快照文件，之后从服务器开始接受主服务器发来的写命令。<br>主服务器每执行一次写命令，就向从服务器发送相同的写命令。</p>
+<h4 id="主从链"><a href="#主从链" class="headerlink" title="主从链"></a>主从链</h4><p>随着负载不断上升，主服务器无法很快的更新所有从服务器，或者重新连接和重新同步从服务器将导致系统超载。为了解决这个问题，可以创建一个中间层来分担主服务器的复制工作。中间层的服务器是最上层服务器的从服务器，又是最下层服务器的主服务器。<br><img src="/2019/08/20/学Redis这篇就够了/4fc07096883d48eab9fe8a2b9097e2d4.jpg" alt=""></p>
+<h2 id="哨兵"><a href="#哨兵" class="headerlink" title="哨兵"></a>哨兵</h2><p>Sentinel（哨兵）可以监听集群中的服务器，并在主服务器进入下线状态时，自动从从服务器中选举处新的主服务器。</p>
+<h2 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h2><p>分片是将数据划分为多个部分的方法，可以将数据存储到多台机器里面，这种方法在解决某些问题时可以获得线性级别的性能提升。</p>
+<p>假设有 4 个 Redis 实例 R0, R1, R2, R3, 还有很多表示用户的键 user:1, user:2, … , 有不同的方式来选择一个指定的键存储在哪个实例中。</p>
+<ul>
+<li>最简单的是范围分片，例如用户 id 从 0 ~ 1000 的存储到实例 R0 中，用户 id 从 1001 ~ 2000 的存储到实例R1中，等等。但是这样需要维护一张映射范围表，维护操作代价高。</li>
+<li>还有一种是哈希分片。使用 CRC32 哈希函数将键转换为一个数字，再对实例数量求模就能知道存储的实例。</li>
+</ul>
+<p>根据执行分片的位置，可以分为三种分片方式：</p>
+<ul>
+<li>客户端分片：客户端使用一致性哈希等算法决定应当分布到哪个节点。</li>
+<li>代理分片：将客户端的请求发送到代理上，由代理转发到正确的节点上。</li>
+<li>服务器分片：Redis Cluster。</li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/08/20/学Redis这篇就够了/" data-id="ck0ux1i5c008j2cfv9mw4a2j7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1466132938&site=qq&menu=yes" target="_blank" rel="noopener">
+                          <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/08/20/webSocket是TCP上一个轻量级层/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            webSocket是TCP上一个轻量级层
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/08/18/必须掌握的20-种Spring常用注解/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">必须掌握的20+种Spring常用注解</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/22/基于redis的分布式锁的分析与实践/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/22/基于redis的分布式锁的分析与实践/ik41d52nnip.png)" alt="基于redis的分布式锁的分析与实践" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/22/基于redis的分布式锁的分析与实践/" class="title">基于redis的分布式锁的分析与实践</a></p>
+                            <p class="item-date"><time datetime="2019-09-22T10:53:16.000Z" itemprop="datePublished">2019-09-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/21/如何访问redis中的海量数据/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/21/如何访问redis中的海量数据/=26&amp;gp=0.jpg)" alt="如何访问redis中的海量数据" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/21/如何访问redis中的海量数据/" class="title">如何访问redis中的海量数据</a></p>
+                            <p class="item-date"><time datetime="2019-09-21T10:02:22.000Z" itemprop="datePublished">2019-09-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/21/8问Redis/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/21/8问Redis/1175005.jpg)" alt="8问Redis" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/21/8问Redis/" class="title">8问Redis</a></p>
+                            <p class="item-date"><time datetime="2019-09-21T09:48:17.000Z" itemprop="datePublished">2019-09-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/21/深入了解Redis内存模型/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/21/深入了解Redis内存模型/1.png)" alt="深入了解Redis内存模型" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/21/深入了解Redis内存模型/" class="title">深入了解Redis内存模型</a></p>
+                            <p class="item-date"><time datetime="2019-09-21T06:49:23.000Z" itemprop="datePublished">2019-09-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/18/Struts2框架基础概念总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/18/Struts2框架基础概念总结/1276201300.jpg)" alt="Struts2框架基础概念总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/18/Struts2框架基础概念总结/" class="title">Struts2框架基础概念总结</a></p>
+                            <p class="item-date"><time datetime="2019-09-18T03:45:40.000Z" itemprop="datePublished">2019-09-18</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA/">JAVA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/">JSP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javaweb/">Javaweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot/">Springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts2/">Struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发工具/">开发工具</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能测试/">性能测试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/框架/">框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存机制/">缓存机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机/">计算机</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JAVA/" style="font-size: 10.91px;">JAVA</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JVM/" style="font-size: 12.73px;">JVM</a> <a href="/tags/Java/" style="font-size: 17.27px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19.09px;">JavaScript</a> <a href="/tags/Javaweb/" style="font-size: 10px;">Javaweb</a> <a href="/tags/Jquery/" style="font-size: 10px;">Jquery</a> <a href="/tags/Linux/" style="font-size: 11.82px;">Linux</a> <a href="/tags/PHP/" style="font-size: 16.36px;">PHP</a> <a href="/tags/Python/" style="font-size: 10.91px;">Python</a> <a href="/tags/Redis/" style="font-size: 14.55px;">Redis</a> <a href="/tags/Springboot/" style="font-size: 10px;">Springboot</a> <a href="/tags/Struts2/" style="font-size: 10px;">Struts2</a> <a href="/tags/XML/" style="font-size: 10.91px;">XML</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/git/" style="font-size: 10.91px;">git</a> <a href="/tags/html/" style="font-size: 17.27px;">html</a> <a href="/tags/java/" style="font-size: 18.18px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15.45px;">maven</a> <a href="/tags/node/" style="font-size: 10.91px;">node</a> <a href="/tags/orcal/" style="font-size: 13.64px;">orcal</a> <a href="/tags/python/" style="font-size: 14.55px;">python</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 12.73px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/开发工具/" style="font-size: 14.55px;">开发工具</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/心语/" style="font-size: 11.82px;">心语</a> <a href="/tags/性能测试/" style="font-size: 10px;">性能测试</a> <a href="/tags/技术/" style="font-size: 12.73px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15.45px;">数据结构与算法</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/缓存机制/" style="font-size: 10px;">缓存机制</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/计算机/" style="font-size: 10px;">计算机</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/08/20/学Redis这篇就够了/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Java泛型中的通配符T-E-K-V-? | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Java">
+    
+    <meta name="description" content="文章来源：https://juejin.im/post/5d5789d26fb9a06ad0056bd9#comment泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数。 泛型带来的好处在没有泛型的情况的下，通过对类型 Object 的引用来实现参数的“任意化”，“任意化”带来的缺点是要做显式的强制类型转换，而这种转换是要求开发者对实际参数类型可以预知的情况下进行的。对于强制类型转">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java泛型中的通配符T-E-K-V-?">
+<meta property="og:url" content="http://yoursite.com/2019/09/04/Java泛型中的通配符T-E-K-V/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="文章来源：https://juejin.im/post/5d5789d26fb9a06ad0056bd9#comment泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数。 泛型带来的好处在没有泛型的情况的下，通过对类型 Object 的引用来实现参数的“任意化”，“任意化”带来的缺点是要做显式的强制类型转换，而这种转换是要求开发者对实际参数类型可以预知的情况下进行的。对于强制类型转">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/09/04/Java泛型中的通配符T-E-K-V/000.jpg">
+<meta property="og:updated_time" content="2019-09-04T07:27:38.709Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java泛型中的通配符T-E-K-V-?">
+<meta name="twitter:description" content="文章来源：https://juejin.im/post/5d5789d26fb9a06ad0056bd9#comment泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数。 泛型带来的好处在没有泛型的情况的下，通过对类型 Object 的引用来实现参数的“任意化”，“任意化”带来的缺点是要做显式的强制类型转换，而这种转换是要求开发者对实际参数类型可以预知的情况下进行的。对于强制类型转">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/04/Java泛型中的通配符T-E-K-V/000.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/推荐好文/">推荐好文</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
+    <input name="wd" type="text" class="search-form-input" placeholder="搜索">
+</form>
+<script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-Java泛型中的通配符T-E-K-V" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Java泛型中的通配符T-E-K-V-?
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/09/04/Java泛型中的通配符T-E-K-V/" class="article-date">
+            <time datetime="2019-09-04T06:35:02.000Z" itemprop="datePublished">2019-09-04</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Java/">Java</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>文章来源：<a href="https://juejin.im/post/5d5789d26fb9a06ad0056bd9#comment" target="_blank" rel="noopener">https://juejin.im/post/5d5789d26fb9a06ad0056bd9#comment</a><br>泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数。<br><img src="/2019/09/04/Java泛型中的通配符T-E-K-V/000.jpg" alt=""></p>
+<h2 id="泛型带来的好处"><a href="#泛型带来的好处" class="headerlink" title="泛型带来的好处"></a>泛型带来的好处</h2><p>在没有泛型的情况的下，通过对类型 Object 的引用来实现参数的“任意化”，“任意化”带来的缺点是要做显式的强制类型转换，而这种转换是要求开发者对实际参数类型可以预知的情况下进行的。对于强制类型转换错误的情况，编译器可能不提示错误，在运行的时候才出现异常，这是本身就是一个安全隐患。</p>
+<p>那么泛型的好处就是在编译的时候能够检查类型安全，并且所有的强制转换都是自动和隐式的。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlmapperGeneric</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> T t;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(T t)</span> </span>&#123; <span class="keyword">this</span>.t = t; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> t; &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// do nothing</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 不指定类型</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">noSpecifyType</span><span class="params">()</span></span>&#123;</span><br><span class="line">    GlmapperGeneric glmapperGeneric = <span class="keyword">new</span> GlmapperGeneric();</span><br><span class="line">    glmapperGeneric.set(<span class="string">"test"</span>);</span><br><span class="line">    <span class="comment">// 需要强制类型转换</span></span><br><span class="line">    String test = (String) glmapperGeneric.get();</span><br><span class="line">    System.out.println(test);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 指定类型</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">specifyType</span><span class="params">()</span></span>&#123;</span><br><span class="line">    GlmapperGeneric&lt;String&gt; glmapperGeneric = <span class="keyword">new</span> GlmapperGeneric();</span><br><span class="line">    glmapperGeneric.set(<span class="string">"test"</span>);</span><br><span class="line">    <span class="comment">// 不需要强制类型转换</span></span><br><span class="line">    String test = glmapperGeneric.get();</span><br><span class="line">    System.out.println(test);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面这段代码中的 specifyType 方法中 省去了强制转换，可以在编译时候检查类型安全，可以用在类，方法，接口上。</p>
+<h2 id="泛型中通配符"><a href="#泛型中通配符" class="headerlink" title="泛型中通配符"></a>泛型中通配符</h2><p>我们在定义泛型类，泛型方法，泛型接口的时候经常会碰见很多不同的通配符，比如 T，E，K，V 等等，这些通配符又都是什么意思呢？<br><strong>常用的 T，E，K，V，？</strong><br>本质上这些个都是通配符，没啥区别，只不过是编码时的一种约定俗成的东西。比如上述代码中的 T ，我们可以换成 A-Z 之间的任何一个 字母都可以，并不会影响程序的正常运行，但是如果换成其他的字母代替 T ，在<code>可读性</code>上可能会弱一些。通常情况下，T，E，K，V，？ 是这样约定的：</p>
+<ul>
+<li>？ 表示不确定的 java 类型</li>
+<li>T (type) 表示具体的一个java类型</li>
+<li>K V (key value) 分别代表java键值中的Key Value</li>
+<li>E (element) 代表Element</li>
+</ul>
+<h3 id="1-？-无界通配符"><a href="#1-？-无界通配符" class="headerlink" title="1.？ 无界通配符"></a>1.？ 无界通配符</h3><p>先从一个小例子看起，原文在<a href="https://codeday.me/bug/20180113/116421.html" target="_blank" rel="noopener">这里</a> 。<br>我有一个父类 Animal 和几个子类，如狗、猫等，现在我需要一个动物的列表，我的第一个想法是像这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Animal&gt; listAnimals</span><br></pre></td></tr></table></figure></p>
+<p>但是老板的想法确实这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;? extends Animal&gt; listAnimals</span><br></pre></td></tr></table></figure></p>
+<p>为什么要使用通配符而不是简单的泛型呢？通配符其实在声明局部变量时是没有什么意义的，但是当你为一个方法声明一个参数时，它是非常重要的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">static int countLegs (List&lt;? extends Animal &gt; animals ) &#123;</span><br><span class="line">    int retVal = 0;</span><br><span class="line">    for ( Animal animal : animals )</span><br><span class="line">    &#123;</span><br><span class="line">        retVal += animal.countLegs();</span><br><span class="line">    &#125;</span><br><span class="line">    return retVal;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static int countLegs1 (List&lt; Animal &gt; animals )&#123;</span><br><span class="line">    int retVal = 0;</span><br><span class="line">    for ( Animal animal : animals )</span><br><span class="line">    &#123;</span><br><span class="line">        retVal += animal.countLegs();</span><br><span class="line">    &#125;</span><br><span class="line">    return retVal;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    List&lt;Dog&gt; dogs = new ArrayList&lt;&gt;();</span><br><span class="line"> 	// 不会报错</span><br><span class="line">    countLegs( dogs );</span><br><span class="line">	// 报错</span><br><span class="line">    countLegs1(dogs);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当调用 countLegs1 时，就会飘红，提示的错误信息如下：<br><img src="/2019/09/04/Java泛型中的通配符T-E-K-V/110.png" alt=""><br>所以，对于不确定或者不关心实际要操作的类型，可以使用无限制通配符（尖括号里一个问号，即 &lt;?&gt; ），表示可以持有任何类型。像 countLegs 方法中，限定了上届，但是不关心具体类型是什么，所以对于传入的 Animal 的所有子类都可以支持，并且不会报错。而 countLegs1 就不行。</p>
+<h3 id="2-上界通配符-lt-extends-E-gt"><a href="#2-上界通配符-lt-extends-E-gt" class="headerlink" title="2.上界通配符 &lt; ? extends E&gt;"></a>2.上界通配符 &lt; ? extends E&gt;</h3><blockquote>
+<p>上届：用 extends 关键字声明，表示参数化的类型可能是所指定的类型，或者是此类型的子类。</p>
+</blockquote>
+<p>在类型参数中使用 extends 表示这个泛型中的参数必须是 E 或者 E 的子类，这样有两个好处：</p>
+<ul>
+<li>如果传入的类型不是 E 或者 E 的子类，编译不成功</li>
+<li>泛型中可以使用 E 的方法，要不然还得强转成 E 才能使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">private &lt;K extends A, E extends B&gt; E test(K arg1, E arg2)&#123;</span><br><span class="line">    E result = arg2;</span><br><span class="line">    arg2.compareTo(arg1);</span><br><span class="line">    //.....</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>类型参数列表中如果有多个类型参数上限，用逗号分开</p>
+</blockquote>
+<h2 id="3-下界通配符-lt-super-E-gt"><a href="#3-下界通配符-lt-super-E-gt" class="headerlink" title="3.下界通配符 &lt; ? super E&gt;"></a>3.下界通配符 &lt; ? super E&gt;</h2><blockquote>
+<p>下界: 用 super 进行声明，表示参数化的类型可能是所指定的类型，或者是此类型的父类型，直至 Object</p>
+</blockquote>
+<p>在类型参数中使用 super 表示这个泛型中的参数必须是 E 或者 E 的父类。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">private &lt;T&gt; void test(List&lt;? super T&gt; dst, List&lt;T&gt; src)&#123;</span><br><span class="line">    for (T t : src) &#123;</span><br><span class="line">        dst.add(t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    List&lt;Dog&gt; dogs = new ArrayList&lt;&gt;();</span><br><span class="line">    List&lt;Animal&gt; animals = new ArrayList&lt;&gt;();</span><br><span class="line">    new Test3().test(animals,dogs);</span><br><span class="line">&#125;</span><br><span class="line">// Dog 是 Animal 的子类</span><br><span class="line">class Dog extends Animal &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>dst 类型 “大于等于” src 的类型，这里的“大于等于”是指 dst 表示的范围比 src 要大，因此装得下 dst 的容器也就能装 src 。</p>
+<h3 id="4-？-和-T-的区别"><a href="#4-？-和-T-的区别" class="headerlink" title="4.？ 和 T 的区别"></a>4.？ 和 T 的区别</h3><p><img src="/2019/09/04/Java泛型中的通配符T-E-K-V/001.png" alt=""><br>？和 T 都表示不确定的类型，区别在于我们可以对 T 进行操作，但是对 ？ 不行，比如如下这种 ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 可以</span><br><span class="line">T t = operate();</span><br><span class="line"></span><br><span class="line">// 不可以</span><br><span class="line">？ car = operate();</span><br></pre></td></tr></table></figure></p>
+<p>简单总结下：<br>T 是一个 确定的 类型，通常用于泛型类和泛型方法的定义，？是一个 不确定 的类型，通常用于泛型方法的调用代码和形参，不能用于定义类和泛型方法。<br><strong>区别1：通过 T 来 确保 泛型参数的一致性</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 通过 T 来 确保 泛型参数的一致性</span><br><span class="line">public &lt;T extends Number&gt; void</span><br><span class="line">test(List&lt;T&gt; dest, List&lt;T&gt; src)</span><br><span class="line"></span><br><span class="line">//通配符是 不确定的，所以这个方法不能保证两个 List 具有相同的元素类型</span><br><span class="line">public void</span><br><span class="line">test(List&lt;? extends Number&gt; dest, List&lt;? extends Number&gt; src)</span><br></pre></td></tr></table></figure></p>
+<p>像下面的代码中，约定的 T 是 Number 的子类才可以，但是申明时是用的 String ，所以就会飘红报错。<br><img src="/2019/09/04/Java泛型中的通配符T-E-K-V/010.png" alt=""><br>不能保证两个 List 具有相同的元素类型的情况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GlmapperGeneric&lt;String&gt; glmapperGeneric = new GlmapperGeneric&lt;&gt;();</span><br><span class="line">List&lt;String&gt; dest = new ArrayList&lt;&gt;();</span><br><span class="line">List&lt;Number&gt; src = new ArrayList&lt;&gt;();</span><br><span class="line">glmapperGeneric.testNon(dest,src);</span><br></pre></td></tr></table></figure></p>
+<p>上面的代码在编译器并不会报错，但是当进入到 testNon 方法内部操作时（比如赋值），对于 dest 和 src 而言，就还是需要进行类型转换。<br><strong>区别2：类型参数可以多重限定而通配符不行</strong><br><img src="/2019/09/04/Java泛型中的通配符T-E-K-V/011.png" alt=""><br>使用 &amp; 符号设定多重边界（Multi Bounds)，指定泛型类型 T 必须是 MultiLimitInterfaceA 和 MultiLimitInterfaceB 的共有子类型，此时变量 t 就具有了所有限定的方法和属性。对于通配符来说，因为它不是一个确定的类型，所以不能进行多重限定。<br><strong>区别3：通配符可以使用超类限定而类型参数不行</strong><br>类型参数 T 只具有 一种 类型限定方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T extends A</span><br></pre></td></tr></table></figure></p>
+<p>但是通配符 ? 可以进行 两种限定：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">? extends A</span><br><span class="line">? super A</span><br></pre></td></tr></table></figure></p>
+<h2 id="Class-和-Class-lt-gt-区别"><a href="#Class-和-Class-lt-gt-区别" class="headerlink" title="Class 和 Class&lt;?&gt; 区别"></a>Class<t> 和 Class&lt;?&gt; 区别</t></h2><p>前面介绍了 ？ 和 T 的区别，那么对于，<code>Class&lt;T&gt;</code>和 <code>&lt;Class&lt;?&gt;</code>又有什么区别呢？<code>Class&lt;T&gt;</code>和 <code>Class&lt;?&gt;</code><br>最常见的是在反射场景下的使用，这里以用一段发射的代码来说明下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 通过反射的方式生成  multiLimit </span><br><span class="line">// 对象，这里比较明显的是，我们需要使用强制类型转换</span><br><span class="line">MultiLimit multiLimit = (MultiLimit)</span><br><span class="line">Class.forName(&quot;com.glmapper.bridge.boot.generic.MultiLimit&quot;).newInstance();</span><br></pre></td></tr></table></figure></p>
+<p>对于上述代码，在运行期，如果反射的类型不是 MultiLimit 类，那么一定会报 java.lang.ClassCastException 错误。<br>对于这种情况，则可以使用下面的代码来代替，使得在在编译期就能直接 检查到类型的问题：<br><img src="/2019/09/04/Java泛型中的通配符T-E-K-V/100.png" alt=""><br><code>Class&lt;T&gt;</code>在实例化的时候，T 要替换成具体类。<code>Class&lt;?&gt;</code>它是个通配泛型，? 可以代表任何类型，所以主要用于声明时的限制情况。比如，我们可以这样做申明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 可以</span><br><span class="line">public Class&lt;?&gt; clazz;</span><br><span class="line">// 不可以，因为 T 需要指定类型</span><br><span class="line">public Class&lt;T&gt; clazzT;</span><br></pre></td></tr></table></figure></p>
+<p>所以当不知道定声明什么类型的 Class 的时候可以定义一 个Class&lt;?&gt;。<br><img src="/2019/09/04/Java泛型中的通配符T-E-K-V/101.png" alt=""><br>那如果也想 public Class<t> clazzT; 这样的话，就必须让当前的类也指定 T ，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public class Test3&lt;T&gt; &#123;</span><br><span class="line">    public Class&lt;?&gt; clazz;</span><br><span class="line">    // 不会报错</span><br><span class="line">    public Class&lt;T&gt; clazzT;</span><br></pre></td></tr></table></figure></t></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>本文零碎整理了下 JAVA 泛型中的一些点，不是很全，仅供参考。如果文中有不当的地方，欢迎指正。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/09/04/Java泛型中的通配符T-E-K-V/" data-id="ck0ux1i14006t2cfvli0l457q" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1466132938&site=qq&menu=yes" target="_blank" rel="noopener">
+                          <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/09/18/Struts2框架基础概念总结/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Struts2框架基础概念总结
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/09/03/Linux系统下安装jdk与tomcat/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Linux系统下安装jdk与tomcat</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/22/基于redis的分布式锁的分析与实践/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/22/基于redis的分布式锁的分析与实践/ik41d52nnip.png)" alt="基于redis的分布式锁的分析与实践" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/22/基于redis的分布式锁的分析与实践/" class="title">基于redis的分布式锁的分析与实践</a></p>
+                            <p class="item-date"><time datetime="2019-09-22T10:53:16.000Z" itemprop="datePublished">2019-09-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/21/如何访问redis中的海量数据/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/21/如何访问redis中的海量数据/=26&amp;gp=0.jpg)" alt="如何访问redis中的海量数据" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/21/如何访问redis中的海量数据/" class="title">如何访问redis中的海量数据</a></p>
+                            <p class="item-date"><time datetime="2019-09-21T10:02:22.000Z" itemprop="datePublished">2019-09-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/21/8问Redis/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/21/8问Redis/1175005.jpg)" alt="8问Redis" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/21/8问Redis/" class="title">8问Redis</a></p>
+                            <p class="item-date"><time datetime="2019-09-21T09:48:17.000Z" itemprop="datePublished">2019-09-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/21/深入了解Redis内存模型/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/21/深入了解Redis内存模型/1.png)" alt="深入了解Redis内存模型" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/21/深入了解Redis内存模型/" class="title">深入了解Redis内存模型</a></p>
+                            <p class="item-date"><time datetime="2019-09-21T06:49:23.000Z" itemprop="datePublished">2019-09-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/18/Struts2框架基础概念总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/18/Struts2框架基础概念总结/1276201300.jpg)" alt="Struts2框架基础概念总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/18/Struts2框架基础概念总结/" class="title">Struts2框架基础概念总结</a></p>
+                            <p class="item-date"><time datetime="2019-09-18T03:45:40.000Z" itemprop="datePublished">2019-09-18</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA/">JAVA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/">JSP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javaweb/">Javaweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot/">Springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts2/">Struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发工具/">开发工具</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能测试/">性能测试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/框架/">框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存机制/">缓存机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机/">计算机</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JAVA/" style="font-size: 10.91px;">JAVA</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JVM/" style="font-size: 12.73px;">JVM</a> <a href="/tags/Java/" style="font-size: 17.27px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19.09px;">JavaScript</a> <a href="/tags/Javaweb/" style="font-size: 10px;">Javaweb</a> <a href="/tags/Jquery/" style="font-size: 10px;">Jquery</a> <a href="/tags/Linux/" style="font-size: 11.82px;">Linux</a> <a href="/tags/PHP/" style="font-size: 16.36px;">PHP</a> <a href="/tags/Python/" style="font-size: 10.91px;">Python</a> <a href="/tags/Redis/" style="font-size: 14.55px;">Redis</a> <a href="/tags/Springboot/" style="font-size: 10px;">Springboot</a> <a href="/tags/Struts2/" style="font-size: 10px;">Struts2</a> <a href="/tags/XML/" style="font-size: 10.91px;">XML</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/git/" style="font-size: 10.91px;">git</a> <a href="/tags/html/" style="font-size: 17.27px;">html</a> <a href="/tags/java/" style="font-size: 18.18px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15.45px;">maven</a> <a href="/tags/node/" style="font-size: 10.91px;">node</a> <a href="/tags/orcal/" style="font-size: 13.64px;">orcal</a> <a href="/tags/python/" style="font-size: 14.55px;">python</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 12.73px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/开发工具/" style="font-size: 14.55px;">开发工具</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/心语/" style="font-size: 11.82px;">心语</a> <a href="/tags/性能测试/" style="font-size: 10px;">性能测试</a> <a href="/tags/技术/" style="font-size: 12.73px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15.45px;">数据结构与算法</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/缓存机制/" style="font-size: 10px;">缓存机制</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/计算机/" style="font-size: 10px;">计算机</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/09/04/Java泛型中的通配符T-E-K-V/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

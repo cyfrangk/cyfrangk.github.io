@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>基于redis的分布式锁的分析与实践 | 陈义的个人博客</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Redis">
+    
+    <meta name="description" content="前言：在分布式环境中，我们经常使用锁来进行并发控制，锁可分为乐观锁和悲观锁，基于数据库版本戳的实现是乐观锁，基于redis或zookeeper的实现可认为是悲观锁了。乐观锁和悲观锁最根本的区别在于线程之间是否相互阻塞。 那么，本文主要来讨论基于redis的分布式锁算法问题。 从2.6.12版本开始，redis为SET命令增加了一系列选项(SET key value [EX seconds] [PX">
+<meta name="keywords" content="Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于redis的分布式锁的分析与实践">
+<meta property="og:url" content="http://yoursite.com/2019/09/22/基于redis的分布式锁的分析与实践/index.html">
+<meta property="og:site_name" content="陈义的个人博客">
+<meta property="og:description" content="前言：在分布式环境中，我们经常使用锁来进行并发控制，锁可分为乐观锁和悲观锁，基于数据库版本戳的实现是乐观锁，基于redis或zookeeper的实现可认为是悲观锁了。乐观锁和悲观锁最根本的区别在于线程之间是否相互阻塞。 那么，本文主要来讨论基于redis的分布式锁算法问题。 从2.6.12版本开始，redis为SET命令增加了一系列选项(SET key value [EX seconds] [PX">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/09/22/基于redis的分布式锁的分析与实践/ik41d52nnip.png">
+<meta property="og:updated_time" content="2019-09-22T11:45:36.053Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于redis的分布式锁的分析与实践">
+<meta name="twitter:description" content="前言：在分布式环境中，我们经常使用锁来进行并发控制，锁可分为乐观锁和悲观锁，基于数据库版本戳的实现是乐观锁，基于redis或zookeeper的实现可认为是悲观锁了。乐观锁和悲观锁最根本的区别在于线程之间是否相互阻塞。 那么，本文主要来讨论基于redis的分布式锁算法问题。 从2.6.12版本开始，redis为SET命令增加了一系列选项(SET key value [EX seconds] [PX">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/22/基于redis的分布式锁的分析与实践/ik41d52nnip.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">学而不思则罔，思而不学则殆</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/推荐好文/">推荐好文</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/遥感/">遥感</a></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
+    <input name="wd" type="text" class="search-form-input" placeholder="搜索">
+</form>
+<script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分类
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-基于redis的分布式锁的分析与实践" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        基于redis的分布式锁的分析与实践
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/09/22/基于redis的分布式锁的分析与实践/" class="article-date">
+            <time datetime="2019-09-22T10:53:16.000Z" itemprop="datePublished">2019-09-22</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Redis/">Redis</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/2019/09/22/基于redis的分布式锁的分析与实践/ik41d52nnip.png" alt=""><br>前言：在分布式环境中，我们经常使用锁来进行并发控制，锁可分为乐观锁和悲观锁，基于数据库版本戳的实现是乐观锁，基于redis或zookeeper的实现可认为是悲观锁了。乐观锁和悲观锁最根本的区别在于线程之间是否相互阻塞。</p>
+<p>那么，本文主要来讨论基于redis的分布式锁算法问题。</p>
+<p>从2.6.12版本开始，redis为SET命令增加了一系列选项<code>(SET key value [EX seconds] [PX milliseconds] [NX|XX]):</code></p>
+<blockquote>
+<ul>
+<li>EX seconds – 设置键key的过期时间，单位时秒</li>
+<li>PX milliseconds – 设置键key的过期时间，单位时毫秒</li>
+<li>NX – 只有键key不存在的时候才会设置key的值</li>
+<li>XX – 只有键key存在的时候才会设置key的值</li>
+</ul>
+</blockquote>
+<p>原文地址：<a href="https://redis.io/commands/set" target="_blank" rel="noopener">https://redis.io/commands/set</a><br>中文地址：<a href="http://redis.cn/commands/set.html" target="_blank" rel="noopener">http://redis.cn/commands/set.html</a></p>
+<p><strong>注意:</strong> 由于SET命令加上选项已经可以完全取代<code>SETNX, SETEX, PSETEX</code>的功能，所以在将来的版本中，redis可能会不推荐使用并且最终抛弃这几个命令。</p>
+<p>（这里简单提一下，在旧版本的redis中（指2.6.12版本之前），使用redis实现分布式锁一般需要setNX、expire、getSet、del等命令。而且会发现这种实现有很多逻辑判断的原子操作以及本地时间等并没有控制好。）</p>
+<p>而在旧版本的redis中，redis的超时时间很难控制，用户迫切需要把setNX和expiration结合为一体的命令，把他们作为一个原子操作，这样新版本的多选项set命令诞生了。然而这并没有完全解决复杂的超时控制带来的问题。</p>
+<p>接下来，我们的一切讨论都基于新版redis。</p>
+<p><strong>在这里，我先提出几个在实现redis分布式锁中需要考虑的关键问题</strong><br>1、死锁问题；</p>
+<p>1.1、为了防止死锁，redis至少需要设置一个超时时间；</p>
+<p>1.2、由1.1引申出来，当锁自动释放了，但是程序并没有执行完毕，这时候其他线程又获取到锁执行同样的程序，可能会造成并发问题，这个问题我们需要考虑一下是否归属于分布式锁带来问题的范畴。</p>
+<p>2、锁释放问题，这里会有两个问题；</p>
+<p>2.1、每个获取redis锁的线程应该释放自己获取到的锁，而不是其他线程的，所以我们需要在每个线程获取锁的时候给锁做上不同的标记以示区分；</p>
+<p><strong>2.2、由2.1带来的问题是线程在释放锁的时候需要判断当前锁是否属于自己，如果属于自己才释放，这里涉及到逻辑判断语句，至少是两个操作在进行，那么我们需要考虑这两个操作要在一个原子内执行，否者在两个行为之间可能会有其他线程插入执行，导致程序紊乱。</strong></p>
+<p>3、更可靠的锁；</p>
+<p>单实例的redis（这里指只有一个master节点）往往是不可靠的，虽然实现起来相对简单一些，但是会面临着宕机等不可用的场景，即使在主从复制的时候也显得并不可靠（因为redis的主从复制往往是异步的）。</p>
+<p><strong>关于Martin Kleppmann的Redlock的分析</strong></p>
+<p>原文地址：<a href="https://redis.io/topics/distlock" target="_blank" rel="noopener">https://redis.io/topics/distlock</a><br>中文地址：<a href="http://redis.cn/topics/distlock.html" target="_blank" rel="noopener">http://redis.cn/topics/distlock.html</a></p>
+<p>文章分析得出，这种算法只需具备3个特性就可以实现一个最低保障的分布式锁。</p>
+<blockquote>
+<p>1.安全属性（Safety property）: 独享（相互排斥）。在任意一个时刻，只有一个客户端持有锁。<br>2.活性A(Liveness property A): 无死锁。即便持有锁的客户端崩溃（crashed)或者网络被分裂（gets partitioned)，锁仍然可以被获取。<br>3.活性B(Liveness property B): 容错。 只要大部分Redis节点都活着，客户端就可以获取和释放锁.</p>
+</blockquote>
+<p>我们来分析一下：</p>
+<p>第一点安全属性意味着悲观锁（互斥锁）是我们做redis分布式锁的前提，否者将可能造成并发；</p>
+<p>第二点表明为了避免死锁，我们需要设置锁超时时间，保证在一定的时间过后，锁可以重新被利用；</p>
+<p>第三点是说对于客户端来说，获取锁和手动释放锁可以有更高的可靠性。</p>
+<p>更进一步分析，结合上文提到的<code>关键问题</code>，这里可以引申出另外的两个问题：</p>
+<p>1、怎么才能合理判断程序真正处理的有效时间范围？（这里有个时间偏移的问题）</p>
+<p>2、redis Master节点宕机后恢复（可能还没有持久化到磁盘）、主从节点切换，(N/2)+1这里的N应该怎么动态计算更合理？</p>
+<p>接下来再看，redis之父antirez对Redlock的评价<br>原文地址：<a href="http://antirez.com/news/101" target="_blank" rel="noopener">http://antirez.com/news/101</a></p>
+<p>文中主要提到了网络延迟和本地时钟的修改（不管是时间服务器或人为修改）对这种算法可能造成的影响。</p>
+<p>最后，来点实践吧<br><strong>I、传统的单实例redis分布式锁实现（关键步骤）</strong></p>
+<p>获取锁（含自动释放锁）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SET resource_name my_random_value NX PX 30000</span><br></pre></td></tr></table></figure></p>
+<p> 手动删除锁（Lua脚本）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if redis.call(&quot;get&quot;,KEYS[1]) == ARGV[1] then</span><br><span class="line">    return redis.call(&quot;del&quot;,KEYS[1])</span><br><span class="line">else</span><br><span class="line">    return 0</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p><strong>II、分布式环境的redis（多master节点）的分布式锁实现</strong></p>
+<p>为了保证在尽可能短的时间内获取到(N/2)+1个节点的锁，可以并行去获取各个节点的锁（当然，并行可能需要消耗更多的资源，因为串行只需要count到足够数量的锁就可以停止获取了）；</p>
+<p>另外，怎么动态实时统一获取redis master nodes需要更进一步去思考了。</p>
+<p>QA，补充一下说明（以下为我与朋友沟通的情况，以说明文中大家可能不够明白的地方）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1、在关键问题2.1中，删除就删除了，会造成什么问题？</span><br><span class="line"></span><br><span class="line">线程A超时，准备删除锁；但此时的锁属于线程B；线程B还没执行完，线程A把锁删除了，这时线程C获取到锁，同时执行程序；所以不能乱删。</span><br><span class="line"></span><br><span class="line">2、在关键问题2.2中，只要在key生成时，跟线程相关就不用考虑这个问题了吗？</span><br><span class="line"></span><br><span class="line">不同的线程执行程序，线程之间肯虽然有差异呀，然后在redis锁的value设置有线程信息，比如线程id或线程名称，是分布式环境的话加个机器id前缀咯（类似于twitter的snowflake算法！），但是在del命令只会涉及到key，不会再次检查value，所以还是需要lua脚本控制if(condition)&#123;xxx&#125;的原子性。</span><br><span class="line"></span><br><span class="line">3、为什么两个线程都会去删除锁？（貌似重复的问题。不管怎样，还是耐心解答吧）</span><br><span class="line"></span><br><span class="line">每个线程只能管理自己的锁，不能管理别人线程的锁啊。这里可以联想一下ThreadLocal。</span><br><span class="line"></span><br><span class="line">4、如果加锁的线程挂了怎么办？只能等待自动超时？</span><br><span class="line"></span><br><span class="line">看你怎么写程序的了，一种是问题3的回答；另外，那就自动超时咯。这种情况也适用于网络over了。</span><br><span class="line"></span><br><span class="line">5、时间太长，程序异常就会蛋疼，时间太短，就会出现程序还没有处理完就超时了，这岂不是很尴尬？</span><br><span class="line"></span><br><span class="line">是呀，所以需要更好的衡量这个超时时间的设置。</span><br></pre></td></tr></table></figure></p>
+<h2 id="附加："><a href="#附加：" class="headerlink" title="附加："></a>附加：</h2><p>基于redis的分布式锁实现客户端Redisson：<a href="https://github.com/redisson/redisson/wiki/8.-Distributed-locks-and-synchronizers" target="_blank" rel="noopener">https://github.com/redisson/redisson/wiki/8.-Distributed-locks-and-synchronizers</a><br>基于zookeeper的分布式锁实现：<a href="http://curator.apache.org/curator-recipes/shared-reentrant-lock.html" target="_blank" rel="noopener">http://curator.apache.org/curator-recipes/shared-reentrant-lock.html</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2019/09/22/基于redis的分布式锁的分析与实践/" data-id="ck0ux1hpb00412cfv529p0eyr" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1466132938&site=qq&menu=yes" target="_blank" rel="noopener">
+                          <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/09/21/如何访问redis中的海量数据/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">如何访问redis中的海量数据</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/22/基于redis的分布式锁的分析与实践/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/22/基于redis的分布式锁的分析与实践/ik41d52nnip.png)" alt="基于redis的分布式锁的分析与实践" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/22/基于redis的分布式锁的分析与实践/" class="title">基于redis的分布式锁的分析与实践</a></p>
+                            <p class="item-date"><time datetime="2019-09-22T10:53:16.000Z" itemprop="datePublished">2019-09-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/21/如何访问redis中的海量数据/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/21/如何访问redis中的海量数据/=26&amp;gp=0.jpg)" alt="如何访问redis中的海量数据" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/21/如何访问redis中的海量数据/" class="title">如何访问redis中的海量数据</a></p>
+                            <p class="item-date"><time datetime="2019-09-21T10:02:22.000Z" itemprop="datePublished">2019-09-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/21/8问Redis/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/21/8问Redis/1175005.jpg)" alt="8问Redis" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/21/8问Redis/" class="title">8问Redis</a></p>
+                            <p class="item-date"><time datetime="2019-09-21T09:48:17.000Z" itemprop="datePublished">2019-09-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/21/深入了解Redis内存模型/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/21/深入了解Redis内存模型/1.png)" alt="深入了解Redis内存模型" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/21/深入了解Redis内存模型/" class="title">深入了解Redis内存模型</a></p>
+                            <p class="item-date"><time datetime="2019-09-21T06:49:23.000Z" itemprop="datePublished">2019-09-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/09/18/Struts2框架基础概念总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/09/18/Struts2框架基础概念总结/1276201300.jpg)" alt="Struts2框架基础概念总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/09/18/Struts2框架基础概念总结/" class="title">Struts2框架基础概念总结</a></p>
+                            <p class="item-date"><time datetime="2019-09-18T03:45:40.000Z" itemprop="datePublished">2019-09-18</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA/">JAVA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/">JSP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javaweb/">Javaweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot/">Springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Struts2/">Struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript库/">javascript库</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/orcal/">orcal</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冷知识/">冷知识</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发工具/">开发工具</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心语/">心语</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能测试/">性能测试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/框架/">框架</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存机制/">缓存机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/舆论/">舆论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机/">计算机</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目用到/">项目用到</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/JAVA/" style="font-size: 10.91px;">JAVA</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/JVM/" style="font-size: 12.73px;">JVM</a> <a href="/tags/Java/" style="font-size: 17.27px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 19.09px;">JavaScript</a> <a href="/tags/Javaweb/" style="font-size: 10px;">Javaweb</a> <a href="/tags/Jquery/" style="font-size: 10px;">Jquery</a> <a href="/tags/Linux/" style="font-size: 11.82px;">Linux</a> <a href="/tags/PHP/" style="font-size: 16.36px;">PHP</a> <a href="/tags/Python/" style="font-size: 10.91px;">Python</a> <a href="/tags/Redis/" style="font-size: 14.55px;">Redis</a> <a href="/tags/Springboot/" style="font-size: 10px;">Springboot</a> <a href="/tags/Struts2/" style="font-size: 10px;">Struts2</a> <a href="/tags/XML/" style="font-size: 10.91px;">XML</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/git/" style="font-size: 10.91px;">git</a> <a href="/tags/html/" style="font-size: 17.27px;">html</a> <a href="/tags/java/" style="font-size: 18.18px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/javascript库/" style="font-size: 20px;">javascript库</a> <a href="/tags/maven/" style="font-size: 15.45px;">maven</a> <a href="/tags/node/" style="font-size: 10.91px;">node</a> <a href="/tags/orcal/" style="font-size: 13.64px;">orcal</a> <a href="/tags/python/" style="font-size: 14.55px;">python</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/冷知识/" style="font-size: 12.73px;">冷知识</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/开发工具/" style="font-size: 14.55px;">开发工具</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/心语/" style="font-size: 11.82px;">心语</a> <a href="/tags/性能测试/" style="font-size: 10px;">性能测试</a> <a href="/tags/技术/" style="font-size: 12.73px;">技术</a> <a href="/tags/数据结构与算法/" style="font-size: 15.45px;">数据结构与算法</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/缓存机制/" style="font-size: 10px;">缓存机制</a> <a href="/tags/舆论/" style="font-size: 10px;">舆论</a> <a href="/tags/计算机/" style="font-size: 10px;">计算机</a> <a href="/tags/项目用到/" style="font-size: 10px;">项目用到</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 陈义</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div>
+                <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2019/09/22/基于redis的分布式锁的分析与实践/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
